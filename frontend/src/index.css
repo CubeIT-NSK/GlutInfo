@@ -1,0 +1,68 @@
+/* FONTS */
+
+@import url('https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200..1000;1,200..1000&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&display=swap');
+
+/* DEFAULTS */
+:root {
+ --black: #373F41;
+ --white: #FFFFFF;
+ --gray: #E2E5E6;
+ --gray-form: #929292;
+ --back-light: #F8F8F8;
+ --light-wheat: #F8A94A;
+ --dark-wheat: #C97713;
+ --gradient-wheat: linear-gradient(249.03deg, #F8A94A 23.57%, #C97713 134.39%);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+
+  font-family: 'Mulish';
+  font-style: normal;
+  font-weight: normal;
+  line-height: normal;
+
+  user-select: none;
+}
+
+#root {
+}
+
+html{
+  font-size: 16px;
+}
+
+body {
+  background-color: var(--white);
+}
+
+header {
+  font-size: 42px;
+}
+
+h1 {
+  font-size: 32px;
+}
+
+h2 {
+  font-size: 26px;
+}
+
+h3 {
+  font-size: 20px;
+}
+
+main {
+  display: flex;
+  flex-grow: 1;
+}
+
+.container {
+  max-width: 1170px;
+  min-width: 1170px;
+  margin: 0 auto;
+  padding: 0;
+}
