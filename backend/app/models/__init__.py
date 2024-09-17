@@ -1,2 +1,1 @@
-from .user import User # noqa
-from .user import Consultants # noqa
+from .user import User, Consultants, Patients # noqa

@@ -43,9 +43,9 @@ class UserCreate(schemas.BaseUserCreate):
 
 
 class UserUpdate(schemas.BaseUserUpdate):
-    name: Optional[str]
-    surname: Optional[str]
-    patronymic: Optional[str]
-    born_date: Optional[date]
-    sex: Optional[Sex]
+    name: Optional[str] = None
+    surname: Optional[str] = None
+    patronymic: Optional[str] = None
+    born_date: Optional[date] = None
+    sex: Optional[Sex] = None
     # role: Optional[Role]

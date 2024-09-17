@@ -45,21 +45,29 @@ class User(SQLAlchemyBaseUserTable[int], Base):
     consultant: Mapped[Optional['Consultants']] = relationship(
         back_populates='user'
     )
+    patient: Mapped[Optional['Patients']] = relationship(
+        back_populates='user'
+    )
 
 
-# class Patients(Base):
-#     '''
-#     Model for Patient.
-#     '''
+class Patients(Base):
+    '''
+    Model for Patient.
+    '''
 
-#     user_id: Mapped[int] = mapped_column(Integer, ForeignKey('user.id'))
-#     address: Mapped[str] = mapped_column(Text)
-#     education: Mapped[str] = mapped_column(Text)
-#     working: Mapped[bool] = mapped_column(Boolean)
-#     position: Mapped[str] = mapped_column(Text)
-#     # image: Mapped[] = mapped_column()  Need to check how to save static
+    user_id: Mapped[int] = mapped_column(
+        Integer,
+        ForeignKey('user.id'),
+        unique=True
+    )
+    address: Mapped[str] = mapped_column(Text)
+    education: Mapped[str] = mapped_column(Text)
+    working: Mapped[bool] = mapped_column(Boolean)
+    position: Mapped[str] = mapped_column(Text)
+    # image: Mapped[] = mapped_column()  Need to check how to save static
 
-#     user: Mapped['Users'] = relationship(back_populates='patients')
+    user: Mapped[User] = relationship(back_populates='patient',
+                                      lazy='joined')
 
 
 class Consultants(Base):

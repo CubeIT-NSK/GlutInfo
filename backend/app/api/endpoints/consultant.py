@@ -5,7 +5,6 @@ from fastapi_users import BaseUserManager
 from app.core.db import get_async_session
 from app.core.user import (
     current_user,
-    current_user_consultant,
     get_user_manager,
 )
 from app.schemas.consultant import (
@@ -17,6 +16,7 @@ from app.models.user import User
 from app.crud.consultant import consultant_crud
 from app.api.validators import (
     check_consultant_duplicate,
+    current_user_consultant,
 )
 
 
@@ -49,7 +49,7 @@ async def post_new_consultant(
     user: User = Depends(current_user),
     session: AsyncSession = Depends(get_async_session),
 ):
-    await check_consultant_duplicate(user.id, session)
+    await check_consultant_duplicate(user)
     consultant = await consultant_crud.create(consultant, session, user)
     return consultant
 
