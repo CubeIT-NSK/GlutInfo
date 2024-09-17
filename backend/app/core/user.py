@@ -1,6 +1,6 @@
 from typing import Optional, Union
 
-from fastapi import Depends, Request
+from fastapi import Depends, Request, HTTPException, status
 from fastapi_users import (
     BaseUserManager, FastAPIUsers, IntegerIDMixin, InvalidPasswordException
 )
@@ -72,3 +72,14 @@ fastapi_users = FastAPIUsers[User, int](
 
 current_user = fastapi_users.current_user(active=True)
 current_superuser = fastapi_users.current_user(active=True, superuser=True)
+
+
+async def current_user_consultant(
+        current_user: User = Depends(current_user)
+):
+    if current_user.role == 'consultant':
+        return current_user
+    raise HTTPException(
+        status_code=status.HTTP_403_FORBIDDEN,
+        detail='You haven`t consultant role'
+    )

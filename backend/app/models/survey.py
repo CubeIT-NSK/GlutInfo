@@ -83,40 +83,6 @@ class Patients(Base):
     user: Mapped['Users'] = relationship(back_populates='patients')
 
 
-# classes for Users and others
-class Users(Base):
-    '''
-    Model for User.
-    '''
-
-    name: Mapped[str] = mapped_column(String)
-    surname: Mapped[str] = mapped_column(String)
-    patronymic: Mapped[str] = mapped_column(Text)
-    born_date: Mapped[str] = mapped_column(Text)
-    sex: Mapped[str] = mapped_column(String)
-    phone: Mapped[str] = mapped_column(Text)
-    email: Mapped[str] = mapped_column(Text)
-    verified: Mapped[str] = mapped_column(Text)
-
-    patients: Mapped['Patients'] = relationship(back_populates='user')
-    consultants: Mapped['Consultants'] = relationship(back_populates='user')
-
-
-class Consultants(Base):
-    '''
-    Model for Consultant.
-    '''
-
-    user_id: Mapped[int] = mapped_column(Integer, ForeignKey('users.id'))
-    speciality: Mapped[list] = mapped_column(Text)
-    experience: Mapped[str] = mapped_column(Text)
-    grade: Mapped[str] = mapped_column(Text)
-    institution: Mapped[str] = mapped_column(Text)
-    current_work: Mapped[str] = mapped_column(Text)
-
-    user: Mapped['Users'] = relationship(back_populates='consultants')
-
-
 class Records(Base):
     '''
     Model for Record.
