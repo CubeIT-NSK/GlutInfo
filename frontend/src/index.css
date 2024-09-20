@@ -2,6 +2,57 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200..1000;1,200..1000&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+
+@font-face {
+  font-family: 'TT Hoves';
+  src: url('./assets/fonts/TTHoves-DemiBold.eot');
+  src: local('TT Hoves DemiBold'), local('TTHoves-DemiBold'),
+      url('./assets/fonts/TTHoves-DemiBold.eot?#iefix') format('embedded-opentype'),
+      url('./assets/fonts/TTHoves-DemiBold.woff2') format('woff2'),
+      url('./assets/fonts/TTHoves-DemiBold.woff') format('woff'),
+      url('./assets/fonts/TTHoves-DemiBold.ttf') format('truetype');
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'TT Hoves';
+  src: url('./assets/fonts/TTHoves-Bold.eot');
+  src: local('TT Hoves Bold'), local('TTHoves-Bold'),
+      url('./assets/fonts/TTHoves-Bold.eot?#iefix') format('embedded-opentype'),
+      url('./assets/fonts/TTHoves-Bold.woff2') format('woff2'),
+      url('./assets/fonts/TTHoves-Bold.woff') format('woff'),
+      url('./assets/fonts/TTHoves-Bold.ttf') format('truetype');
+  font-weight: bold;
+  font-style: normal;
+}
+
+
+@font-face {
+  font-family: 'TT Hoves';
+  src: url('./assets/fonts/TTHoves-Regular.eot');
+  src: local('TT Hoves Regular'), local('TTHoves-Regular'),
+      url('./assets/fonts/TTHoves-Regular.eot?#iefix') format('embedded-opentype'),
+      url('./assets/fonts/TTHoves-Regular.woff2') format('woff2'),
+      url('./assets/fonts/TTHoves-Regular.woff') format('woff'),
+      url('./assets/fonts/TTHoves-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'TT Hoves';
+  src: url('./assets/fonts/TTHoves-Medium.eot');
+  src: local('TT Hoves Medium'), local('TTHoves-Medium'),
+      url('./assets/fonts/TTHoves-Medium.eot?#iefix') format('embedded-opentype'),
+      url('./assets/fonts/TTHoves-Medium.woff2') format('woff2'),
+      url('./assets/fonts/TTHoves-Medium.woff') format('woff'),
+      url('./assets/fonts/TTHoves-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+}
+
 
 /* DEFAULTS */
 :root {
@@ -13,6 +64,7 @@
  --light-wheat: #F8A94A;
  --dark-wheat: #C97713;
  --gradient-wheat: linear-gradient(249.03deg, #F8A94A 23.57%, #C97713 134.39%);
+ --gradient-btn: linear-gradient(184.89deg, rgb(248, 169, 74),rgb(201, 119, 19))
 }
 
 * {
@@ -26,9 +78,6 @@
   line-height: normal;
 
   user-select: none;
-}
-
-#root {
 }
 
 html{

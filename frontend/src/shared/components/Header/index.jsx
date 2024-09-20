@@ -2,10 +2,12 @@ import React, { useState, useCallback, useEffect, useRef } from 'react';
 import styles from './index.module.css';
 import icons from '../../resources/icon';
 import { menuItems } from './menuItems';
+import AuthorizationModal from '../AuthorizationModal';
 
 const Header = () => {
   const [openDropdownIndex, setOpenDropdownIndex] = useState(null);
   const [isDonateMenuVisible, setDonateMenuVisible] = useState(false);
+  const [isAuthModalOpen, setAuthModalOpen] = useState(false);
   const donateMenuRef = useRef(null);
   const headerRef = useRef(null);
 
@@ -34,6 +36,10 @@ const Header = () => {
     };
   }, [handleClickOutside]);
 
+  const toggleAuthModal = () => {
+    setAuthModalOpen((prevState) => !prevState);
+  };
+
   return (
     <div className="container" ref={headerRef}>
       <header className={styles.header}>
@@ -56,27 +62,30 @@ const Header = () => {
                 <img src={icons.telegramIcon} alt="telegramIcon" />
                 Наш телеграм канал
               </a>
-                <div className={styles.donateWrapper}>
-                  <button onClick={handleToggleDonateMenu} className={styles.socialIconText}>
-                    <img src={icons.donateIcon} alt="donateIcon" />
-                    Пожертвовать
-                  </button>
-                  <div
-                    ref={donateMenuRef}
-                    className={`${styles.donateMenu} ${isDonateMenuVisible ? styles.showDonateMenu : ''}`}
-                  >
-                    <div className={styles.donateMenuText}>
-                      <p>Сервис создан благодаря инициативе сотрудников Северо-Западного Центра лечения глютен-ассоциированных заболеваний и поддержке пациентского сообщества.</p>
-                       <p>Мы будем благодарны любой сумме для продвижения нашего дела. Каждое пожертвование будет направлено на реализацию социальных программ для больных целиакией.</p>
-                    </div>
-                    <button className={styles.donateButton}>Пожертвовать</button>
+              <div className={styles.donateWrapper}>
+                <button onClick={handleToggleDonateMenu} className={styles.socialIconText}>
+                  <img src={icons.donateIcon} alt="donateIcon" />
+                  Пожертвовать
+                </button>
+                <div
+                  ref={donateMenuRef}
+                  className={`${styles.donateMenu} ${isDonateMenuVisible ? styles.showDonateMenu : ''}`}
+                >
+                  <div className={styles.donateMenuText}>
+                    <p>Сервис создан благодаря инициативе сотрудников Северо-Западного Центра лечения глютен-ассоциированных заболеваний и поддержке пациентского сообщества.</p>
+                     <p>Мы будем благодарны любой сумме для продвижения нашего дела. Каждое пожертвование будет направлено на реализацию социальных программ для больных целиакией.</p>
                   </div>
+                  <button className={styles.donateButton}>Пожертвовать</button>
                 </div>
-
+              </div>
             </div>
             <div className={styles.icons}>
               {['searchIcon', 'callIcon', 'avatarIcon', 'languageIcon'].map((icon) => (
-                <button key={icon} className={styles.iconButton}>
+                <button
+                  key={icon}
+                  className={styles.iconButton}
+                  onClick={icon === 'avatarIcon' ? toggleAuthModal : null}
+                >
                   <img src={icons[icon]} alt={icon} />
                 </button>
               ))}
@@ -112,6 +121,7 @@ const Header = () => {
           </ul>
         </nav>
       </header>
+      <AuthorizationModal isOpen={isAuthModalOpen} onClose={toggleAuthModal} />
     </div>
   );
 };
