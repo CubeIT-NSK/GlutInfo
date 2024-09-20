@@ -1,206 +1,1113 @@
 .container {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
 }
 
 .mainContent {
-    display: flex;
-    flex-direction: column;
+	display: flex;
+	flex-direction: column;
 }
 
 /* TELESERVICE */
 
 .teleService {
-    display: flex;
-    flex-direction: column;
-    padding: 54px 0 111px 0;
+	display: flex;
+	flex-direction: column;
+	padding: 54px 0 111px 0;
 }
 
 .teleWrapper {
-    display: flex;
-    flex-direction: column;
-    gap: 32px;
+	display: flex;
+	flex-direction: column;
+	gap: 32px;
 }
 
 .teleTop {
-    padding-top: 10px;
+	padding-top: 10px;
 }
 
 .teleTop p {
-    background: var(--gradient-wheat);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    font-family: 'Mulish';
-    font-size: 14px;
-    font-weight: 600;
-    line-height: 115%;
-    letter-spacing: 0px;
-    text-align: left;
-    text-transform: uppercase;
+	background: var(--gradient-wheat);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	background-clip: text;
+	font-family: 'Mulish';
+	font-size: 14px;
+	font-weight: 600;
+	line-height: 115%;
+	letter-spacing: 0px;
+	text-align: left;
+	text-transform: uppercase;
 }
 
 .teleMiddle {
-    display: flex;
-    gap: 30px;
+	display: flex;
+	gap: 30px;
 }
 
 .teleMiddleWrap {
-    display: flex;
-    flex-direction: column;
-    gap: 38px;
+	display: flex;
+	flex-direction: column;
+	gap: 38px;
 }
 
 .teleMiddleWrap header {
-    color: rgb(55, 63, 65);
-    font-family: TT Hoves;
-    font-weight: 700;
-    line-height: 115%;
-    letter-spacing: 0px;
-    text-align: left;
-    width: 570px;
+	color: rgb(55, 63, 65);
+	font-family: TT Hoves;
+	font-weight: 700;
+	line-height: 115%;
+	letter-spacing: 0px;
+	text-align: left;
+	width: 570px;
 }
 
-.teleMiddleWrap header span{
-    background: var(--gradient-wheat);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+.teleMiddleWrap header span {
+	background: var(--gradient-wheat);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	background-clip: text;
+
+	font-family: TT Hoves;
+	font-weight: 700;
+	line-height: 115%;
+	letter-spacing: 0px;
+	text-align: left;
+	width: 570px;
 }
 
 .teleMiddleWrap h3 {
-    color: rgb(55, 63, 65);
-    font-family: 'Mulish';
-    font-size: 20px;
-    font-weight: 400;
-    line-height: 25px;
-    letter-spacing: 0px;
-    text-align: left;
-    width: 570px;
+	color: rgb(55, 63, 65);
+	font-family: 'Mulish';
+	font-size: 20px;
+	font-weight: 400;
+	line-height: 25px;
+	letter-spacing: 0px;
+	text-align: left;
+	width: 570px;
 }
 
-.teleMiddleWrap button{
-    border-radius: 4px;
-    border: transparent;
-    box-shadow: 0px 4px 12px 0px rgba(0, 0, 0, 0.25);
-    background: var(--gradient-wheat);
-    padding: 24.5px 44.5px;
-    cursor: pointer;
+.teleMiddleWrap button {
+	border-radius: 4px;
+	border: transparent;
+	box-shadow: 0px 4px 12px 0px rgba(0, 0, 0, 0.25);
+	background: var(--gradient-wheat);
+	padding: 24.5px 44.5px;
+	cursor: pointer;
 
-    color: rgb(255, 255, 255);
-    font-family: TT Hoves;
-    font-size: 22px;
-    font-weight: 500;
-    line-height: 115%;
-    letter-spacing: 0px;
+	color: rgb(255, 255, 255);
+	font-family: TT Hoves;
+	font-size: 22px;
+	font-weight: 500;
+	line-height: 115%;
+	letter-spacing: 0px;
 
-    width: 470px;
+	width: 470px;
 }
 
 .teleMiddleTopWrapper {
-    display: flex;
-    flex-direction: column;
-    gap: 35px;
+	display: flex;
+	flex-direction: column;
+	gap: 35px;
 }
 
 /* ABOUT US */
 
 .aboutUs {
-    display: flex;
-    flex-direction: column;
-    padding-bottom: 101px;
-    background-image: url('../../assets/img/aboutUs/bg.png');
-    background-repeat: no-repeat;
-    background-position: bottom center;
-    background-size: cover;
+	display: flex;
+	flex-direction: column;
+	padding-bottom: 101px;
+	background-image: url('../../assets/img/aboutUs/bg.png');
+	background-repeat: no-repeat;
+	background-position: bottom center;
+	background-size: cover;
 }
 
 .aboutUsWrapper {
-    display: flex;
-    gap: 100px;
-    padding-top: 100px;
+	display: flex;
+	gap: 100px;
+	padding-top: 100px;
 }
 
 .aboutUsTextWrapper {
-    display: flex;
-    flex-direction: column;
-    gap: 30px;
-    width: 557px;
+	display: flex;
+	flex-direction: column;
+	gap: 30px;
+	width: 557px;
 }
 
 .aboutUsLeft {
-    display: flex;
-    flex-direction: column;
-    gap: 65px;
+	display: flex;
+	flex-direction: column;
+	gap: 65px;
 }
 
 .aboutUsRight {
-    display: flex;
-    flex-direction: column;
-    gap: 30px;
-    text-align: center;
-    padding-top: 42px;
+	display: flex;
+	flex-direction: column;
+	gap: 30px;
+	text-align: center;
+	padding-top: 42px;
 }
 
 .aboutUsTextWrapper header {
-    color: var(--black);
-    font-family: TT Hoves;
-    font-weight: 700;
-    line-height: 115%;
-    letter-spacing: 0px;
-    text-align: left;
+	color: var(--black);
+	font-family: TT Hoves;
+	font-weight: 700;
+	line-height: 115%;
+	letter-spacing: 0px;
+	text-align: left;
 }
 
-.aboutUsTextWrapper h3{
-    color: var(--black);
-    font-family: Mulish;
-    font-weight: 400;
-    line-height: 25px;
-    letter-spacing: 0px;
-    text-align: left;
+.aboutUsTextWrapper h3 {
+	color: var(--black);
+	font-family: Mulish;
+	font-weight: 400;
+	line-height: 25px;
+	letter-spacing: 0px;
+	text-align: left;
 }
 
 .aboutUsRight p {
-    color: var(--black);
-    font-family: Jost;
-    font-size: 34px;
-    font-weight: 600;
-    line-height: 115%;
-    letter-spacing: 0px;
+	color: var(--black);
+	font-family: Jost;
+	font-size: 34px;
+	font-weight: 600;
+	line-height: 115%;
+	letter-spacing: 0px;
 }
+
 .aboutUsRight p span {
-    font-family: Jost;
-    font-size: 34px;
-    font-weight: 600;
-    line-height: 115%;
-    letter-spacing: 0px;
-    background: var(--gradient-wheat);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+	font-family: Jost;
+	font-size: 34px;
+	font-weight: 600;
+	line-height: 115%;
+	letter-spacing: 0px;
+	background: var(--gradient-wheat);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	background-clip: text;
 }
 
 .aboutUsRight img {
-    width: 330px;
-    height: 330px;
-    margin: 0 auto;
+	width: 330px;
+	height: 330px;
+	margin: 0 auto;
 }
 
 .aboutUsLeft button {
-    border-radius: 4px;
-    border: transparent;
-    box-shadow: 0px 4px 12px 0px rgba(0, 0, 0, 0.25);
-    background: var(--gradient-wheat);
-    padding: 27.5px 176.5px;
-    cursor: pointer;
+	border-radius: 4px;
+	border: transparent;
+	box-shadow: 0px 4px 12px 0px rgba(0, 0, 0, 0.25);
+	background: var(--gradient-wheat);
+	padding: 27.5px 176.5px;
+	cursor: pointer;
 
-    color: rgb(255, 255, 255);
-    font-family: TT Hoves;
-    font-size: 22px;
-    font-weight: 500;
-    line-height: 115%;
-    letter-spacing: 0px;
+	color: rgb(255, 255, 255);
+	font-family: TT Hoves;
+	font-size: 22px;
+	font-weight: 500;
+	line-height: 115%;
+	letter-spacing: 0px;
 
-    width: 470px;
+	width: 470px;
+}
+
+/* RELEVANCE */
+
+.relevanceProblem {
+	display: flex;
+	flex-direction: column;
+	padding: 135px 0 96px 0;
+}
+
+.relevanceWrapper {
+	display: flex;
+	flex-direction: column;
+	gap: 50px;
+}
+
+.relevanceTop {
+	display: flex;
+	flex-direction: column;
+	gap: 50px;
+	padding-top: 61px;
+}
+
+.relevanceTopWrapper {
+	display: flex;
+	gap: 7px;
+}
+
+.relevanceHeader {
+	color: rgb(55, 63, 65);
+	font-family: TT Hoves;
+	font-size: 42px;
+	font-weight: 700;
+	line-height: 115%;
+	letter-spacing: 0px;
+	text-align: left;
+	width: 370px;
+}
+
+.relevanceProblemHeaderBlock {
+	background-image: var(--gradient-wheat);
+	border-radius: 10px;
+
+	width: 770px;
+	padding: 1px 1px 0 1px;
+	position: relative;
+}
+
+.relevanceProblemHeaderBlockEl {
+	background-color: white;
+	border-radius: 10px;
+	height: calc(100% - 1px);
+	padding-left: 74px;
+	padding-top: 20px;
+}
+
+.relevanceProblemHeaderBlock::before {
+	content: "";
+	position: absolute;
+	left: -25px;
+	top: 23%;
+	width: 46px;
+	height: 47.5px;
+	background-color: white;
+	border: 1px solid #d48b32;
+	border-radius: 100px;
+	z-index: 2;
+}
+
+.relevanceProblemHeaderBlock::after {
+	content: "";
+	position: absolute;
+	left: 22px;
+	top: 49%;
+	width: 30px;
+	height: 1px;
+	background-image: var(--gradient-wheat);
+	z-index: 1;
+}
+
+.relevanceProblemHeaderBlockEl img {
+	position: absolute;
+	top: 25px;
+	left: -24px;
+	z-index: 10;
+}
+
+.relevanceProblemHeaderBlockEl::before {
+	content: "";
+	position: absolute;
+	top: 21px;
+	left: -25px;
+	width: 25px;
+	height: 54px;
+	background-color: white;
+	z-index: 10;
+}
+
+.relevanceProblemHeaderBlockEl p {
+	color: rgb(55, 63, 65);
+	font-family: Mulish;
+	font-size: 20px;
+	font-weight: 400;
+	line-height: 25px;
+	letter-spacing: 0px;
+	text-align: left;
+}
+
+.relevanceProblemHeaderBlockEl span {
+	background: var(--gradient-wheat);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+}
+
+.relevanceTopBtmWrapper {
+	display: flex;
+	gap: 30px;
+}
+
+.rTBWLeftText,
+.rTBWRightText {
+	width: 570px;
+}
+
+.rTBWLeftText p,
+.rTBWRightText p {
+	color: rgb(55, 63, 65);
+	font-family: Mulish;
+	font-size: 20px;
+	font-weight: 400;
+	line-height: 25px;
+	letter-spacing: 0px;
+	text-align: left;
+}
+
+.relevanceMiddleCard {
+	padding-top: 11px;
+}
+
+.relevanceMiddleCard img {
+	border-radius: 10px;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	-ms-border-radius: 10px;
+	-o-border-radius: 10px;
+}
+
+.relevanceCardsWrapper {
+	display: flex;
+	justify-content: space-between;
+}
+
+.relevanceCard {
+	width: 270px;
+	height: 270px;
+
+	display: flex;
+	flex-direction: column;
+	gap: 13.5px;
+	padding: 33.5px 22.5px 0 22.5px;
+
+	box-shadow: 0px 4px 12px 0px rgba(0, 0, 0, 0.1);
+	background-color: #F8F8F8;
+	border-radius: 10px;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	-ms-border-radius: 10px;
+	-o-border-radius: 10px;
+}
+
+.relevanceCardToptext {
+	background: var(--gradient-wheat);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	text-fill-color: transparent;
+	background-clip: text;
+
+	font-family: TT Hoves;
+	font-size: 55px;
+	font-weight: 700;
+	line-height: 115%;
+	letter-spacing: 0px;
+	text-align: center;
+}
+
+.relevanceCardMiddletext {
+	color: var(--black);
+	font-family: Mulish;
+	font-size: 14px;
+	font-weight: 600;
+	line-height: 18px;
+	letter-spacing: 0.2px;
+	text-align: center;
+}
+
+#tselikation {
+	background-image: url('../../assets/img/relevanceProblem/glutTselikation.png');
+	background-repeat: no-repeat;
+	background-position: bottom -13px right 0px;
+}
+
+#percent {
+	background-image: url('../../assets/img/relevanceProblem/glutPercent.png');
+	background-repeat: no-repeat;
+	background-position: bottom -55px center;
+}
+
+#patient {
+	background-image: url('../../assets/img/relevanceProblem/glutPatient.png');
+	background-repeat: no-repeat;
+	background-position: bottom -65.51px center;
+}
+
+#disease {
+	width: 303px;
+
+	background-image: url('../../assets/img/relevanceProblem/glutDisease.png');
+	background-repeat: no-repeat;
+	background-position: bottom 14px center;
+}
+
+/* PATIENT HISTORY */
+
+.patientHistory {
+	display: flex;
+	flex-direction: column;
+	padding: 135px 0 95px 0;
+	background-image: url('../../assets/img/patientHistory/bgPatientHistory.png');
+	background-repeat: no-repeat;
+	background-position: bottom center;
+	background-size: cover;
+}
+
+.patientHistory h2 {
+	color: rgb(55, 63, 65);
+	font-family: TT Hoves;
+	font-size: 42px;
+	font-weight: 700;
+	line-height: 115%;
+	letter-spacing: 0px;
+	text-align: left;
+	padding-bottom: 54.5px;
+}
+
+.patientHistoryActions {
+	display: flex;
+	justify-content: center;
+	gap: 20px;
+	margin-top: 20px;
+}
+
+.patientHistoryActionsButtonLeft {
+	color: rgb(255, 255, 255);
+	font-family: TT Hoves;
+	font-size: 1.38rem;
+	font-weight: 500;
+	line-height: 115%;
+	letter-spacing: 0px;
+	text-align: left;
+
+	padding: 0.94rem 2.5rem;
+
+	border: none;
+	border-radius: 0.25rem;
+	cursor: pointer;
+	box-shadow: 0px 4px 12px 0px rgba(0, 0, 0, 0.25);
+	background: linear-gradient(184.89deg, rgb(248, 169, 74) 28.449%, rgb(201, 119, 19) 117.822%);
+}
+
+.patientHistoryActionsButtonLeft span {
+	color: rgb(255, 255, 255);
+	font-family: TT Hoves;
+	font-size: 1.38rem;
+	font-weight: 500;
+	line-height: 115%;
+	letter-spacing: 0px;
+	text-align: left;
+}
+
+.patientHistoryActionsButtonRight {
+	background: white;
+	padding: 15px 40px;
+
+	border: 1px solid transparent;
+	border-image: var(--gradient-wheat) 1;
+	box-shadow: 0px 4px 12px 0px rgba(0, 0, 0, 0.25);
+	border-radius: 4px;
+	box-sizing: border-box;
+	cursor: pointer;
+	width: 370px;
+	height: 70px;
+}
+
+.patientHistoryActionsButtonRight span {
+	font-family: 'TT Hoves';
+	font-size: 22px;
+	font-weight: 500;
+	line-height: 115%;
+	letter-spacing: 0px;
+	text-align: center;
+
+	background: var(--gradient-btn);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	background-clip: text;
+	text-fill-color: transparent;
+}
+
+
+/* COOPERATION */
+
+.cooperationForms {
+	display: flex;
+	flex-direction: column;
+	padding: 75px 0 112px 0;
+}
+
+.coopFrameWrapper {
+	display: flex;
+	flex-direction: column;
+	gap: 80px;
+}
+
+.cooperationFormsWrapper {
+	display: flex;
+	gap: 81px;
+}
+
+.cooperationFormsLeftCol {
+	display: flex;
+	flex-direction: column;
+	width: 648px;
+}
+
+.cooperationFormsLeftColTop {
+	display: flex;
+	gap: 73px;
+	align-items: center;
+	padding-bottom: 20px;
+}
+
+.cooperationHeader {
+	color: var(--black);
+	font-family: TT Hoves;
+	font-size: 42px;
+	font-weight: 700;
+	line-height: 115%;
+	letter-spacing: 0px;
+	text-align: left;
+}
+
+.cooperationFormsLeftColMiddle {
+	display: flex;
+	flex-direction: column;
+	gap: 27px;
+	height: 190px;
+}
+
+.cooperationFormsLeftColMiddle p {
+	background: var(--gradient-wheat);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	background-clip: text;
+	text-fill-color: transparent;
+
+	font-family: Mulish;
+	font-style: italic;
+	font-size: 24px;
+	font-weight: 700;
+	line-height: 30px;
+	letter-spacing: 0px;
+	text-align: left;
+}
+
+.cooperationFormsLeftColMiddle img {
+	width: 59px;
+	height: 44px;
+}
+
+.cooperationFormsLeftColBottom {
+	display: flex;
+	border-top: 1px solid var(--light-wheat);
+	padding-top: 40.5px;
+}
+
+.cFLCBWrapper {
+	display: flex;
+	gap: 32px;
+	align-items: center;
+}
+
+.cFLCBRight {
+	display: flex;
+	flex-direction: column;
+	gap: 5px;
+}
+
+.cFLCBRightTop {
+	font-size: 18px;
+	font-weight: 600;
+	line-height: 23px;
+}
+
+.cFLCBRightBottom {
+	font-family: Mulish;
+	font-size: 14px;
+	font-weight: 400;
+	line-height: 18px;
+
+}
+
+.cFLCBRightTop,
+.cFLCBRightBottom {
+	color: var(--black);
+	font-family: Mulish;
+	letter-spacing: 0px;
+	text-align: left;
+}
+
+.cooperationFormsRightCol {
+	padding-top: 60px;
+}
+
+.coopBackLinesWrapper {
+	display: flex;
+	flex-direction: column;
+	gap: 25px;
+}
+
+.coopBackLinesTextWrapper {
+	display: flex;
+	gap: 30px;
+}
+
+.backLinesImage {
+	width: 870px;
+	height: 70px;
+}
+
+.coopBackLinesTextWrapper p {
+	max-width: 370px;
+
+	color: rgb(55, 63, 65);
+	font-family: Mulish;
+	font-size: 18px;
+	font-weight: 400;
+	line-height: 23px;
+	letter-spacing: 0px;
+	text-align: left;
+}
+
+.coopBackLinesTextWrapper p span {
+	font-weight: bold;
+}
+
+.coopBackLinesTextWrapperP {
+	margin-left: 4px;
+}
+
+/* NEWS */
+
+.newsSec {
+	display: flex;
+	flex-direction: column;
+	padding: 135px 0 100px 0;
+}
+
+.newsSec h2 {
+	color: rgb(55, 63, 65);
+	font-family: TT Hoves;
+	font-size: 42px;
+	font-weight: 700;
+	line-height: 115%;
+	letter-spacing: 0px;
+	text-align: left;
+	padding-bottom: 54.5px;
+}
+
+/* SUBSCRIBENEWS */
+
+.subcribeNews {
+	display: flex;
+	flex-direction: column;
+	padding: 83px 0 100px 0;
+}
+
+.subcribeNewsWrapper {
+	display: flex;
+	gap: 78px;
+}
+
+.subcribeNewsLeft {
+	display: flex;
+	flex-direction: column;
+	gap: 50px;
+}
+
+.subcribeNewsLeftTopWrapper {
+	display: flex;
+}
+
+.subcribeNewsLeftTopWrapper span,
+.subcribeNewsLeftTopWrapper p {
+	color: rgb(55, 63, 65);
+	font-family: TT Hoves;
+	font-size: 42px;
+	font-weight: 700;
+	line-height: 115%;
+	letter-spacing: 0px;
+	text-align: left;
+
+}
+
+.subcribeNewsLeftTopWrapper span {
+	background: var(--gradient-wheat);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	background-clip: text;
+
+}
+
+.subcribeNewsLeftTopWrapper p {
+	max-width: 400px;
+	padding-top: 83px;
+}
+
+
+.subcribeNewsMailImage {
+	width: 187.47px;
+	height: 156.83px;
+}
+
+.subcribeNewsLeftBottomWrapper p {
+	color: rgb(55, 63, 65);
+	font-family: Mulish;
+	font-size: 20px;
+	font-weight: 400;
+	line-height: 25px;
+	letter-spacing: 0px;
+	text-align: left;
+	max-width: 622px;
+	;
+}
+
+/* CALENDAREVENTS */
+
+.calendarEvents {
+	display: flex;
+	flex-direction: column;
+	padding: 135px 0 52px 0;
+	background-image: url('../../assets/img/calendarEvents/bgCalendarEvents.png');
+	background-repeat: no-repeat;
+	background-position: bottom center;
+	background-size: cover;
+}
+
+.calendarEventsWrapper {
+	display: flex;
+	flex-direction: column;
+	gap: 50px;
+}
+
+.calendarEventsHeader {
+	color: rgb(55, 63, 65);
+	font-family: TT Hoves;
+	font-size: 42px;
+	font-weight: 700;
+	line-height: 115%;
+	letter-spacing: 0px;
+	text-align: left;
+}
+
+.calendarEventsCardWrapper {
+	display: flex;
+	gap: 30px;
+}
+
+.calendarEventsCard {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	gap: 30px;
+
+	padding: 20px 20px 30px 20px;
+	border-radius: 8px;
+	box-shadow: 0px 4px 12px 0px rgba(0, 0, 0, 0.1);
+	background: var(--white);
+}
+
+.calendarEventsCardPaddTop {
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
+}
+
+.calendarEventsCardPaddBot {
+	display: flex;
+	flex-direction: column;
+	gap: 30px;
+}
+
+.calendarEventImage {
+	width: 330px;
+	height: 300px;
+}
+
+.calendarEventsCardTopText {
+	color: rgb(55, 63, 65);
+	font-family: Mulish;
+	font-size: 20px;
+	font-weight: 400;
+	line-height: 25px;
+	letter-spacing: 0px;
+	text-align: left;
+	padding-top: 8px;
+}
+
+.calendarEventsCardBottomtext {
+	color: rgb(55, 63, 65);
+	font-family: Mulish;
+	font-size: 24px;
+	font-weight: 600;
+	line-height: 115%;
+	letter-spacing: 0px;
+	text-align: left;
+	width: 330px;
+}
+
+.calendarEventsCard button {
+	border-radius: 4px;
+	border: transparent;
+	box-shadow: 0px 4px 12px 0px rgba(0, 0, 0, 0.25);
+	background: var(--gradient-wheat);
+	padding: 17.5px;
+	cursor: pointer;
+
+	color: rgb(255, 255, 255);
+	font-family: TT Hoves;
+	font-size: 22px;
+	font-weight: 500;
+	line-height: 115%;
+	letter-spacing: 0px;
+	text-align: center;
+
+	width: 330px;
+
+}
+
+.calendarBtn {
+	background: var(--gradient-btn);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	background-clip: text;
+	text-fill-color: transparent;
+	padding: 17.5px;
+
+	font-family: TT Hoves;
+	font-size: 22px;
+	font-weight: 500;
+	line-height: 115%;
+	letter-spacing: 0px;
+	text-align: center;
+
+	border: 2px solid transparent;
+	border-image: var(--gradient-wheat) 1;
+	border-radius: 4px;
+
+	cursor: pointer;
+}
+
+/* CONTACTS */
+
+.contacts {
+	display: flex;
+	flex-direction: column;
+	padding: 63px 0 100px 0;
+}
+
+.contactsWrapper {
+	display: flex;
+	gap: 67px;
+}
+
+.contactsHeadWrapper {
+	display: flex;
+	gap: 53px;
+}
+
+.contactsHeader {
+	color: rgb(55, 63, 65);
+	font-family: TT Hoves;
+	font-size: 42px;
+	font-weight: 700;
+	line-height: 115%;
+	letter-spacing: 0px;
+	text-align: left;
+
+	padding-top: 55px;
+}
+
+.contactsHeaderMapRef {
+	text-decoration: none;
+	cursor: pointer;
+}
+
+.contactsLeft {
+	display: flex;
+	flex-direction: column;
+	gap: 34px;
+}
+
+.contactIcons {
+	display: flex;
+	gap: 30px;
+}
+
+.contactsIconText {
+	text-decoration: none;
+	cursor: pointer;
+}
+
+.contactsIconText img {
+	width: 50px;
+	height: 50px;
+}
+
+.contactsCon {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+}
+
+.contactsCon a,
+.contactsCon p,
+.contactsCon span {
+	color: rgb(55, 63, 65);
+	font-family: Mulish;
+	font-size: 20px;
+	font-weight: 400;
+	line-height: 25px;
+	letter-spacing: 0px;
+	text-align: left;
+	text-decoration: none;
+}
+
+.contactsCon span {
+	font-weight: bold;
+}
+
+.contactsConRef {
+	display: flex;
+	flex-direction: column;
+	gap: 15px;
+}
+
+.styles.contactsConRefText {
+	display: flex;
+}
+
+/* REVIEWS */
+
+.reviewsHeader {
+	color: rgb(55, 63, 65);
+	font-family: TT Hoves;
+	font-size: 42px;
+	font-weight: 700;
+	line-height: 115%;
+	letter-spacing: 0px;
+	text-align: left;
+
+	padding-top: 55px;
+}
+
+.reviewsWrapper {
+	display: flex;
+	flex-direction: column;
+	gap: 60px;
+
+	padding: 135px 0 90px 0;
+}
+
+.reviewsCarts {
+	display: flex;
+	justify-content: space-between;
+}
+
+.reviewsCart {
+	padding: 0 25px 58px 25px;
+
+	display: flex;
+	flex-direction: column;
+}
+
+.reviewsCartTop {
+	align-self: flex-end;
+	margin-bottom: -15px;
+}
+
+.reviewsCartBottom {
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+
+	max-width: 320px;
+}
+
+.reviewsCartUsers {
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
+
+}
+
+.reviewsCartUserDate {
+	color: rgb(0, 0, 0);
+	font-family: Mulish;
+	font-size: 14px;
+	font-weight: 700;
+	line-height: 18px;
+	letter-spacing: 0.2px;
+	text-align: left;
+}
+
+.reviewsCartUser {
+	color: rgb(0, 0, 0);
+	font-family: TT Hoves;
+	font-size: 20px;
+	font-weight: 500;
+	line-height: 115%;
+	letter-spacing: 0px;
+	text-align: left;
+}
+
+.reviewsCartComments {
+	color: rgb(0, 0, 0);
+	font-family: Mulish;
+	font-size: 14px;
+	font-weight: 600;
+	line-height: 18px;
+	letter-spacing: 0.2px;
+	text-align: left;
+}
+
+.reviewsBtn {
+	background: var(--gradient-btn);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	background-clip: text;
+	text-fill-color: transparent;
+	padding: 17.5px;
+	margin-top: 5px;
+
+	font-family: TT Hoves;
+	font-size: 22px;
+	font-weight: 500;
+	line-height: 115%;
+	letter-spacing: 0px;
+	text-align: center;
+
+	border: 2px solid transparent;
+	border-image: var(--gradient-wheat) 1;
+	border-radius: 4px;
+
+	cursor: pointer;
+}
+
+.reviewsStars {
+	display: flex;
+	gap: 1.7px;
+}
+
+.reviewsStarsWrapper {
+	width: 20px;
+	height: 20px;
+	background: #F8A94A;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+
+/* PHOTO GALLERY */
+
+.photoGallery {
+	display: flex;
+	flex-direction: column;
+	padding: 116px 0 100px 0;
+}
+
+.photoGallery h2 {
+	color: rgb(55, 63, 65);
+	font-family: TT Hoves;
+	font-size: 42px;
+	font-weight: 700;
+	line-height: 115%;
+	letter-spacing: 0px;
+	text-align: left;
+	padding-bottom: 60px;
 }
