@@ -68,21 +68,6 @@ class PatientsResponses(Base):
     pub_date: Mapped[date] = mapped_column(Date)
 
 
-class Patients(Base):
-    '''
-    Model for Patient.
-    '''
-
-    user_id: Mapped[int] = mapped_column(Integer, ForeignKey('users.id'))
-    address: Mapped[str] = mapped_column(Text)
-    education: Mapped[str] = mapped_column(Text)
-    working: Mapped[bool] = mapped_column(Boolean)
-    position: Mapped[str] = mapped_column(Text)
-    # image: Mapped[] = mapped_column()  Need to check how to save static
-
-    user: Mapped['Users'] = relationship(back_populates='patients')
-
-
 class Records(Base):
     '''
     Model for Record.

@@ -1,4 +1,5 @@
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter, Depends, BackgroundTasks
+from fastapi.responses import JSONResponse
 from sqlalchemy.ext.asyncio import AsyncSession
 from fastapi_users import BaseUserManager
 
@@ -11,6 +12,7 @@ from app.schemas.patient import (
     PatientCreate,
     PatientUpdate,
     PatientDB,
+    MailPatient,
 )
 from app.models.user import User
 from app.crud.patient import patient_crud
@@ -18,22 +20,10 @@ from app.api.validators import (
     check_patient_duplicate,
     current_user_patient
 )
+from app.services.fastMail import EmailSchema, send_email_task
 
 
 router = APIRouter()
-
-
-# @router.get(
-#     '/',
-#     response_model=list[ConsultantDB],
-#     summary='Получение всех консультантов',
-#     description='Выводятся все консультанты вместе с информацией '
-#                 'по пользователю.'
-# )
-# async def get_all_consultants(
-#     session: AsyncSession = Depends(get_async_session)
-# ):
-#     return await consultant_crud.get_multi(session)
 
 
 @router.post(
@@ -80,3 +70,27 @@ async def update_consultant(
         session=session
     )
     return updated_patient
+
+
+# Testing mail sending (temp method)
+@router.post(
+    '/send_me_message',
+    dependencies=[Depends(current_user_patient)],
+)
+async def send_message_tomyself(
+    body: MailPatient,
+    background_tasks: BackgroundTasks,
+    user: User = Depends(current_user),
+):
+    current_email = user.email
+
+    background_tasks.add_task(
+        send_email_task,
+        EmailSchema(
+            email=current_email,
+            subject='От Глютен.ИНФО',
+            body=body.model_dump()
+        )
+    )
+    return JSONResponse(status_code=200,
+                        content={"email": "Email has been sent."})
