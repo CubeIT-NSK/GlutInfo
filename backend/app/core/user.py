@@ -18,6 +18,7 @@ from app.core.constants import (
     TOKEN_LIVETIME,
     MIN_PASSWORD_LENGTH,
 )
+from app.services.fastMail import EmailSchema, send_email_task
 
 
 async def get_user_db(session: AsyncSession = Depends(get_async_session)):
@@ -39,6 +40,11 @@ auth_backend = AuthenticationBackend(
 
 
 class UserManager(IntegerIDMixin, BaseUserManager[User, int]):
+    verification_token_secret = settings.verification_token_secret
+    verification_token_lifetime_seconds = (
+        settings.verification_token_lifetime_seconds
+    )
+
     async def validate_password(
         self,
         password: str,
@@ -55,9 +61,23 @@ class UserManager(IntegerIDMixin, BaseUserManager[User, int]):
             )
 
     async def on_after_register(
-            self, user: User, request: Optional[Request] = None
+        self, user: User, request: Optional[Request] = None
     ):
         print(f'Пользователь {user.email} зарегистрирован.')
+
+    async def on_after_request_verify(
+        self, user: User, token: str, request: Optional[Request] = None
+    ):
+        await send_email_task(
+            EmailSchema(
+                email=user.email,
+                subject='От Глютен.ИНФО',
+                body={
+                    'title': 'Ваш токен для верификации аккаунта',
+                    'message': token
+                }
+            )
+        )
 
 
 async def get_user_manager(user_db=Depends(get_user_db)):

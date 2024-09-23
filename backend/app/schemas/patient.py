@@ -117,3 +117,9 @@ class PatientDB(PatientCreate):
             ]
         }
     )
+
+
+# test for sending mail
+class MailPatient(BaseModel):
+    title: Optional[str] = 'Title'
+    message: Optional[str] = 'Message'

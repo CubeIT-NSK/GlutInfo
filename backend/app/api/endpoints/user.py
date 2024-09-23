@@ -14,8 +14,14 @@ from app.schemas.user import (
 router = APIRouter()
 
 router.include_router(
-    fastapi_users.get_auth_router(auth_backend),
+    fastapi_users.get_auth_router(auth_backend, requires_verification=True),
     prefix='/auth/jwt',
+    tags=['auth'],
+)
+
+router.include_router(
+    fastapi_users.get_verify_router(UserRead),
+    prefix='/auth/email-verification',
     tags=['auth'],
 )
 
