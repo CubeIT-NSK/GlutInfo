@@ -10,24 +10,24 @@ from sqlalchemy.ext.asyncio import AsyncSession
 
 
 from app.crud.base import CRUDBase
-from app.models.user import Consultants
-from app.schemas.consultant import ConsultantDB
+from app.models.user import Patients
+from app.schemas.patient import PatientDB
 from app.schemas.user import UserRead, UserUpdate
 
 
-class CRUDConsultant(CRUDBase):
-    async def get_consultant_by_userid(
+class CRUDPatient(CRUDBase):
+    async def get_patient_by_userid(
         self,
         user_id,
         session: AsyncSession,
-    ) -> ConsultantDB:
-        consultant = await session.execute(
-            select(Consultants).where(
-                Consultants.user_id == user_id
+    ) -> PatientDB:
+        patient = await session.execute(
+            select(Patients).where(
+                Patients.user_id == user_id
             )
         )
-        consultant = consultant.scalars().first()
-        return consultant
+        patient = patient.scalars().first()
+        return patient
 
     async def update(
         self,
@@ -44,7 +44,6 @@ class CRUDConsultant(CRUDBase):
         for field in obj_data:
             if field in update_data:
                 setattr(db_obj, field, update_data[field])
-
         if update_user_data:
             try:
                 await user_manager.update(
@@ -68,4 +67,4 @@ class CRUDConsultant(CRUDBase):
         return db_obj
 
 
-consultant_crud = CRUDConsultant(Consultants)
+patient_crud = CRUDPatient(Patients)
