@@ -7,6 +7,25 @@ from sqladmin.authentication import AuthenticationBackend
 
 from app.core.db import engine
 from app.models.user import User, Patients, Consultants
+from app.admin.views.viewsEvents import (
+    OrganizatorsAdmin,
+    EventsAdmin,
+    EventOrganizatorsAdmin
+)
+from app.admin.views.viewsOthers import (
+    HistoriesAdmin,
+    PhotoGalleryAdmin,
+    CooperationsAdmin,
+    NewslettersAdmin,
+    ReviewsAdmin,
+    PlacesAdmin
+)
+from app.admin.views.viewsProjects import (
+    ProjectsOrganizatorsAdmin,
+    ProjectsAdmin,
+    DocumentsAdmin,
+    ProjectsDocumentsAdmin
+)
 from app.core.user import get_async_session, get_user_db, get_user_manager
 
 
@@ -16,6 +35,16 @@ get_user_manager_context = contextlib.asynccontextmanager(get_user_manager)
 
 
 class UserAdmin(ModelView, model=User):
+    can_create = False
+
+    column_list = [User.id,
+                   User.name,
+                   User.surname,
+                   User.role,
+                   User.is_active,
+                   User.is_superuser,
+                   User.is_verified,
+                   ]
     form_ajax_refs = {
         'patient': {
             'fields': ('address', 'education', 'working', 'position'),
@@ -67,11 +96,27 @@ def create_admin_core(app):
     admin = Admin(
         app=app,
         engine=engine,
-        authentication_backend=authentication_backend
+        # authentication_backend=authentication_backend
     )
 
     admin.add_view(UserAdmin)
     admin.add_view(PatientAdmin)
     admin.add_view(ConsultantAdmin)
+
+    admin.add_view(OrganizatorsAdmin)
+    admin.add_view(EventsAdmin)
+    admin.add_view(EventOrganizatorsAdmin)
+
+    admin.add_view(HistoriesAdmin)
+    admin.add_view(PhotoGalleryAdmin)
+    admin.add_view(CooperationsAdmin)
+    admin.add_view(NewslettersAdmin)
+    admin.add_view(ReviewsAdmin)
+    admin.add_view(PlacesAdmin)
+
+    admin.add_view(ProjectsOrganizatorsAdmin)
+    admin.add_view(ProjectsAdmin)
+    admin.add_view(DocumentsAdmin)
+    admin.add_view(ProjectsDocumentsAdmin)
 
     return admin

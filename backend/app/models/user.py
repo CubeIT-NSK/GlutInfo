@@ -2,7 +2,9 @@ from typing import Optional, Literal, get_args
 from datetime import date
 
 from fastapi_users_db_sqlalchemy import SQLAlchemyBaseUserTable
-from sqlalchemy import String, Integer, Text, Date, Enum, ForeignKey, Boolean
+from sqlalchemy import (
+    String, Integer, Text, Date,
+    Enum, ForeignKey, Boolean, UniqueConstraint)
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from app.core.db import Base
@@ -58,7 +60,7 @@ class Patients(Base):
     user_id: Mapped[int] = mapped_column(
         Integer,
         ForeignKey('user.id'),
-        unique=True
+        # unique=True
     )
     address: Mapped[str] = mapped_column(Text)
     education: Mapped[str] = mapped_column(Text)
@@ -67,7 +69,9 @@ class Patients(Base):
     # image: Mapped[] = mapped_column()  Need to check how to save static
 
     user: Mapped[User] = relationship(back_populates='patient',
-                                      lazy='joined')
+                                    #   lazy='joined'
+                                      )
+    __table_args__ = (UniqueConstraint("user_id"),)
 
 
 class Consultants(Base):
@@ -78,7 +82,7 @@ class Consultants(Base):
     user_id: Mapped[int] = mapped_column(
         Integer,
         ForeignKey('user.id'),
-        unique=True
+        # unique=True
     )
     speciality: Mapped[str] = mapped_column(Text)
     experience: Mapped[int] = mapped_column(Text)
@@ -87,4 +91,6 @@ class Consultants(Base):
     current_work: Mapped[str] = mapped_column(Text)
 
     user: Mapped[User] = relationship(back_populates='consultant',
-                                      lazy='joined')
+                                     #   lazy='joined'
+                                      )
+    __table_args__ = (UniqueConstraint("user_id"),)
