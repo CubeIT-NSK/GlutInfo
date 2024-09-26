@@ -1,6 +1,9 @@
 from typing import Optional, List
 from datetime import date
 
+from fastapi_storages import FileSystemStorage
+from fastapi_storages.integrations.sqlalchemy import FileType, ImageType
+
 from sqlalchemy import (
     Text,
     Integer,
@@ -42,7 +45,9 @@ class Events(Base):
     title: Mapped[Optional[str]] = mapped_column(Text)
     date_event: Mapped[Optional[date]]
     finished: Mapped[bool] = mapped_column(Boolean)
-    main_image = mapped_column(String)
+    # main_image: Mapped[ImageType] = mapped_column(
+    #     ImageType(storage=FileSystemStorage(path="/tmp"))
+    #     )
     link: Mapped[Optional[str]] = mapped_column(String)
     event_format = mapped_column(String)
     place: Mapped[str] = mapped_column(Text)
@@ -105,8 +110,9 @@ class Projects(Base):
 
 
 class Documents(Base):
-    # file: Mapped[] = mapped_column()
-
+    # file: Mapped[FileType] = mapped_column(
+    #     FileType(storage=FileSystemStorage(path="/tmp"))
+    #     )
     project_document: Mapped[Optional['ProjectsDocuments']] = relationship(
         back_populates='document'
     )

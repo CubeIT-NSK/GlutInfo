@@ -15,7 +15,7 @@ async def lifespan(app: FastAPI):
 
 
 app = FastAPI(title=settings.app_title, lifespan=lifespan)
-admin = create_admin_core(app, )
+admin = create_admin_core(app)
 
 
 app.include_router(main_router)

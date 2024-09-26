@@ -13,6 +13,7 @@ from app.core.constants import (
     MAX_SURNAME_CHAR,
     MAX_PATRONYMIC_CHAR,
 )
+from app.models.admin_zone.other import Reviews
 
 
 Sex = Literal['male', 'female']
@@ -36,7 +37,7 @@ class User(SQLAlchemyBaseUserTable[int], Base):
         create_constraint=True,
         validate_strings=True,
     ))
-    # phone: Mapped[int] = mapped_column(Integer)
+    phone: Mapped[int] = mapped_column(Integer)
     role: Mapped[Role] = mapped_column(Enum(
         *get_args(Role),
         name="rolestatus",
@@ -69,7 +70,7 @@ class Patients(Base):
     # image: Mapped[] = mapped_column()  Need to check how to save static
 
     user: Mapped[User] = relationship(back_populates='patient',
-                                    #   lazy='joined'
+                                      lazy='joined'
                                       )
     __table_args__ = (UniqueConstraint("user_id"),)
 
@@ -91,6 +92,9 @@ class Consultants(Base):
     current_work: Mapped[str] = mapped_column(Text)
 
     user: Mapped[User] = relationship(back_populates='consultant',
-                                     #   lazy='joined'
+                                      lazy='joined'
                                       )
+    # reviews: Mapped[Optional['Reviews']] = relationship(
+    #     back_populates='consultants'
+    # )
     __table_args__ = (UniqueConstraint("user_id"),)
