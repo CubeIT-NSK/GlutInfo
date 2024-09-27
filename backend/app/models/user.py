@@ -13,7 +13,6 @@ from app.core.constants import (
     MAX_SURNAME_CHAR,
     MAX_PATRONYMIC_CHAR,
 )
-from app.models.admin_zone.other import Reviews
 
 
 Sex = Literal['male', 'female']
@@ -79,7 +78,6 @@ class Consultants(Base):
     '''
     Model for Consultant.
     '''
-
     user_id: Mapped[int] = mapped_column(
         Integer,
         ForeignKey('user.id'),

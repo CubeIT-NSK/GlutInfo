@@ -1,9 +1,6 @@
 from typing import Optional, List
 from datetime import date
 
-from fastapi_storages import FileSystemStorage
-from fastapi_storages.integrations.sqlalchemy import FileType, ImageType
-
 from sqlalchemy import (
     Text,
     Integer,

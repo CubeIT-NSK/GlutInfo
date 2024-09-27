@@ -1,17 +1,16 @@
 from typing import Optional, Literal, get_args
 from datetime import date
 
-from sqlalchemy import String, Text, Enum, Date, Integer
-from sqlalchemy.orm import Mapped, mapped_column
 
-from fastapi_storages import FileSystemStorage
-from fastapi_storages.integrations.sqlalchemy import ImageType
+from sqlalchemy import String, Text, Enum, Date, Integer
+from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from app.core.db import Base
 from app.core.constants import (
     MAX_NAME_CHAR,
     MAX_SURNAME_CHAR,
 )
+
 
 Rating = Literal['0', '1', '2', '3', '4', '5']
 
@@ -58,10 +57,9 @@ class Reviews(Base):
     '''
     Model for Reviews
     '''
-
     rating: Mapped[Optional['Rating']] = mapped_column(Enum(
         *get_args(Rating),
-        name="sexstatus",
+        name="ratingstatus",
         create_constraint=True,
         validate_strings=True,
     ))
@@ -86,7 +84,7 @@ class Places(Base):
     description: Mapped[Optional[str]] = mapped_column(Text)
     rating: Mapped[Optional['Rating']] = mapped_column(Enum(
         *get_args(Rating),
-        name="sexstatus",
+        name="ratingstatus",
         create_constraint=True,
         validate_strings=True,
     ))
