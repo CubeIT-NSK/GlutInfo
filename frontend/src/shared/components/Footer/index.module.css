@@ -1,0 +1,149 @@
+.footer {
+	background-color: var(--black);
+	color: var(--white);
+	padding: 50px 0 38px 0;
+}
+
+.footerWrapper {
+	display: flex;
+	flex-direction: column;
+	gap: 30px;
+}
+
+.footerTop {
+	display: flex;
+	flex-direction: column;
+	gap: 40px;
+	border-bottom: 1px solid rgb(255, 255, 255, 0.5);
+}
+
+.footerTopInfo {
+	display: flex;
+	gap: 70px;
+}
+
+.footerBottomInfo {
+	display: flex;
+	gap: 40px;
+	align-items: center;
+	padding-bottom: 60.5px;
+}
+
+.footerLogo {
+	display: flex;
+	align-items: center;
+	gap: 20px;
+}
+
+.footerContacts {
+	display: flex;
+	gap: 49px;
+}
+
+.footerContacts p {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+
+}
+
+.contactsHeader {
+	color: rgb(255, 255, 255, 0.5);
+	font-family: 'Mulish';
+	font-size: 14px;
+	font-weight: 600;
+	line-height: 18px;
+	letter-spacing: 0.2px;
+	text-align: left;
+}
+
+.contactsHeaderGap {
+	display: flex;
+	gap: 72px;
+}
+
+.contactsHeader a,
+.contactsHeader span {
+	color: var(--white);
+	text-decoration: none;
+	letter-spacing: 0.2px;
+}
+
+.footerPrivacy {
+	color: rgb(255, 255, 255);
+	font-family: 'Mulish';
+	font-size: 14px;
+	font-weight: 600;
+	line-height: 18px;
+	letter-spacing: 0.2px;
+	text-align: right;
+	text-decoration-line: underline;
+}
+
+.footerSocialIcons {
+	display: flex;
+	gap: 20px;
+}
+
+.footerBottom {
+	display: flex;
+	flex-direction: column;
+	gap: 40px;
+
+}
+
+.footerBottomWrapper {
+	display: flex;
+	justify-content: space-between;
+}
+
+.footerBottomWrapTopText {
+	color: rgb(255, 255, 255);
+	font-family: 'Mulish';
+	font-size: 14px;
+	font-weight: 600;
+	line-height: 18px;
+	letter-spacing: 0.2px;
+	text-align: left;
+}
+
+#fbwttLeft {
+	width: 429px;
+}
+
+#fbwttRight {
+	width: 370px;
+	text-align: right;
+}
+
+.footerBottomWrapBottomText {
+	display: flex;
+	text-align: center;
+	margin: 0 auto;
+	color: rgb(255, 255, 255, 0.5);
+	font-family: 'Mulish';
+	font-size: 14px;
+	font-weight: 600;
+	line-height: 18px;
+	letter-spacing: 0.2px;
+	text-align: center;
+}
+
+.mainTitle,
+.mainTitle span {
+	color: var(--white);
+	font-family: 'Jost';
+	font-size: 14px;
+	font-weight: 600;
+	line-height: 115%;
+	letter-spacing: 0px;
+	text-align: left;
+	text-transform: uppercase;
+	text-decoration: none;
+}
+
+.mainTitle span {
+	background: var(--gradient-wheat);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+}
