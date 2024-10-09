@@ -32,6 +32,7 @@ class ConsultantCreate(BaseModel):
         min_length=DEFAULT_MIN_CHAR,
         title='Основное место работы',
     )
+    video_presentation: Optional[str] = None
 
     model_config = ConfigDict(
         extra='forbid',
@@ -43,6 +44,7 @@ class ConsultantCreate(BaseModel):
                     'grade': 'Старший',
                     'institution': 'НГМУ',
                     'current_work': 'Городская поликлиника №1',
+                    'video_presentation': 'base64string',
                 }
             ]
         }
@@ -70,6 +72,7 @@ class ConsultantUpdate(BaseModel):
         min_length=DEFAULT_MIN_CHAR,
         title='Основное место работы',
     )
+    video_presentation: Optional[str] = None
     user: UserUpdate
 
     model_config = ConfigDict(
@@ -82,6 +85,7 @@ class ConsultantUpdate(BaseModel):
                     'grade': 'Старший',
                     'institution': 'НГМУ',
                     'current_work': 'Городская поликлиника №1',
+                    'video_presentation': 'base64string',
                     'user': {
                         'email': 'subbotin@mail.ru',
                         'password': 'badpassword',
@@ -99,6 +103,9 @@ class ConsultantUpdate(BaseModel):
 
 class ConsultantDB(ConsultantCreate):
     id: int
+    video_presentation: Optional[str] = None
+    is_accepted: bool
+    is_send_resume: bool
     user: UserRead
 
     model_config = ConfigDict(
@@ -112,6 +119,9 @@ class ConsultantDB(ConsultantCreate):
                     'grade': 'Старший',
                     'institution': 'НГМУ',
                     'current_work': 'Городская поликлиника №1',
+                    'video_presentation': 'base64string',
+                    'is_accepted': False,
+                    'is_send_resume': True,
                     'user': {
                         'id': 2,
                         'email': 'subbotin@mail.ru',

@@ -43,10 +43,12 @@ class User(SQLAlchemyBaseUserTable[int], Base):
     ))
 
     consultant: Mapped[Optional['Consultants']] = relationship(
-        back_populates='user'
+        back_populates='user',
+        lazy='joined'
     )
     patient: Mapped[Optional['Patients']] = relationship(
-        back_populates='user'
+        back_populates='user',
+        lazy='joined'
     )
 
 
@@ -64,7 +66,7 @@ class Patients(Base):
     education: Mapped[str] = mapped_column(Text)
     working: Mapped[bool] = mapped_column(Boolean)
     position: Mapped[str] = mapped_column(Text)
-    # image: Mapped[] = mapped_column()  Need to check how to save static
+    image: Mapped[str] = mapped_column(Text, default=None, nullable=True)
 
     user: Mapped[User] = relationship(back_populates='patient',
                                       lazy='joined')
@@ -81,10 +83,17 @@ class Consultants(Base):
         unique=True
     )
     speciality: Mapped[str] = mapped_column(Text)
-    experience: Mapped[int] = mapped_column(Text)
-    grade: Mapped[str] = mapped_column(Integer)
+    experience: Mapped[int] = mapped_column(Integer)
+    grade: Mapped[str] = mapped_column(Text)
     institution: Mapped[str] = mapped_column(Text)
     current_work: Mapped[str] = mapped_column(Text)
+    video_presentation: Mapped[str] = mapped_column(
+        Text,
+        default=None,
+        nullable=True
+    )
+    is_accepted: Mapped[bool] = mapped_column(Boolean, default=False)
+    is_send_resume: Mapped[bool] = mapped_column(Boolean, default=False)
 
     user: Mapped[User] = relationship(back_populates='consultant',
                                       lazy='joined')

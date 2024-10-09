@@ -39,3 +39,15 @@ async def send_email_task(data: EmailSchema):
 
     await fast_mail.send_message(message,
                                  template_name='mail_verification.html')
+
+
+async def send_email_to_notify_consultant_accept(data: EmailSchema):
+    message = MessageSchema(
+        subject=data.subject,
+        recipients=[data.model_dump().get('email')],
+        template_body=data.model_dump().get('body'),
+        subtype=MessageType.html
+    )
+
+    await fast_mail.send_message(message,
+                                 template_name='mail_send_resume.html')
