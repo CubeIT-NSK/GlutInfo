@@ -1,7 +1,7 @@
 from pydantic import BaseModel, Field, ConfigDict
 
 from app.core.constants import DEFAULT_MIN_CHAR
-from backend.app.schemas.adminZoneSchemas.events import OrganizatorsRead
+from app.schemas.admin.events import OrganizatorsRead
 
 
 class ProjectsRead(BaseModel):

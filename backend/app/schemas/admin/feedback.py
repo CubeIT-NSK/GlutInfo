@@ -3,7 +3,7 @@ from pydantic import BaseModel, Field, ConfigDict
 from datetime import date
 
 from app.core.constants import DEFAULT_MIN_CHAR
-from backend.app.models.admin.feedback import Rating
+from app.models.admin.feedback import Rating
 from app.schemas.consultant import ConsultantDB
 
 
@@ -34,8 +34,9 @@ class HistorieDB(HistoriesCreate):
 
 
 class PhotoGalleryRead(BaseModel):
-    image = Field(
-    )
+    id: int
+    # image = Field(
+    # )
 
 
 class CooperationsRead(BaseModel):

@@ -76,6 +76,9 @@ class Patients(Base):
     patientresponses: Mapped[Optional['PatientsResponses']] = relationship(
         back_populates='patient'
     )
+    records: Mapped[Optional['Records']] = relationship(
+        back_populates='patient'
+    )
     __table_args__ = (UniqueConstraint("user_id"),)
 
 
@@ -101,6 +104,9 @@ class Consultants(Base):
         back_populates='consultants'
     )
     services: Mapped[Optional['Services']] = relationship(
+        back_populates='consultants'
+    )
+    records: Mapped[Optional['Records']] = relationship(
         back_populates='consultants'
     )
     __table_args__ = (UniqueConstraint("user_id"),)

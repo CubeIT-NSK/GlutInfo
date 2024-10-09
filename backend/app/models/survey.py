@@ -131,11 +131,14 @@ class Records(Base):
     pub_date: Mapped[date] = mapped_column(Date)
     consultants_id: Mapped[int] = mapped_column(Integer,
                                                 ForeignKey('consultants.id'))
-    patient_id: Mapped[int] = mapped_column(Integer, )
+    patient_id: Mapped[int] = mapped_column(Integer,ForeignKey('patients.id') )
     service_id: Mapped[int] = mapped_column(Integer, ForeignKey('services.id'))
 
     consultants: Mapped[Consultants] = relationship(
-        back_populates=''
+        back_populates='records'
+    )
+    patient: Mapped[Patients] = relationship(
+        back_populates='records'
     )
     services: Mapped[Services] = relationship(
         back_populates='records'

@@ -1,6 +1,6 @@
 from sqladmin import ModelView
 
-from backend.app.models.admin.feedback import (
+from app.models.admin.feedback import (
     Histories,
     PhotoGallery,
     Cooperations,

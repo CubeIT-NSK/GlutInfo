@@ -7,12 +7,12 @@ from sqladmin.authentication import AuthenticationBackend
 
 from app.core.db import engine
 from app.models.user import User, Patients, Consultants
-from app.admin.views.viewsEvents import (
+from app.admin.views.events import (
     OrganizatorsAdmin,
     EventsAdmin,
     EventOrganizatorsAdmin
 )
-from app.admin.views.viewsOthers import (
+from app.admin.views.feedback import (
     HistoriesAdmin,
     PhotoGalleryAdmin,
     CooperationsAdmin,
@@ -20,7 +20,7 @@ from app.admin.views.viewsOthers import (
     ReviewsAdmin,
     PlacesAdmin
 )
-from app.admin.views.viewsProjects import (
+from app.admin.views.projects import (
     ProjectsOrganizatorsAdmin,
     ProjectsAdmin,
     DocumentsAdmin,
@@ -92,6 +92,9 @@ class PatientAdmin(ModelView, model=Patients):
                               ]
     column_sortable_list = [Patients.working,
                             ]
+    form_excluded_columns = [Patients.patientresponses,
+                             Patients.records,
+                            ]
 
 
 class ConsultantAdmin(ModelView, model=Consultants):
@@ -107,6 +110,8 @@ class ConsultantAdmin(ModelView, model=Consultants):
                               Consultants.user
                               ]
     form_excluded_columns = [Consultants.reviews,
+                             Consultants.records,
+                             Consultants.services,
                              ]
 
 

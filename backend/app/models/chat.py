@@ -1,6 +1,7 @@
-from typing import Optional
+from typing import Optional, List
+from datetime import date
 
-from sqlalchemy import Integer, ForeignKey
+from sqlalchemy import Integer, ForeignKey, Date, Text
 from sqlalchemy.orm import (
     Mapped,
     mapped_column,
@@ -16,7 +17,7 @@ class Chats(Base):
     Model for Chat.
     '''
 
-    messages: Mapped[Optional['Messages']] = relationship(
+    messages: Mapped[Optional[List['Messages']]] = relationship(
         back_populates='chat'
     )
 
@@ -28,7 +29,8 @@ class Messages(Base):
 
     chat_id: Mapped[int] = mapped_column(Integer, ForeignKey('chats.id'))
     sender_id: Mapped[int] = mapped_column(Integer, ForeignKey('user.id'))
-
+    message_date: Mapped[Optional[date]] = mapped_column(Date)
+    text: Mapped[str] = mapped_column(Text)
     chat: Mapped[Chats] = relationship(
         back_populates='messages'
     )
