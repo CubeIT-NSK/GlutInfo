@@ -1,8 +1,8 @@
-"""create Patients
+"""init
 
-Revision ID: 2dbd9b0f27c3
+Revision ID: 25e16d3a26ee
 Revises: 
-Create Date: 2024-09-17 19:58:02.872699
+Create Date: 2024-09-28 02:33:10.312714
 
 """
 from typing import Sequence, Union
@@ -12,7 +12,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision: str = '2dbd9b0f27c3'
+revision: str = '25e16d3a26ee'
 down_revision: Union[str, None] = None
 branch_labels: Union[str, Sequence[str], None] = None
 depends_on: Union[str, Sequence[str], None] = None
@@ -39,10 +39,12 @@ def upgrade() -> None:
     op.create_table('consultants',
     sa.Column('user_id', sa.Integer(), nullable=False),
     sa.Column('speciality', sa.Text(), nullable=False),
-    sa.Column('experience', sa.Text(), nullable=False),
-    sa.Column('grade', sa.Integer(), nullable=False),
+    sa.Column('experience', sa.Integer(), nullable=False),
+    sa.Column('grade', sa.Text(), nullable=False),
     sa.Column('institution', sa.Text(), nullable=False),
     sa.Column('current_work', sa.Text(), nullable=False),
+    sa.Column('is_accepted', sa.Boolean(), nullable=False),
+    sa.Column('is_send_resume', sa.Boolean(), nullable=False),
     sa.Column('id', sa.Integer(), nullable=False),
     sa.ForeignKeyConstraint(['user_id'], ['user.id'], ),
     sa.PrimaryKeyConstraint('id'),

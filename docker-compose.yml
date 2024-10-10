@@ -1,0 +1,19 @@
+version: '3'
+
+volumes:
+  static:
+
+services:
+  frontend:
+    build: ./frontend/
+    command: cp -r /app/dist/. /static/
+    volumes:
+      - static:/static
+  gateway:
+    build: ./gateway/
+    ports:
+      - 8000:80
+      # - "80:80"
+    volumes:
+      - static:/static
+    restart: on-failure

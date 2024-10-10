@@ -9,4 +9,4 @@ app = FastAPI(title=settings.app_title)
 admin = create_admin_core(app)
 
 
-app.include_router(main_router)
+app.include_router(main_router, prefix='/api/v1')

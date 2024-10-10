@@ -1,9 +1,12 @@
 import contextlib
+from typing import Any
+from pathlib import Path
 
 from starlette.requests import Request
 from fastapi.security import OAuth2PasswordRequestForm
 from sqladmin import ModelView, Admin
 from sqladmin.authentication import AuthenticationBackend
+from sqlalchemy.sql.expression import Select, select, and_
 
 from app.core.db import engine
 from app.models.user import User, Patients, Consultants
@@ -23,13 +26,31 @@ class UserAdmin(ModelView, model=User):
         }
     }
 
+    async def on_model_change(self, data: dict, model: Any,
+                              is_created: bool, request: Request):
+        ...
+        return await super().on_model_change(data, model, is_created, request)
+
 
 class PatientAdmin(ModelView, model=Patients):
     ...
 
 
 class ConsultantAdmin(ModelView, model=Consultants):
-    ...
+    name = 'ConsultantAccept'
+    identity = 'consultants-for-accept'
+    form_columns = [Consultants.is_accepted, Consultants.is_send_resume]
+    can_create = False
+    can_delete = False
+
+    def list_query(self, request: Request) -> Select:
+        querry = select(self.model).where(
+            and_(
+                self.model.is_send_resume == True, # noqa
+                self.model.is_accepted == False # noqa
+            )
+        )
+        return querry
 
 
 class AdminAuth(AuthenticationBackend):
@@ -67,6 +88,7 @@ def create_admin_core(app):
     admin = Admin(
         app=app,
         engine=engine,
+        templates_dir=Path(__file__).parent.parent / 'templates' / 'admin',
         authentication_backend=authentication_backend
     )
 

@@ -1,6 +1,7 @@
 from typing import Optional, Union
 
-from fastapi import Depends, Request
+from fastapi import Depends, Request, HTTPException, status
+from fastapi.security import OAuth2PasswordRequestForm
 from fastapi_users import (
     BaseUserManager, FastAPIUsers, IntegerIDMixin, InvalidPasswordException
 )
@@ -78,6 +79,16 @@ class UserManager(IntegerIDMixin, BaseUserManager[User, int]):
                 }
             )
         )
+
+    async def authenticate(self, credentials: OAuth2PasswordRequestForm):
+        user = await super().authenticate(credentials)
+        if user and user.role == 'consultant' and user.consultant:
+            if not user.consultant.is_accepted:
+                raise HTTPException(
+                    status_code=status.HTTP_403_FORBIDDEN,
+                    detail='Your consultant account is not accepted'
+                )
+        return user
 
 
 async def get_user_manager(user_db=Depends(get_user_db)):

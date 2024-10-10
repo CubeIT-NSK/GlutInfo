@@ -26,6 +26,7 @@ class PatientCreate(BaseModel):
         ...,
         title='Работаю',
     )
+    image: Optional[str] = None
 
     model_config = ConfigDict(
         extra='forbid',
@@ -36,6 +37,7 @@ class PatientCreate(BaseModel):
                     'education': 'Среднее',
                     'position': 'Старший слесарь',
                     'working': True,
+                    'image': 'base64string'
                 }
             ]
         }
@@ -63,6 +65,7 @@ class PatientUpdate(BaseModel):
         title='Работаю',
     )
     user: Optional[UserUpdate] = None
+    image: Optional[str] = None
 
     model_config = ConfigDict(
         from_attributes=True,
@@ -73,6 +76,7 @@ class PatientUpdate(BaseModel):
                     'education': 'Среднее',
                     'position': 'Старший слесарь',
                     'working': True,
+                    'image': 'base64string',
                     'user': {
                         'email': 'subbotin@mail.ru',
                         'password': 'badpassword',
@@ -91,6 +95,7 @@ class PatientUpdate(BaseModel):
 class PatientDB(PatientCreate):
     id: int
     user: UserRead
+    image: Optional[str] = None
 
     model_config = ConfigDict(
         from_attributes=True,
@@ -102,6 +107,7 @@ class PatientDB(PatientCreate):
                     'education': 'Среднее',
                     'position': 'Старший слесарь',
                     'working': True,
+                    'image': 'base64string',
                     'user': {
                         'id': 2,
                         'email': 'subbotin@mail.ru',
