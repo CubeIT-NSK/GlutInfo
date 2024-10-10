@@ -1,0 +1,182 @@
+.slider {
+	position: relative;
+	width: 100%;
+	max-width: 1170px;
+	margin: auto;
+	overflow: hidden;
+	display: flex;
+	flex-direction: column;
+	gap: 40px;
+	align-items: center;
+}
+
+.slidesContainerWrapper {
+	width: 100%;
+	overflow: hidden;
+}
+
+.slidesContainer {
+	display: flex;
+	transition: transform 0.6s ease-in-out;
+	width: 100%;
+}
+
+.slide {
+	flex: 0 0 100%;
+	padding: 0 10px 0 0;
+	box-sizing: border-box;
+	display: flex;
+	justify-content: center;
+	overflow: hidden;
+	padding: 20px;
+}
+
+.cardWrapper {
+	display: flex;
+	justify-content: space-around;
+	flex-wrap: wrap;
+	gap: 30px;
+	width: 100%;
+}
+
+.sliderCard {
+	width: 100%;
+	height: 398px;
+
+	display: flex;
+	flex-direction: column;
+
+	padding: 50px;
+	border-radius: 8px;
+
+	background: rgb(255, 255, 255);
+	box-shadow: 0px 4px 12px 0px rgba(0, 0, 0, 0.25);
+}
+
+
+.cardContent {
+	display: flex;
+	flex-direction: column;
+	gap: 30px;
+	text-align: left;
+}
+
+.cardContentBtm {
+	display: flex;
+	gap: 40px;
+}
+
+.cardContentTopBlock {
+	display: flex;
+	flex-direction: column;
+	gap: 19px;
+}
+
+.cardContentTitle {
+	color: rgb(55, 63, 65);
+	font-family: TT Hoves;
+	font-size: 26px;
+	font-weight: 500;
+	line-height: 115%;
+	letter-spacing: 0px;
+	text-align: left;
+}
+
+.cardContentPrice {
+	background: var(--gradient-wheat);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	background-clip: text;
+	font-family: 'Mulish';
+	font-size: 26px;
+	font-weight: 500;
+	line-height: 29.9px;
+	letter-spacing: 0px;
+	text-align: left;
+}
+
+.cardContenInformation {
+	color: rgb(55, 63, 65);
+	font-family: Mulish;
+	font-size: 20px;
+	font-weight: 400;
+	line-height: 25px;
+	letter-spacing: 0px;
+	text-align: left;
+}
+
+.cardContenInformation span {
+	color: rgb(55, 63, 65);
+	font-family: Mulish;
+	font-size: 20px;
+	font-weight: bold;
+	line-height: 25px;
+	letter-spacing: 0px;
+	text-align: left;
+}
+
+.sliderCardBottomWrapper {
+	display: flex;
+	gap: 20px;
+	align-items: center;
+}
+
+.sliderCardBottomRightWrapper {
+	display: flex;
+	flex-direction: column;
+	gap: 5px;
+}
+
+
+.sliderDots {
+	display: flex;
+	justify-content: center;
+}
+
+.sliderDot {
+	height: 12px;
+	width: 12px;
+	margin: 0 5px;
+	background: linear-gradient(184.89deg, rgb(248, 169, 74) -20.205%, rgb(201, 119, 19) 282.919%);
+	border-radius: 50%;
+	display: inline-block;
+	cursor: pointer;
+	transition: background-color 0.3s ease;
+	opacity: 0.4;
+}
+
+.sliderDot.active {
+	background: linear-gradient(184.89deg, rgb(248, 169, 74) -20.205%, rgb(201, 119, 19) 282.919%);
+	opacity: 1;
+}
+
+.sliderHREFButton {
+	background: none;
+	border: none;
+	cursor: pointer;
+}
+
+.sliderHREFButton span {
+	position: relative;
+	background: linear-gradient(184.89deg, rgb(248, 169, 74), rgb(201, 119, 19));
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	background-clip: text;
+	text-fill-color: transparent;
+	font-family: TT Hoves;
+	font-size: 24px;
+	font-weight: 400;
+	line-height: 115%;
+	letter-spacing: 0px;
+	text-align: left;
+}
+
+.sliderHREFButton span::after {
+	content: '';
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+	height: 1px;
+	background: linear-gradient(184.89deg, rgb(248, 169, 74), rgb(201, 119, 19));
+}

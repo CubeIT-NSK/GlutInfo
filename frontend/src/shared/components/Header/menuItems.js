@@ -70,7 +70,7 @@ export const menuItems = [
         hasDropdown: true,
         dropdownItems: [
             { label: 'Сотрудничество', link: '/' },
-            { label: 'Личный кабинет консультанта', link: '/' },
+            { label: 'Личный кабинет консультанта', link: '/profile-consultant' },
             { label: 'Мероприятия', link: '/' },
             { label: 'Библиотека врача', link: '/' }
         ]
