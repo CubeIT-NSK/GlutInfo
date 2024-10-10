@@ -1,0 +1,237 @@
+.container {
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
+}
+
+.mainContent {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+}
+
+.registrationSection {
+	width: 100%;
+	max-width: 571px;
+
+	padding: 53px 0 94px 0;
+
+	display: flex;
+	flex-direction: column;
+	gap: 50px;
+}
+
+.title {
+	color: rgb(55, 63, 65);
+	font-family: TT Hoves;
+	font-size: 42px;
+	font-weight: 700;
+	line-height: 115%;
+	letter-spacing: 0px;
+	text-align: left;
+}
+
+.registrationForm {
+	display: flex;
+	flex-direction: column;
+	gap: 30px;
+}
+
+.formGroup {
+	display: flex;
+	flex-direction: column;
+	gap: 30px;
+}
+
+.authFormInput {
+	width: 100%;
+	padding: 10px;
+	border: 1px solid rgb(55, 63, 65);
+	opacity: .5;
+	border-radius: 5px;
+}
+
+.authFormLabel {
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+
+	color: rgb(55, 63, 65);
+	font-family: TT Hoves;
+	font-size: 20px;
+	font-weight: 500;
+	line-height: 115%;
+	letter-spacing: 0px;
+	text-align: left;
+}
+
+.authFormTitle {
+	font-family: TT Hoves;
+	font-size: 20px;
+	font-weight: 500;
+	line-height: 115%;
+	letter-spacing: 0px;
+	text-align: left;
+}
+
+.authFormGender {
+	display: flex;
+	flex-direction: column;
+	gap: 15px;
+}
+
+.authFormGenderWrapper {
+	display: flex;
+	gap: 30px;
+}
+
+.authFormGenderWrapper label {
+	display: flex;
+	gap: 6px;
+}
+
+.submitButton {
+	border-radius: 4px;
+	border: transparent;
+	box-shadow: 0px 4px 12px 0px rgba(0, 0, 0, 0.25);
+	background: linear-gradient(184.89deg, rgb(248, 169, 74) 34.052%, rgb(201, 119, 19) 98.809%);
+	padding: 15px 40px;
+	cursor: pointer;
+
+	color: rgb(255, 255, 255);
+	font-family: TT Hoves;
+	font-size: 22px;
+	font-weight: 500;
+	line-height: 115%;
+	letter-spacing: 0px;
+	text-align: center;
+
+	width: 100%;
+}
+
+.authFormAgreement {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+}
+
+.authFormAgreementLabel {
+	display: flex;
+	gap: 6px;
+	align-items: center;
+	align-content: center;
+}
+
+.authFormAgreementLabel span {
+	color: rgb(55, 63, 65);
+	font-family: Mulish;
+	font-size: 12px;
+	font-weight: 400;
+	line-height: 15px;
+	letter-spacing: 0.2px;
+	text-align: left;
+}
+
+.authFormAgreementLabel span a {
+	color: #ff9900;
+	text-decoration: underline;
+}
+
+.authFormGenderWrapper label,
+.roundRadio {
+	cursor: pointer;
+}
+
+.authFormAgreement .roundRadio {
+	position: relative;
+	height: 13px;
+	width: 13px;
+	outline: none;
+	cursor: pointer;
+	border: transparent;
+	transition: .3s all;
+}
+
+.authFormAgreement .roundRadio::before {
+	content: '';
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: 13px;
+	height: 13px;
+	border-radius: 50%;
+	-webkit-border-radius: 50%;
+	transform: translate(-50%, -50%);
+	border: 1px solid transparent;
+	background-image: linear-gradient(185deg, #f8a94a 0%, #c97713 100%);
+	box-shadow: inset 0px 0px 0px 100vw #fff;
+	transition: border 0.3s;
+	-webkit-transition: border 0.3s;
+	-moz-transition: border 0.3s;
+	-ms-transition: border 0.3s;
+	-o-transition: border 0.3s;
+}
+
+.authFormAgreement .roundRadio:hover::before {
+	border: 1px solid #c97713;
+}
+
+.authFormAgreement .roundRadio::after {
+	content: '';
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: 7px;
+	height: 7px;
+	border-radius: 50%;
+	-webkit-border-radius: 50%;
+	background-image: linear-gradient(185deg, #f8a94a 0%, #c97713 100%);
+	transform: translate(-50%, -50%);
+	visibility: hidden;
+	opacity: 0;
+	transition: opacity 0.3s ease, visibility 0.3s, background-image 0.3s all;
+	-webkit-transition: opacity 0.3s ease, visibility 0.3s, background-image 0.3s;
+	-moz-transition: opacity 0.3s ease, visibility 0.3s, background-image 0.3s;
+	-ms-transition: opacity 0.3s ease, visibility 0.3s, background-image 0.3s;
+	-o-transition: opacity 0.3s ease, visibility 0.3s, background-image 0.3s;
+}
+
+.authFormAgreement .roundRadio:hover::after {
+	background-image: linear-gradient(185deg, #c97713 0%, #c97713 100%);
+}
+
+.authFormAgreement .roundRadio:checked::after {
+	opacity: 1;
+	visibility: visible;
+}
+
+.error {
+	color: #FF162E;
+	font-size: 12px;
+}
+
+.errorInput {
+	border: 1px solid #FF162E;
+	color: #FF162E;
+}
+
+.errorText {
+	color: #FF162E;
+}
+
+.authFormAgreementLabel span a {
+	color: #ff9900;
+	text-decoration: underline;
+}
+
+
+.redPlaceholder::placeholder {
+	color: #FF162E;
+}
+
+.inpWrap {
+	display: flex;
+	flex-direction: column;
+	gap: 5px;
+}

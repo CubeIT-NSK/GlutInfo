@@ -1,0 +1,380 @@
+.container {
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
+}
+
+.mainContent {
+	display: flex;
+	flex-direction: column;
+}
+
+
+/* MAINPROFILE */
+
+.profileSection {
+	display: flex;
+	flex-direction: column;
+	padding: 47px 0 79px 0;
+}
+
+.profileSectionHeader {
+	color: rgb(55, 63, 65);
+	font-family: TT Hoves;
+	font-size: 42px;
+	font-weight: 700;
+	line-height: 49px;
+	text-align: left;
+	padding-bottom: 12px;
+}
+
+.consProfileWrapper {
+	display: flex;
+	flex-direction: column;
+	gap: 30px;
+	padding-bottom: 70px;
+	border-bottom: 1px solid rgb(152, 156, 157);
+}
+
+.profileHeaderWrap {
+	display: flex;
+	gap: 30px;
+	align-items: center;
+}
+
+.profileAv {
+	width: 100px;
+	height: 100px;
+	border-radius: 50%;
+}
+
+.profileInfo h2 {
+	color: rgb(55, 63, 65);
+	font-family: Mulish;
+	font-size: 20px;
+	font-weight: 600;
+	line-height: 25px;
+	text-align: left;
+}
+
+.profileInfo p {
+	color: rgb(152, 156, 157);
+	font-family: Mulish;
+	font-size: 16px;
+	font-weight: 600;
+	line-height: 20px;
+	text-align: left;
+}
+
+.profileBtnActions {
+	display: flex;
+	flex-direction: column;
+	gap: 30px;
+}
+
+.profileBtnActionsW {
+	display: flex;
+	gap: 30px;
+}
+
+.actionBtn {
+	background-color: transparent;
+	border: 1px solid rgb(241, 153, 43);
+	border-radius: 4px;
+	color: black;
+	padding: 14.5px 20px;
+	width: 270px;
+	font-family: Mulish;
+	font-size: 18px;
+	font-weight: 400;
+	cursor: pointer;
+	transition: 0.3s;
+}
+
+.actionBtn:hover {
+	background-color: rgb(241, 153, 43);
+	color: white;
+}
+
+.actionBtnOrange {
+	border-radius: 4px;
+	border: transparent;
+	box-shadow: 0px 4px 12px 0px rgba(0, 0, 0, 0.25);
+	background: var(--gradient-wheat);
+
+	color: white;
+	padding: 14.5px 20px;
+	width: 270px;
+	font-family: Mulish;
+	font-size: 18px;
+	font-weight: 400;
+	cursor: pointer;
+}
+
+.actionBtnOrange:hover {
+	background: var(--dark-wheat);
+}
+
+
+/* CERTIFICATES */
+
+.certificatesSection {
+	display: flex;
+	flex-direction: column;
+	padding: 0 0 79px 0;
+}
+
+.certificatesProfConsWrap {
+	display: flex;
+	flex-direction: column;
+	gap: 39px;
+}
+
+.certificatesProfConsTopWrap {
+	display: flex;
+	flex-direction: column;
+	gap: 39px;
+}
+
+.certificatesProfConsTopText {
+	color: rgb(55, 63, 65);
+	font-family: Mulish;
+	font-size: 32px;
+	font-weight: 600;
+	line-height: 40px;
+	letter-spacing: 0px;
+	text-align: left;
+}
+
+.certificatesProfConsMidWrap {
+	display: flex;
+	gap: 30px;
+}
+
+.certificatesProfImg {
+	width: 470px;
+	height: 722px;
+}
+
+.certificatesMidWrapRightCol {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.certificatesProfile {
+	display: flex;
+	flex-direction: column;
+	gap: 30px;
+	width: 670px;
+}
+
+.certificatesProfileTop {
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
+}
+
+.certificatesProfileTop h2 {
+	color: rgb(55, 63, 65);
+	font-family: TT Hoves;
+	font-size: 26px;
+	font-weight: 500;
+	line-height: 29.9px;
+	letter-spacing: 0px;
+	text-align: left;
+}
+
+.certificatesProfileTop p {
+	color: rgb(55, 63, 65);
+	font-family: Mulish;
+	font-size: 20px;
+	font-weight: 400;
+	line-height: 25.1px;
+	letter-spacing: 0px;
+	text-align: left;
+}
+
+.certificatesProfileBot,
+.certificatesProfileMid {
+	color: rgb(55, 63, 65);
+	font-family: TT Hoves;
+	font-size: 20px;
+	font-weight: 400;
+	line-height: 23px;
+	letter-spacing: 0px;
+	text-align: left;
+}
+
+.certificatesProfileBot span,
+.certificatesProfileMid span {
+	color: rgb(55, 63, 65);
+	font-family: TT Hoves;
+	font-size: 20px;
+	font-weight: 500;
+	line-height: 23px;
+	letter-spacing: 0px;
+	text-align: left;
+}
+
+
+.certificatesProfileSLider {
+	display: flex;
+	flex-direction: column;
+	gap: 30px;
+}
+
+.certificatesProfileSliderTitle {
+	color: rgb(55, 63, 65);
+	font-family: TT Hoves;
+	font-size: 26px;
+	font-weight: 500;
+	line-height: 29.9px;
+	letter-spacing: 0px;
+	text-align: left;
+}
+
+
+/* PHOTO GALLERY */
+
+.phGalCertificatesSection {
+	display: flex;
+	flex-direction: column;
+	padding: 0 0 70px 0;
+}
+
+.galleryHeader {
+	color: rgb(55, 63, 65);
+	font-family: TT Hoves;
+	font-size: 26px;
+	font-weight: 500;
+	line-height: 29.9px;
+	letter-spacing: 0px;
+	text-align: left;
+	padding-bottom: 30px;
+}
+
+.galleryWrapper {
+	display: flex;
+	gap: 30px;
+}
+
+.galleryRightCol,
+.galleryLeftCol {
+	display: flex;
+	flex-direction: column;
+	gap: 30px;
+}
+
+.galleryRightCol {
+	display: flex;
+	flex-direction: column-reverse;
+	gap: 30px;
+}
+
+.galleryRightColTop,
+.galleryLeftColTop {
+	display: flex;
+	gap: 30px;
+}
+
+.galleryCardWrapper {
+	display: flex;
+	flex-direction: column;
+	gap: 15px;
+}
+
+.galleryCard {
+	border: 1px solid rgb(226, 229, 230);
+	border-radius: 4px;
+	background: rgb(217, 217, 217);
+}
+
+.galleryCardTitle {
+	color: rgb(55, 63, 65);
+	font-family: Mulish;
+	font-size: 20px;
+	font-weight: 400;
+	line-height: 25px;
+	letter-spacing: 0px;
+	text-align: left;
+}
+
+.gallerySmallCard {
+	width: 220px;
+	height: 170px;
+}
+
+.galleryMiniMediumCard {
+	width: 270px;
+	height: 250px;
+}
+
+.galleryMedMediumCard {
+	width: 370px;
+	height: 250px;
+}
+
+.galleryMediumCard {
+	width: 470px;
+	height: 400px;
+}
+
+.galleryBigCard {
+	width: 670px;
+	height: 320px;
+}
+
+
+/* VIDEO CUTAWAY */
+
+.videoСutawaySection {
+	display: flex;
+	flex-direction: column;
+	padding: 0 0 70px 0;
+}
+
+.videoHeader {
+	color: rgb(55, 63, 65);
+	font-family: TT Hoves;
+	font-size: 26px;
+	font-weight: 500;
+	line-height: 29.9px;
+	letter-spacing: 0px;
+	text-align: left;
+	padding-bottom: 30px;
+}
+
+.videoBanner {
+	width: 1170px;
+	height: 499px;
+	background-color: #d9d9d9;
+}
+
+.videoСutawaySectionBtn {
+	border-radius: 4px;
+	border: transparent;
+	box-shadow: 0px 4px 12px 0px rgba(0, 0, 0, 0.25);
+	background: var(--gradient-wheat);
+
+	color: white;
+	padding: 14.5px 20px;
+	width: 1130px;
+	font-family: Mulish;
+	font-size: 18px;
+	font-weight: 400;
+	cursor: pointer;
+	margin-left: 20px;
+}
+
+.videoСutawaySectionBtn:hover {
+	background: var(--dark-wheat);
+}
+
+/* SERVICES */
+
+.servicesCertificatesSection {
+	display: flex;
+	flex-direction: column;
+	padding: 0 0 40px 0;
+}

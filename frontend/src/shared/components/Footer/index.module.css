@@ -80,6 +80,25 @@
 	text-decoration-line: underline;
 }
 
+.footerPrivacy:hover {
+	background: var(--light-wheat);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	background-clip: text;
+	text-fill-color: transparent;
+
+	position: relative;
+}
+
+.footerPrivacy:hover::before {
+	content: "";
+	position: absolute;
+	bottom: 1.6px;
+	width: 100%;
+	height: 1.6px;
+	background: var(--light-wheat);
+}
+
 .footerSocialIcons {
 	display: flex;
 	gap: 20px;

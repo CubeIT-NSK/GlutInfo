@@ -1,20 +1,21 @@
-import Header from "../../shared/components/Header";
+import CooperationForm from "../../shared/components/Forms/CooperationForm";
 import Footer from "../../shared/components/Footer";
-import PatientSlider from "../../shared/components/PatientSlider";
-import PhotoSlider  from "../../shared/components/PhotoSlider";
-import NewsSlider from "../../shared/components/NewsSlider";
-import CooperationForm from "../../shared/components/CooperationForm";
-import SubscribeNewsForm from "../../shared/components/SubscribeNewsForm";
+import Header from "../../shared/components/Header";
+import NewsSlider from "../../shared/components/Sliders/NewsSlider";
+import PatientSlider from "../../shared/components/Sliders/PatientSlider";
+import PhotoSlider from "../../shared/components/Sliders/PhotoSlider";
+import SubscribeNewsForm from "../../shared/components/Forms/SubscribeNewsForm";
 
 import images from "../../shared/resources/images";
 
-import styles from "./index.module.css";
 import icons from "../../shared/resources/icon";
+import styles from "./index.module.css";
 
 export default function HomePage() {
 
     const sliderData = {
-        PatientData: [{
+        PatientData: [
+			{
                 avatar: images.patientAvatarImage,
                 alt: 'Slide 1',
                 patientName: 'Марина Г.',
@@ -127,293 +128,303 @@ export default function HomePage() {
             <Header />
             <main className={styles.mainContent}>
             	<section className={styles.teleService}>
-		<div className="container">
-			<div className={styles.teleWrapper}>
-				<div className={styles.teleMiddle}>
-					<div className={styles.teleMiddleWrap}>
-						<div className={styles.teleMiddleTopWrapper}>
-							<div className={styles.teleTop}>
-								<p>ДЕЛАЕМ ЖИЗНЬ БЕЗ ГЛЮТЕНА ЛУЧШЕ</p>
-							</div>
-							<header>Телемедицинский сервис <span>«ГастроГлютен</span>.инфо»</header>
+					<div className="container">
+						<div className={styles.teleWrapper}>
+							<div className={styles.teleMiddle}>
+								<div className={styles.teleMiddleWrap}>
+									<div className={styles.teleMiddleTopWrapper}>
+										<div className={styles.teleTop}>
+											<p>ДЕЛАЕМ ЖИЗНЬ БЕЗ ГЛЮТЕНА ЛУЧШЕ</p>
+										</div>
+										<header>Телемедицинский сервис <span>«ГастроГлютен</span>.инфо»</header>
+									</div>
+									<h3>Первая в России медицинская информационно-консультативная платформа для пациентов и консультантов</h3>
+									<button>Записаться на онлайн-консультацию</button>
+								</div> <img src={images.teleServiceImage} alt="teleService" /> </div>
 						</div>
-						<h3>Первая в России медицинская информационно-консультативная платформа для пациентов и консультантов</h3>
-						<button>Записаться на онлайн-консультацию</button>
-					</div> <img src={images.teleServiceImage} alt="teleService" /> </div>
-			</div>
-		</div>
+					</div>
             	</section>
             	<section className={styles.aboutUs}>
-		<div className="container">
-			<div className={styles.aboutUsWrapper}>
-				<div className={styles.aboutUsLeft}>
-					<div className={styles.aboutUsTextWrapper}>
-						<header>О нас</header>
-						<h3>Наша миссия — сделать данный ресурс полезным для пациентов и врачей и стандартизировать подходы к ведению больных с глютен-ассоциированными заболеваниями по всей стране.
-                                            <br />
-                                            <br />
-                                            Приоритетами являются правильная диагностикаи ведение пациентов с глютен-ассоциированными заболеваниями (целиакией, нецелиакийной чувствительностью к глютену, аллергией на пшеницу), помощь в соблюдении безглютеновой диеты, повышение качества жизни данной категории пациентов.
-                                        </h3> </div>
-					<button>Подробнее</button>
-				</div>
-				<div className={styles.aboutUsRight}> <img src={images.aboutUsImage} alt="aboutUs" />
-					<p><span>ГАСТРОГЛЮТЕН.</span>ИНФО</p>
-				</div>
-			</div>
-		</div>
-            	</section>
-            	<section className={styles.relevanceProblem}>
-		<div className="container">
-			<div className={styles.relevanceWrapper}>
-				<div className={styles.relevanceTop}>
-					<div className={styles.relevanceTopWrapper}>
-						<div className={styles.relevanceHeader}>Актуальность проблемы</div>
-						<div className={styles.relevanceProblemHeaderBlock}>
-							<div className={styles.relevanceProblemHeaderBlockEl}> <img src={images.glutFrameImage} alt="glutFrameImage" />
-								<p> <span>Глютен </span> — это не просто белок злаковых культур,
-									<br /> но и причина разнообразных симптомов и состояний. </p>
+					<div className="container">
+						<div className={styles.aboutUsWrapper}>
+							<div className={styles.aboutUsLeft}>
+								<div className={styles.aboutUsTextWrapper}>
+									<header>О нас</header>
+									<h3>Наша миссия — сделать данный ресурс полезным для пациентов и врачей и стандартизировать подходы к ведению больных с глютен-ассоциированными заболеваниями по всей стране.
+        			                                    <br />
+        			                                    <br />
+        			                                    Приоритетами являются правильная диагностикаи ведение пациентов с глютен-ассоциированными заболеваниями (целиакией, нецелиакийной чувствительностью к глютену, аллергией на пшеницу), помощь в соблюдении безглютеновой диеты, повышение качества жизни данной категории пациентов.
+        			                                </h3> </div>
+								<button>Подробнее</button>
+							</div>
+							<div className={styles.aboutUsRight}> <img src={images.aboutUsImage} alt="aboutUs" />
+								<p><span>ГАСТРОГЛЮТЕН.</span>ИНФО</p>
 							</div>
 						</div>
 					</div>
-					<div className={styles.relevanceTopBtmWrapper}>
-						<div className={styles.rTBWLeftText}>
-							<p>К таким заболеваниям относится не только целиакия, но и реакции аллергического характера, а также особые нецелиакийные формы непереносимости глютена.
-								<br />
-								<br /> До сих пор единственным способом лечения считается безглютеновая диета, при соблюдении которой все симптомы могут исчезать, а лабораторно-инструментальные показатели нормализоваться.</p>
-						</div>
-						<div className={styles.rTBWRightText}>
-							<p>Назначение безглютеновой диеты ведет к недостаточному поступлению в организм клетчатки и витаминно-минеральных веществ, а также имеет определенные социально-экономические трудности.
-								<br />
-								<br /> Именно поэтому ее назначение должно быть обоснованным, а пациенты в дальнейшем должны регулярно проходить диспансеризацию у профильного специалиста! Показания к назначению безглютенового рациона определяет только врач!</p>
-						</div>
-					</div>
-				</div>
-				<div className={styles.relevanceMiddle}>
-					<div className={styles.relevanceMiddleCard}> <img src={images.glutBreadImage} alt="glutBreadImage" /> </div>
-				</div>
-				<div className={styles.relevanceBottom}>
-					<div className={styles.relevanceCardsWrapper}>
-						<div className={styles.relevanceCard} id={styles.tselikation}>
-							<div className={styles.relevanceCardToptext}>1 из 100</div>
-							<div className={styles.relevanceCardMiddletext}>людей имеют целиакию</div>
-						</div>
-						<div className={styles.relevanceCard} id={styles.percent}>
-							<div className={styles.relevanceCardToptext}>80%</div>
-							<div className={styles.relevanceCardMiddletext}>пациентов живут с неустановленным диагнозом</div>
-						</div>
-						<div className={styles.relevanceCard} id={styles.patient}>
-							<div className={styles.relevanceCardToptext}>&gt;200</div>
-							<div className={styles.relevanceCardMiddletext}>симптомов наблюдается у пациентов с целиакией</div>
-						</div>
-						<div className={styles.relevanceCard} id={styles.disease}>
-							<div className={styles.relevanceCardToptext}>Целиакия</div>
-							<div className={styles.relevanceCardMiddletext}>— это не детское заболевание</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
             	</section>
-            	<section className={styles.patientHistory}>
-		<div className="container">
-			<h2>Истории пациентов</h2>
-			<PatientSlider slides={sliderData.PatientData} />
-			<div className={styles.patientHistoryActions}>
-				<button className={styles.patientHistoryActionsButtonLeft}><span>Записаться на онлайн-консультацию</span></button>
-				<button className={styles.patientHistoryActionsButtonRight}><span>Оставить отзыв</span></button>
-			</div>
-		</div>
-            	</section>
-            	<section className={styles.cooperationForms}>
-		<div className="container">
-			<div className={styles.coopFrameWrapper}>
-				<div className={styles.cooperationFormsWrapper}>
-					<div className={styles.cooperationFormsLeftCol}>
-						<div className={styles.cooperationFormsLeftColTop}>
-							<div className={styles.cooperationHeader}>Сотрудничество</div> <img src={images.laptopImage} alt="laptopImage" /> </div>
-						<div className={styles.cooperationFormsLeftColMiddle}> <img src={images.quoteImage} alt="quoteImage" />
-							<p>«Высокое качество предоставляемых услуг рождается при взаимодействии компетентных специалистов разных сфер»</p>
-						</div>
-						<div className={styles.cooperationFormsLeftColBottom}>
-							<div className={styles.cFLCBWrapper}>
-								<div className={styles.cFLCBLeft}> <img src={images.cooperationAvatarImage} alt="cooperationAvatarImage" /> </div>
-								<div className={styles.cFLCBRight}>
-									<p className={styles.cFLCBRightTop}>Ефремова Анастасия Юрьевна</p>
-									<p className={styles.cFLCBRightBottom}>выпускник ФГБОУ ВО СЗГМУ им. И.И. Мечникова, врач-стажер</p>
+            	<section className={styles.relevanceProblem}>
+					<div className="container">
+						<div className={styles.relevanceWrapper}>
+							<div className={styles.relevanceTop}>
+								<div className={styles.relevanceTopWrapper}>
+									<div className={styles.relevanceHeader}>Актуальность проблемы</div>
+									<div className={styles.relevanceProblemHeaderBlock}>
+										<div className={styles.relevanceProblemHeaderBlockEl}> <img src={images.glutFrameImage} alt="glutFrameImage" />
+											<p> <span>Глютен </span> — это не просто белок злаковых культур,
+												<br /> но и причина разнообразных симптомов и состояний. </p>
+										</div>
+									</div>
+								</div>
+								<div className={styles.relevanceTopBtmWrapper}>
+									<div className={styles.rTBWLeftText}>
+										<p>К таким заболеваниям относится не только целиакия, но и реакции аллергического характера, а также особые нецелиакийные формы непереносимости глютена.
+											<br />
+											<br /> До сих пор единственным способом лечения считается безглютеновая диета, при соблюдении которой все симптомы могут исчезать, а лабораторно-инструментальные показатели нормализоваться.</p>
+									</div>
+									<div className={styles.rTBWRightText}>
+										<p>Назначение безглютеновой диеты ведет к недостаточному поступлению в организм клетчатки и витаминно-минеральных веществ, а также имеет определенные социально-экономические трудности.
+											<br />
+											<br /> Именно поэтому ее назначение должно быть обоснованным, а пациенты в дальнейшем должны регулярно проходить диспансеризацию у профильного специалиста! Показания к назначению безглютенового рациона определяет только врач!</p>
+									</div>
+								</div>
+							</div>
+							<div className={styles.relevanceMiddle}>
+								<div className={styles.relevanceMiddleCard}> <img src={images.glutBreadImage} alt="glutBreadImage" /> </div>
+							</div>
+							<div className={styles.relevanceBottom}>
+								<div className={styles.relevanceCardsWrapper}>
+									<div className={styles.relevanceCard} id={styles.tselikation}>
+										<div className={styles.relevanceCardToptext}>1 из 100</div>
+										<div className={styles.relevanceCardMiddletext}>людей имеют целиакию</div>
+									</div>
+									<div className={styles.relevanceCard} id={styles.percent}>
+										<div className={styles.relevanceCardToptext}>80%</div>
+										<div className={styles.relevanceCardMiddletext}>пациентов живут с неустановленным диагнозом</div>
+									</div>
+									<div className={styles.relevanceCard} id={styles.patient}>
+										<div className={styles.relevanceCardToptext}>&gt;200</div>
+										<div className={styles.relevanceCardMiddletext}>симптомов наблюдается у пациентов с целиакией</div>
+									</div>
+									<div className={styles.relevanceCard} id={styles.disease}>
+										<div className={styles.relevanceCardToptext}>Целиакия</div>
+										<div className={styles.relevanceCardMiddletext}>— это не детское заболевание</div>
+									</div>
 								</div>
 							</div>
 						</div>
 					</div>
-					<div className={styles.cooperationFormsRightCol}>
-						<CooperationForm /> </div>
-				</div>
-				<div className={styles.coopBackLinesWrapper}> <img src={images.backLinesImage} className={styles.backLinesImage} alt="backLinesImage" />
-					<div className={styles.coopBackLinesTextWrapper}>
-						<p>ПРОБЛЕМУ не выбросишь за окошко, а можно только вежливо, со ступенькина ступеньку, свести с лестницы. И делать это лучше <span>объединив усилия консультантов, лабораторных служб.</span></p>
-						<p><span>Мы предлагаем платформу для реализации</span> своих услуг консультантам, медицинским специалистам разных специальностей. Приглашаем для сотрудничества клиники, организации помощи пациентам.</p>
-						<p id={styles.coopBackLinesTextWrapperP}>Также мы <span>открыты к взаимодействию</span> с блогерами в социальных сетях. Для получения более подробной информации, просим вас заполнить форму заявки.</p>
+            	</section>
+            	<section className={styles.patientHistory}>
+					<div className="container">
+						<h2>Истории пациентов</h2>
+						<PatientSlider slides={sliderData.PatientData} />
+						<div className={styles.patientHistoryActions}>
+							<button className={styles.patientHistoryActionsButtonLeft}><span>Записаться на онлайн-консультацию</span></button>
+							<button className={styles.patientHistoryActionsButtonRight}><span>Оставить отзыв</span></button>
+						</div>
 					</div>
-				</div>
-			</div>
-		</div>
+            	</section>
+            	<section className={styles.cooperationForms}>
+					<div className="container">
+						<div className={styles.coopFrameWrapper}>
+							<div className={styles.cooperationFormsWrapper}>
+								<div className={styles.cooperationFormsLeftCol}>
+									<div className={styles.cooperationFormsLeftColTop}>
+										<div className={styles.cooperationHeader}>Сотрудничество</div> <img src={images.laptopImage} alt="laptopImage" /> </div>
+									<div className={styles.cooperationFormsLeftColMiddle}> <img src={images.quoteImage} alt="quoteImage" />
+										<p>«Высокое качество предоставляемых услуг рождается при взаимодействии компетентных специалистов разных сфер»</p>
+									</div>
+									<div className={styles.cooperationFormsLeftColBottom}>
+										<div className={styles.cFLCBWrapper}>
+											<div className={styles.cFLCBLeft}> <img src={images.cooperationAvatarImage} alt="cooperationAvatarImage" /> </div>
+											<div className={styles.cFLCBRight}>
+												<p className={styles.cFLCBRightTop}>Ефремова Анастасия Юрьевна</p>
+												<p className={styles.cFLCBRightBottom}>выпускник ФГБОУ ВО СЗГМУ им. И.И. Мечникова, врач-стажер</p>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div className={styles.cooperationFormsRightCol}>
+									<CooperationForm /> </div>
+							</div>
+							<div className={styles.coopBackLinesWrapper}> <img src={images.backLinesImage} className={styles.backLinesImage} alt="backLinesImage" />
+								<div className={styles.coopBackLinesTextWrapper}>
+									<p>ПРОБЛЕМУ не выбросишь за окошко, а можно только вежливо, со ступенькина ступеньку, свести с лестницы. И делать это лучше <span>объединив усилия консультантов, лабораторных служб.</span></p>
+									<p><span>Мы предлагаем платформу для реализации</span> своих услуг консультантам, медицинским специалистам разных специальностей. Приглашаем для сотрудничества клиники, организации помощи пациентам.</p>
+									<p id={styles.coopBackLinesTextWrapperP}>Также мы <span>открыты к взаимодействию</span> с блогерами в социальных сетях. Для получения более подробной информации, просим вас заполнить форму заявки.</p>
+								</div>
+							</div>
+						</div>
+					</div>
             	</section>
             	<section className={styles.newsSec}>
-		<div className="container">
-			<h2>Новости</h2>
-			<NewsSlider slides={sliderData.NewsData} /> </div>
+					<div className="container">
+						<h2>Новости</h2>
+						<NewsSlider slides={sliderData.NewsData} />
+					</div>
             	</section>
             	<section className={styles.subcribeNews}>
-		<div className="container">
-			<div className={styles.subcribeNewsWrapper}>
-				<div className={styles.subcribeNewsLeft}>
-					<div className={styles.subcribeNewsLeftTopWrapper}>
-						<p>Подписывайтесь
-							<br /> на новости сервиса <span>«ГастроГлютен.</span>инфо»</p> <img src={images.subcribeNewsMailImage} className={styles.subcribeNewsMailImage} alt="subcribeNewsMailImage" /> </div>
-					<div className={styles.subcribeNewsLeftBottomWrapper}>
-						<p>Так ещё проще узнавать новую информацию об обновлениях, материалах, мероприятиях и многом другом.</p>
+					<div className="container">
+						<div className={styles.subcribeNewsWrapper}>
+							<div className={styles.subcribeNewsLeft}>
+								<div className={styles.subcribeNewsLeftTopWrapper}>
+									<p>Подписывайтесь
+										<br /> на новости сервиса <span>«ГастроГлютен.</span>инфо»</p> <img src={images.subcribeNewsMailImage} className={styles.subcribeNewsMailImage} alt="subcribeNewsMailImage" /> </div>
+								<div className={styles.subcribeNewsLeftBottomWrapper}>
+									<p>Так ещё проще узнавать новую информацию об обновлениях, материалах, мероприятиях и многом другом.</p>
+								</div>
+							</div>
+							<div className={styles.subcribeNewsRight}>
+								<SubscribeNewsForm /> </div>
+						</div>
 					</div>
-				</div>
-				<div className={styles.subcribeNewsRight}>
-					<SubscribeNewsForm /> </div>
-			</div>
-		</div>
             	</section>
             	<section className={styles.calendarEvents}>
-		<div className="container">
-			<div className={styles.calendarEventsWrapper}>
-				<div className={styles.calendarEventsHeader}>Календарь событий</div>
-				<div className={styles.calendarEventsCardWrapper}>
-					<div className={styles.calendarEventsCard}>
-						<div className={styles.calendarEventsCardPaddTop}> <img className={styles.calendarEventImage} src={images.firstEventImage} alt="firstEventImage" />
-							<p className={styles.calendarEventsCardTopText}>1 сентября</p>
-							<p className={styles.calendarEventsCardBottomtext}>Выход подкаста «Вся правда о глютене»</p>
-						</div>
-						<div className={styles.calendarEventsCardPaddBot}>
-							<button>Подробнее</button>
+					<div className="container">
+						<div className={styles.calendarEventsWrapper}>
+							<div className={styles.calendarEventsHeader}>Календарь событий</div>
+							<div className={styles.calendarEventsCardWrapper}>
+								<div className={styles.calendarEventsCard}>
+									<div className={styles.calendarEventsCardPaddTop}> <img className={styles.calendarEventImage} src={images.firstEventImage} alt="firstEventImage" />
+										<p className={styles.calendarEventsCardTopText}>1 сентября</p>
+										<p className={styles.calendarEventsCardBottomtext}>Выход подкаста «Вся правда о глютене»</p>
+									</div>
+									<div className={styles.calendarEventsCardPaddBot}>
+										<button>Подробнее</button>
+									</div>
+								</div>
+								<div className={styles.calendarEventsCard}>
+									<div className={styles.calendarEventsCardPaddTop}> <img className={styles.calendarEventImage} src={images.secondEventImage} alt="secondEventImage" />
+										<p className={styles.calendarEventsCardTopText}>10 сентября</p>
+										<p className={styles.calendarEventsCardBottomtext}>Онлайн-школа пациента</p>
+									</div>
+									<div className={styles.calendarEventsCardPaddBot}>
+										<button>Подробнее</button>
+									</div>
+								</div>
+								<div className={styles.calendarEventsCard}>
+									<div className={styles.calendarEventsCardPaddTop}> <img className={styles.calendarEventImage} src={images.thirdEventImage} alt="thirdEventImage" />
+										<p className={styles.calendarEventsCardTopText}>1 октября</p>
+										<p className={styles.calendarEventsCardBottomtext}>Посещение 179 лицея с лекцией</p>
+									</div>
+									<div className={styles.calendarEventsCardPaddBot}>
+										<button>Подробнее</button>
+									</div>
+								</div>
+							</div>
+							<button className={styles.calendarBtn}>
+								<span>
+									Показать весь список мероприятий
+								</span>
+							</button>
 						</div>
 					</div>
-					<div className={styles.calendarEventsCard}>
-						<div className={styles.calendarEventsCardPaddTop}> <img className={styles.calendarEventImage} src={images.secondEventImage} alt="secondEventImage" />
-							<p className={styles.calendarEventsCardTopText}>10 сентября</p>
-							<p className={styles.calendarEventsCardBottomtext}>Онлайн-школа пациента</p>
-						</div>
-						<div className={styles.calendarEventsCardPaddBot}>
-							<button>Подробнее</button>
-						</div>
-					</div>
-					<div className={styles.calendarEventsCard}>
-						<div className={styles.calendarEventsCardPaddTop}> <img className={styles.calendarEventImage} src={images.thirdEventImage} alt="thirdEventImage" />
-							<p className={styles.calendarEventsCardTopText}>1 октября</p>
-							<p className={styles.calendarEventsCardBottomtext}>Посещение 179 лицея с лекцией</p>
-						</div>
-						<div className={styles.calendarEventsCardPaddBot}>
-							<button>Подробнее</button>
-						</div>
-					</div>
-				</div>
-				<button className={styles.calendarBtn}>Показать весь список мероприятий</button>
-			</div>
-		</div>
             	</section>
             	<section className={styles.contacts}>
-		<div className="container">
-			<div className={styles.contactsWrapper}>
-				<div className={styles.contactsLeft}>
-					<div className={styles.contactsHeadWrapper}>
-						<div className={styles.contactsHeader}>Контакты</div> <img src={images.contactsIllustrationImage} alt="contactsIllustrationImage" /> </div>
-					<div className={styles.contactsCon}>
-						<p>Северо-Западный Центр Глютен-ассоциированных заболеваний (СЗЦ ГАЗ) на базе ФГБОУ ВО СЗГМУ им. И.И. Мечникова</p>
-						<div className={styles.contactsConRef}>
-							<div className={styles.contactsConRefText}> <span>Адрес: </span> <a>СПб, пр. Пискаревский 47, кор. 24, 2 этаж</a> </div>
-							<div className={styles.contactsConRefText}> <span>Телефон: </span> <a href="tel:+79697305778">+7-969-730-57-78</a> </div>
-							<div className={styles.contactsConRefText}> <span>E-mail: </span> <a href="mailto:gluten-center@mail.ru">gluten-center@mail.ru</a> </div>
+					<div className="container">
+						<div className={styles.contactsWrapper}>
+							<div className={styles.contactsLeft}>
+								<div className={styles.contactsHeadWrapper}>
+									<div className={styles.contactsHeader}>Контакты</div> <img src={images.contactsIllustrationImage} alt="contactsIllustrationImage" /> </div>
+								<div className={styles.contactsCon}>
+									<p>Северо-Западный Центр Глютен-ассоциированных заболеваний (СЗЦ ГАЗ) на базе ФГБОУ ВО СЗГМУ им. И.И. Мечникова</p>
+									<div className={styles.contactsConRef}>
+										<div className={styles.contactsConRefText}> <span>Адрес: </span> <a>СПб, пр. Пискаревский 47, кор. 24, 2 этаж</a> </div>
+										<div className={styles.contactsConRefText}> <span>Телефон: </span> <a href="tel:+79697305778">+7-969-730-57-78</a> </div>
+										<div className={styles.contactsConRefText}> <span>E-mail: </span> <a href="mailto:gluten-center@mail.ru">gluten-center@mail.ru</a> </div>
+									</div>
+								</div>
+								<div className={styles.contactIcons}>
+									<a href="https://t.me/" className={styles.contactsIconText}> <img src={icons.telegramIcon} alt="telegramIcon" /> </a>
+									<a href="https://whatsapp.com/link" className={styles.contactsIconText}> <img src={icons.whatsappIcon} alt="whatsappIcon" /> </a>
+								</div>
+							</div>
+							<div className={styles.contactsRight}>
+								<a сlassname={styles.contactsHeaderMapRef} href="https://yandex.ru/maps/2/saint-petersburg/house/piskaryovskiy_prospekt_47/Z0kYcgRhSkcOQFtjfXV5cnhhZw==/?ll=30.431329%2C59.983423&z=17.1"> <img src={images.contactsCartImage} alt="contactsCartImage" /> </a>
+							</div>
 						</div>
 					</div>
-					<div className={styles.contactIcons}>
-						<a href="https://t.me/" className={styles.contactsIconText}> <img src={icons.telegramIcon} alt="telegramIcon" /> </a>
-						<a href="https://whatsapp.com/link" className={styles.contactsIconText}> <img src={icons.whatsappIcon} alt="whatsappIcon" /> </a>
-					</div>
-				</div>
-				<div className={styles.contactsRight}>
-					<a сlassname={styles.contactsHeaderMapRef} href="https://yandex.ru/maps/2/saint-petersburg/house/piskaryovskiy_prospekt_47/Z0kYcgRhSkcOQFtjfXV5cnhhZw==/?ll=30.431329%2C59.983423&z=17.1"> <img src={images.contactsCartImage} alt="contactsCartImage" /> </a>
-				</div>
-			</div>
-		</div>
             	</section>
             	<section className={styles.reviews}>
-		<div className="container">
-			<div className={styles.reviewsWrapper}>
-				<div className={styles.reviewsHeader}>Отзывы о работе консультантах центра</div>
-				<div className={styles.reviewsCarts}>
-					<div className={styles.reviewsCart}>
-						<div className={styles.reviewsCartTop}> <img src={images.reviewsMarks} alt="reviewsMarks" /> </div>
-						<div className={styles.reviewsCartBottom}>
-							<div className={styles.reviewsStars}>
-								<div className={styles.reviewsStarsWrapper}> <img src={images.reviewsStars} alt="reviewsStars" /> </div>
-								<div className={styles.reviewsStarsWrapper}> <img src={images.reviewsStars} alt="reviewsStars" /> </div>
-								<div className={styles.reviewsStarsWrapper}> <img src={images.reviewsStars} alt="reviewsStars" /> </div>
-								<div className={styles.reviewsStarsWrapper}> <img src={images.reviewsStars} alt="reviewsStars" /> </div>
-								<div className={styles.reviewsStarsWrapper}> <img src={images.reviewsStars} alt="reviewsStars" /> </div>
+					<div className="container">
+						<div className={styles.reviewsWrapper}>
+							<div className={styles.reviewsHeader}>Отзывы о работе консультантах центра</div>
+							<div className={styles.reviewsCarts}>
+								<div className={styles.reviewsCart}>
+									<div className={styles.reviewsCartTop}> <img src={images.reviewsMarks} alt="reviewsMarks" /> </div>
+									<div className={styles.reviewsCartBottom}>
+										<div className={styles.reviewsStars}>
+											<div className={styles.reviewsStarsWrapper}> <img src={images.reviewsStars} alt="reviewsStars" /> </div>
+											<div className={styles.reviewsStarsWrapper}> <img src={images.reviewsStars} alt="reviewsStars" /> </div>
+											<div className={styles.reviewsStarsWrapper}> <img src={images.reviewsStars} alt="reviewsStars" /> </div>
+											<div className={styles.reviewsStarsWrapper}> <img src={images.reviewsStars} alt="reviewsStars" /> </div>
+											<div className={styles.reviewsStarsWrapper}> <img src={images.reviewsStars} alt="reviewsStars" /> </div>
+										</div>
+										<div className={styles.reviewsCartUsers}>
+											<p className={styles.reviewsCartUser}> Мария И. </p>
+											<p className={styles.reviewsCartUserDate}> 31.10.2023, консультация у Семеновой Е.А. </p>
+										</div>
+										<div className={styles.reviewsCartComments}>
+											<p> «Благодарны консультанту за доброжелательный и квалифицированный приём» </p>
+										</div>
+									</div>
+								</div>
+								<div className={styles.reviewsCart}>
+									<div className={styles.reviewsCartTop}> <img src={images.reviewsMarks} alt="reviewsMarks" /> </div>
+									<div className={styles.reviewsCartBottom}>
+										<div className={styles.reviewsStars}>
+											<div className={styles.reviewsStarsWrapper}> <img src={images.reviewsStars} alt="reviewsStars" /> </div>
+											<div className={styles.reviewsStarsWrapper}> <img src={images.reviewsStars} alt="reviewsStars" /> </div>
+											<div className={styles.reviewsStarsWrapper}> <img src={images.reviewsStars} alt="reviewsStars" /> </div>
+											<div className={styles.reviewsStarsWrapper}> <img src={images.reviewsStars} alt="reviewsStars" /> </div>
+											<div className={styles.reviewsStarsWrapper}> <img src={images.reviewsStars} alt="reviewsStars" /> </div>
+										</div>
+										<div className={styles.reviewsCartUsers}>
+											<p className={styles.reviewsCartUser}> Мария И. </p>
+											<p className={styles.reviewsCartUserDate}> 17.05.2023, консультация у Семеновой Е.А. </p>
+										</div>
+										<div className={styles.reviewsCartComments}>
+											<p> «Очень внимательный консультант. Подробная консультация. Очень много узнала о своём диагнозе. Спасибо,что организовали такой центр» </p>
+										</div>
+									</div>
+								</div>
+								<div className={styles.reviewsCart}>
+									<div className={styles.reviewsCartTop}> <img src={images.reviewsMarks} alt="reviewsMarks" /> </div>
+									<div className={styles.reviewsCartBottom}>
+										<div className={styles.reviewsStars}>
+											<div className={styles.reviewsStarsWrapper}> <img src={images.reviewsStars} alt="reviewsStars" /> </div>
+											<div className={styles.reviewsStarsWrapper}> <img src={images.reviewsStars} alt="reviewsStars" /> </div>
+											<div className={styles.reviewsStarsWrapper}> <img src={images.reviewsStars} alt="reviewsStars" /> </div>
+											<div className={styles.reviewsStarsWrapper}> <img src={images.reviewsStars} alt="reviewsStars" /> </div>
+											<div className={styles.reviewsStarsWrapper}> <img src={images.reviewsStars} alt="reviewsStars" /> </div>
+										</div>
+										<div className={styles.reviewsCartUsers}>
+											<p className={styles.reviewsCartUser}> Антон Г. </p>
+											<p className={styles.reviewsCartUserDate}> 13.12.2023, консультация у Семеновой Е.А. </p>
+										</div>
+										<div className={styles.reviewsCartComments}>
+											<p> «Все отлично. Очень профессионально» </p>
+										</div>
+									</div>
+								</div>
 							</div>
-							<div className={styles.reviewsCartUsers}>
-								<p className={styles.reviewsCartUser}> Мария И. </p>
-								<p className={styles.reviewsCartUserDate}> 31.10.2023, консультация у Семеновой Е.А. </p>
-							</div>
-							<div className={styles.reviewsCartComments}>
-								<p> «Благодарны консультанту за доброжелательный и квалифицированный приём» </p>
-							</div>
+							<button className={styles.reviewsBtn}>
+								<span>
+									Показать все отзывы о консультантах
+								</span>
+							</button>
 						</div>
 					</div>
-					<div className={styles.reviewsCart}>
-						<div className={styles.reviewsCartTop}> <img src={images.reviewsMarks} alt="reviewsMarks" /> </div>
-						<div className={styles.reviewsCartBottom}>
-							<div className={styles.reviewsStars}>
-								<div className={styles.reviewsStarsWrapper}> <img src={images.reviewsStars} alt="reviewsStars" /> </div>
-								<div className={styles.reviewsStarsWrapper}> <img src={images.reviewsStars} alt="reviewsStars" /> </div>
-								<div className={styles.reviewsStarsWrapper}> <img src={images.reviewsStars} alt="reviewsStars" /> </div>
-								<div className={styles.reviewsStarsWrapper}> <img src={images.reviewsStars} alt="reviewsStars" /> </div>
-								<div className={styles.reviewsStarsWrapper}> <img src={images.reviewsStars} alt="reviewsStars" /> </div>
-							</div>
-							<div className={styles.reviewsCartUsers}>
-								<p className={styles.reviewsCartUser}> Мария И. </p>
-								<p className={styles.reviewsCartUserDate}> 17.05.2023, консультация у Семеновой Е.А. </p>
-							</div>
-							<div className={styles.reviewsCartComments}>
-								<p> «Очень внимательный консультант. Подробная консультация. Очень много узнала о своём диагнозе. Спасибо,что организовали такой центр» </p>
-							</div>
-						</div>
-					</div>
-					<div className={styles.reviewsCart}>
-						<div className={styles.reviewsCartTop}> <img src={images.reviewsMarks} alt="reviewsMarks" /> </div>
-						<div className={styles.reviewsCartBottom}>
-							<div className={styles.reviewsStars}>
-								<div className={styles.reviewsStarsWrapper}> <img src={images.reviewsStars} alt="reviewsStars" /> </div>
-								<div className={styles.reviewsStarsWrapper}> <img src={images.reviewsStars} alt="reviewsStars" /> </div>
-								<div className={styles.reviewsStarsWrapper}> <img src={images.reviewsStars} alt="reviewsStars" /> </div>
-								<div className={styles.reviewsStarsWrapper}> <img src={images.reviewsStars} alt="reviewsStars" /> </div>
-								<div className={styles.reviewsStarsWrapper}> <img src={images.reviewsStars} alt="reviewsStars" /> </div>
-							</div>
-							<div className={styles.reviewsCartUsers}>
-								<p className={styles.reviewsCartUser}> Антон Г. </p>
-								<p className={styles.reviewsCartUserDate}> 13.12.2023, консультация у Семеновой Е.А. </p>
-							</div>
-							<div className={styles.reviewsCartComments}>
-								<p> «Все отлично. Очень профессионально» </p>
-							</div>
-						</div>
-					</div>
-				</div>
-				<button className={styles.reviewsBtn}>Показать все отзывы о консультантах</button>
-			</div>
-		</div>
             	</section>
             	<section className={styles.photoGallery}>
-		<div className="container">
-			<h2>Фотогалерея</h2>
-			<PhotoSlider slides={sliderData.PhotoData} /> </div>
-            	</section>
-            </main>
-            <Footer />
+					<div className="container">
+						<h2>Фотогалерея</h2>
+						<PhotoSlider slides={sliderData.PhotoData} />
+					</div>
+        		</section>
+        	</main>
+        	<Footer />
         </div>
     );
 }

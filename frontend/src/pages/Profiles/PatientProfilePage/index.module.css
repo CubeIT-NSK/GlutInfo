@@ -1,0 +1,166 @@
+.container {
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
+}
+
+.mainContent {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding: 20px 20px 150px 20px;
+	background-color: #f9f9f9;
+}
+
+.profileSection {
+	display: flex;
+	flex-direction: column;
+	gap: 40px;
+	justify-content: space-between;
+}
+
+.profileSectionTitle {
+	color: rgb(55, 63, 65);
+	font-family: TT Hoves;
+	font-size: 42px;
+	font-weight: 700;
+	line-height: 49px;
+	letter-spacing: 0px;
+	text-align: left;
+	padding-bottom: 10px;
+}
+
+.profileSectionFullWrapper {
+	display: flex;
+	justify-content: space-between;
+	flex-wrap: wrap;
+	gap: 30px;
+
+	border-bottom: 1px solid #989C9D;
+	padding-bottom: 40px;
+}
+
+.profileSectionFullWrapperTitle {
+	font-family: Mulish;
+	font-size: 32px;
+	font-weight: 600;
+	line-height: 40px;
+	letter-spacing: 0px;
+	text-align: left;
+}
+
+.profileImage {
+	width: 100px;
+	height: 100px;
+	border-radius: 50%;
+}
+
+.profileDetails {
+	display: flex;
+	gap: 30px;
+	align-items: center;
+}
+
+.profileDetWrapper {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+}
+
+.profileDetWrapperTop {
+	color: rgb(55, 63, 65);
+	font-family: Mulish;
+	font-size: 20px;
+	font-weight: 600;
+	line-height: 25px;
+	letter-spacing: 0px;
+	text-align: left;
+}
+
+.profileDetWrapperMid {
+	color: rgb(152, 156, 157);
+	font-family: Mulish;
+	font-size: 16px;
+	font-weight: 600;
+	line-height: 20px;
+	letter-spacing: 0px;
+	text-align: left;
+}
+
+.primaryButton,
+.secondaryButton,
+.secondaryButtonBig,
+.secondaryButtonDisable {
+	padding: 10px;
+	cursor: pointer;
+	height: 51px;
+	width: 270px;
+
+	font-family: Ubuntu;
+	font-size: 18px;
+	font-weight: 400;
+	line-height: 20px;
+	letter-spacing: 0px;
+	text-align: center;
+
+}
+
+.primaryButton {
+	background-color: #f3962e;
+	color: white;
+	border: none;
+	border-radius: 5px;
+}
+
+.secondaryButton,
+.secondaryButtonBig,
+.secondaryButtonDisable {
+	color: black;
+	border: 2px solid transparent;
+	background-image: var(--gradient-wheat);
+	box-shadow: inset 0px 0px 0px 100vw #fff;
+	border-radius: 4px;
+	box-sizing: border-box;
+}
+
+.secondaryButtonBig span,
+.secondaryButtonDisable span,
+.secondaryButton span {
+	font-family: TT Hoves;
+	font-size: 22px;
+	font-weight: 500;
+	line-height: 25px;
+	letter-spacing: 0px;
+	text-align: left;
+	text-wrap: nowrap;
+}
+
+.secondaryButtonBig {
+	width: 570px;
+}
+
+.secondaryButtonDisable {
+	border: 0;
+	box-shadow: none;
+	background-image: none;
+	color: #494949;
+	background-color: var(--gray-form);
+}
+
+.profileSectionExit {
+	padding-top: 10px;
+	display: flex;
+	justify-content: center;
+}
+
+.profileActions {
+	display: flex;
+	align-items: center;
+	gap: 30px;
+}
+
+.buttonsSection {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+}

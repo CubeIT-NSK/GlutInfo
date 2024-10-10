@@ -9,6 +9,7 @@
 	flex-direction: column;
 }
 
+
 /* TELESERVICE */
 
 .teleService {
@@ -105,11 +106,16 @@
 	width: 470px;
 }
 
+.teleMiddleWrap button:hover {
+	background: var(--dark-wheat);
+}
+
 .teleMiddleTopWrapper {
 	display: flex;
 	flex-direction: column;
 	gap: 35px;
 }
+
 
 /* ABOUT US */
 
@@ -213,6 +219,11 @@
 	width: 470px;
 }
 
+.aboutUsLeft button:hover {
+	background: var(--dark-wheat);
+}
+
+
 /* RELEVANCE */
 
 .relevanceProblem {
@@ -251,18 +262,17 @@
 }
 
 .relevanceProblemHeaderBlock {
+	width: 770px;
+	position: relative;
+
+	border: 1px solid transparent;
 	background-image: var(--gradient-wheat);
 	border-radius: 10px;
-
-	width: 770px;
-	padding: 1px 1px 0 1px;
-	position: relative;
+	box-shadow: inset 0px 0px 0px 100vw #fff;
+	box-sizing: border-box;
 }
 
 .relevanceProblemHeaderBlockEl {
-	background-color: white;
-	border-radius: 10px;
-	height: calc(100% - 1px);
 	padding-left: 74px;
 	padding-top: 20px;
 }
@@ -277,7 +287,6 @@
 	background-color: white;
 	border: 1px solid #d48b32;
 	border-radius: 100px;
-	z-index: 2;
 }
 
 .relevanceProblemHeaderBlock::after {
@@ -288,25 +297,22 @@
 	width: 30px;
 	height: 1px;
 	background-image: var(--gradient-wheat);
-	z-index: 1;
 }
 
 .relevanceProblemHeaderBlockEl img {
 	position: absolute;
-	top: 25px;
+	top: 24.5px;
 	left: -24px;
-	z-index: 10;
 }
 
 .relevanceProblemHeaderBlockEl::before {
 	content: "";
 	position: absolute;
 	top: 21px;
-	left: -25px;
+	left: -26px;
 	width: 25px;
-	height: 54px;
+	height: 51px;
 	background-color: white;
-	z-index: 10;
 }
 
 .relevanceProblemHeaderBlockEl p {
@@ -480,6 +486,10 @@
 	background: linear-gradient(184.89deg, rgb(248, 169, 74) 28.449%, rgb(201, 119, 19) 117.822%);
 }
 
+.patientHistoryActionsButtonLeft:hover {
+	background: var(--dark-wheat);
+}
+
 .patientHistoryActionsButtonLeft span {
 	color: rgb(255, 255, 255);
 	font-family: TT Hoves;
@@ -491,12 +501,11 @@
 }
 
 .patientHistoryActionsButtonRight {
-	background: white;
 	padding: 15px 40px;
 
 	border: 1px solid transparent;
-	border-image: var(--gradient-wheat) 1;
-	box-shadow: 0px 4px 12px 0px rgba(0, 0, 0, 0.25);
+	background-image: var(--gradient-wheat);
+	box-shadow: inset 0px 0px 0px 100vw #fff;
 	border-radius: 4px;
 	box-sizing: border-box;
 	cursor: pointer;
@@ -517,6 +526,17 @@
 	-webkit-text-fill-color: transparent;
 	background-clip: text;
 	text-fill-color: transparent;
+}
+
+.patientHistoryActionsButtonRight:hover {
+	box-shadow: none;
+}
+
+.patientHistoryActionsButtonRight:hover span {
+	background: none;
+	color: white;
+	-webkit-background-clip: inherit;
+	-webkit-text-fill-color: inherit;
 }
 
 
@@ -670,6 +690,7 @@
 	margin-left: 4px;
 }
 
+
 /* NEWS */
 
 .newsSec {
@@ -688,6 +709,7 @@
 	text-align: left;
 	padding-bottom: 54.5px;
 }
+
 
 /* SUBSCRIBENEWS */
 
@@ -752,8 +774,8 @@
 	letter-spacing: 0px;
 	text-align: left;
 	max-width: 622px;
-	;
 }
+
 
 /* CALENDAREVENTS */
 
@@ -856,16 +878,29 @@
 	text-align: center;
 
 	width: 330px;
+}
 
+.calendarEventsCard button:hover {
+	background: var(--dark-wheat);
 }
 
 .calendarBtn {
+	padding: 17.5px;
+
+	border: 2px solid transparent;
+	background-image: var(--gradient-wheat);
+	box-shadow: inset 0px 0px 0px 100vw #fff;
+	border-radius: 4px;
+	box-sizing: border-box;
+	cursor: pointer;
+}
+
+.calendarBtn span {
 	background: var(--gradient-btn);
 	-webkit-background-clip: text;
 	-webkit-text-fill-color: transparent;
 	background-clip: text;
 	text-fill-color: transparent;
-	padding: 17.5px;
 
 	font-family: TT Hoves;
 	font-size: 22px;
@@ -873,13 +908,19 @@
 	line-height: 115%;
 	letter-spacing: 0px;
 	text-align: center;
-
-	border: 2px solid transparent;
-	border-image: var(--gradient-wheat) 1;
-	border-radius: 4px;
-
-	cursor: pointer;
 }
+
+.calendarBtn:hover {
+	box-shadow: none;
+}
+
+.calendarBtn:hover span {
+	background: none;
+	color: white;
+	-webkit-background-clip: inherit;
+	-webkit-text-fill-color: inherit;
+}
+
 
 /* CONTACTS */
 
@@ -970,6 +1011,7 @@
 	display: flex;
 }
 
+
 /* REVIEWS */
 
 .reviewsHeader {
@@ -1055,13 +1097,23 @@
 }
 
 .reviewsBtn {
+	padding: 17.5px;
+	margin-top: 5px;
+
+	border: 2px solid transparent;
+	background-image: var(--gradient-wheat);
+	box-shadow: inset 0px 0px 0px 100vw #fff;
+	border-radius: 4px;
+	box-sizing: border-box;
+	cursor: pointer;
+}
+
+.reviewsBtn span {
 	background: var(--gradient-btn);
 	-webkit-background-clip: text;
 	-webkit-text-fill-color: transparent;
 	background-clip: text;
 	text-fill-color: transparent;
-	padding: 17.5px;
-	margin-top: 5px;
 
 	font-family: TT Hoves;
 	font-size: 22px;
@@ -1069,12 +1121,18 @@
 	line-height: 115%;
 	letter-spacing: 0px;
 	text-align: center;
+}
 
-	border: 2px solid transparent;
-	border-image: var(--gradient-wheat) 1;
-	border-radius: 4px;
+.reviewsBtn:hover {
+	box-shadow: none;
+}
 
-	cursor: pointer;
+.reviewsBtn:hover span {
+	background: none;
+	color: white;
+	-webkit-background-clip: inherit;
+	-webkit-text-fill-color: inherit;
+
 }
 
 .reviewsStars {

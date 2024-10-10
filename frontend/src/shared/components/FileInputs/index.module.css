@@ -1,0 +1,65 @@
+.chooseFileWrapper {
+	display: flex;
+	flex-direction: column;
+	gap: 15px;
+}
+
+.chosenFileWrapper {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+}
+
+.fileBlock {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 10px;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+}
+
+.fileBlock span {
+	color: rgb(55, 63, 65);
+	font-family: Mulish;
+	font-size: 14px;
+	font-weight: 600;
+	line-height: 18px;
+	letter-spacing: 0.2px;
+	text-align: left;
+	opacity: .5;
+	cursor: pointer;
+}
+
+.removeButton {
+	border: none;
+	cursor: pointer;
+	background: none;
+}
+
+.removeButton img {
+	width: 20px;
+	height: 20px;
+}
+
+.chooseFile {
+	width: 100%;
+	padding: 10px;
+	border: 1px solid #373f41;
+	border-radius: 5px;
+	opacity: 0.5;
+	transition: border 0.3s ease;
+	font-size: 14px;
+	cursor: pointer;
+	text-align: left;
+
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+
+.error {
+	color: #FF162E;
+	font-size: 12px;
+}

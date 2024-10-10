@@ -31,6 +31,8 @@ import photoGallery4Image from '../../assets/img/photoGallery/photo4.png'
 import photoGallery5Image from '../../assets/img/photoGallery/photo5.png'
 import photoGallery6Image from '../../assets/img/photoGallery/photo6.png'
 
+import certProfile from '../../assets/img/profiles/consProfile/cert1.png';
+
 const images = {
     teleServiceImage,
     aboutUsImage,
@@ -59,6 +61,7 @@ const images = {
     photoGallery4Image,
     photoGallery5Image,
     photoGallery6Image,
+    certProfile,
 };
 
 export default images;

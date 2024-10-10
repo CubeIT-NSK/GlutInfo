@@ -1,8 +1,8 @@
-import React, { useState, useCallback, useEffect, useRef } from 'react';
-import styles from './index.module.css';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import icons from '../../resources/icon';
+import AuthorizationModal from '../Modals/AuthorizationModal';
+import styles from './index.module.css';
 import { menuItems } from './menuItems';
-import AuthorizationModal from '../AuthorizationModal';
 
 const Header = () => {
   const [openDropdownIndex, setOpenDropdownIndex] = useState(null);
@@ -60,12 +60,12 @@ const Header = () => {
             <div className={styles.headerRightWrapper}>
               <a href="https://t.me/" className={styles.socialIconText}>
                 <img src={icons.telegramIcon} alt="telegramIcon" />
-                Наш телеграм канал
+                <span>Наш телеграм канал</span>
               </a>
               <div className={styles.donateWrapper}>
                 <button onClick={handleToggleDonateMenu} className={styles.socialIconText}>
                   <img src={icons.donateIcon} alt="donateIcon" />
-                  Пожертвовать
+                  <span>Пожертвовать</span>
                 </button>
                 <div
                   ref={donateMenuRef}
@@ -86,7 +86,9 @@ const Header = () => {
                   className={styles.iconButton}
                   onClick={icon === 'avatarIcon' ? toggleAuthModal : null}
                 >
-                  <img src={icons[icon]} alt={icon} />
+                  <div className={styles.iconButtonContainer}>
+                    <img src={icons[icon]} alt={icon} />
+                  </div>
                 </button>
               ))}
             </div>
