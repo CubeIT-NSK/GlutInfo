@@ -18,9 +18,10 @@ const schema = yup.object().shape({
     phoneNumber: yup.string().required("Номер телефона обязателен")
         .matches(/^\+7 \(\d{3}\) \d{3}-\d{2}-\d{2}$/, "Неверный формат телефона"),
     email: yup.string().email("Неверный формат почты").required("Электронная почта обязательна"),
-    address: yup.string().required("Введите адрес"),
-    education: yup.string().required("Укажите уровень образования"),
-    workingStatus: yup.string().required("Выберите статус работы"),
+    gender: yup.string().required("Укажите ваш пол"),
+    address: yup.string().nullable(),
+    education: yup.string().nullable(),
+    workingStatus: yup.string().nullable(),
     photo: yup.mixed().nullable(),
 });
 
@@ -99,7 +100,7 @@ export default function FillProfilePage() {
                                             name="gender"
                                             {...register("gender")}
                                             defaultChecked
-                                            className={styles.roundRadio}
+                                            className={`${styles.roundRadio} ${errors.gender ? styles.errorText : ''}`}
                                         /> Мужчина
                                     </label>
                                     <label>
@@ -108,7 +109,7 @@ export default function FillProfilePage() {
                                             value="female"
                                             name="gender"
                                             {...register("gender")}
-                                            className={styles.roundRadio}
+                                            className={`${styles.roundRadio} ${errors.gender ? styles.errorText : ''}`}
                                         /> Женщина
                                     </label>
                                 </div>

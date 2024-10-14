@@ -40,6 +40,11 @@
 	padding-bottom: 40px;
 }
 
+.profileSectionFullWrapper:first-of-type {
+	border-bottom: none;
+	padding-bottom: 0;
+}
+
 .profileSectionFullWrapperTitle {
 	font-family: Mulish;
 	font-size: 32px;
@@ -156,6 +161,7 @@
 .profileActions {
 	display: flex;
 	align-items: center;
+	flex-wrap: wrap;
 	gap: 30px;
 }
 
