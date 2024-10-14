@@ -11,6 +11,12 @@ import PatternPage from '../pages/PatternPage';
 import PatientProfilePage from '../pages/Profiles/PatientProfilePage';
 import RegistrationPage from '../pages/RegistrationPage';
 
+import WhoqolPage from '../pages/Questionnaires/WHOQOL';
+import GsrsPage from '../pages/Questionnaires/GSRS';
+import HadsPage from '../pages/Questionnaires/HADS';
+import ScreeningPage from '../pages/Questionnaires/Screening';
+import FatiquePage from '../pages/Questionnaires/FATIQUE';
+
 
 function App() {
 	return (
@@ -23,9 +29,15 @@ function App() {
 				<Route path="/fill-consultant" element={<FillConsultantProfilePage />}/>
 				<Route path="/success" element={<SuccessPage  />}/>
 
-				<Route path="/profile-patient" element={<PatientProfilePage  />}/>
-				<Route path="/profile-consultant" element={<ConsultantProfilePage  />}/>
-				<Route path="/edit-profile-consultant" element={<EditConsultantProfilePage  />}/>
+				<Route path="/profile-patient" element={<PatientProfilePage />}/>
+					<Route path="/quality-of-life-questionnaire" element={<WhoqolPage />}/>
+					<Route path="/gastro-questionnaire" element={<GsrsPage />}/>
+					<Route path="/anxiety-questionnaire" element={<HadsPage />}/>
+					<Route path="/screening-questionnaire" element={<ScreeningPage />}/>
+					<Route path="/weakness-questionnaire" element={<FatiquePage />}/>
+
+				<Route path="/profile-consultant" element={<ConsultantProfilePage />}/>
+				    <Route path="edit-profile-consultant" element={<EditConsultantProfilePage />}/>
 
 
 				<Route path="/404" element={<ErrorPage  />}/>
@@ -35,4 +47,4 @@ function App() {
 	);
 }
 
-export default App
+export default App;
