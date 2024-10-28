@@ -7,7 +7,8 @@ from app.api.endpoints import (
     survey_router,
     feedback_router,
     projects_router,
-    events_router
+    events_router,
+    chat_router
 )
 
 main_router = APIRouter()
@@ -47,5 +48,11 @@ main_router.include_router(
 main_router.include_router(
     events_router,
     prefix='/events',
-    tags=['events']
+    tags=['Events']
+)
+
+main_router.include_router(
+    chat_router,
+    prefix='/chat',
+    tags=['Chat']
 )

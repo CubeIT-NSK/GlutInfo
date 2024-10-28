@@ -12,6 +12,7 @@ class UserRead(schemas.BaseUser[int]):
     patronymic: Optional[str]
     born_date: Optional[date]
     sex: Optional[Sex]
+    phone: int
     role: Role
 
 
@@ -21,6 +22,7 @@ class UserCreate(schemas.BaseUserCreate):
     patronymic: Optional[str] = None
     born_date: Optional[date] = None
     sex: Optional[Sex] = None
+    phone: int
     role: Role
 
     model_config = ConfigDict(
@@ -35,6 +37,7 @@ class UserCreate(schemas.BaseUserCreate):
                     'patronymic': 'Иванович',
                     'born_date': '1980-04-27',
                     'sex': 'male',
+                    'phone': '89991234554',
                     'role': 'consultant',
                 }
             ]

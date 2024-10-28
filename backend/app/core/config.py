@@ -8,6 +8,7 @@ class Settings(BaseSettings):
     verification_token_secret: str = 'VERIFICATIONSECRET'
     verification_token_lifetime_seconds: int = 10080
 
+    # Mail
     MAIL_USERNAME: str = 'username'
     MAIL_PASSWORD: str = '**********'
     MAIL_FROM: str = 'test@email.com'
@@ -18,6 +19,12 @@ class Settings(BaseSettings):
     MAIL_SSL_TLS: bool = False
     USE_CREDENTIALS: bool = True
     VALIDATE_CERTS: bool = True
+
+    # S3
+    ACCESS_KEY: str = 'accesskeys3'
+    SECRET_KEY: str = 'secretkeys3'
+    ENDPOINT_URL: str = 'https://s3.ru-1.storage.selcloud.ru'
+    BUCKET_NAME: str = 'test-gluten-info'
 
     class Config:
         env_file = '.env'

@@ -131,7 +131,7 @@ class Records(Base):
     pub_date: Mapped[date] = mapped_column(Date)
     consultants_id: Mapped[int] = mapped_column(Integer,
                                                 ForeignKey('consultants.id'))
-    patient_id: Mapped[int] = mapped_column(Integer,ForeignKey('patients.id') )
+    patient_id: Mapped[int] = mapped_column(Integer, ForeignKey('patients.id') )
     service_id: Mapped[int] = mapped_column(Integer, ForeignKey('services.id'))
 
     consultants: Mapped[Consultants] = relationship(

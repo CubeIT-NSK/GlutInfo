@@ -1,5 +1,5 @@
-from fastapi import APIRouter, Depends, BackgroundTasks
-from fastapi.responses import JSONResponse
+from fastapi import APIRouter, Depends, Request
+from fastapi.templating import Jinja2Templates
 from sqlalchemy.ext.asyncio import AsyncSession
 from fastapi_users import BaseUserManager
 
@@ -12,7 +12,6 @@ from app.schemas.patient import (
     PatientCreate,
     PatientUpdate,
     PatientDB,
-    MailPatient,
 )
 from app.models.user import User
 from app.crud.patient import patient_crud
@@ -20,10 +19,12 @@ from app.api.validators import (
     check_patient_duplicate,
     current_user_patient
 )
-from app.services.fastMail import EmailSchema, send_email_task
 
 
 router = APIRouter()
+templates = Jinja2Templates(
+    directory="/Users/user/Work/GlutInfo/backend/app/templates/test"
+)
 
 
 @router.post(
@@ -52,7 +53,7 @@ async def post_new_patient(
     description='Обновление пользователя, '
                 'только если он является пациентом.'
 )
-async def update_consultant(
+async def update_patient(
     obj_in: PatientUpdate,
     user_manager: BaseUserManager = Depends(get_user_manager),
     user: User = Depends(current_user),
@@ -72,25 +73,29 @@ async def update_consultant(
     return updated_patient
 
 
-# Testing mail sending (temp method)
-@router.post(
-    '/send_me_message',
+@router.get(
+    '/me',
     dependencies=[Depends(current_user_patient)],
+    response_model=PatientDB,
+    summary='Получение текущего пациента.',
+    description='Получение данных пациента, по текущему токену.'
 )
-async def send_message_tomyself(
-    body: MailPatient,
-    background_tasks: BackgroundTasks,
+async def get_current_patient(
     user: User = Depends(current_user),
+    session: AsyncSession = Depends(get_async_session),
 ):
-    current_email = user.email
-
-    background_tasks.add_task(
-        send_email_task,
-        EmailSchema(
-            email=current_email,
-            subject='От Глютен.ИНФО',
-            body=body.model_dump()
-        )
+    current_patient = await patient_crud.get_patient_by_userid(
+        user.id,
+        session
     )
-    return JSONResponse(status_code=200,
-                        content={"email": "Email has been sent."})
+    image = await patient_crud.get_imagebase64_from_image_path(current_patient)
+    print(image)
+    current_patient.image = image
+    return current_patient
+
+
+# test_video
+@router.get("/videotemplate")
+async def read_root(request: Request):
+    return templates.TemplateResponse("testvideo.html",
+                                      context={"request": request})

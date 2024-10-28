@@ -25,7 +25,7 @@ class HistoriesAdmin(ModelView, model=Histories):
 class PhotoGalleryAdmin(ModelView, model=PhotoGallery):
     name_plural = PhotoGallery.__tablename__.title()
     column_list = [PhotoGallery.id,
-                #    PhotoGallery.image
+                   PhotoGallery.image
                    ]
 
 
@@ -77,6 +77,7 @@ class PlacesAdmin(ModelView, model=Places):
                    Places.rating,
                    Places.address,
                    Places.phone,
+                   Places.image
                    ]
     column_searchable_list = [Places.place_type,
                               Places.name,

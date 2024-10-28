@@ -6,6 +6,9 @@ from app.core.constants import DEFAULT_MIN_CHAR
 from app.models.admin.feedback import Rating
 from app.schemas.consultant import ConsultantDB
 
+from fastapi_storages import FileSystemStorage
+from fastapi_storages.integrations.sqlalchemy import ImageType
+
 
 class HistoriesCreate(BaseModel):
     text: Optional[str] = Field(
@@ -35,13 +38,18 @@ class HistorieDB(HistoriesCreate):
 
 class PhotoGalleryRead(BaseModel):
     id: int
-    # image = Field(
-    # )
+    image: str
 
 
 class CooperationsRead(BaseModel):
     name: str
     phone: str = Field(
+        min_length=DEFAULT_MIN_CHAR
+    )
+    email: str = Field(
+        min_length=DEFAULT_MIN_CHAR
+    )
+    offer: str = Field(
         min_length=DEFAULT_MIN_CHAR
     )
 
@@ -175,4 +183,58 @@ class PlacesRead(BaseModel):
     address: Optional[str]
     phone: Optional[str]
     website: Optional[str]
-    # image
+    image: str
+
+
+class QuestionnaireCreate(BaseModel):
+    main_problem: Optional[str] = Field(
+        min_length=DEFAULT_MIN_CHAR
+    )
+    bad_habits: Optional[str] = Field(
+        min_length=DEFAULT_MIN_CHAR
+    )
+    allergy: Optional[str] = Field(
+        min_length=DEFAULT_MIN_CHAR
+    )
+    relatives_illnesses: Optional[str] = Field(
+        min_length=DEFAULT_MIN_CHAR
+    )
+    chronic_illnes: Optional[str] = Field(
+        min_length=DEFAULT_MIN_CHAR
+    )
+    user_surgery: Optional[str] = Field(
+        min_length=DEFAULT_MIN_CHAR
+    )
+    for_women: Optional[str] = Field(
+        min_length=DEFAULT_MIN_CHAR
+    )
+    medicament: Optional[str] = Field(
+        min_length=DEFAULT_MIN_CHAR
+    )
+    analysis: Optional[str] = Field(
+        min_length=DEFAULT_MIN_CHAR
+    )
+    body_parameters: Optional[str] = Field(
+        min_length=DEFAULT_MIN_CHAR
+    )
+ 
+    model_config = ConfigDict(
+        from_attributes=True,
+        json_schema_extra={
+                'examples': [
+                    {
+                        'main_problem': 'Болит спина',
+                        'bad_habits': 'Курение',
+                        'allergy': 'Есть аллергия на цитрусовое',
+                        'relatives_illnesses': 'Точно не могу подсказать'
+                        'болезни родственников',
+                        'chronic_illnes': 'Хронический заболеваний нет',
+                        'user_surgery': 'Операций не было',
+                        'for_women': '*Пропуск раздела для женщин*',
+                        'medicament': 'Не принимая медикиментозное лечение',
+                        'analysis': 'Добавлю флюрографию в личном кабинете',
+                        'body_parameters': ' Рост 140, вес 121, 90-60-90, АД - 127/82, температура 36.6',
+                    }
+                ]
+            }
+    )

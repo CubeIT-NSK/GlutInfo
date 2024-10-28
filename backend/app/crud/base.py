@@ -1,3 +1,4 @@
+import imghdr
 from typing import Optional
 
 from fastapi.encoders import jsonable_encoder
@@ -5,6 +6,8 @@ from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.models import User
+from app.services.s3storage import s3_client
+from app.services.base64 import file_encodebase64
 
 
 class CRUDBase:
@@ -71,3 +74,30 @@ class CRUDBase:
         await session.delete(db_obj)
         await session.commit()
         return db_obj
+
+    async def save_to_s3(
+        self,
+        file_bytes,
+        filepath,
+    ):
+        await s3_client.upload_file(file_bytes, filepath)
+        print('file uploaded to s3')
+    async def get_imagebase64_from_image_path(
+        self,
+        db_obj,
+    ):
+        if db_obj:
+            file_bytes = await s3_client.get_file(db_obj.image)
+            file_base64 = await file_encodebase64(file_bytes)
+            return file_base64
+        return None
+    def create_filepath(
+        self,
+        user,
+        filename,
+        file_bytes,
+        file_extencion: str = None
+    ):
+        if not file_extencion:
+            file_extencion = imghdr.what(filename, file_bytes)
+        return f'users/{user.id}/{filename}.{file_extencion}'

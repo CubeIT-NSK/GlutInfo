@@ -1,14 +1,15 @@
 from pydantic import BaseModel, Field, ConfigDict
-
+from typing import Optional
 from app.core.constants import DEFAULT_MIN_CHAR
 from app.schemas.admin.events import OrganizatorsRead
 
 
 class ProjectsRead(BaseModel):
-    id: int
     title: str = Field(
         min_length=DEFAULT_MIN_CHAR
     )
+    id: int
+    organizators: Optional[list[OrganizatorsRead]]
 
     model_config = ConfigDict(
         extra='forbid',
@@ -17,6 +18,9 @@ class ProjectsRead(BaseModel):
                 {
                     'id': 1,
                     'title': 'Правильное питание',
+                    'organizators': {
+                        
+                    }
                 }
             ]
         }

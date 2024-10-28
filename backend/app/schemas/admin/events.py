@@ -12,7 +12,6 @@ class OrganizatorsRead(BaseModel):
     )
     role: str
     description: Optional[str]
-    event_id: int
 
     model_config = ConfigDict(
         extra='forbid',
@@ -23,7 +22,6 @@ class OrganizatorsRead(BaseModel):
                     'fio': 'Субботин Василий Иванович',
                     'role': 'Ведущий',
                     'description': 'Some text',
-                    'event_id': 2,
                 }
             ]
         }
@@ -35,13 +33,14 @@ class EventRead(BaseModel):
     title: str
     date_event: date
     finished: bool
-    # main_image
+    main_image: Optional[str]
     link: Optional[str]
     event_format: Optional[str]
     place: str
     text: Optional[str] = Field(
         min_length=DEFAULT_MIN_CHAR
     )
+    event_organizator: Optional[list['OrganizatorsRead']]
 
     model_config = ConfigDict(
         extra='forbid',
@@ -52,10 +51,13 @@ class EventRead(BaseModel):
                     'title': 'Полезные качества пива',
                     'date_event': '2024-08-09',
                     'finished': True,
-                    # 'main_image': '',
+                    'main_image': '',
                     'link': 'url',
                     'event_format': 'Лекция',
                     'text': 'some text',
+                    # 'event_organizator':{
+
+                    # }
                 }
             ]
         }
@@ -78,7 +80,7 @@ class EventOrganizatorsRead(BaseModel):
                         'title': 'Some title',
                         'date_event': '2024-08-09',
                         'finished': False,
-                        # 'main_image': '',
+                        'main_image': '',
                         'link': 'url',
                         'event_format': 'Форум',
                         'text': 'Some text',
@@ -88,7 +90,6 @@ class EventOrganizatorsRead(BaseModel):
                         'fio': 'Субботин Василий Иванович',
                         'role': 'role',
                         'description': 'Some text',
-                        'event_id': '2',
                     }
                 }
             ]

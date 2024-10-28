@@ -1,4 +1,4 @@
-from typing import Optional, Literal, get_args
+from typing import Optional, Literal, get_args, List
 from datetime import date
 
 from fastapi_users_db_sqlalchemy import SQLAlchemyBaseUserTable
@@ -44,14 +44,29 @@ class User(SQLAlchemyBaseUserTable[int], Base):
     ))
 
     consultant: Mapped[Optional['Consultants']] = relationship(
-        back_populates='user'
+        back_populates='user',
+        lazy='joined'
     )
     patient: Mapped[Optional['Patients']] = relationship(
-        back_populates='user'
+        back_populates='user',
+        lazy='joined'
     )
     messages: Mapped[Optional['Messages']] = relationship(
         back_populates='sender'
     )
+    chats: Mapped[List["Chats"]] = relationship(
+        secondary='chatparticipant',
+        back_populates="users"
+        )
+    read_statuses: Mapped[Optional[List["ReadStatus"]]] = relationship(
+        back_populates="user"
+        )
+    questionnaire: Mapped[Optional['Questionnaire']] = relationship(
+        back_populates='user'
+    )
+
+    def __repr__(self) -> str:
+        return f"{self.surname} {self.name} {self.patronymic}"
 
 
 class Patients(Base):
@@ -62,13 +77,13 @@ class Patients(Base):
     user_id: Mapped[int] = mapped_column(
         Integer,
         ForeignKey('user.id'),
-        # unique=True
+        unique=True
     )
     address: Mapped[str] = mapped_column(Text)
     education: Mapped[str] = mapped_column(Text)
     working: Mapped[bool] = mapped_column(Boolean)
     position: Mapped[str] = mapped_column(Text)
-    # image: Mapped[] = mapped_column()  Need to check how to save static
+    image: Mapped[str] = mapped_column(Text, default=None, nullable=True)
 
     user: Mapped[User] = relationship(back_populates='patient',
                                       lazy='joined'
@@ -79,6 +94,10 @@ class Patients(Base):
     records: Mapped[Optional['Records']] = relationship(
         back_populates='patient'
     )
+
+    def __repr__(self) -> str:
+        return f"{self.user}"
+
     __table_args__ = (UniqueConstraint("user_id"),)
 
 
@@ -89,14 +108,21 @@ class Consultants(Base):
     user_id: Mapped[int] = mapped_column(
         Integer,
         ForeignKey('user.id'),
-        # unique=True
+        unique=True
     )
     speciality: Mapped[str] = mapped_column(Text)
-    experience: Mapped[int] = mapped_column(Text)
-    grade: Mapped[str] = mapped_column(Integer)
+    experience: Mapped[int] = mapped_column(Integer)
+    grade: Mapped[str] = mapped_column(Text)
     institution: Mapped[str] = mapped_column(Text)
     current_work: Mapped[str] = mapped_column(Text)
-
+    video_presentation: Mapped[str] = mapped_column(
+        Text,
+        default=None,
+        nullable=True
+    )
+    is_accepted: Mapped[bool] = mapped_column(Boolean, default=False)
+    is_send_resume: Mapped[bool] = mapped_column(Boolean, default=False)
+    
     user: Mapped[User] = relationship(back_populates='consultant',
                                       lazy='joined'
                                       )
@@ -109,4 +135,8 @@ class Consultants(Base):
     records: Mapped[Optional['Records']] = relationship(
         back_populates='consultants'
     )
+
+    def __repr__(self) -> str:
+        return f"{self.user}"
+
     __table_args__ = (UniqueConstraint("user_id"),)

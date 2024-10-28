@@ -1,9 +1,15 @@
 import contextlib
+from typing import Any
+from pathlib import Path
 
+from wtforms.validators import DataRequired
 from starlette.requests import Request
 from fastapi.security import OAuth2PasswordRequestForm
 from sqladmin import ModelView, Admin
 from sqladmin.authentication import AuthenticationBackend
+from sqlalchemy.sql.expression import Select, select, and_
+
+
 
 from app.core.db import engine
 from app.models.user import User, Patients, Consultants
@@ -37,9 +43,11 @@ get_user_manager_context = contextlib.asynccontextmanager(get_user_manager)
 class UserAdmin(ModelView, model=User):
     can_create = False
     can_edit = False
+    can_delete = False
     column_list = [User.id,
                    User.name,
                    User.surname,
+                   User.patronymic,
                    User.phone,
                    User.role,
                    User.is_active,
@@ -56,8 +64,18 @@ class UserAdmin(ModelView, model=User):
                             ]
     form_excluded_columns = [User.consultant,
                              User.patient,
-                             User.hashed_password
+                             User.hashed_password,
+                             User.messages
                              ]
+    column_details_exclude_list = [
+        User.consultant,
+        User.messages,
+        User.patient,
+        User.chats,
+        User.hashed_password,
+        User.questionnaire,
+        User.read_statuses
+        ]
 
     form_ajax_refs = {
         'patient': {
@@ -75,11 +93,18 @@ class UserAdmin(ModelView, model=User):
         }
     }
 
+    async def on_model_change(self, data: dict, model: Any,
+                              is_created: bool, request: Request):
+        ...
+        return await super().on_model_change(data, model, is_created, request)
+
 
 class PatientAdmin(ModelView, model=Patients):
     name_plural = Patients.__tablename__.title()
-
+    can_create = False
+    can_delete = False
     column_list = [Patients.id,
+                   Patients.user_id,
                    Patients.address,
                    Patients.education,
                    Patients.working,
@@ -94,11 +119,21 @@ class PatientAdmin(ModelView, model=Patients):
                             ]
     form_excluded_columns = [Patients.patientresponses,
                              Patients.records,
-                            ]
+                             ]
+    # column_formatters_detail = {Patients.user: lambda m, a: User.name}
+    column_details_exclude_list = [
+        Patients.patientresponses,
+        Patients.records
+        ]
 
 
 class ConsultantAdmin(ModelView, model=Consultants):
-    name_plural = Consultants.__tablename__.title()
+    name = 'ConsultantAccept'
+    identity = 'consultants-for-accept'
+    can_create = False
+    can_delete = False
+    form_columns = [Consultants.is_accepted, Consultants.is_send_resume]
+    # name_plural = Consultants.__tablename__.title()
     column_list = [Consultants.id,
                    Consultants.speciality,
                    Consultants.grade,
@@ -109,11 +144,25 @@ class ConsultantAdmin(ModelView, model=Consultants):
                               Consultants.grade,
                               Consultants.user
                               ]
-    form_excluded_columns = [Consultants.reviews,
-                             Consultants.records,
-                             Consultants.services,
-                             ]
+    # form_excluded_columns = [Consultants.reviews,
+    #                          Consultants.records,
+    #                          Consultants.services,
+    #                          ]
+    column_details_exclude_list = [
+        Consultants.reviews,
+        Consultants.records,
+        Consultants.services,
+        ]
 
+    def list_query(self, request: Request) -> Select:
+        querry = select(self.model).where(
+            and_(
+                self.model.is_send_resume == True, # noqa
+                self.model.is_accepted == False # noqa
+            )
+        )
+        return querry
+    
 
 class AdminAuth(AuthenticationBackend):
     async def login(self, request: Request) -> bool:
@@ -150,6 +199,7 @@ def create_admin_core(app):
     admin = Admin(
         app=app,
         engine=engine,
+        templates_dir=Path(__file__).parent.parent / 'templates' / 'admin',
         # authentication_backend=authentication_backend
     )
 

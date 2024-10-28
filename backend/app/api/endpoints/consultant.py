@@ -1,4 +1,5 @@
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter, Depends, BackgroundTasks
+from fastapi.responses import StreamingResponse, Response
 from sqlalchemy.ext.asyncio import AsyncSession
 from fastapi_users import BaseUserManager
 
@@ -18,6 +19,11 @@ from app.api.validators import (
     check_consultant_duplicate,
     current_user_consultant,
 )
+from app.services.fastMail import (
+    EmailSchema,
+    send_email_to_notify_consultant_accept
+)
+from app.core.constants import EMAIL_TO_NOTIFY_CONSULTANT_ACCEPT
 
 
 router = APIRouter()
@@ -46,10 +52,26 @@ async def get_all_consultants(
 )
 async def post_new_consultant(
     consultant: ConsultantCreate,
+    background_tasks: BackgroundTasks,
     user: User = Depends(current_user),
     session: AsyncSession = Depends(get_async_session),
 ):
     await check_consultant_duplicate(user)
+    await check_consultant_duplicate(user.id, session)
+    background_tasks.add_task(
+        send_email_to_notify_consultant_accept,
+        EmailSchema(
+            email=EMAIL_TO_NOTIFY_CONSULTANT_ACCEPT,
+            subject='От Глютен.ИНФО',
+            body={
+                'name': user.name,
+                'surname': user.surname,
+                'patronymic': user.patronymic,
+                'born_date': user.born_date.strftime("%d/%m/%Y"),
+                'email': user.email,
+            }
+        )
+    )
     consultant = await consultant_crud.create(consultant, session, user)
     return consultant
 
@@ -80,3 +102,24 @@ async def update_consultant(
         session=session
     )
     return updated_consultant
+
+
+@router.get(
+    '/{id}/video-presentation',
+)
+async def get_video_presentation(
+    id: int,
+    session: AsyncSession = Depends(get_async_session),
+):
+    current_consultant = await consultant_crud.get_consultant_by_userid(
+        id,
+        session
+    )
+    file_bytes = await consultant_crud.get_video_presentation_bytes(
+        current_consultant
+    )
+    return Response(file_bytes, media_type='application/octet-stream')
+    # def iterfile():
+    #     with open('/Users/user/Work/GlutInfo/backend/app/api/endpoints/video.mp4', mode="rb") as file_like:
+    #         yield from file_like
+    # return StreamingResponse(iterfile(), media_type="video/mp4")

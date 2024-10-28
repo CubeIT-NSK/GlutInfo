@@ -14,15 +14,13 @@ class OrganizatorsAdmin(ModelView, model=Organizators):
                    Organizators.fio,
                    Organizators.role,
                    Organizators.description,
-                   Organizators.event_id
                    ]
     column_searchable_list = [Organizators.fio,
                               Organizators.role,
-                              Organizators.event_id
                               ]
-    form_excluded_columns = [Organizators.event_organizators,
-                             Organizators.project_organizator
-                             ]
+    # form_excluded_columns = [Organizators.event_organizators,
+    #                          Organizators.project_organizator
+    #                          ]
 
 
 class EventsAdmin(ModelView, model=Events):
@@ -32,21 +30,21 @@ class EventsAdmin(ModelView, model=Events):
                    Events.title,
                    Events.date_event,
                    Events.finished,
-                   # Events.main_image,
+                   Events.main_image,
                    Events.link,
                    Events.event_format,
                    Events.place,
-                   Events.event_organizator
+                #    Events.event_organizator
                    ]
     column_searchable_list = [Events.place,
                               Events.date_event,
                               Events.event_format,
-                              Events.event_organizator
+                            #   Events.event_organizator
                               ]
     column_sortable_list = [Events.finished,
                             ]
-    form_excluded_columns = [Events.event_organizator
-                             ]
+    # form_excluded_columns = [Events.event_organizator
+    #                          ]
 
 
 class EventOrganizatorsAdmin(ModelView, model=EventOrganizators,):
@@ -55,11 +53,13 @@ class EventOrganizatorsAdmin(ModelView, model=EventOrganizators,):
     column_list = [EventOrganizators.id,
                    EventOrganizators.event_id,
                    EventOrganizators.organizator_id,
-                   EventOrganizators.event,
-                   EventOrganizators.organizator,
+                #    EventOrganizators.event,
+                #    EventOrganizators.organizator,
                    ]
-    column_searchable_list = [EventOrganizators.event_id,
-                              EventOrganizators.organizator_id,
-                              EventOrganizators.event,
-                              EventOrganizators.organizator,
-                              ]
+    form_columns = [EventOrganizators.event_id,
+                   EventOrganizators.organizator_id,]
+    # column_searchable_list = [EventOrganizators.event_id,
+    #                           EventOrganizators.organizator_id,
+                            #   EventOrganizators.event,
+                            #   EventOrganizators.organizator,
+                              # ]
