@@ -21,12 +21,6 @@ class ProjectsOrganizators(Base):
                                                 Integer,
                                                 ForeignKey('organizators.id')
                                                     )
-    # project: Mapped['Projects'] = relationship(
-    #                                     back_populates='project_organizator'
-    #                                     )
-    # organizator: Mapped['Organizators'] = relationship(
-    #                                     back_populates='project_organizator',
-    #                                   )
 
 
 class Projects(Base):
@@ -44,6 +38,3 @@ class Projects(Base):
 
     def __repr__(self) -> str:
         return f"{self.title}"
-    # project_document: Mapped[Optional['ProjectsDocuments']] = relationship(
-    #     back_populates='project'
-    # )

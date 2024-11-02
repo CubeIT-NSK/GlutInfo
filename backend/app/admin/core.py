@@ -9,8 +9,6 @@ from sqladmin import ModelView, Admin
 from sqladmin.authentication import AuthenticationBackend
 from sqlalchemy.sql.expression import Select, select, and_
 
-
-
 from app.core.db import engine
 from app.models.user import User, Patients, Consultants
 from app.admin.views.events import (

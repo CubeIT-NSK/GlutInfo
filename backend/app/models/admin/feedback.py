@@ -1,5 +1,3 @@
-import os
-
 from typing import Optional, Literal, get_args
 from datetime import date
 
@@ -13,9 +11,7 @@ from sqlalchemy import (
     )
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
-from fastapi_storages import FileSystemStorage
-from fastapi_storages.integrations.sqlalchemy import ImageType
-
+from app.services.custom_types import ImageType
 from app.core.db import Base
 from app.core.constants import (
     MAX_NAME_CHAR,
@@ -59,12 +55,7 @@ class PhotoGallery(Base):
     '''
     Model for PhotoGallery
     '''
-    image: Mapped[ImageType] = mapped_column(
-        ImageType(storage=FileSystemStorage(
-            path=(os.path.dirname(os.path.realpath(__file__)) + r"\image")
-            )
-        )
-    )
+    image: Mapped[ImageType] = mapped_column(ImageType)
 
 
 class Cooperations(Base):
@@ -76,6 +67,7 @@ class Cooperations(Base):
     phone: Mapped[str] = mapped_column(String)
     email: Mapped[str] = mapped_column(String)
     offer: Mapped[str] = mapped_column(Text)
+
 
 class Newsletters(Base):
     '''
@@ -122,7 +114,7 @@ class Places(Base):
     name: Mapped[Optional[str]] = mapped_column(String)
     description: Mapped[Optional[str]] = mapped_column(Text)
     rating: Mapped[Optional['Rating_place']] = mapped_column(Enum(
-        *get_args(Rating),
+        *get_args(Rating_place),
         name="placeratingstatus",
         create_constraint=True,
         validate_strings=True,
@@ -130,12 +122,7 @@ class Places(Base):
     address: Mapped[Optional[str]] = mapped_column(String)
     phone: Mapped[Optional[str]] = mapped_column(String)
     website: Mapped[Optional[str]] = mapped_column(String)
-    image: Mapped[ImageType] = mapped_column(
-        ImageType(storage=FileSystemStorage(
-            path=(os.path.dirname(os.path.realpath(__file__)) + r"\image")
-            )
-        )
-    )
+    image: Mapped[ImageType] = mapped_column(ImageType)
 
 
 class Questionnaire(Base):

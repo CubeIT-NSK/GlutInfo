@@ -5,8 +5,6 @@ from sqlalchemy.orm import selectinload
 from app.crud.base import CRUDBase
 from app.models.admin.events import (
     Events,
-    EventOrganizators,
-    Organizators
     )
 
 

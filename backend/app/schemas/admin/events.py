@@ -40,7 +40,7 @@ class EventRead(BaseModel):
     text: Optional[str] = Field(
         min_length=DEFAULT_MIN_CHAR
     )
-    event_organizator: Optional[list['OrganizatorsRead']]
+    organizator: Optional[list['OrganizatorsRead']]
 
     model_config = ConfigDict(
         extra='forbid',

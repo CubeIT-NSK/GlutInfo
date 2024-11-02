@@ -1,3 +1,4 @@
+from fastapi.responses import JSONResponse
 from sqlalchemy import select, update, and_
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.orm import selectinload  # joinedload,
@@ -104,28 +105,25 @@ class CRUDChats(CRUDBase):
                 )
         )
         chats: list[Chats] = db_objs.scalars().all()
-
+        print(chats)
         return chats
 
     async def get_chat_messages(
         self,
         session: AsyncSession,
-        user_id: int,
         chat: Chats,
-    ) -> tuple[list[Chats], bool, Messages | None]:
-        query = (
+    ):
+        db_objs = await session.execute(
             select(Messages)
             .where(Messages.chat_id == chat.id)
             .order_by(Messages.message_date.desc())
-            .options(
-                selectinload(Messages.sender),
-                selectinload(Messages.chat)
-            )
+            # .options(
+            #     selectinload(Messages.sender),
+            #     selectinload(Messages.chat)
+            # )
         )
-        result = await session.execute(query)
-        messages = result.scalars().all()
-        print(messages[0].text)
-        session.commit()
+        messages = db_objs.scalars().all()
+
         return messages
 
     async def update_messages(
@@ -138,7 +136,11 @@ class CRUDChats(CRUDBase):
             where(Messages.sender_id != user_id).
             values(read_status=True)
         )
-        # await session.commit()
+        await session.commit()
+        return JSONResponse(
+            status_code=200,
+            content={'answer': 'Messages is updated'}
+        )
 
     async def send_message(
         self,
@@ -149,9 +151,9 @@ class CRUDChats(CRUDBase):
     ):
         for r in chat.read_statuses:
             if r.user_id == current_user.id:
-                r.last_read_message_id = True
+                r.read_status = True
             else:
-                r.last_read_message_id = False
+                r.read_status = False
 
         message = Messages(
             chat_id=new_message.chat_id,
@@ -161,16 +163,11 @@ class CRUDChats(CRUDBase):
             read_status=False
         )
         session.add(message)
-        # await session.flush()
-        # db_objs = await session.execute(
-        #     select(Chats.read_statuses).where(
-        #         Chats.id == chat.id
-        #     )
-        # )
-        # result: List[ReadStatus] = db_objs.fetchall()
-
         await session.commit()
-        return message
+        return JSONResponse(
+            status_code=200,
+            content={"message": "You send message!"}
+        )
 
 
 class CRUDMessages(CRUDBase):

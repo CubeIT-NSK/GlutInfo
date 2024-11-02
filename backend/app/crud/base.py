@@ -82,6 +82,7 @@ class CRUDBase:
     ):
         await s3_client.upload_file(file_bytes, filepath)
         print('file uploaded to s3')
+
     async def get_imagebase64_from_image_path(
         self,
         db_obj,
@@ -91,6 +92,7 @@ class CRUDBase:
             file_base64 = await file_encodebase64(file_bytes)
             return file_base64
         return None
+
     def create_filepath(
         self,
         user,

@@ -34,32 +34,24 @@ class EventsAdmin(ModelView, model=Events):
                    Events.link,
                    Events.event_format,
                    Events.place,
-                #    Events.event_organizator
                    ]
     column_searchable_list = [Events.place,
                               Events.date_event,
                               Events.event_format,
-                            #   Events.event_organizator
                               ]
     column_sortable_list = [Events.finished,
                             ]
-    # form_excluded_columns = [Events.event_organizator
-    #                          ]
 
 
 class EventOrganizatorsAdmin(ModelView, model=EventOrganizators,):
     name_plural = "Event Organizators"
     category = "Events"
-    column_list = [EventOrganizators.id,
-                   EventOrganizators.event_id,
-                   EventOrganizators.organizator_id,
-                #    EventOrganizators.event,
-                #    EventOrganizators.organizator,
+    column_list = [
+        EventOrganizators.id,
+        EventOrganizators.event_id,
+        EventOrganizators.organizator_id,
                    ]
-    form_columns = [EventOrganizators.event_id,
-                   EventOrganizators.organizator_id,]
-    # column_searchable_list = [EventOrganizators.event_id,
-    #                           EventOrganizators.organizator_id,
-                            #   EventOrganizators.event,
-                            #   EventOrganizators.organizator,
-                              # ]
+    form_columns = [
+        EventOrganizators.event_id,
+        EventOrganizators.organizator_id,
+    ]

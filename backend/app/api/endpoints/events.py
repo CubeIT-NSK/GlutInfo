@@ -13,11 +13,11 @@ router = APIRouter()
 
 @router.get(
     '/',
-    # response_model=EventRead,
+    response_model=list[EventRead],
     summary="Получение всех событий",
     description='Выводит всю информацию о событиях'
 )
 async def get_all_events(
     session: AsyncSession = Depends(get_async_session)
 ):
-    return await events_crud.get_test(session)
+    return await events_crud.get_all_events(session)

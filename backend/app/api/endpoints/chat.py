@@ -4,7 +4,6 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from app.core.db import get_async_session
 from app.schemas.chat import (
     MessageCreate,
-    MessageDB,
 )
 from app.crud.chat import chats_crud
 from app.models.user import User
@@ -41,7 +40,7 @@ async def create_chat_view(
     if recipient_user is None:
         raise HTTPException(
             status_code=status.HTTP_409_CONFLICT,
-            detail=f"User doesn't exist"
+            detail="User doesn't exist"
         )
     if await chats_crud.chat_exists(session, user, recipient_user):
         raise HTTPException(
@@ -59,7 +58,6 @@ async def create_chat_view(
 
 @router.get(
         "/{chat_id}/messages/",
-        response_model=list[MessageDB],
         summary="Get user's chat messages"
 )
 async def get_user_messages_in_chat(
@@ -78,13 +76,34 @@ async def get_user_messages_in_chat(
             detail="Chat with provided guid does not exist"
         )
 
-    # determine the number of unread messages
-    # unread_messages_count: int = await chats_crud.get_unread_messages_count(
-    #     session,
-    #     current_user.id,
-    #     chat
-    # )
-    # size: int = max(size, unread_messages_count)
+    if current_user not in chat.users:
+        raise HTTPException(
+            status_code=status.HTTP_409_CONFLICT,
+            detail="You don't have access to this chat"
+        )
+    for r in chat.read_statuses:
+        if r.user_id == current_user.id:
+            r.read_status = True
+
+    return await chats_crud.get_chat_messages(session, chat)
+
+
+@router.patch(
+        "/{chat_id}/messages/",
+        summary="Update read_status"
+)
+async def update_read_status(
+    chat_id: int,
+    session: AsyncSession = Depends(get_async_session),
+    current_user: User = Depends(current_user),
+):
+    chat = await chats_crud.get_chat_by_id(session, chat_id)
+
+    if not chat:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="Chat with provided guid does not exist"
+        )
 
     if current_user not in chat.users:
         raise HTTPException(
@@ -93,13 +112,9 @@ async def get_user_messages_in_chat(
         )
     for r in chat.read_statuses:
         if r.user_id == current_user.id:
-            r.last_read_message_id = True
+            r.read_status = True
 
-    await chats_crud.update_messages(session, current_user.id)
-    messages = await chats_crud.get_chat_messages(
-        session, current_user.id, chat
-    )
-    return messages
+    return await chats_crud.update_messages(session, current_user.id)
 
 
 @router.get(
@@ -122,7 +137,6 @@ async def get_user_chats_view(
     summary='Send message to chat',
 )
 async def send_message(
-    # chat_id: int,
     message: MessageCreate,
     session: AsyncSession = Depends(get_async_session),
     current_user: User = Depends(current_user),
