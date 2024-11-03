@@ -13,11 +13,20 @@ from app.schemas.patient import (
     PatientUpdate,
     PatientDB,
 )
+from app.schemas.record import (
+    RecordCreate,
+    RecordDB,
+)
 from app.models.user import User
 from app.crud.patient import patient_crud
+from app.crud.records import records_crud
 from app.api.validators import (
     check_patient_duplicate,
-    current_user_patient
+    current_user_patient,
+    check_consultant_exists,
+    check_service_exists,
+    check_record_date,
+    check_record_time,
 )
 
 
@@ -89,9 +98,66 @@ async def get_current_patient(
         session
     )
     image = await patient_crud.get_imagebase64_from_image_path(current_patient)
-    print(image)
     current_patient.image = image
     return current_patient
+
+
+@router.post(
+    '/record',
+    dependencies=[Depends(current_user_patient)],
+    response_model=RecordDB,
+    summary='Создание записи.',
+    description='Запись к консультанту по роли `patient`.'
+)
+async def post_new_record(
+    record: RecordCreate,
+    user: User = Depends(current_user),
+    session: AsyncSession = Depends(get_async_session),
+):
+    consultant = await check_consultant_exists(
+        consultant_id=record.consultant_id,
+        session=session
+    )
+    service = await check_service_exists(
+        service_id=record.service_id,
+        session=session
+    )
+    await check_record_date(
+        consultant_id=consultant.id,
+        date_to_record=record.rec_date,
+        session=session
+    )
+    await check_record_time(
+        date_to_record=record.rec_date,
+        consultant_id=consultant.id,
+        service=service,
+        time_to_record=record.rec_time,
+        session=session
+    )
+    record = await records_crud.create(
+        obj_in=record,
+        session=session,
+        user=user
+    )
+    return record
+
+
+@router.get(
+    '/me/records',
+    dependencies=[Depends(current_user_patient)],
+    response_model=list[RecordDB],
+    summary='Все записи текущего пациента.',
+    description='Получить абсолютно все записи пациента.'
+)
+async def get_all_patient_records(
+    user: User = Depends(current_user),
+    session: AsyncSession = Depends(get_async_session)
+):
+    records = await patient_crud.get_all_records(
+        patient_id=user.patient.id,
+        session=session
+    )
+    return records
 
 
 # test_video

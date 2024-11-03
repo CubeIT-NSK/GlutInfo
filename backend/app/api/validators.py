@@ -1,10 +1,59 @@
+from datetime import datetime, timedelta, date, time
+
 from fastapi import HTTPException, status, Depends
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.crud.consultant import consultant_crud
 from app.crud.patient import patient_crud
+from app.crud.schedule import schedule_crud
+from app.crud.service import services_crud
+from app.crud.records import records_crud
 from app.core.user import current_user
-from app.models.user import User
+from app.models.user import User, Consultants
+from app.models.record import Services
+
+
+async def check_consultant_exists(
+    consultant_id,
+    session: AsyncSession
+) -> Consultants:
+    consultant = await consultant_crud.get(
+        obj_id=consultant_id,
+        session=session,
+    )
+    if consultant is None:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail='Consultant dosen`t exist!'
+        )
+    return consultant
+
+
+async def check_service_exists(
+    service_id,
+    session: AsyncSession
+) -> Services:
+    service = await services_crud.get(
+        obj_id=service_id,
+        session=session
+    )
+    if service is None:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail='Service dosen`t exist!'
+        )
+    return service
+
+
+async def check_consultant_own_service(
+    consultant_id: int,
+    service: Services,
+) -> None:
+    if service.consultant_id != consultant_id:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail='Consultant dosen`t own this service!'
+        )
 
 
 async def check_consultant_duplicate(
@@ -38,7 +87,7 @@ async def check_patient_duplicate(
 
 
 async def current_user_consultant(
-        current_user: User = Depends(current_user)
+    current_user: User = Depends(current_user)
 ):
     if current_user.role == 'consultant':
         return current_user
@@ -49,7 +98,7 @@ async def current_user_consultant(
 
 
 async def current_user_patient(
-        current_user: User = Depends(current_user)
+    current_user: User = Depends(current_user)
 ):
     if current_user.role == 'patient':
         return current_user
@@ -57,3 +106,76 @@ async def current_user_patient(
         status_code=status.HTTP_403_FORBIDDEN,
         detail='You haven`t patient role'
     )
+
+
+async def dayweek_consultant_unique_check(
+    user: User,
+    list_schedule,
+    session: AsyncSession,
+):
+    schedule = user.consultant.schedule
+    schedulled_days = [sch.day_week for sch in schedule]
+
+    for day_schedule in list_schedule:
+        day = day_schedule.day_week
+        if day in schedulled_days:
+            raise HTTPException(
+                status_code=status.HTTP_400_BAD_REQUEST,
+                detail=f'You already have schedule on {day} day!'
+            )
+
+
+# old method
+async def check_time_booked(
+    timeranges: list[tuple],
+    time_to_record: datetime,
+    service_duration: timedelta
+) -> None:
+    for starttime, endtime in timeranges:
+        starttime = datetime.strptime(starttime, '%H:%M')
+        endtime = datetime.strptime(endtime, '%H:%M')
+
+        time_to_record_end = time_to_record + service_duration
+
+        if ((starttime <= time_to_record <= endtime)
+           or (starttime <= time_to_record_end <= endtime)):
+            raise HTTPException(
+                status_code=status.HTTP_400_BAD_REQUEST,
+                detail='Consultant have record on this time.'
+            )
+
+
+async def check_record_date(
+    consultant_id: int,
+    date_to_record: date,
+    session: AsyncSession
+) -> None:
+    availabale_days = await schedule_crud.get_working_days_for_consultant(
+        consultant_id=consultant_id,
+        session=session
+    )
+    if date_to_record not in availabale_days:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail='Date is not available for this consultant'
+        )
+
+
+async def check_record_time(
+    date_to_record: date,
+    consultant_id: int,
+    service: Services,
+    time_to_record: time,
+    session: AsyncSession
+) -> None:
+    available_time_slots = await records_crud.get_free_slots_on_date(
+        date_to_record=date_to_record,
+        consultant_id=consultant_id,
+        service_duration=service.duration,
+        session=session
+    )
+    if time_to_record not in available_time_slots:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail='Time slot is not available for this consultant'
+        )

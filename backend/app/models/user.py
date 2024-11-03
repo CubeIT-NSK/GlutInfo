@@ -70,6 +70,10 @@ class Patients(Base):
 
     user: Mapped[User] = relationship(back_populates='patient',
                                       lazy='joined')
+    records: Mapped[list['Records']] = relationship(
+        back_populates='patient',
+        lazy='joined'
+    )
 
 
 class Consultants(Base):
@@ -97,3 +101,15 @@ class Consultants(Base):
 
     user: Mapped[User] = relationship(back_populates='consultant',
                                       lazy='joined')
+    services: Mapped[list['Services']] = relationship(
+        back_populates='consultant',
+        lazy='joined'
+    )
+    schedule: Mapped[list['Schedule']] = relationship(
+        back_populates='consultant',
+        lazy='joined'
+    )
+    records: Mapped[list['Records']] = relationship(
+        back_populates='consultant',
+        lazy='joined'
+    )

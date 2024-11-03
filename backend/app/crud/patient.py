@@ -12,8 +12,10 @@ from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.crud.base import CRUDBase
 from app.models.user import Patients, User
+from app.models.record import Records
 from app.schemas.patient import PatientDB
 from app.schemas.user import UserRead, UserUpdate
+from app.schemas.record import RecordDB
 from app.services.base64 import filebase64_decode
 
 
@@ -30,6 +32,19 @@ class CRUDPatient(CRUDBase):
         )
         patient = patient.scalars().first()
         return patient
+
+    async def get_all_records(
+        self,
+        patient_id,
+        session: AsyncSession,
+    ) -> list[RecordDB]:
+        records = await session.execute(
+            select(Records).where(
+                Records.patient_id == patient_id
+            )
+        )
+        records = records.scalars().unique().all()
+        return records
 
     async def create(
         self,
