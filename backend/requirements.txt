@@ -14,8 +14,8 @@ async-timeout==4.0.3
 attrs==24.2.0
 bcrypt==4.1.2
 blinker==1.8.2
-boto3==1.35.28
-botocore==1.35.28
+# boto3==1.35.28
+botocore==1.35.23
 certifi==2024.8.30
 cffi==1.17.1
 click==8.1.7
@@ -69,7 +69,7 @@ SQLAlchemy==2.0.35
 starlette==0.38.6
 typer==0.12.5
 typing_extensions==4.12.2
-urllib3==2.2.3
+urllib3==1.26.20
 uvicorn==0.30.6
 uvloop==0.20.0
 watchfiles==0.24.0

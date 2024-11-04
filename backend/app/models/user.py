@@ -100,7 +100,6 @@ class Patients(Base):
         return f"{self.user}"
 
     __table_args__ = (UniqueConstraint("user_id"),)
-    
 
 
 class Consultants(Base):

@@ -103,43 +103,43 @@ class Responses(Base):
     )
 
 
-class Services(Base):
-    '''
-    Model for Service.
-    '''
+# class Services(Base):
+#     '''
+#     Model for Service.
+#     '''
 
-    name: Mapped[str] = mapped_column(Text)
-    price: Mapped[int] = mapped_column(Integer)
-    description: Mapped[Optional[str]] = mapped_column(Text)
-    consultant_id: Mapped[int] = mapped_column(
-        Integer,
-        ForeignKey('consultants.id')
-        )
-    consultants: Mapped[Consultants] = relationship(
-        back_populates='services'
-    )
-    records: Mapped[Optional['Records']] = relationship(
-        back_populates='services'
-    )
+#     name: Mapped[str] = mapped_column(Text)
+#     price: Mapped[int] = mapped_column(Integer)
+#     description: Mapped[Optional[str]] = mapped_column(Text)
+#     consultant_id: Mapped[int] = mapped_column(
+#         Integer,
+#         ForeignKey('consultants.id')
+#         )
+#     consultants: Mapped[Consultants] = relationship(
+#         back_populates='services'
+#     )
+#     records: Mapped[Optional['Records']] = relationship(
+#         back_populates='services'
+#     )
 
 
-class Records(Base):
-    '''
-    Model for Record.
-    '''
+# class Records(Base):
+#     '''
+#     Model for Record.
+#     '''
 
-    pub_date: Mapped[date] = mapped_column(Date)
-    consultants_id: Mapped[int] = mapped_column(Integer,
-                                                ForeignKey('consultants.id'))
-    patient_id: Mapped[int] = mapped_column(Integer, ForeignKey('patients.id') )
-    service_id: Mapped[int] = mapped_column(Integer, ForeignKey('services.id'))
+#     pub_date: Mapped[date] = mapped_column(Date)
+#     consultants_id: Mapped[int] = mapped_column(Integer,
+#                                                 ForeignKey('consultants.id'))
+#     patient_id: Mapped[int] = mapped_column(Integer, ForeignKey('patients.id') )
+#     service_id: Mapped[int] = mapped_column(Integer, ForeignKey('services.id'))
 
-    consultants: Mapped[Consultants] = relationship(
-        back_populates='records'
-    )
-    patient: Mapped[Patients] = relationship(
-        back_populates='records'
-    )
-    services: Mapped[Services] = relationship(
-        back_populates='records'
-    )
+#     consultants: Mapped[Consultants] = relationship(
+#         back_populates='records'
+#     )
+#     patient: Mapped[Patients] = relationship(
+#         back_populates='records'
+#     )
+#     services: Mapped[Services] = relationship(
+#         back_populates='records'
+#     )

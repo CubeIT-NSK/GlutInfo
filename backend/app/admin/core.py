@@ -160,7 +160,7 @@ class ConsultantAdmin(ModelView, model=Consultants):
             )
         )
         return querry
-    
+
 
 class AdminAuth(AuthenticationBackend):
     async def login(self, request: Request) -> bool:

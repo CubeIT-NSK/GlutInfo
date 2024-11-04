@@ -1,19 +1,19 @@
-"""Chats
+"""init
 
-Revision ID: a9f6d0b1a3dd
+Revision ID: 144a11c0a11e
 Revises: 
-Create Date: 2024-10-21 03:22:30.566406
+Create Date: 2024-11-05 04:38:40.642070
 
 """
 from typing import Sequence, Union
 
 from alembic import op
-import fastapi_storages
 import sqlalchemy as sa
+import app.services.custom_types
 
 
 # revision identifiers, used by Alembic.
-revision: str = 'a9f6d0b1a3dd'
+revision: str = '144a11c0a11e'
 down_revision: Union[str, None] = None
 branch_labels: Union[str, Sequence[str], None] = None
 depends_on: Union[str, Sequence[str], None] = None
@@ -28,6 +28,8 @@ def upgrade() -> None:
     op.create_table('cooperations',
     sa.Column('name', sa.String(), nullable=False),
     sa.Column('phone', sa.String(), nullable=False),
+    sa.Column('email', sa.String(), nullable=False),
+    sa.Column('offer', sa.Text(), nullable=False),
     sa.Column('id', sa.Integer(), nullable=False),
     sa.PrimaryKeyConstraint('id')
     )
@@ -39,7 +41,7 @@ def upgrade() -> None:
     sa.Column('title', sa.Text(), nullable=True),
     sa.Column('date_event', sa.Date(), nullable=True),
     sa.Column('finished', sa.Boolean(), nullable=False),
-    sa.Column('main_image', fastapi_storages.integrations.sqlalchemy.ImageType(storage=fastapi_storages.FileSystemStorage(path='')), nullable=False),
+    sa.Column('main_image', app.services.custom_types.ImageType(), nullable=False),
     sa.Column('link', sa.String(), nullable=True),
     sa.Column('event_format', sa.String(), nullable=True),
     sa.Column('place', sa.String(), nullable=False),
@@ -69,7 +71,7 @@ def upgrade() -> None:
     sa.PrimaryKeyConstraint('id')
     )
     op.create_table('photogallery',
-    sa.Column('image', fastapi_storages.integrations.sqlalchemy.ImageType(storage=fastapi_storages.FileSystemStorage(path='')), nullable=False),
+    sa.Column('image', app.services.custom_types.ImageType(), nullable=False),
     sa.Column('id', sa.Integer(), nullable=False),
     sa.PrimaryKeyConstraint('id')
     )
@@ -77,11 +79,11 @@ def upgrade() -> None:
     sa.Column('place_type', sa.Enum('Ресторан/Кафе', 'Магазин где представлена Б.П.', 'Магазин с Б.П.', name='placetype', create_constraint=True), nullable=False),
     sa.Column('name', sa.String(), nullable=True),
     sa.Column('description', sa.Text(), nullable=True),
-    sa.Column('rating', sa.Enum('0', '1', '2', '3', '4', '5', name='placeratingstatus', create_constraint=True), nullable=True),
+    sa.Column('rating', sa.Enum('4.0', '4.1', '4.2', '4.3', '4.4', '4.5', '4.6', '4.7', '4.8', '4.9', '5.0', name='placeratingstatus', create_constraint=True), nullable=True),
     sa.Column('address', sa.String(), nullable=True),
     sa.Column('phone', sa.String(), nullable=True),
     sa.Column('website', sa.String(), nullable=True),
-    sa.Column('image', fastapi_storages.integrations.sqlalchemy.ImageType(storage=fastapi_storages.FileSystemStorage(path='')), nullable=False),
+    sa.Column('image', app.services.custom_types.ImageType(), nullable=False),
     sa.Column('id', sa.Integer(), nullable=False),
     sa.PrimaryKeyConstraint('id')
     )
@@ -119,18 +121,22 @@ def upgrade() -> None:
     sa.Column('id', sa.Integer(), nullable=False),
     sa.ForeignKeyConstraint(['chat_id'], ['chats.id'], ),
     sa.ForeignKeyConstraint(['user_id'], ['user.id'], ),
-    sa.PrimaryKeyConstraint('user_id', 'chat_id', 'id')
+    sa.PrimaryKeyConstraint('id')
     )
     op.create_table('consultants',
     sa.Column('user_id', sa.Integer(), nullable=False),
     sa.Column('speciality', sa.Text(), nullable=False),
-    sa.Column('experience', sa.Text(), nullable=False),
-    sa.Column('grade', sa.Integer(), nullable=False),
+    sa.Column('experience', sa.Integer(), nullable=False),
+    sa.Column('grade', sa.Text(), nullable=False),
     sa.Column('institution', sa.Text(), nullable=False),
     sa.Column('current_work', sa.Text(), nullable=False),
+    sa.Column('video_presentation', sa.Text(), nullable=True),
+    sa.Column('is_accepted', sa.Boolean(), nullable=False),
+    sa.Column('is_send_resume', sa.Boolean(), nullable=False),
     sa.Column('id', sa.Integer(), nullable=False),
     sa.ForeignKeyConstraint(['user_id'], ['user.id'], ),
     sa.PrimaryKeyConstraint('id'),
+    sa.UniqueConstraint('user_id'),
     sa.UniqueConstraint('user_id')
     )
     op.create_table('eventorganizators',
@@ -139,7 +145,7 @@ def upgrade() -> None:
     sa.Column('id', sa.Integer(), nullable=False),
     sa.ForeignKeyConstraint(['event_id'], ['events.id'], ),
     sa.ForeignKeyConstraint(['organizator_id'], ['organizators.id'], ),
-    sa.PrimaryKeyConstraint('event_id', 'organizator_id', 'id')
+    sa.PrimaryKeyConstraint('id')
     )
     op.create_table('messages',
     sa.Column('chat_id', sa.Integer(), nullable=False),
@@ -158,9 +164,11 @@ def upgrade() -> None:
     sa.Column('education', sa.Text(), nullable=False),
     sa.Column('working', sa.Boolean(), nullable=False),
     sa.Column('position', sa.Text(), nullable=False),
+    sa.Column('image', sa.Text(), nullable=True),
     sa.Column('id', sa.Integer(), nullable=False),
     sa.ForeignKeyConstraint(['user_id'], ['user.id'], ),
     sa.PrimaryKeyConstraint('id'),
+    sa.UniqueConstraint('user_id'),
     sa.UniqueConstraint('user_id')
     )
     op.create_table('projectsdocuments',
@@ -179,6 +187,22 @@ def upgrade() -> None:
     sa.ForeignKeyConstraint(['project_id'], ['projects.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
+    op.create_table('questionnaire',
+    sa.Column('user_id', sa.Integer(), nullable=False),
+    sa.Column('main_problem', sa.Text(), nullable=False),
+    sa.Column('bad_habits', sa.Text(), nullable=False),
+    sa.Column('allergy', sa.Text(), nullable=False),
+    sa.Column('relatives_illnesses', sa.Text(), nullable=False),
+    sa.Column('chronic_illnes', sa.Text(), nullable=False),
+    sa.Column('user_surgery', sa.Text(), nullable=False),
+    sa.Column('for_women', sa.Text(), nullable=True),
+    sa.Column('medicament', sa.Text(), nullable=False),
+    sa.Column('analysis', sa.Text(), nullable=False),
+    sa.Column('body_parameters', sa.Text(), nullable=False),
+    sa.Column('id', sa.Integer(), nullable=False),
+    sa.ForeignKeyConstraint(['user_id'], ['user.id'], ),
+    sa.PrimaryKeyConstraint('id')
+    )
     op.create_table('questions',
     sa.Column('survey_id', sa.Integer(), nullable=False),
     sa.Column('text', sa.Text(), nullable=False),
@@ -190,7 +214,7 @@ def upgrade() -> None:
     )
     op.create_table('readstatus',
     sa.Column('id', sa.Integer(), autoincrement=True, nullable=False),
-    sa.Column('last_read_message_id', sa.Integer(), nullable=True),
+    sa.Column('read_status', sa.Boolean(), nullable=False),
     sa.Column('user_id', sa.Integer(), nullable=False),
     sa.Column('chat_id', sa.Integer(), nullable=False),
     sa.ForeignKeyConstraint(['chat_id'], ['chats.id'], ),
@@ -224,22 +248,35 @@ def upgrade() -> None:
     sa.ForeignKeyConstraint(['consultant'], ['consultants.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
+    op.create_table('schedule',
+    sa.Column('day_week', sa.Enum('Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun', name='dayweekstatus', create_constraint=True), nullable=False),
+    sa.Column('start_hour', sa.Time(), nullable=True),
+    sa.Column('end_hour', sa.Time(), nullable=True),
+    sa.Column('working', sa.Boolean(), nullable=False),
+    sa.Column('consultant_id', sa.Integer(), nullable=False),
+    sa.Column('id', sa.Integer(), nullable=False),
+    sa.ForeignKeyConstraint(['consultant_id'], ['consultants.id'], ),
+    sa.PrimaryKeyConstraint('id'),
+    sa.UniqueConstraint('day_week', 'consultant_id', name='consultant_day_c')
+    )
     op.create_table('services',
-    sa.Column('name', sa.Text(), nullable=False),
+    sa.Column('name', sa.String(length=50), nullable=False),
+    sa.Column('description', sa.Text(), nullable=False),
     sa.Column('price', sa.Integer(), nullable=False),
-    sa.Column('description', sa.Text(), nullable=True),
+    sa.Column('duration', sa.Interval(), nullable=False),
     sa.Column('consultant_id', sa.Integer(), nullable=False),
     sa.Column('id', sa.Integer(), nullable=False),
     sa.ForeignKeyConstraint(['consultant_id'], ['consultants.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
     op.create_table('records',
-    sa.Column('pub_date', sa.Date(), nullable=False),
-    sa.Column('consultants_id', sa.Integer(), nullable=False),
+    sa.Column('rec_date', sa.Date(), nullable=False),
+    sa.Column('rec_time', sa.Time(), nullable=False),
+    sa.Column('consultant_id', sa.Integer(), nullable=False),
     sa.Column('patient_id', sa.Integer(), nullable=False),
     sa.Column('service_id', sa.Integer(), nullable=False),
     sa.Column('id', sa.Integer(), nullable=False),
-    sa.ForeignKeyConstraint(['consultants_id'], ['consultants.id'], ),
+    sa.ForeignKeyConstraint(['consultant_id'], ['consultants.id'], ),
     sa.ForeignKeyConstraint(['patient_id'], ['patients.id'], ),
     sa.ForeignKeyConstraint(['service_id'], ['services.id'], ),
     sa.PrimaryKeyConstraint('id')
@@ -260,11 +297,13 @@ def downgrade() -> None:
     op.drop_table('responses')
     op.drop_table('records')
     op.drop_table('services')
+    op.drop_table('schedule')
     op.drop_table('reviews')
     op.drop_table('patientsresponses')
     op.drop_table('answeroptions')
     op.drop_table('readstatus')
     op.drop_table('questions')
+    op.drop_table('questionnaire')
     op.drop_table('projectsorganizators')
     op.drop_table('projectsdocuments')
     op.drop_table('patients')
