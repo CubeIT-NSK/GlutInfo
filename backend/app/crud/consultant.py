@@ -47,6 +47,33 @@ class CRUDConsultant(CRUDBase):
         await session.refresh(db_obj)
         return db_obj
 
+    async def create(
+            self,
+            obj_in,
+            session: AsyncSession,
+            user: Optional[User] = None
+    ):
+        obj_in_data = obj_in.dict()
+        if user is not None:
+            obj_in_data['user_id'] = user.id
+        video_presentation = obj_in_data.get('video_presentation', None)
+        if video_presentation:
+            file_bytes = await filebase64_decode(video_presentation)
+            consultant_video_s3path = self.create_filepath(
+                user,
+                'consultant_video',
+                file_bytes=file_bytes,
+                file_extencion='mp4'
+            )
+            await self.save_to_s3(file_bytes, consultant_video_s3path)
+            obj_in_data['video_presentation'] = consultant_video_s3path
+        obj_in_data['is_send_resume'] = True
+        db_obj = self.model(**obj_in_data)
+        session.add(db_obj)
+        await session.commit()
+        await session.refresh(db_obj)
+        return db_obj
+
     async def update(
         self,
         db_obj,
@@ -96,6 +123,15 @@ class CRUDConsultant(CRUDBase):
         await session.commit()
         await session.refresh(db_obj)
         return db_obj
+    
+    async def get_video_presentation_bytes(
+        self,
+        db_obj
+    ):
+        if db_obj.video_presentation:
+            file_bytes = await s3_client.get_file(db_obj.video_presentation)
+            return file_bytes
+        return None
 
     async def get_consultant_by_userid(
         self,

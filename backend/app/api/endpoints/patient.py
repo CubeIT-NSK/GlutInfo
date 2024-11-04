@@ -48,7 +48,7 @@ async def post_new_patient(
     patient: PatientCreate,
     user: User = Depends(current_user),
     session: AsyncSession = Depends(get_async_session),
-):
+):  
     await check_patient_duplicate(user.id, session)
     patient = await patient_crud.create(patient, session, user)
     return patient

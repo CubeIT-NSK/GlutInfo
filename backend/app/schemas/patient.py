@@ -64,6 +64,7 @@ class PatientUpdate(BaseModel):
         ...,
         title='Работаю',
     )
+    image: Optional[str] = None
     user: Optional[UserUpdate] = None
     image: Optional[str] = None
 
