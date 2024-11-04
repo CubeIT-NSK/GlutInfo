@@ -1,4 +1,6 @@
-from fastapi import APIRouter, Depends, BackgroundTasks
+from datetime import date
+
+from fastapi import APIRouter, Depends, BackgroundTasks, status
 from fastapi.responses import StreamingResponse, Response
 from sqlalchemy.ext.asyncio import AsyncSession
 from fastapi_users import BaseUserManager
@@ -12,17 +14,35 @@ from app.schemas.consultant import (
     ConsultantCreate,
     ConsultantUpdate,
     ConsultantDB,
+    ConsultantAvailableDates,
+    ConsultantAvailableTimeSlots,
+)
+from app.schemas.schedule import (
+    ScheduleCreate,
+    ScheduleDB,
+)
+from app.schemas.service import (
+    ServiceCreate,
+    ServiceDB,
 )
 from app.models.user import User
 from app.crud.consultant import consultant_crud
+from app.crud.schedule import schedule_crud
+from app.crud.service import services_crud
+from app.crud.records import records_crud
 from app.api.validators import (
     check_consultant_duplicate,
+    check_consultant_exists,
+    check_service_exists,
+    check_consultant_own_service,
     current_user_consultant,
+    dayweek_consultant_unique_check,
 )
 from app.services.fastMail import (
     EmailSchema,
     send_email_to_notify_consultant_accept
 )
+from app.api.utils import append_unselected_days
 from app.core.constants import EMAIL_TO_NOTIFY_CONSULTANT_ACCEPT
 
 
@@ -32,14 +52,16 @@ router = APIRouter()
 @router.get(
     '/',
     response_model=list[ConsultantDB],
-    summary='Получение всех консультантов',
+    summary='Получение всех подтвержденных консультантов',
     description='Выводятся все консультанты вместе с информацией '
-                'по пользователю.'
+                'по пользователю.',
+    tags=['Make record', 'Consultants']
 )
-async def get_all_consultants(
+async def get_all_working_consultants(
     session: AsyncSession = Depends(get_async_session)
 ):
-    return await consultant_crud.get_multi(session)
+    consultants = await consultant_crud.get_all_confirmed_consultant(session)
+    return consultants
 
 
 @router.post(
@@ -101,6 +123,136 @@ async def update_consultant(
         session=session
     )
     return updated_consultant
+
+
+@router.post(
+    '/me/schedule',
+    dependencies=[Depends(current_user_consultant)],
+    response_model=list[ScheduleDB],
+    summary='Создание расписания консультантом.',
+    description='Расписание на каждый день недели.',
+    status_code=status.HTTP_201_CREATED,
+)
+async def post_schedule(
+    list_schedule: list[ScheduleCreate],
+    user: User = Depends(current_user),
+    session: AsyncSession = Depends(get_async_session),
+):
+    await dayweek_consultant_unique_check(
+        user=user,
+        list_schedule=list_schedule,
+        session=session,
+    )
+    append_unselected_days(list_schedule)
+    schedule = await schedule_crud.create_multi(
+        objs_in=list_schedule,
+        consultant_id=user.consultant.id,
+        session=session,
+    )
+    return schedule
+
+
+@router.get(
+    '/{id}/services',
+    response_model=list[ServiceDB],
+    summary='Получение всех услуг консультанта.',
+    description='Услуги',
+    tags=['Make record']
+)
+async def get_all_consultant_services(
+    id: int,
+    session: AsyncSession = Depends(get_async_session)
+):
+    consultant = await check_consultant_exists(
+        consultant_id=id,
+        session=session
+    )
+    services = consultant.services
+    return services
+
+
+@router.post(
+    '/me/services',
+    dependencies=[Depends(current_user_consultant)],
+    response_model=ServiceDB,
+    summary='Добавление услуги к консультанту.',
+    description='Услуги',
+    status_code=status.HTTP_201_CREATED,
+)
+async def post_service(
+    service: ServiceCreate,
+    user: User = Depends(current_user),
+    session: AsyncSession = Depends(get_async_session)
+):
+    service = await services_crud.create(
+        obj_in=service,
+        consultant_id=user.consultant.id,
+        session=session
+    )
+    return service
+
+
+@router.get(
+    '/{id}/available-dates',
+    response_model=ConsultantAvailableDates,
+    summary='Получение доступных дат, консультанта.',
+    description='Даты для записи',
+    tags=['Make record']
+)
+async def get_consultant_available_dates(
+    id: int,
+    session: AsyncSession = Depends(get_async_session),
+):
+    consultant = await check_consultant_exists(
+        consultant_id=id,
+        session=session
+    )
+    available_dates = await schedule_crud.get_working_days_for_consultant(
+        consultant_id=id,
+        session=session
+    )
+    return {
+        'consultant': consultant,
+        'dates': available_dates
+    }
+
+
+@router.get(
+    '/{id}/available-time',
+    response_model=ConsultantAvailableTimeSlots,
+    summary='Получение доступных временных слотов, консультанта.',
+    description='Время для записи',
+    tags=['Make record']
+)
+async def get_all_consultant_available_time_slots(
+    id: int,
+    # info_params: Annotated[ConsultantParamsAvailableTimeSlots, Query()],
+    service_id: int,
+    date_to_record: date,
+    session: AsyncSession = Depends(get_async_session),
+):
+    consultant = await check_consultant_exists(
+        consultant_id=id,
+        session=session
+    )
+    service = await check_service_exists(
+        service_id=service_id,
+        session=session
+    )
+    await check_consultant_own_service(
+        consultant_id=id,
+        service=service
+    )
+    free_slots = await records_crud.get_free_slots_on_date(
+        date_to_record=date_to_record,
+        consultant_id=id,
+        service_duration=service.duration,
+        session=session
+    )
+    return {
+        'consultant': consultant,
+        'time_slots': free_slots
+    }
 
 
 @router.get(

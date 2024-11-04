@@ -1,4 +1,5 @@
 from typing import Optional
+from datetime import date, time
 
 from pydantic import BaseModel, ConfigDict, Field
 
@@ -137,3 +138,13 @@ class ConsultantDB(ConsultantCreate):
             ]
         }
     )
+
+
+class ConsultantAvailableDates(BaseModel):
+    consultant: ConsultantDB
+    dates: list[date]
+
+
+class ConsultantAvailableTimeSlots(BaseModel):
+    consultant: ConsultantDB
+    time_slots: list[time]

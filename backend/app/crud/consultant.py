@@ -20,19 +20,6 @@ from app.services.base64 import filebase64_decode
 
 
 class CRUDConsultant(CRUDBase):
-    async def get_consultant_by_userid(
-        self,
-        user_id,
-        session: AsyncSession,
-    ) -> ConsultantDB:
-        consultant = await session.execute(
-            select(Consultants).where(
-                Consultants.user_id == user_id
-            )
-        )
-        consultant = consultant.scalars().first()
-        return consultant
-
     async def create(
             self,
             obj_in,
@@ -68,7 +55,6 @@ class CRUDConsultant(CRUDBase):
         user_manager: BaseUserManager,
         session: AsyncSession,
     ) -> UserRead:
-        print(db_obj)
         obj_data = jsonable_encoder(db_obj, exclude={'user'})
         update_data = obj_in.dict(exclude_unset=True)
         update_user_data = update_data.pop('user', None)
@@ -110,6 +96,31 @@ class CRUDConsultant(CRUDBase):
         await session.commit()
         await session.refresh(db_obj)
         return db_obj
+
+    async def get_consultant_by_userid(
+        self,
+        user_id,
+        session: AsyncSession,
+    ) -> ConsultantDB:
+        consultant = await session.execute(
+            select(Consultants).where(
+                Consultants.user_id == user_id
+            )
+        )
+        consultant = consultant.scalars().first()
+        return consultant
+
+    async def get_all_confirmed_consultant(
+        self,
+        session: AsyncSession,
+    ):
+        consultants = await session.execute(
+            select(self.model).where(
+                Consultants.is_accepted == True # noqa
+            )
+        )
+        consultants = consultants.scalars().unique().all()
+        return consultants
 
     async def get_video_presentation_bytes(
         self,
