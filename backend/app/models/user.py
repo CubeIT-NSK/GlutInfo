@@ -1,8 +1,10 @@
-from typing import Optional, Literal, get_args
+from typing import Optional, Literal, get_args, List
 from datetime import date
 
 from fastapi_users_db_sqlalchemy import SQLAlchemyBaseUserTable
-from sqlalchemy import String, Integer, Text, Date, Enum, ForeignKey, Boolean
+from sqlalchemy import (
+    String, Integer, Text, Date,
+    Enum, ForeignKey, Boolean, UniqueConstraint)
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from app.core.db import Base
@@ -11,7 +13,6 @@ from app.core.constants import (
     MAX_SURNAME_CHAR,
     MAX_PATRONYMIC_CHAR,
 )
-
 
 Sex = Literal['male', 'female']
 Role = Literal['patient', 'consultant']
@@ -34,7 +35,7 @@ class User(SQLAlchemyBaseUserTable[int], Base):
         create_constraint=True,
         validate_strings=True,
     ))
-    # phone: Mapped[int] = mapped_column(Integer)
+    phone: Mapped[int] = mapped_column(Integer)
     role: Mapped[Role] = mapped_column(Enum(
         *get_args(Role),
         name="rolestatus",
@@ -50,6 +51,22 @@ class User(SQLAlchemyBaseUserTable[int], Base):
         back_populates='user',
         lazy='joined'
     )
+    messages: Mapped[Optional['Messages']] = relationship(
+        back_populates='sender'
+    )
+    chats: Mapped[List["Chats"]] = relationship(
+        secondary='chatparticipant',
+        back_populates="users"
+        )
+    read_statuses: Mapped[Optional[List["ReadStatus"]]] = relationship(
+        back_populates="user"
+        )
+    questionnaire: Mapped[Optional['Questionnaire']] = relationship(
+        back_populates='user'
+    )
+
+    def __repr__(self) -> str:
+        return f"{self.surname} {self.name} {self.patronymic}"
 
 
 class Patients(Base):
@@ -69,18 +86,26 @@ class Patients(Base):
     image: Mapped[str] = mapped_column(Text, default=None, nullable=True)
 
     user: Mapped[User] = relationship(back_populates='patient',
-                                      lazy='joined')
+                                      lazy='joined'
+                                      )
+    patientresponses: Mapped[Optional['PatientsResponses']] = relationship(
+        back_populates='patient'
+    )
     records: Mapped[list['Records']] = relationship(
         back_populates='patient',
         lazy='joined'
     )
+
+    def __repr__(self) -> str:
+        return f"{self.user}"
+
+    __table_args__ = (UniqueConstraint("user_id"),)
 
 
 class Consultants(Base):
     '''
     Model for Consultant.
     '''
-
     user_id: Mapped[int] = mapped_column(
         Integer,
         ForeignKey('user.id'),
@@ -100,7 +125,11 @@ class Consultants(Base):
     is_send_resume: Mapped[bool] = mapped_column(Boolean, default=False)
 
     user: Mapped[User] = relationship(back_populates='consultant',
-                                      lazy='joined')
+                                      lazy='joined'
+                                      )
+    reviews: Mapped[Optional['Reviews']] = relationship(
+        back_populates='consultants'
+    )
     services: Mapped[list['Services']] = relationship(
         back_populates='consultant',
         lazy='joined'
@@ -113,3 +142,8 @@ class Consultants(Base):
         back_populates='consultant',
         lazy='joined'
     )
+
+    def __repr__(self) -> str:
+        return f"{self.user}"
+
+    __table_args__ = (UniqueConstraint("user_id"),)

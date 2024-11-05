@@ -1,7 +1,7 @@
 from typing import Optional
 from datetime import date
 
-from sqlalchemy import String, Date, Text, Boolean, Integer, ForeignKey
+from sqlalchemy import String, Date, Text, Integer, ForeignKey
 from sqlalchemy.orm import (
     Mapped,
     mapped_column,
@@ -12,6 +12,7 @@ from app.core.db import Base
 from app.core.constants import (
     DEFAULT_MAX_CHAR,
 )
+from app.models.user import Patients, Consultants, User
 
 
 class Surveys(Base):
@@ -22,7 +23,12 @@ class Surveys(Base):
     title: Mapped[str] = mapped_column(Text)
     text: Mapped[str] = mapped_column(Text)
 
-    questions = relationship('questions', back_populates='survey')
+    questions: Mapped[Optional['Questions']] = relationship(
+         back_populates='survey'
+         )
+    patientsresponses: Mapped[Optional['PatientsResponses']] = relationship(
+        back_populates='surveys'
+    )
 
 
 class Questions(Base):
@@ -36,7 +42,12 @@ class Questions(Base):
     order: Mapped[int] = mapped_column(Integer)
     q_type: Mapped[str] = mapped_column(String(DEFAULT_MAX_CHAR))
 
-    survey = relationship('surveys', back_populates='questions')
+    survey: Mapped[Surveys] = relationship(
+        back_populates='questions'
+        )
+    answer: Mapped[Optional['AnswerOptions']] = relationship(
+        back_populates='question'
+    )
 
 
 class AnswerOptions(Base):
@@ -47,6 +58,29 @@ class AnswerOptions(Base):
     text: Mapped[str] = mapped_column(Text)
     question_id: Mapped[int] = mapped_column(Integer,
                                              ForeignKey('questions.id'))
+
+    question: Mapped[Questions] = relationship(
+        back_populates='answer'
+    )
+    response: Mapped[Optional['Responses']] = relationship(
+        back_populates='answer'
+    )
+
+
+class PatientsResponses(Base):
+    patient_id: Mapped[int] = mapped_column(Integer, ForeignKey('patients.id'))
+    surveys_id: Mapped[int] = mapped_column(Integer, ForeignKey('surveys.id'))
+    pub_date: Mapped[date] = mapped_column(Date)
+
+    response: Mapped[Optional['Responses']] = relationship(
+        back_populates='patientresponses'
+    )
+    surveys: Mapped[Surveys] = relationship(
+        back_populates='patientsresponses'
+    )
+    patient: Mapped[Patients] = relationship(
+        back_populates='patientresponses'
+    )
 
 
 class Responses(Base):
@@ -61,50 +95,51 @@ class Responses(Base):
         ForeignKey('patientsresponses.id')
     )
 
-
-class PatientsResponses(Base):
-    patient_id: Mapped[int] = mapped_column(Integer, ForeignKey('patients.id'))
-    surveys_id: Mapped[int] = mapped_column(Integer, ForeignKey('surveys.id'))
-    pub_date: Mapped[date] = mapped_column(Date)
-
-
-class Records(Base):
-    '''
-    Model for Record.
-    '''
-
-    pub_date: Mapped[date] = mapped_column(Date)
-    consultants_id: Mapped[int] = mapped_column(Integer,
-                                                ForeignKey('consultants.id'))
-    patient_id: Mapped[int] = mapped_column(Integer, )
-    service_id: Mapped[int] = mapped_column(Integer, ForeignKey('services.id'))
-
-    consultants = relationship(foreign_keys=[consultants_id])
-    service = relationship(foreign_keys=[service_id])
+    answer: Mapped[AnswerOptions] = relationship(
+        back_populates='response'
+    )
+    patientresponses: Mapped[PatientsResponses] = relationship(
+        back_populates='response'
+    )
 
 
-class Services(Base):
-    '''
-    Model for Service.
-    '''
+# class Services(Base):
+#     '''
+#     Model for Service.
+#     '''
 
-    name: Mapped[str] = mapped_column(Text)
-    price: Mapped[int] = mapped_column(Integer)
-    description: Mapped[Optional[str]] = mapped_column(Text)
-    consultant_id: Mapped[int] = mapped_column(Integer,
-                                               ForeignKey('consultants.id'))
+#     name: Mapped[str] = mapped_column(Text)
+#     price: Mapped[int] = mapped_column(Integer)
+#     description: Mapped[Optional[str]] = mapped_column(Text)
+#     consultant_id: Mapped[int] = mapped_column(
+#         Integer,
+#         ForeignKey('consultants.id')
+#         )
+#     consultants: Mapped[Consultants] = relationship(
+#         back_populates='services'
+#     )
+#     records: Mapped[Optional['Records']] = relationship(
+#         back_populates='services'
+#     )
 
 
-class Chats(Base):
-    '''
-    Model for Chat.
-    '''
+# class Records(Base):
+#     '''
+#     Model for Record.
+#     '''
 
+#     pub_date: Mapped[date] = mapped_column(Date)
+#     consultants_id: Mapped[int] = mapped_column(Integer,
+#                                                 ForeignKey('consultants.id'))
+#     patient_id: Mapped[int] = mapped_column(Integer, ForeignKey('patients.id') )
+#     service_id: Mapped[int] = mapped_column(Integer, ForeignKey('services.id'))
 
-class Messages(Base):
-    '''
-    Model for Chat.
-    '''
-
-    chat_id: Mapped[int] = mapped_column(Integer, ForeignKey('chats.id'))
-    sender_id: Mapped[int] = mapped_column(Integer, ForeignKey('users.id'))
+#     consultants: Mapped[Consultants] = relationship(
+#         back_populates='records'
+#     )
+#     patient: Mapped[Patients] = relationship(
+#         back_populates='records'
+#     )
+#     services: Mapped[Services] = relationship(
+#         back_populates='records'
+#     )
