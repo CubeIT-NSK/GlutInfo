@@ -8,6 +8,7 @@ from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from app.core.db import Base
 from app.models.admin.projects import Projects
+from app.services.custom_types import FileType
 
 
 class ProjectsDocuments(Base):
@@ -20,18 +21,16 @@ class ProjectsDocuments(Base):
         ForeignKey('documents.id')
         )
 
-    # project: Mapped[Projects] = relationship(
-    #     back_populates='project_document'
-    # )
-    # document: Mapped[Documents] = relationship(
-    #     back_populates='project_document'
-    # )
-
 
 class Documents(Base):
-    # file: Mapped[FileType] = mapped_column(
-    #     FileType(storage=FileSystemStorage(path="/tmp"))
-    #     )
+    file: Mapped[FileType] = mapped_column(FileType)
     project: Mapped[Optional[list['Projects']]] = relationship(
         secondary='projectsdocuments', back_populates='document'
     )
+
+    @property
+    def file_name(self) -> str:
+        return f"{self.file.name}"
+
+    def __repr__(self) -> str:
+        return f"{self.file.name}"

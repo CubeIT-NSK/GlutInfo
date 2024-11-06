@@ -3,11 +3,11 @@ from pydantic import BaseModel, Field, ConfigDict
 from datetime import date
 
 from app.core.constants import DEFAULT_MIN_CHAR
-from app.models.admin.feedback import Rating
+from app.models.admin.feedback import Rating_place, Rating
 from app.schemas.consultant import ConsultantDB
 
-from fastapi_storages import FileSystemStorage
-from fastapi_storages.integrations.sqlalchemy import ImageType
+# from fastapi_storages import FileSystemStorage
+# from fastapi_storages.integrations.sqlalchemy import ImageType
 
 
 class HistoriesCreate(BaseModel):
@@ -179,11 +179,30 @@ class PlacesRead(BaseModel):
     place_type: str
     name: str
     description: Optional[str]
-    rating: Optional[Rating]
+    rating: Optional[Rating_place]
     address: Optional[str]
     phone: Optional[str]
     website: Optional[str]
     image: str
+
+    model_config = ConfigDict(
+        extra='forbid',
+        json_schema_extra={
+            'examples': [
+                {
+                    "id": 1,
+                    "place_type": "Ресторан/Кафе",
+                    "name": "Uslada",
+                    "description": "Some text",
+                    "rating": "4.6",
+                    "address": "ул. Мира, 37, Санкт-Петербург",
+                    "phone": "+79110891964",
+                    "website": "uslada-candles.ru",
+                    "image": "Some image"
+                }
+            ]
+        }
+    )
 
 
 class QuestionnaireCreate(BaseModel):
@@ -217,7 +236,7 @@ class QuestionnaireCreate(BaseModel):
     body_parameters: Optional[str] = Field(
         min_length=DEFAULT_MIN_CHAR
     )
- 
+
     model_config = ConfigDict(
         from_attributes=True,
         json_schema_extra={

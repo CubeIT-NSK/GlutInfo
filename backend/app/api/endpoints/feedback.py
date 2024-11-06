@@ -48,7 +48,8 @@ async def get_all_places(
     '/places/{places_id}',
     response_model=list[PlacesRead],
     summary="Получение конкретных мест для 'Безглютеновая диета'",
-    description='Выводит всю информацию о конкретных местах'
+    description=' 0 - Ресторан/Кафе\n 1 - Магазин где представлена Б.П.\n'
+                '2 - Магазин с Б.П.'
 )
 async def get_current_places(
     places_id: int,
