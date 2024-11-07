@@ -1,4 +1,5 @@
 import math
+from calendar import day_abbr
 from datetime import date, timedelta, datetime
 
 from sqlalchemy import select, and_
@@ -35,6 +36,24 @@ class RecordsCRUD(CRUDBase):
         consultant = await consultant_crud.get(obj_id=consultant_id,
                                                session=session)
         return consultant.records
+
+    async def get_all_records_by_day_week(
+            self,
+            day_week: str,
+            consultant_id: int,
+            session: AsyncSession
+    ):
+        records = await session.execute(
+            select(Records).where(
+                Records.consultant_id == consultant_id
+            )
+        )
+        records = records.scalars().unique().all()
+        result = []
+        for record in records:
+            if list(day_abbr)[record.rec_date.weekday()] == day_week:
+                result.append(record)
+        return result
 
     async def get_free_slots_on_date(
         self,

@@ -29,6 +29,29 @@ class ScheduleCRUD(CRUDBase):
         db_objs = db_objs.unique().all()
         return db_objs
 
+    async def update_multi(
+        self,
+        db_objs: list[Schedule],
+        objs_in,
+        consultant_id: int,
+        session: AsyncSession,
+    ):
+        for obj_in in objs_in:
+            obj_in_data = obj_in.model_dump()
+            for db_obj in db_objs:
+                if db_obj.day_week == obj_in_data['day_week']:
+                    for field in obj_in_data:
+                        setattr(db_obj, field, obj_in_data[field])
+        session.add_all(db_objs)
+        await session.commit()
+        updated_db_objs = await session.execute(
+            select(Schedule).where(
+                Schedule.consultant_id == consultant_id
+            )
+        )
+        updated_db_objs = updated_db_objs.scalars().unique().all()
+        return updated_db_objs
+
     async def get_working_days_for_consultant(
             self,
             consultant_id: int,
