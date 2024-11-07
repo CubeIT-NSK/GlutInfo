@@ -55,9 +55,14 @@ class EventRead(BaseModel):
                     'link': 'url',
                     'event_format': 'Лекция',
                     'text': 'some text',
-                    # 'event_organizator':{
-
-                    # }
+                    "organizator": [
+                                {
+                                    "id": 1,
+                                    "fio": "Берюзов Тимур Михайлович",
+                                    "role": "Ведущий",
+                                    "description": "Some text"
+                                }
+                    ]
                 }
             ]
         }

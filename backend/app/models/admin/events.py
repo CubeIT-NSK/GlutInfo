@@ -19,7 +19,7 @@ class EventOrganizators(Base):
     '''
     Model for EventOrganizators
     '''
-    
+
     event_id: Mapped[int] = mapped_column(
         Integer,
         ForeignKey('events.id'),

@@ -26,7 +26,7 @@ async def get_all_surveys(
 @router.get(
     '/',
     # response_model=ProjectsRead,
-    summary='Получение информации о проекте по id',
+    summary='Получение информации о всех проектах',
     description=''
 )
 async def get_all_projects(

@@ -3,7 +3,7 @@ from sqladmin import ModelView
 from app.models.admin.events import (
     Organizators,
     Events,
-    EventOrganizators
+    # EventOrganizators
 )
 
 
@@ -43,15 +43,15 @@ class EventsAdmin(ModelView, model=Events):
                             ]
 
 
-class EventOrganizatorsAdmin(ModelView, model=EventOrganizators,):
-    name_plural = "Event Organizators"
-    category = "Events"
-    column_list = [
-        EventOrganizators.id,
-        EventOrganizators.event_id,
-        EventOrganizators.organizator_id,
-                   ]
-    form_columns = [
-        EventOrganizators.event_id,
-        EventOrganizators.organizator_id,
-    ]
+# class EventOrganizatorsAdmin(ModelView, model=EventOrganizators,):
+#     name_plural = "Event Organizators"
+#     category = "Events"
+#     column_list = [
+#         EventOrganizators.id,
+#         EventOrganizators.event_id,
+#         EventOrganizators.organizator_id,
+#                    ]
+#     form_columns = [
+#         EventOrganizators.event_id,
+#         EventOrganizators.organizator_id,
+#     ]

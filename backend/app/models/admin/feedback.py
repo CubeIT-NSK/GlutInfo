@@ -57,6 +57,13 @@ class PhotoGallery(Base):
     '''
     image: Mapped[ImageType] = mapped_column(ImageType)
 
+    @property
+    def image_name(self) -> str:
+        return f"{self.image.name}"
+
+    def __repr__(self):
+        return f"{self.image.name}"
+
 
 class Cooperations(Base):
     '''

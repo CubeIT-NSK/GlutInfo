@@ -14,7 +14,7 @@ from app.models.user import User, Patients, Consultants
 from app.admin.views.events import (
     OrganizatorsAdmin,
     EventsAdmin,
-    EventOrganizatorsAdmin
+    # EventOrganizatorsAdmin
 )
 from app.admin.views.feedback import (
     HistoriesAdmin,
@@ -25,10 +25,10 @@ from app.admin.views.feedback import (
     PlacesAdmin
 )
 from app.admin.views.projects import (
-    ProjectsOrganizatorsAdmin,
+    # ProjectsOrganizatorsAdmin,
     ProjectsAdmin,
     DocumentsAdmin,
-    ProjectsDocumentsAdmin
+    # ProjectsDocumentsAdmin
 )
 from app.core.user import get_async_session, get_user_db, get_user_manager
 
@@ -206,13 +206,13 @@ def create_admin_core(app):
     admin.add_view(ConsultantAdmin)
 
     admin.add_view(OrganizatorsAdmin)
-    admin.add_view(EventOrganizatorsAdmin)
+    # admin.add_view(EventOrganizatorsAdmin)
     admin.add_view(EventsAdmin)
 
-    admin.add_view(ProjectsOrganizatorsAdmin)
+    # admin.add_view(ProjectsOrganizatorsAdmin)
     admin.add_view(ProjectsAdmin)
     admin.add_view(DocumentsAdmin)
-    admin.add_view(ProjectsDocumentsAdmin)
+    # admin.add_view(ProjectsDocumentsAdmin)
 
     admin.add_view(HistoriesAdmin)
     admin.add_view(PhotoGalleryAdmin)

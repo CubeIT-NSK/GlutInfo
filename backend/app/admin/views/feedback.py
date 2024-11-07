@@ -19,14 +19,17 @@ class HistoriesAdmin(ModelView, model=Histories):
                    ]
     column_searchable_list = [Histories.surname,
                               Histories.diagnosis
-                              ]  
+                              ]
 
 
 class PhotoGalleryAdmin(ModelView, model=PhotoGallery):
     name_plural = PhotoGallery.__tablename__.title()
+    can_edit = False
     column_list = [PhotoGallery.id,
-                   PhotoGallery.image
+                   "image_name"
                    ]
+    column_details_list = [PhotoGallery.id, "image_name"]
+    column_labels = {"image_name": "image"}
 
 
 class CooperationsAdmin(ModelView, model=Cooperations):
