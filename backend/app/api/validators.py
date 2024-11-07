@@ -10,7 +10,7 @@ from app.crud.service import services_crud
 from app.crud.records import records_crud
 from app.core.user import current_user
 from app.models.user import User, Consultants
-from app.models.record import Services
+from app.models.record import Services, Schedule
 
 
 async def check_consultant_exists(
@@ -23,7 +23,7 @@ async def check_consultant_exists(
     )
     if consultant is None:
         raise HTTPException(
-            status_code=status.HTTP_400_BAD_REQUEST,
+            status_code=status.HTTP_404_NOT_FOUND,
             detail='Consultant dosen`t exist!'
         )
     return consultant
@@ -39,10 +39,22 @@ async def check_service_exists(
     )
     if service is None:
         raise HTTPException(
-            status_code=status.HTTP_400_BAD_REQUEST,
+            status_code=status.HTTP_404_NOT_FOUND,
             detail='Service dosen`t exist!'
         )
     return service
+
+
+async def check_consultant_schedule_exists(
+    user: User,
+) -> list[Schedule]:
+    schedule = user.consultant.schedule
+    if not schedule:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail='This consultant doesen`t have any schedule!'
+        )
+    return schedule
 
 
 async def check_consultant_own_service(
@@ -123,6 +135,33 @@ async def dayweek_consultant_unique_check(
                 status_code=status.HTTP_400_BAD_REQUEST,
                 detail=f'You already have schedule on {day} day!'
             )
+
+
+async def check_schedule_can_change(
+    user: User,
+    future_schedule,
+    session: AsyncSession
+):
+    for sch in future_schedule:
+        day_records = await records_crud.get_all_records_by_day_week(
+            day_week=sch.day_week,
+            consultant_id=user.consultant.id,
+            session=session
+        )
+        for record in day_records:
+            start_time = record.rec_time
+            end_time = (datetime.combine(date.min, start_time)
+                        + record.service.duration).time()
+            sch_start = sch.start_hour.replace(tzinfo=None)
+            sch_end = sch.end_hour.replace(tzinfo=None)
+
+            if (not (sch_start <= start_time < sch_end)
+               or not (sch_start <= end_time < sch_end)):
+                raise HTTPException(
+                    status_code=status.HTTP_400_BAD_REQUEST,
+                    detail=(f'You can`t change schedule on {sch.day_week} day '
+                            f'because you have record on {start_time}')
+                )
 
 
 # old method

@@ -34,9 +34,11 @@ from app.api.validators import (
     check_consultant_duplicate,
     check_consultant_exists,
     check_service_exists,
+    check_consultant_schedule_exists,
     check_consultant_own_service,
     current_user_consultant,
     dayweek_consultant_unique_check,
+    check_schedule_can_change,
 )
 from app.services.fastMail import (
     EmailSchema,
@@ -62,6 +64,24 @@ async def get_all_working_consultants(
 ):
     consultants = await consultant_crud.get_all_confirmed_consultant(session)
     return consultants
+
+
+@router.get(
+    '/{id}',
+    response_model=ConsultantDB,
+    summary='Получение подтвержденного консультанта',
+    description='Выводятся вся информация '
+                'по консультанту.',
+)
+async def get_working_consultant(
+    id: int,
+    session: AsyncSession = Depends(get_async_session)
+):
+    consultant = await check_consultant_exists(
+        consultant_id=id,
+        session=session
+    )
+    return consultant
 
 
 @router.post(
@@ -150,6 +170,35 @@ async def post_schedule(
         session=session,
     )
     return schedule
+
+
+@router.patch(
+    '/me/schedule',
+    dependencies=[Depends(current_user_consultant)],
+    response_model=list[ScheduleDB],
+    summary='Изменение расписания консультанта.',
+    status_code=status.HTTP_201_CREATED,
+)
+async def patch_schedule(
+    list_schedule: list[ScheduleCreate],
+    user: User = Depends(current_user),
+    session: AsyncSession = Depends(get_async_session),
+):
+    schedule = await check_consultant_schedule_exists(
+        user=user
+    )
+    await check_schedule_can_change(
+        user=user,
+        future_schedule=list_schedule,
+        session=session
+    )
+    new_schedule = await schedule_crud.update_multi(
+        db_objs=schedule,
+        objs_in=list_schedule,
+        consultant_id=user.consultant.id,
+        session=session
+    )
+    return new_schedule
 
 
 @router.get(
