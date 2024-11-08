@@ -12,7 +12,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 
 
 from app.crud.base import CRUDBase
-from app.models.user import Consultants, User
+from app.models.user import Consultants, User, Speciality
 from app.schemas.consultant import ConsultantDB
 from app.schemas.user import UserRead, UserUpdate
 from app.services.s3storage import s3_client
@@ -158,14 +158,32 @@ class CRUDConsultant(CRUDBase):
         consultants = consultants.scalars().unique().all()
         return consultants
 
-    async def get_video_presentation_bytes(
-        self,
-        db_obj
+    # async def get_video_presentation_bytes(
+    #     self,
+    #     db_obj
+    # ):
+    #     if db_obj.video_presentation:
+    #         file_bytes = await s3_client.get_file(db_obj.video_presentation)
+    #         return file_bytes
+    #     return None
+
+    async def get_current_speciality_consultants(
+            self,
+            speciality_id: int,
+            session: AsyncSession
     ):
-        if db_obj.video_presentation:
-            file_bytes = await s3_client.get_file(db_obj.video_presentation)
-            return file_bytes
-        return None
+        speciality = await session.execute(
+            select(Speciality).where(Speciality.id == speciality_id)
+        )
+        speciality_new: Speciality = speciality.scalars().unique().first()
+        print(speciality_new)
+        consultants = await session.execute(
+            select(Consultants).where(
+                Consultants.speciality == speciality_new.speciality
+            )
+        )
+        consultants = consultants.scalars().unique().all()
+        return consultants
 
 
 consultant_crud = CRUDConsultant(Consultants)

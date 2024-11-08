@@ -275,3 +275,16 @@ async def get_video_presentation(
     #         yield from file_like
 
     # return StreamingResponse(iterfile(), media_type="video/mp4")
+
+
+@router.get(
+    '/speciality/{speciality_id}',
+    summary='Получение консультантов по специальности',
+)
+async def get_current_speciality_consultants(
+    speciality_id: int,
+    session: AsyncSession = Depends(get_async_session),
+):
+    return await consultant_crud.get_current_speciality_consultants(
+        speciality_id, session
+    )

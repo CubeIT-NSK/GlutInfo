@@ -147,3 +147,11 @@ class Consultants(Base):
         return f"{self.user}"
 
     __table_args__ = (UniqueConstraint("user_id"),)
+
+
+class Speciality(Base):
+    '''
+    Model for Consultant's speciality
+    '''
+
+    speciality: Mapped[str] = mapped_column(Text)
