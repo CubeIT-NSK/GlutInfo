@@ -12,7 +12,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 
 
 from app.crud.base import CRUDBase
-from app.models.user import Consultants, User
+from app.models.user import Consultants, User, Speciality
 from app.schemas.consultant import ConsultantDB
 from app.schemas.user import UserRead, UserUpdate
 from app.services.s3storage import s3_client
@@ -149,23 +149,44 @@ class CRUDConsultant(CRUDBase):
     async def get_all_confirmed_consultant(
         self,
         session: AsyncSession,
+        speciality: str
     ):
-        consultants = await session.execute(
-            select(self.model).where(
-                Consultants.is_accepted == True # noqa
+        if speciality is None:
+            consultants = await session.execute(
+                select(self.model).where(
+                    Consultants.is_accepted == True # noqa
+                )
             )
-        )
-        consultants = consultants.scalars().unique().all()
+            consultants = consultants.scalars().unique().all()
+        else:
+            consultants = await session.execute(
+                select(self.model).where(
+                    Consultants.is_accepted == True ,# noqa
+                    Consultants.speciality == speciality
+                )
+            )
+            consultants = consultants.scalars().unique().all()
         return consultants
 
-    async def get_video_presentation_bytes(
-        self,
-        db_obj
+    # async def get_video_presentation_bytes(
+    #     self,
+    #     db_obj
+    # ):
+    #     if db_obj.video_presentation:
+    #         file_bytes = await s3_client.get_file(db_obj.video_presentation)
+    #         return file_bytes
+    #     return None
+
+    async def get_speciality(
+            self,
+            session: AsyncSession
     ):
-        if db_obj.video_presentation:
-            file_bytes = await s3_client.get_file(db_obj.video_presentation)
-            return file_bytes
-        return None
+        db_obj = await session.execute(
+            select(Speciality)
+        )
+        speciality: Speciality = db_obj.scalars().all()
+  
+        return speciality
 
 
 consultant_crud = CRUDConsultant(Consultants)

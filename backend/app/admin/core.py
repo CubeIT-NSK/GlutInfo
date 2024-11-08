@@ -10,7 +10,12 @@ from sqladmin.authentication import AuthenticationBackend
 from sqlalchemy.sql.expression import Select, select, and_
 
 from app.core.db import engine
-from app.models.user import User, Patients, Consultants
+from app.models.user import (
+    User,
+    Patients,
+    Consultants,
+    Speciality
+    )
 from app.admin.views.events import (
     OrganizatorsAdmin,
     EventsAdmin,
@@ -192,6 +197,11 @@ class AdminAuth(AuthenticationBackend):
         return token is not None
 
 
+class SpecialityAdmin(ModelView, model=Speciality):
+    name_plural = "Специальности"
+    column_list = [Speciality.speciality]
+
+
 def create_admin_core(app):
     authentication_backend = AdminAuth(secret_key="supersecretkey")
     admin = Admin(
@@ -204,6 +214,7 @@ def create_admin_core(app):
     admin.add_view(UserAdmin)
     admin.add_view(PatientAdmin)
     admin.add_view(ConsultantAdmin)
+    admin.add_view(SpecialityAdmin)
 
     admin.add_view(OrganizatorsAdmin)
     # admin.add_view(EventOrganizatorsAdmin)
