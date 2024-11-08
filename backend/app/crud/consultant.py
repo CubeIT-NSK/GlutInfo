@@ -149,13 +149,23 @@ class CRUDConsultant(CRUDBase):
     async def get_all_confirmed_consultant(
         self,
         session: AsyncSession,
+        speciality: str
     ):
-        consultants = await session.execute(
-            select(self.model).where(
-                Consultants.is_accepted == True # noqa
+        if speciality is None:
+            consultants = await session.execute(
+                select(self.model).where(
+                    Consultants.is_accepted == True # noqa
+                )
             )
-        )
-        consultants = consultants.scalars().unique().all()
+            consultants = consultants.scalars().unique().all()
+        else:
+            consultants = await session.execute(
+                select(self.model).where(
+                    Consultants.is_accepted == True ,# noqa
+                    Consultants.speciality == speciality
+                )
+            )
+            consultants = consultants.scalars().unique().all()
         return consultants
 
     # async def get_video_presentation_bytes(
@@ -167,23 +177,16 @@ class CRUDConsultant(CRUDBase):
     #         return file_bytes
     #     return None
 
-    async def get_current_speciality_consultants(
+    async def get_speciality(
             self,
-            speciality_id: int,
             session: AsyncSession
     ):
-        speciality = await session.execute(
-            select(Speciality).where(Speciality.id == speciality_id)
+        db_obj = await session.execute(
+            select(Speciality)
         )
-        speciality_new: Speciality = speciality.scalars().unique().first()
-        print(speciality_new)
-        consultants = await session.execute(
-            select(Consultants).where(
-                Consultants.speciality == speciality_new.speciality
-            )
-        )
-        consultants = consultants.scalars().unique().all()
-        return consultants
+        speciality: Speciality = db_obj.scalars().all()
+  
+        return speciality
 
 
 consultant_crud = CRUDConsultant(Consultants)

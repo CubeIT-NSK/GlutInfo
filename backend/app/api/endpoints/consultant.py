@@ -58,9 +58,13 @@ router = APIRouter()
     tags=['Make record', 'Consultants']
 )
 async def get_all_working_consultants(
+    speciality: str | None = None,
     session: AsyncSession = Depends(get_async_session)
 ):
-    consultants = await consultant_crud.get_all_confirmed_consultant(session)
+    consultants = await consultant_crud.get_all_confirmed_consultant(
+        session,
+        speciality
+        )
     return consultants
 
 
@@ -278,13 +282,10 @@ async def get_video_presentation(
 
 
 @router.get(
-    '/speciality/{speciality_id}',
-    summary='Получение консультантов по специальности',
+    '/speciality/',
+    summary="Получение всех доступных специальностей консультанта"
 )
-async def get_current_speciality_consultants(
-    speciality_id: int,
-    session: AsyncSession = Depends(get_async_session),
+async def get_speciality(
+    session: AsyncSession = Depends(get_async_session)
 ):
-    return await consultant_crud.get_current_speciality_consultants(
-        speciality_id, session
-    )
+    return await consultant_crud.get_speciality(session)

@@ -154,4 +154,7 @@ class Speciality(Base):
     Model for Consultant's speciality
     '''
 
-    speciality: Mapped[str] = mapped_column(Text)
+    speciality: Mapped[str] = mapped_column(
+        Text,
+        unique=True
+        )
