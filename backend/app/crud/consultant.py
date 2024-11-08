@@ -185,7 +185,6 @@ class CRUDConsultant(CRUDBase):
             select(Speciality)
         )
         speciality: Speciality = db_obj.scalars().all()
-  
         return speciality
 
 

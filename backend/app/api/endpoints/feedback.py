@@ -5,7 +5,8 @@ from app.core.db import get_async_session
 from app.schemas.admin.feedback import (
     PhotoGalleryRead,
     PlacesRead,
-    # ReviewDB,
+    ReviewCreate,
+    ReviewDB,
     HistorieDB,
     CooperationsRead,
     NewslettersCreate,
@@ -61,19 +62,31 @@ async def get_current_places(
     return await places_crud.get_current_places(places_id, session)
 
 
-@router.get(
+@router.post(
     '/reviews',
+    summary='Добавление отзыва в базу'
+)
+async def post_review(
+    review: ReviewCreate,
+    session: AsyncSession = Depends(get_async_session)
+):
+    return await reviews_crud.post_review(review, session)
+
+
+@router.get(
+    '/reviews/',
     # response_model=list[ReviewDB],
-    summary='Получение всех отзывов',
+    summary='Получение всех отзывов или отзывов определенного консультанта',
     description='Выводятся все отзывы'
 )
 async def get_all_reviews(
+    consultant_id: int | None = None,
     session: AsyncSession = Depends(get_async_session)
 ):
     '''
     Get all user's reviews
     '''
-    return await reviews_crud.get_all_reviews(session)
+    return await reviews_crud.get_all_reviews(consultant_id, session)
 
 
 @router.get(

@@ -1,4 +1,6 @@
+from fastapi import Request
 from sqladmin import ModelView
+from sqlalchemy import Select
 
 from app.models.admin.feedback import (
     Histories,
@@ -61,14 +63,18 @@ class ReviewsAdmin(ModelView, model=Reviews):
                    Reviews.name,
                    Reviews.surname,
                    Reviews.review_event,
-                   Reviews.consultant,
+                   Reviews.consultants,
+                   Reviews.is_accepted,
+                   Reviews.published
                    ]
     column_searchable_list = [Reviews.name,
                               Reviews.rating,
                               Reviews.review_event,
-                              Reviews.consultant
+                              Reviews.consultants
                               ]
     column_sortable_list = [Reviews.rating,
+                            Reviews.is_accepted,
+                            Reviews.published
                             ]
 
 
