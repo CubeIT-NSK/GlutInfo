@@ -2,6 +2,7 @@ from typing import Optional, Literal, get_args
 from datetime import date
 
 from sqlalchemy import (
+    Boolean,
     String,
     Text,
     Enum,
@@ -102,6 +103,8 @@ class Reviews(Base):
         Integer, ForeignKey('consultants.id'
                             ))
     text: Mapped[Optional[str]] = mapped_column(Text)
+    published: Mapped[bool] = mapped_column(Boolean, default=False)
+    is_accepted: Mapped[bool] = mapped_column(Boolean, default=False)
 
     consultants: Mapped['Consultants'] = relationship(
         back_populates='reviews'

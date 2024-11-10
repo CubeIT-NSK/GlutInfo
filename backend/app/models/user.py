@@ -138,7 +138,7 @@ class Consultants(Base):
         back_populates='consultant',
         lazy='joined'
     )
-    records: Mapped[list['Records']] = relationship(
+    records: Mapped[list['Records']] = relationship(  
         back_populates='consultant',
         lazy='joined'
     )

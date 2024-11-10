@@ -69,10 +69,13 @@ class ReviewCreate(BaseModel):
     rating: Optional[Rating]
     name: str
     surname: str
+    consultant_id: int
     review_event: date
     text: Optional[str] = Field(
         min_length=DEFAULT_MIN_CHAR
     )
+    # published: bool
+    # is_accepted: bool
 
     model_config = ConfigDict(
         extra='forbid',
@@ -82,8 +85,10 @@ class ReviewCreate(BaseModel):
                     'rating': '5',
                     'name': 'Василий',
                     'surname': 'Субботин',
+                    'consultant_id': '1',
                     'review_event': '2024-07-25',
                     'text': 'Some text',
+
                 }
             ]
         }

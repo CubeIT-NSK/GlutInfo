@@ -20,6 +20,7 @@ from app.schemas.admin.feedback import (
     NewslettersCreate,
     QuestionnaireCreate
 )
+from app.schemas.admin.feedback import ReviewCreate
 
 
 class CRUDPhotoGallery(CRUDBase):
@@ -64,14 +65,51 @@ class CRUDReviews(CRUDBase):
     '''
     async def get_all_reviews(
         self,
+        consultant_id: int,
         session: AsyncSession,
     ):
-        db_objs = await session.execute(
-            select(Reviews).options(
-                selectinload(Reviews.consultants),
+        if consultant_id is None:
+            db_objs = await session.execute(
+                select(Reviews).options(
+                    selectinload(Reviews.consultants),
+                    ).where(
+                        Reviews.is_accepted == True,
+                        Reviews.published == True
+                    )
                 )
-            )
-        return db_objs.unique().scalars().all()
+            return db_objs.unique().scalars().all()
+        else:
+            db_objs = await session.execute(
+                select(Reviews).options(
+                    selectinload(Reviews.consultants)
+                    ).where(
+                        Reviews.consultant == consultant_id,
+                        Reviews.is_accepted == True,
+                        Reviews.published == True
+                    )
+                )
+            return db_objs.scalars().all()
+
+    async def post_review(
+            self,
+            review: ReviewCreate,
+            session: AsyncSession
+    ):
+        db_review = Reviews(
+            rating=review.rating,
+            name=review.name,
+            surname=review.review_event,
+            consultant=review.consultant_id,
+            review_event=review.review_event,
+            text=review.text
+        )
+        session.add(db_review)
+        await session.commit()
+
+        return JSONResponse(
+            status_code=200,
+            content="Review has been added"
+        )
 
 
 class CRUDHistories(CRUDBase):
