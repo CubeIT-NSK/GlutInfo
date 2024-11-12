@@ -133,10 +133,11 @@ async def get_user_chats_view(
 
 
 @router.post(
-    '/send_message',
+    '/{chat_id}/send_message',
     summary='Send message to chat',
 )
 async def send_message(
+    chat_id: int,
     message: MessageCreate,
     session: AsyncSession = Depends(get_async_session),
     current_user: User = Depends(current_user),
@@ -145,7 +146,7 @@ async def send_message(
     Send message to chat by chat_id
     '''
 
-    chat = await chats_crud.get_chat_by_id(session, message.chat_id)
+    chat = await chats_crud.get_chat_by_id(session, chat_id)
 
     if not chat:
         raise HTTPException(
