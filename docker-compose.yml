@@ -1,14 +1,30 @@
 version: '3'
 
 volumes:
+  pg_data:
   static:
 
 services:
-  frontend:
-    build: ./frontend/
-    command: cp -r /app/dist/. /static/
+  db:
+    image: postgres:13
+    env_file: .env
     volumes:
-      - static:/static
+      - pg_data:/var/lib/postgresql/data
+    restart: on-failure
+  backend:
+    build: ./backend/
+    env_file: .env
+    volumes:
+      - static:/backend_static
+      # - media:/app/media/
+    depends_on:
+      - db
+    restart: on-failure
+  # frontend:
+  #   build: ./frontend/
+  #   command: cp -r /app/dist/. /static/
+  #   volumes:
+  #     - static:/static
   gateway:
     build: ./gateway/
     ports:

@@ -1,8 +1,8 @@
 """init
 
-Revision ID: 144a11c0a11e
+Revision ID: 66c8b9d509e5
 Revises: 
-Create Date: 2024-11-05 04:38:40.642070
+Create Date: 2024-11-11 03:03:32.652036
 
 """
 from typing import Sequence, Union
@@ -13,7 +13,7 @@ import app.services.custom_types
 
 
 # revision identifiers, used by Alembic.
-revision: str = '144a11c0a11e'
+revision: str = '66c8b9d509e5'
 down_revision: Union[str, None] = None
 branch_labels: Union[str, Sequence[str], None] = None
 depends_on: Union[str, Sequence[str], None] = None
@@ -34,6 +34,7 @@ def upgrade() -> None:
     sa.PrimaryKeyConstraint('id')
     )
     op.create_table('documents',
+    sa.Column('file', app.services.custom_types.FileType(), nullable=False),
     sa.Column('id', sa.Integer(), nullable=False),
     sa.PrimaryKeyConstraint('id')
     )
@@ -91,6 +92,12 @@ def upgrade() -> None:
     sa.Column('title', sa.Text(), nullable=False),
     sa.Column('id', sa.Integer(), nullable=False),
     sa.PrimaryKeyConstraint('id')
+    )
+    op.create_table('speciality',
+    sa.Column('speciality', sa.Text(), nullable=False),
+    sa.Column('id', sa.Integer(), nullable=False),
+    sa.PrimaryKeyConstraint('id'),
+    sa.UniqueConstraint('speciality')
     )
     op.create_table('surveys',
     sa.Column('title', sa.Text(), nullable=False),
@@ -244,6 +251,8 @@ def upgrade() -> None:
     sa.Column('review_event', sa.Date(), nullable=True),
     sa.Column('consultant', sa.Integer(), nullable=False),
     sa.Column('text', sa.Text(), nullable=True),
+    sa.Column('published', sa.Boolean(), nullable=False),
+    sa.Column('is_accepted', sa.Boolean(), nullable=False),
     sa.Column('id', sa.Integer(), nullable=False),
     sa.ForeignKeyConstraint(['consultant'], ['consultants.id'], ),
     sa.PrimaryKeyConstraint('id')
@@ -314,6 +323,7 @@ def downgrade() -> None:
     op.drop_index(op.f('ix_user_email'), table_name='user')
     op.drop_table('user')
     op.drop_table('surveys')
+    op.drop_table('speciality')
     op.drop_table('projects')
     op.drop_table('places')
     op.drop_table('photogallery')

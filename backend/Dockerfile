@@ -1,13 +1,29 @@
-FROM python:3.12
+FROM python:3.11
 
-WORKDIR /backend
+WORKDIR /app
 
-COPY ./requirements.txt /backend/requirements.txt
+COPY Makefile .
 
-RUN pip install --no-cache-dir --upgrade -r /backend/requirements.txt
+COPY requirements.txt .
 
-# 
-COPY ./app /backend/app
+RUN make requirements
 
-# 
-CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "80"]
+COPY . .
+
+CMD ["make", "run"]
+
+
+
+
+
+
+
+# COPY ./requirements.txt /backend/requirements.txt
+
+# RUN pip install --no-cache-dir --upgrade -r /backend/requirements.txt
+
+# # 
+# COPY ./app /backend/app
+
+# # 
+# CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "80"]
