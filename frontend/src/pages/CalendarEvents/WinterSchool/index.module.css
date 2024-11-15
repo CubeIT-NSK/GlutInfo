@@ -1,0 +1,435 @@
+.winterSchoolTitle{
+	font-family: TT Hoves;
+	font-size: 32px;
+	font-weight: 600;
+	line-height: 36.8px;
+	text-align: left;
+}
+
+.winterSchoolTitleOrange{
+	font-family: TT Hoves;
+	font-size: 42px;
+	font-weight: 700;
+	line-height: 48.3px;
+	text-align: left;
+	background: linear-gradient(185deg, #f8a94a 0%, #c97713 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.winterSchoolTextCol p{
+	font-family: Mulish;
+	font-size: 20px;
+	font-weight: 400;
+	line-height: 25.1px;
+	text-align: left;
+}
+
+.winterSchoolTextCol h2{
+	font-family: TT Hoves;
+	font-size: 26px;
+	font-weight: 500;
+	line-height: 29.9px;
+	text-align: left;
+}
+
+.winterSchoolWorkersHead p{
+	font-family: TT Hoves;
+	font-size: 26px;
+	font-weight: 500;
+	line-height: 29.9px;
+	text-align: left;
+}
+
+.winterSchoolRegistr p{
+	font-family: Mulish;
+	font-size: 20px;
+	font-weight: 400;
+	line-height: 25.1px;
+	text-align: left;
+}
+
+.winterSchoolRegistr h2{
+	font-family: TT Hoves;
+	font-size: 26px;
+	font-weight: 500;
+	line-height: 29.9px;
+	text-align: left;
+}
+
+.winterSchoolReportsHead p{
+	font-family: TT Hoves;
+	font-size: 26px;
+	font-weight: 500;
+	line-height: 29.9px;
+	text-align: left;
+}
+
+.winterSchoolReportsText p{
+	font-family: Mulish;
+	font-size: 20px;
+	font-weight: 400;
+	line-height: 25.1px;
+	text-align: left;
+}
+
+.winterSchoolMetodsHead p{
+	font-family: TT Hoves;
+	font-size: 26px;
+	font-weight: 500;
+	line-height: 29.9px;
+	text-align: left;
+}
+
+.winterSchoolMetodsText p{
+	font-family: Mulish;
+	font-size: 20px;
+	font-weight: 400;
+	line-height: 25.1px;
+	text-align: left;
+}
+
+.winterSchoolMetodsText span{
+	font-family: Mulish;
+	font-size: 20px;
+	font-weight: 700;
+	line-height: 25.1px;
+	text-align: left;
+}
+
+.winterSchoolLinks p{
+	font-family: Mulish;
+	font-size: 20px;
+	font-weight: 700;
+	line-height: 25.1px;
+	text-align: left;
+}
+
+.winterSchoolWorkersList p{
+	font-family: TT Hoves;
+	font-size: 20px;
+	font-weight: 400;
+	line-height: 23px;
+	text-align: left;
+}
+
+.winterSchoolWorkersList span{
+	font-family: TT Hoves;
+	font-size: 20px;
+	font-weight: 400;
+	line-height: 23px;
+	text-align: left;
+	background: linear-gradient(185deg, #f8a94a 0%, #c97713 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.winterSchoolRegistr a{
+	font-family: Mulish;
+	font-size: 20px;
+	font-weight: 400;
+	line-height: 25.1px;
+	text-align: left;
+	background: linear-gradient(185deg, #f8a94a 0%, #c97713 100%);
+	background-clip: text;
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	text-decoration: underline;
+    text-decoration-color: #f8a94a;
+    text-decoration-skip-ink: none;
+}
+
+.winterSchoolRegistr a:hover{
+	background: var(--dark-wheat);
+	background-clip: text;
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	text-decoration-color: var(--dark-wheat);
+}
+
+.winterSchoolReportsText span{
+	font-family: TT Hoves;
+	font-size: 20px;
+	font-weight: 700;
+	line-height: 23.56px;
+	text-align: left;
+}
+
+.winterSchoolReportsText a{
+	color: #373F41;
+	font-family: Mulish;
+	font-size: 20px;
+	font-weight: 400;
+	line-height: 25.1px;
+	text-align: left;
+	text-decoration: underline;
+}
+
+.winterSchoolReportsText a:hover{
+	background: var(--light-wheat);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	background-clip: text;
+	text-fill-color: transparent;
+	text-decoration: underline;
+    text-decoration-color: #f8a94a;
+    text-decoration-skip-ink: none;
+}
+
+.winterSchoolTextColBlack{
+	font-family: Mulish;
+	font-size: 20px;
+	font-weight: 700;
+	line-height: 25.1px;
+	text-align: left;
+}
+
+.winterSchoolTextColOrange{
+	font-family: Mulish;
+	font-size: 20px;
+	font-weight: 400;
+	line-height: 25.1px;
+	text-align: left;
+	background: linear-gradient(185deg, #f8a94a 0%, #c97713 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.winterSchoolLinksMail{
+	font-family: Mulish;
+	font-size: 20px;
+	font-weight: 400;
+	line-height: 25.1px;
+	text-align: left;
+	background: linear-gradient(185deg, #f8a94a 0%, #c97713 100%);
+	background-clip: text;
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	text-decoration: underline;
+    text-decoration-color: #f8a94a;
+    text-decoration-skip-ink: none;
+}
+
+.winterSchoolLinksMail:hover{
+	background: var(--dark-wheat);
+	background-clip: text;
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	text-decoration-color: var(--dark-wheat);
+}
+
+.winterSchoolMail2:hover{
+	background: var(--dark-wheat);
+	background-clip: text;
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	text-decoration-color: var(--dark-wheat);
+}
+
+.winterSchoolTel{
+	font-family: Mulish;
+	font-size: 20px;
+	font-weight: 400;
+	line-height: 25.1px;
+	text-align: left;
+	text-decoration: none;
+	color: #373F41;
+}
+
+.winterSchoolTel:hover{
+	background: var(--light-wheat);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	background-clip: text;
+	text-fill-color: transparent;
+}
+
+.winterSchoolLinkOrange:hover{
+	background: var(--dark-wheat);
+	background-clip: text;
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	text-decoration-color: var(--dark-wheat);
+}
+
+.winterSchoolPartnersTitle{
+	font-family: TT Hoves;
+	font-size: 42px;
+	font-weight: 700;
+	line-height: 48.3px;
+	text-align: left;
+}
+
+.winterSchoolTextCol a{
+	color: #373F41;
+}
+
+.winterSchoolTel{
+	text-decoration: none;
+}
+
+.winterSchoolMail{
+	color: #373F41;
+	font-family: Mulish;
+	font-size: 20px;
+	font-weight: 700;
+	line-height: 25.1px;
+	text-align: left;
+	text-decoration: underline;
+	text-wrap: nowrap;
+}
+
+.winterSchoolMail:hover{
+	background: var(--dark-wheat);
+	background-clip: text;
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	text-decoration-color: var(--dark-wheat);
+}
+
+.winterSchoolLinkOrange{
+	font-family: Mulish;
+	font-size: 20px;
+	font-weight: 400;
+	line-height: 25.1px;
+	text-align: left;
+	background: linear-gradient(185deg, #f8a94a 0%, #c97713 100%);
+	background-clip: text;
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	text-decoration: underline;
+    text-decoration-color: #f8a94a;
+    text-decoration-skip-ink: none;
+}
+
+.winterSchoolSection{
+	padding: 70px 0 100px 0;
+}
+
+.winterSchoolWrapper{
+	display: flex;
+	flex-direction: column;
+	gap: 50px;
+}
+
+.winterSchoolHeader{
+	display: flex;
+	flex-direction: column;
+	gap: 30px;
+}
+
+.winterSchoolTextCol{
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+}
+
+.winterSchoolWorkers{
+	display: flex;
+	flex-direction: column;
+	gap: 30px;
+}
+
+.winterSchoolWorkersHead{
+	display: flex;
+	align-items: center;
+	gap: 30px;
+}
+
+.winterSchoolWorkersLists{
+	display: flex;
+	gap: 30px;
+}
+
+.winterSchoolWorkersList{
+	display: flex;
+	flex-direction: column;
+	gap: 15px;
+}
+
+.winterSchoolRegistr{
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+}
+
+.winterSchoolReports{
+	display: flex;
+	flex-direction: column;
+	gap: 30px;
+}
+
+.winterSchoolReportsHead{
+	display: flex;
+	align-items: center;
+	gap: 30px;
+}
+
+.winterSchoolReportsText{
+	display: flex;
+	flex-direction: column;
+	gap: 15px;
+}
+
+.winterSchoolMetods{
+	display: flex;
+	flex-direction: column;
+	gap: 30px;
+}
+
+.winterSchoolMetodsHead{
+	display: flex;
+	align-items: center;
+	gap: 30px;
+}
+
+.winterSchoolMetodsText{
+	display: flex;
+	flex-direction: column;
+	gap: 15px;
+}
+
+.winterSchoolLinks{
+	display: flex;
+	flex-direction: column;
+	gap: 15px;
+}
+
+.winterSchoolPartnersWrapper{
+	display: flex;
+	flex-direction: column;
+	gap: 90px;
+}
+
+.winterSchoolPartners{
+	display: flex;
+	flex-direction: column;
+	gap: 50px;
+}
+
+.winterSchoolPartnersTop{
+	display: grid;
+	justify-items: center;
+	grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
+.winterSchoolPartnersBottom{
+	display: grid;
+	justify-items: center;
+	grid-template-columns: 1fr 1fr 1fr;
+}
+
+.winterSchoolPartnersInfCont{
+	display: flex;
+	flex-direction: column;
+	gap: 50px;
+}
+
+.winterSchoolPartnersInf{
+	display: grid;
+	justify-items: center;
+	grid-template-columns: 1fr 1fr;
+}

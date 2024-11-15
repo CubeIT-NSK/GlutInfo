@@ -1,0 +1,104 @@
+.shopsWithoutHeaderSection {
+	width: 100%;
+	padding: 70px 0 100px 0;
+}
+
+.shopsWithoutSection {
+	padding: 100px 0 100px 0;
+}
+
+.shopsWithout h2 {
+	font-family: TT Hoves;
+	font-size: 42px;
+	font-weight: 700;
+	line-height: 48.3px;
+	text-align: left;
+}
+
+.shopsWithout h3 {
+	font-family: Mulish;
+	font-size: 20px;
+	font-weight: 700;
+	line-height: 25.1px;
+	text-align: left;
+}
+
+.shopsWithout p {
+	font-family: Mulish;
+	font-size: 20px;
+	font-weight: 400;
+	line-height: 25.1px;
+	text-align: left;
+}
+
+.shopsWithoutList span {
+	font-family: Mulish;
+	font-size: 20px;
+	font-weight: 400;
+	line-height: 25.1px;
+	text-align: left;
+	background: var(--gradient-wheat);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	background-clip: text;
+
+	text-decoration: underline;
+	text-decoration-color: #f8a94a;
+	text-decoration-skip-ink: none;
+}
+
+.shopsWithout a {
+	font-family: Mulish;
+	font-size: 20px;
+	font-weight: 400;
+	line-height: 25.1px;
+	text-align: left;
+	color: var(--black);
+	text-decoration: none;
+}
+
+.shopsWithoutWrapper {
+	display: flex;
+	gap: 65px;
+}
+
+.shopsWithoutWrapperReverse {
+	display: flex;
+	flex-direction: row-reverse;
+	gap: 65px;
+}
+
+.shopsWithoutLeft {
+	display: flex;
+	flex-direction: column;
+	gap: 42px;
+}
+
+.shopsWithoutLeftTitle {
+	display: flex;
+	flex-direction: column;
+	gap: 22px;
+}
+
+.shopsWithoutLeftText {
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+}
+
+.shopsWithoutLists {
+	display: flex;
+	flex-direction: column;
+	gap: 30px;
+}
+
+.shopsWithoutList {
+	display: flex;
+	gap: 30px;
+}
+
+.shopsWithoutListTText {
+	display: flex;
+	flex-direction: column;
+	gap: 15px;
+}

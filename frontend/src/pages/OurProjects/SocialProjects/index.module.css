@@ -1,0 +1,454 @@
+.socialMedDaysCont {
+	display: flex;
+	flex-direction: column;
+	gap: 50px;
+}
+
+.socialProjectsSection {
+	padding: 70px 0 100px 0;
+	width: 100%;
+}
+
+.socialMedDaysHeader {
+	display: flex;
+	gap: 30px;
+}
+
+.socialMedDays {
+	display: flex;
+	flex-direction: column;
+	gap: 30px;
+}
+
+.title {
+	color: rgb(55, 63, 65);
+	font-family: TT Hoves;
+	font-size: 42px;
+	font-weight: 700;
+	line-height: 115%;
+	letter-spacing: 0px;
+	text-align: left;
+}
+
+.socialHeaderTitle {
+	font-family: TT Hoves;
+	font-size: 42px;
+	font-weight: 700;
+	line-height: 48.3px;
+	text-align: left;
+	margin-top: -9px;
+}
+
+.socialHeaderText {
+	font-family: Mulish;
+	font-size: 20px;
+	font-weight: 400;
+	line-height: 25.1px;
+	text-align: left;
+}
+
+.socialHeaderTextOrange {
+	font-family: Mulish;
+	font-size: 20px;
+	font-weight: 400;
+	line-height: 25.1px;
+	text-align: left;
+	background: linear-gradient(185deg, #f8a94a 0%, #c97713 100%);
+	background-clip: text;
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+}
+
+.socialHeaderTextBlack {
+	font-family: Mulish;
+	font-size: 20px;
+	font-weight: 700;
+	line-height: 25.1px;
+	text-align: left;
+}
+
+.socialMedDaysMain {
+	display: flex;
+	flex-direction: column;
+	gap: 30px;
+}
+
+.socialMedDaysMainImg {
+	display: flex;
+	gap: 30px;
+}
+
+.socialMedDaysMainBtnWrapper {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 39px;
+	padding: 12.5px;
+	box-shadow: 0px 4px 12px 0px #00000026;
+	background-color: white;
+}
+
+.socialMedDaysMainBtn {
+	width: 53px;
+	height: 53px;
+	background-color: #F8A94A;
+	border-radius: 100px;
+	border: none;
+	position: relative;
+}
+
+.socialMedDaysMainBtn::before {
+	content: "";
+	position: absolute;
+	top: -9px;
+	left: -9px;
+	width: 71px;
+	height: 71px;
+	background: #F8A94A26;
+	border-radius: 100px;
+}
+
+.socialMedDaysMainBtn::after {
+	content: url("../../../assets/img/onlineProject/onlineProjectPlay.svg");
+	transform: scale(0.8);
+	position: absolute;
+	top: 9px;
+	left: 16px;
+}
+
+.socialMedDaysMainBtnText {
+	font-family: TT Hoves;
+	font-size: 22px;
+	font-weight: 500;
+	line-height: 25.3px;
+	text-align: left;
+
+	background: linear-gradient(185deg, #f8a94a 0%, #c97713 100%);
+	background-clip: text;
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+}
+
+
+.socialHoma {
+	background: url("../../../assets/img/socialProjects/socialProjectsBackgroundImage.png");
+	background-repeat: no-repeat;
+	background-position: bottom center;
+	background-size: cover;
+	padding: 70px 0 100px 0;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	gap: 70px;
+}
+
+.socialHomaHeader {
+	display: flex;
+	gap: 30px;
+}
+
+.socialHomaHeaderTitle {
+	font-family: TT Hoves;
+	font-size: 42px;
+	font-weight: 700;
+	line-height: 48.3px;
+	text-align: left;
+}
+
+.socialHomaHeaderText {
+	font-family: Mulish;
+	font-size: 20px;
+	font-weight: 400;
+	line-height: 25.1px;
+	text-align: left;
+	max-width: 1034px;
+}
+
+.socialHeaderTextContain {
+	display: flex;
+	flex-direction: column;
+	gap: 15px;
+}
+
+.socialHomaHeaderTextOrange {
+	font-family: Mulish;
+	font-size: 20px;
+	font-weight: 400;
+	line-height: 25.1px;
+	text-align: left;
+	background: linear-gradient(185deg, #f8a94a 0%, #c97713 100%);
+	background-clip: text;
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+}
+
+.socialMedDaysHeaderText {
+	display: flex;
+	flex-direction: column;
+	gap: 44px;
+}
+
+.socialHomaHeaderAbout {
+	display: flex;
+	flex-direction: column;
+	gap: 39px;
+	max-width: 670px;
+}
+
+.socialHomaHeaderAboutContain {
+	display: flex;
+	flex-direction: column;
+	gap: 15px;
+}
+
+.socialMedDaysHeaderImg {
+	height: 420px;
+}
+
+.socialHomaMainTitle {
+	font-family: TT Hoves;
+	font-size: 32px;
+	font-weight: 600;
+	line-height: 36.8px;
+	text-align: left;
+}
+
+.socialHomaMain {
+	display: flex;
+	flex-direction: column;
+	gap: 50px;
+}
+
+.socialHomaMainTop {
+	display: flex;
+	align-items: center;
+	gap: 30px;
+}
+
+.socialHomaMainTop p {
+	font-family: TT Hoves;
+	font-size: 26px;
+	font-weight: 500;
+	line-height: 29.9px;
+	text-align: left;
+}
+
+.socialHomaMainText {
+	display: flex;
+	flex-direction: column;
+	gap: 30px;
+}
+
+.socialHomaMainText ul {
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+}
+
+.socialHomaMainText ul li {
+	list-style: none;
+}
+
+.socialHomaMainCol {
+	font-family: TT Hoves;
+	font-size: 20px;
+	font-weight: 400;
+	line-height: 23px;
+	text-align: left;
+}
+
+.socialHomaMainColOrange {
+	font-family: TT Hoves;
+	font-size: 20px;
+	font-weight: 400;
+	line-height: 23px;
+	text-align: left;
+	background: linear-gradient(185deg, #f8a94a 0%, #c97713 100%);
+	background-clip: text;
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+}
+
+.socialHomaMainColBlack {
+	font-family: TT Hoves;
+	font-size: 20px;
+	font-weight: 600;
+	line-height: 23px;
+	text-align: left;
+}
+
+.socialHomaMainImg {
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+}
+
+.socialHomaMainImgWrapper {
+	display: flex;
+	flex-direction: column;
+	gap: 30px;
+}
+
+.socialHomaMainImgBig {
+	width: 1170px;
+	height: 550px;
+}
+
+.socialHomaMainImgOther {
+	width: 230px;
+	height: 180px;
+}
+
+.socialHomaHeaderImg {
+	overflow: hidden;
+	width: 469px;
+	height: 717px;
+}
+
+.socialHomaWrapper {
+	display: flex;
+	flex-direction: column;
+	gap: 70px;
+}
+
+.socialHomaMainImgTop {
+	width: 1170px;
+	height: 550px;
+}
+
+
+.socialHomaMainImgBottom {
+	display: flex;
+	justify-content: space-between;
+}
+
+.socialHomaMainImgBottomContain {
+	width: 230px;
+	border-radius: 8px;
+}
+
+
+.socialBtn {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 30px;
+	border-radius: 4px;
+	padding: 15px 40px 15px 20px;
+	width: 1170px;
+	height: 100px;
+	box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.25);
+	outline: none;
+	border: transparent;
+	z-index: 100;
+	cursor: pointer;
+	position: relative;
+	overflow: hidden;
+	background: var(--white);
+	transition: -webkit-text-fill-color 0.3s ease-out;
+	-webkit-transition: -webkit-text-fill-color 0.3s ease-out;
+	-moz-transition: -webkit-text-fill-color 0.3s ease-out;
+	-ms-transition: -webkit-text-fill-color 0.3s ease-out;
+	-o-transition: -webkit-text-fill-color 0.3s ease-out;
+}
+
+.socialBtn span {
+	font-family: TT Hoves;
+	font-weight: 500;
+	z-index: 100;
+	font-size: 22px;
+	line-height: 115%;
+	background: linear-gradient(185deg, #f8a94a 0%, #c97713 100%);
+	background-clip: text;
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	z-index: 100000;
+}
+
+.socialBtn:hover.socialBtn span {
+	-webkit-text-fill-color: var(--white)
+}
+
+.socialBtn::before {
+	content: "";
+	display: block;
+	opacity: 0;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: linear-gradient(185deg, #f8a94a 0%, #c97713 100%);
+	transition: opacity 0.3s ease-in-out;
+	-webkit-transition: opacity 0.3s ease-in-out;
+	-moz-transition: opacity 0.3s ease-in-out;
+	-ms-transition: opacity 0.3s ease-in-out;
+	-o-transition: opacity 0.3s ease-in-out;
+	z-index: -100;
+}
+
+.socialBtn::after {
+	content: "";
+	display: block;
+	opacity: 0;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: var(--white);
+	z-index: 1000000;
+}
+
+.socialBtn:hover::before {
+	opacity: 1;
+}
+
+.socialCircle {
+	width: 72px;
+	height: 72px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border-radius: 50%;
+	background: transparent;
+	position: relative;
+	background-color: rgba(248, 169, 74, 0.15);
+}
+
+.socialInnerCircle {
+	width: 54px;
+	height: 54px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border-radius: 50%;
+	background-color: var(--light-wheat);
+	transition: width 0.3s, height 0.3s;
+	-webkit-transition: width 0.3s, height 0.3s;
+	-moz-transition: width 0.3s, height 0.3s;
+	-ms-transition: width 0.3s, height 0.3s;
+	-o-transition: width 0.3s, height 0.3s;
+}
+
+.socialBtn:hover .socialInnerCircle {
+	width: 70px;
+	height: 70px;
+}
+
+.socialPlayIcon {
+	position: relative;
+	left: 3px;
+	width: 20px;
+	height: 24px;
+	transition: width 0.3s, height 0.3s;
+	-webkit-transition: width 0.3s, height 0.3s;
+	-moz-transition: width 0.3s, height 0.3s;
+	-ms-transition: width 0.3s, height 0.3s;
+	-o-transition: width 0.3s, height 0.3s;
+}
+
+.socialBtn:hover .socialPlayIcon {
+	width: 26px;
+	height: 32px;
+}

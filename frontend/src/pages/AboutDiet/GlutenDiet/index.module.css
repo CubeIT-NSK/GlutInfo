@@ -1,0 +1,143 @@
+.glutenDietSection {
+	width: 100%;
+	padding: 70px 0 100px 0;
+}
+
+.glutenDietHiddenSection,
+.glutenDietExplicitSection,
+.glutenDietNonToxicSection {
+	background-repeat: no-repeat;
+	background-position: bottom center;
+	background-size: cover;
+	width: 100%;
+	padding: 100px 0 100px 0;
+}
+
+.glutenDietText h2 {
+	font-family: TT Hoves;
+	font-size: 42px;
+	font-weight: 700;
+	line-height: 48.3px;
+	text-align: left;
+}
+
+.glutenDietCol p {
+	font-family: Mulish;
+	font-size: 20px;
+	font-weight: 400;
+	line-height: 25.1px;
+	text-align: left;
+
+}
+
+.glutenDietTextOrange {
+	font-family: Mulish;
+	font-size: 20px;
+	font-weight: 400;
+	line-height: 25.1px;
+	text-align: left;
+	background: var(--gradient-wheat);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+}
+
+.glutenDietTextBlack {
+	font-family: Mulish;
+	font-size: 20px;
+	font-weight: 700;
+	line-height: 25.1px;
+	text-align: left;
+}
+
+.glutenDietText h3 {
+	font-family: TT Hoves;
+	font-size: 26px;
+	font-weight: 500;
+	line-height: 29.9px;
+	text-align: left;
+}
+
+.glutenDietText li {
+	font-family: Mulish;
+	font-size: 20px;
+	font-weight: 400;
+	line-height: 25.1px;
+	text-align: left;
+	list-style: none;
+}
+
+.glutenDietColMini p {
+	font-family: Mulish;
+	font-size: 14px;
+	font-weight: 600;
+	line-height: 18px;
+	letter-spacing: 0.20000000298023224px;
+	text-align: left;
+}
+
+.glutenDietText {
+	display: flex;
+	flex-direction: column;
+	gap: 30px;
+}
+
+.glutenDietCol {
+	display: flex;
+	flex-direction: column;
+	gap: 15px;
+}
+
+.glutenDietText ul {
+	display: flex;
+	flex-direction: column;
+	gap: 15px;
+}
+
+.glutenDietMainCol {
+	display: flex;
+	flex-direction: column;
+	gap: 15px;
+}
+
+.glutenDietMainCol p {
+	font-family: Mulish;
+	font-size: 20px;
+	font-weight: 400;
+	line-height: 25.1px;
+	text-align: left;
+	max-width: 980px;
+}
+
+.glutenDietImageSection {
+	width: 100%;
+	padding: 100px 0 100px 0;
+}
+
+.glutenDietImageWrapper {
+	display: flex;
+	justify-content: center;
+}
+
+.glutenDietText h4 {
+	font-family: TT Hoves;
+	font-size: 26px;
+	font-weight: 500;
+	line-height: 29.9px;
+	text-align: left;
+}
+
+.glutenDietStructureList {
+	display: flex;
+	justify-content: space-between;
+}
+
+.glutenDietStructureList ul {
+	display: flex;
+	flex-flow: column wrap;
+	gap: 15px 50px;
+	max-height: 230px;
+}
+
+.glutenDietStructureList .glutenDietCol {
+	max-width: 793px;
+}

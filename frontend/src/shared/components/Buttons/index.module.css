@@ -1,0 +1,148 @@
+/* GRADIENT BUTTON */
+.gradientBtn {
+	border-radius: 4px;
+	border: transparent;
+	box-shadow: 0px 4px 12px 0px rgba(0, 0, 0, 0.25);
+	background: var(--gradient-wheat);
+	cursor: pointer;
+	width: fit-content;
+	transition: background 0.3s;
+}
+
+.gradientBtn span {
+	color: rgb(255, 255, 255);
+	font-family: TT Hoves, sans-serif;
+	font-size: 22px;
+	font-weight: 500;
+	line-height: 115%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border-radius: 4px;
+	transition: all 0.3s;
+}
+
+.gradientBtn:hover span {
+	background: var(--dark-wheat);
+}
+
+/* WHITE BUTTON */
+.whiteBtn {
+	border-radius: 4px;
+	border: 1px solid var(--light-wheat);
+	box-shadow: 0px 4px 12px 0px rgba(0, 0, 0, 0.25);
+	background: var(--white);
+	cursor: pointer;
+	width: fit-content;
+	transition: background 0.5s;
+	-webkit-transition: background 0.5s;
+	-moz-transition: background 0.5s;
+	-ms-transition: background 0.5s;
+	-o-transition: background 0.5s;
+}
+
+.whiteBtn span {
+	color: #F8A94A;
+	font-family: TT Hoves, sans-serif;
+	font-size: 22px;
+	font-weight: 500;
+	line-height: 115%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	transition: all 0.5s;
+}
+
+.whiteBtn:hover span {
+	background: var(--light-wheat);
+	color: var(--white) !important;
+}
+
+/* GRAY BUTTON */
+.grayBtn {
+	border-radius: 8px !important;
+	border: 1px solid var(--gray);
+	background: var(--white);
+	cursor: pointer;
+	width: fit-content;
+	transition: background 0.5s, border 0.5s;
+	-webkit-transition: background 0.5s, border 0.5s;
+	-moz-transition: background 0.5s, border 0.5s;
+	-ms-transition: background 0.5s, border 0.5s;
+	-o-transition: background 0.5s, border 0.5s;
+	-webkit-border-radius: 8px !important;
+	-moz-border-radius: 8px !important;
+	-ms-border-radius: 8px !important;
+	-o-border-radius: 8px !important;
+}
+
+.grayBtn span {
+	color: #F8A94A;
+	font-family: Mulish;
+	font-size: 14px !important;
+	border-radius: 8px;
+	font-weight: 600;
+	line-height: 18px;
+	letter-spacing: 0.2px;
+	width: max-content;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	transition: all 0.5s;
+	-webkit-transition: all 0.5s;
+	-moz-transition: all 0.5s;
+	-ms-transition: all 0.5s;
+	-o-transition: all 0.5s;
+}
+
+.grayBtn:hover span {
+	color: var(--white) !important;
+}
+
+.grayBtn:hover {
+	border: 1px solid #F8A94A;
+	background: var(--light-wheat);
+}
+
+/* DISABLED BUTTON */
+.disabledBtn {
+	cursor: not-allowed !important;
+	opacity: 0.5;
+	pointer-events: none;
+}
+
+.disabledBtn span {
+	background: none !important;
+}
+
+/* BLACK COLOR */
+.blackBtnColor {
+	color: var(--black) !important;
+}
+
+.blackBtnColor:hover {
+	color: var(--white) !important;
+}
+
+/* WHITE COLOR */
+.whiteBtnColor {
+	color: var(--white);
+}
+
+/* GRAY COLOR */
+.grayBtnColor {
+	color: #929292 !important;
+}
+
+/* FONT SIZE */
+.smallBtnSpan {
+	font-size: 18px !important;
+}
+
+.bigBtnSpan {
+	font-size: 22px !important;
+}
+
+.miniBtnSpan {
+	font-size: 14px !important;
+}

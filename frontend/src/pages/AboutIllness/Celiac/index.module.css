@@ -1,0 +1,389 @@
+.celiacSection {
+	width: 100%;
+	padding: 71px 0 103px 0;
+}
+
+.celiacSectionBanner1 {
+	background-repeat: no-repeat;
+	background-position: bottom center;
+	background-size: cover;
+	width: 100%;
+	padding: 71px 0 103px 0;
+}
+
+.celiacSectionBanner2 {
+	background-repeat: no-repeat;
+	background-position: bottom center;
+	background-size: cover;
+	width: 100%;
+	padding: 71px 0 103px 0;
+}
+
+.celiacSymptomsSection {
+	background-repeat: no-repeat;
+	background-position: bottom center;
+	background-size: cover;
+	width: 100%;
+	padding: 100px 0 100px 0;
+}
+
+.celiacSectionPoint {
+	width: 100%;
+	padding: 100px 0 100px 0;
+}
+
+.celiacTitleWrapper {
+	display: flex;
+	flex-direction: column;
+	gap: 30px;
+}
+
+.title {
+	color: rgb(55, 63, 65);
+	font-family: TT Hoves;
+	font-size: 42px;
+	font-weight: 700;
+	line-height: 115%;
+	letter-spacing: 0px;
+	text-align: left;
+}
+
+.celiacBlock {
+	width: 1170px;
+	height: 129px;
+	position: relative;
+
+	border: 1px solid transparent;
+	background-image: var(--gradient-wheat);
+	border-radius: 10px;
+	box-shadow: inset 0px 0px 0px 100vw #fff;
+	box-sizing: border-box;
+
+	margin-left: 23px;
+}
+
+.celiacBlockEl {
+	padding-left: 74px;
+	padding-top: 25px;
+}
+
+.celiacBlock::before {
+	content: "";
+	position: absolute;
+	left: -25px;
+	top: 28%;
+	width: 46px;
+	height: 47.5px;
+	background-color: white;
+	border: 1px solid #d48b32;
+	border-radius: 100px;
+}
+
+.celiacBlock::after {
+	content: "";
+	position: absolute;
+	left: 22px;
+	top: 47%;
+	width: 30px;
+	height: 1px;
+	background-image: var(--gradient-wheat);
+}
+
+.celiacBlockEl img {
+	position: absolute;
+	top: 38.5px;
+	left: -24px;
+}
+
+.celiacBlockEl::before {
+	content: "";
+	position: absolute;
+	top: 25px;
+	left: -26px;
+	width: 25px;
+	height: 61px;
+	background-color: white;
+}
+
+.celiacBlockEl p {
+	color: rgb(55, 63, 65);
+	font-family: Mulish;
+	font-size: 20px;
+	font-weight: 400;
+	line-height: 25px;
+	letter-spacing: 0px;
+	text-align: left;
+	max-width: 1037px;
+}
+
+.celiacBlockEl span {
+	background: var(--gradient-wheat);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+}
+
+.celiacWrapper {
+	display: flex;
+	flex-direction: column;
+	gap: 50px;
+}
+
+.celiacText {
+	display: flex;
+	flex-direction: column;
+	gap: 15px;
+}
+
+.celiacText p {
+	font-family: Mulish;
+	font-size: 20px;
+	font-weight: 400;
+	line-height: 25.1px;
+	text-align: left;
+}
+
+.celiacText span {
+	font-family: Mulish;
+	font-size: 20px;
+	font-weight: 400;
+	line-height: 25.1px;
+	text-align: left;
+	background: var(--gradient-wheat);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+}
+
+.celiacContain {
+	display: flex;
+	justify-content: center;
+}
+
+.celiacBlock2 {
+	width: 1170px;
+	height: 154px;
+	position: relative;
+
+	border: 1px solid transparent;
+	background-image: var(--gradient-wheat);
+	border-radius: 10px;
+	box-shadow: inset 0px 0px 0px 100vw #fff;
+	box-sizing: border-box;
+
+	margin-left: 23px;
+}
+
+.celiacBlockEl2 {
+	padding-left: 74px;
+	padding-top: 25px;
+}
+
+.celiacBlock2::before {
+	content: "";
+	position: absolute;
+	left: -25px;
+	top: 32%;
+	width: 46px;
+	height: 47.5px;
+	background-color: white;
+	border: 1px solid #d48b32;
+	border-radius: 100px;
+}
+
+.celiacBlock2::after {
+	content: "";
+	position: absolute;
+	left: 22px;
+	top: 47%;
+	width: 30px;
+	height: 1px;
+	background-image: var(--gradient-wheat);
+}
+
+.celiacBlockEl2 img {
+	position: absolute;
+	top: 51.5px;
+	left: -24px;
+}
+
+.celiacBlockEl2::before {
+	content: "";
+	position: absolute;
+	top: 43px;
+	left: -26px;
+	width: 25px;
+	height: 61px;
+	background-color: white;
+}
+
+.celiacBlockEl2 p {
+	color: rgb(55, 63, 65);
+	font-family: Mulish;
+	font-size: 20px;
+	font-weight: 400;
+	line-height: 25px;
+	letter-spacing: 0px;
+	text-align: left;
+	max-width: 1037px;
+}
+
+.celiacBlockEl2 span {
+	background: var(--gradient-wheat);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+}
+
+.celiacOtherWrapper {
+	display: flex;
+	flex-direction: column;
+	gap: 25px;
+}
+
+.celiacOtherSection {
+	width: 100%;
+	padding: 100px 0 100px 0;
+}
+
+.celiacSymptomsWrapper {
+	display: flex;
+	flex-direction: column;
+	gap: 50px;
+}
+
+.celiacSymptomsTitle {
+	display: flex;
+	flex-direction: column;
+	gap: 46px;
+}
+
+.celiacSymptomsText {
+	display: flex;
+	flex-direction: column;
+	gap: 15px;
+}
+
+.celiacSymptomsTitle h2 {
+	font-family: TT Hoves;
+	font-size: 32px;
+	font-weight: 600;
+	line-height: 36.8px;
+	text-align: left;
+}
+
+.celiacSymptomsTitle p {
+	font-family: Mulish;
+	font-size: 20px;
+	font-weight: 400;
+	line-height: 25.1px;
+	text-align: left;
+}
+
+.celiacSymptomsTitle span {
+	font-family: Mulish;
+	font-size: 20px;
+	font-weight: 700;
+	line-height: 25.1px;
+	text-align: left;
+	background: var(--gradient-wheat);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+}
+
+.celiacSymptomsText p {
+	font-family: Mulish;
+	font-size: 20px;
+	font-weight: 400;
+	line-height: 25.1px;
+	text-align: left;
+}
+
+.celiacSymptomsBlack {
+	font-family: Mulish;
+	font-size: 20px;
+	font-weight: 800;
+	line-height: 25.1px;
+	text-align: left;
+}
+
+.celiacSymptomsOrangeBold {
+	font-family: Mulish;
+	font-size: 20px;
+	font-weight: 800;
+	line-height: 25.1px;
+	text-align: left;
+	background: var(--gradient-wheat);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+}
+
+.celiacSymptomsOrange {
+	font-family: Mulish;
+	font-size: 20px;
+	font-weight: 400;
+	line-height: 25.1px;
+	text-align: left;
+	background: var(--gradient-wheat);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+}
+
+.celiacPointText {
+	font-family: Mulish;
+	font-size: 20px;
+	font-weight: 400;
+	line-height: 25.1px;
+	text-align: left;
+}
+
+.celiacPointText span {
+	font-family: Mulish;
+	font-size: 20px;
+	font-weight: 800;
+	line-height: 25.1px;
+	text-align: left;
+}
+
+.celiacPointListCol h2 {
+	font-family: TT Hoves;
+	font-size: 42px;
+	font-weight: 700;
+	line-height: 48.3px;
+	text-align: left;
+	text-transform: uppercase;
+	color: var(--light-wheat);
+}
+
+.celiacPointListCol p {
+	font-family: Mulish;
+	font-size: 20px;
+	font-weight: 400;
+	line-height: 25.1px;
+	text-align: left;
+	max-width: 490px;
+	padding-top: 10px;
+}
+
+.celiacPointListCol span {
+	font-family: Mulish;
+	font-size: 20px;
+	font-weight: 700;
+	line-height: 25.1px;
+	text-align: left;
+}
+
+.celiacPointWrapper {
+	display: flex;
+	flex-direction: column;
+	gap: 40px;
+}
+
+.celiacPointListCol {
+	display: flex;
+	gap: 30px;
+}
+
+.celiacPointList {
+	display: flex;
+	flex-flow: column wrap;
+	gap: 20px 28px;
+	max-height: 550px;
+}

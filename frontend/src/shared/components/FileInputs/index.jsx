@@ -26,13 +26,20 @@ const FileInput = ({ title, multiple = false, maxFiles = Infinity, acceptedForma
     if (!isFileSelectionValid(selectedFiles)) return;
 
     Promise.all(selectedFiles.map(convertToBase64))
-      .then(newFiles => {
-        setFiles(prevFiles => [...prevFiles, ...newFiles]);
-        setError('');
-        onFileChange?.([...files, ...newFiles]);
-      })
-      .catch(() => setError('Ошибка при конвертации файлов или недопустимая длина видео.'));
-  };
+    .then(newFiles => {
+      const updatedFiles = multiple ? [...files, ...newFiles] : newFiles;
+
+      if (updatedFiles.length > maxFiles) {
+        setError(`Вы можете выбрать не более ${maxFiles} ${getFileWord(maxFiles)}.`);
+        return;
+      }
+
+      setFiles(updatedFiles);
+      setError('');
+      onFileChange?.(updatedFiles);
+    })
+    .catch(() => setError('Ошибка при конвертации файлов или недопустимая длина видео.'));
+};
 
   const isFileSelectionValid = (selectedFiles) => {
     if (multiple && files.length + selectedFiles.length > maxFiles) {

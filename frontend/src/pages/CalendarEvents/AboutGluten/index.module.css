@@ -1,0 +1,48 @@
+.aboutGlutenSection {
+	padding: 70px 0 100px 0;
+}
+
+.aboutGlutenWrapper {
+	display: flex;
+	flex-direction: column;
+	gap: 50px;
+}
+
+.aboutGlutenHead {
+	display: flex;
+	flex-direction: column;
+	gap: 30px;
+}
+
+.aboutGlutenHead h2 {
+	font-family: TT Hoves;
+	font-size: 32px;
+	font-weight: 600;
+	line-height: 36.8px;
+	text-align: left;
+}
+
+.aboutGlutenHead p {
+	font-family: TT Hoves;
+	font-size: 42px;
+	font-weight: 700;
+	line-height: 48.3px;
+	text-align: left;
+	background: linear-gradient(185deg, #f8a94a 0%, #c97713 100%);
+	background-clip: text;
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+}
+
+.aboutGlutenText p {
+	font-family: Mulish;
+	font-size: 20px;
+	font-weight: 400;
+	line-height: 25.1px;
+	text-align: left;
+}
+
+.aboutGlutenImages {
+	display: flex;
+	gap: 10px;
+}

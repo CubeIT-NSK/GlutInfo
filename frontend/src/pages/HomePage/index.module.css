@@ -1,15 +1,3 @@
-.container {
-	display: flex;
-	flex-direction: column;
-	min-height: 100vh;
-}
-
-.mainContent {
-	display: flex;
-	flex-direction: column;
-}
-
-
 /* TELESERVICE */
 
 .teleService {
@@ -53,27 +41,29 @@
 	gap: 38px;
 }
 
-.teleMiddleWrap header {
-	color: rgb(55, 63, 65);
+.teleTopText {
 	font-family: TT Hoves;
+	font-size: 42px;
 	font-weight: 700;
-	line-height: 115%;
-	letter-spacing: 0px;
+	line-height: 48.3px;
 	text-align: left;
-	width: 570px;
+	text-underline-position: from-font;
+	text-decoration-skip-ink: none;
 }
 
-.teleMiddleWrap header span {
+.teleTopText span {
 	background: var(--gradient-wheat);
 	-webkit-background-clip: text;
 	-webkit-text-fill-color: transparent;
 	background-clip: text;
 
 	font-family: TT Hoves;
+	font-size: 42px;
 	font-weight: 700;
-	line-height: 115%;
-	letter-spacing: 0px;
+	line-height: 48.3px;
 	text-align: left;
+	text-underline-position: from-font;
+	text-decoration-skip-ink: none;
 	width: 570px;
 }
 
@@ -86,28 +76,6 @@
 	letter-spacing: 0px;
 	text-align: left;
 	width: 570px;
-}
-
-.teleMiddleWrap button {
-	border-radius: 4px;
-	border: transparent;
-	box-shadow: 0px 4px 12px 0px rgba(0, 0, 0, 0.25);
-	background: var(--gradient-wheat);
-	padding: 24.5px 44.5px;
-	cursor: pointer;
-
-	color: rgb(255, 255, 255);
-	font-family: TT Hoves;
-	font-size: 22px;
-	font-weight: 500;
-	line-height: 115%;
-	letter-spacing: 0px;
-
-	width: 470px;
-}
-
-.teleMiddleWrap button:hover {
-	background: var(--dark-wheat);
 }
 
 .teleMiddleTopWrapper {
@@ -123,7 +91,6 @@
 	display: flex;
 	flex-direction: column;
 	padding-bottom: 101px;
-	background-image: url('../../assets/img/aboutUs/bg.png');
 	background-repeat: no-repeat;
 	background-position: bottom center;
 	background-size: cover;
@@ -156,11 +123,12 @@
 	padding-top: 42px;
 }
 
-.aboutUsTextWrapper header {
+.aboutUsLeftText {
 	color: var(--black);
 	font-family: TT Hoves;
 	font-weight: 700;
 	line-height: 115%;
+	font-size: 42px;
 	letter-spacing: 0px;
 	text-align: left;
 }
@@ -200,29 +168,6 @@
 	height: 330px;
 	margin: 0 auto;
 }
-
-.aboutUsLeft button {
-	border-radius: 4px;
-	border: transparent;
-	box-shadow: 0px 4px 12px 0px rgba(0, 0, 0, 0.25);
-	background: var(--gradient-wheat);
-	padding: 27.5px 176.5px;
-	cursor: pointer;
-
-	color: rgb(255, 255, 255);
-	font-family: TT Hoves;
-	font-size: 22px;
-	font-weight: 500;
-	line-height: 115%;
-	letter-spacing: 0px;
-
-	width: 470px;
-}
-
-.aboutUsLeft button:hover {
-	background: var(--dark-wheat);
-}
-
 
 /* RELEVANCE */
 
@@ -413,19 +358,16 @@
 }
 
 #tselikation {
-	background-image: url('../../assets/img/relevanceProblem/glutTselikation.png');
 	background-repeat: no-repeat;
 	background-position: bottom -13px right 0px;
 }
 
 #percent {
-	background-image: url('../../assets/img/relevanceProblem/glutPercent.png');
 	background-repeat: no-repeat;
 	background-position: bottom -55px center;
 }
 
 #patient {
-	background-image: url('../../assets/img/relevanceProblem/glutPatient.png');
 	background-repeat: no-repeat;
 	background-position: bottom -65.51px center;
 }
@@ -433,7 +375,6 @@
 #disease {
 	width: 303px;
 
-	background-image: url('../../assets/img/relevanceProblem/glutDisease.png');
 	background-repeat: no-repeat;
 	background-position: bottom 14px center;
 }
@@ -444,7 +385,6 @@
 	display: flex;
 	flex-direction: column;
 	padding: 135px 0 95px 0;
-	background-image: url('../../assets/img/patientHistory/bgPatientHistory.png');
 	background-repeat: no-repeat;
 	background-position: bottom center;
 	background-size: cover;
@@ -467,78 +407,6 @@
 	gap: 20px;
 	margin-top: 20px;
 }
-
-.patientHistoryActionsButtonLeft {
-	color: rgb(255, 255, 255);
-	font-family: TT Hoves;
-	font-size: 1.38rem;
-	font-weight: 500;
-	line-height: 115%;
-	letter-spacing: 0px;
-	text-align: left;
-
-	padding: 0.94rem 2.5rem;
-
-	border: none;
-	border-radius: 0.25rem;
-	cursor: pointer;
-	box-shadow: 0px 4px 12px 0px rgba(0, 0, 0, 0.25);
-	background: linear-gradient(184.89deg, rgb(248, 169, 74) 28.449%, rgb(201, 119, 19) 117.822%);
-}
-
-.patientHistoryActionsButtonLeft:hover {
-	background: var(--dark-wheat);
-}
-
-.patientHistoryActionsButtonLeft span {
-	color: rgb(255, 255, 255);
-	font-family: TT Hoves;
-	font-size: 1.38rem;
-	font-weight: 500;
-	line-height: 115%;
-	letter-spacing: 0px;
-	text-align: left;
-}
-
-.patientHistoryActionsButtonRight {
-	padding: 15px 40px;
-
-	border: 1px solid transparent;
-	background-image: var(--gradient-wheat);
-	box-shadow: inset 0px 0px 0px 100vw #fff;
-	border-radius: 4px;
-	box-sizing: border-box;
-	cursor: pointer;
-	width: 370px;
-	height: 70px;
-}
-
-.patientHistoryActionsButtonRight span {
-	font-family: 'TT Hoves';
-	font-size: 22px;
-	font-weight: 500;
-	line-height: 115%;
-	letter-spacing: 0px;
-	text-align: center;
-
-	background: var(--gradient-btn);
-	-webkit-background-clip: text;
-	-webkit-text-fill-color: transparent;
-	background-clip: text;
-	text-fill-color: transparent;
-}
-
-.patientHistoryActionsButtonRight:hover {
-	box-shadow: none;
-}
-
-.patientHistoryActionsButtonRight:hover span {
-	background: none;
-	color: white;
-	-webkit-background-clip: inherit;
-	-webkit-text-fill-color: inherit;
-}
-
 
 /* COOPERATION */
 
@@ -783,7 +651,6 @@
 	display: flex;
 	flex-direction: column;
 	padding: 135px 0 52px 0;
-	background-image: url('../../assets/img/calendarEvents/bgCalendarEvents.png');
 	background-repeat: no-repeat;
 	background-position: bottom center;
 	background-size: cover;
@@ -860,67 +727,6 @@
 	text-align: left;
 	width: 330px;
 }
-
-.calendarEventsCard button {
-	border-radius: 4px;
-	border: transparent;
-	box-shadow: 0px 4px 12px 0px rgba(0, 0, 0, 0.25);
-	background: var(--gradient-wheat);
-	padding: 17.5px;
-	cursor: pointer;
-
-	color: rgb(255, 255, 255);
-	font-family: TT Hoves;
-	font-size: 22px;
-	font-weight: 500;
-	line-height: 115%;
-	letter-spacing: 0px;
-	text-align: center;
-
-	width: 330px;
-}
-
-.calendarEventsCard button:hover {
-	background: var(--dark-wheat);
-}
-
-.calendarBtn {
-	padding: 17.5px;
-
-	border: 2px solid transparent;
-	background-image: var(--gradient-wheat);
-	box-shadow: inset 0px 0px 0px 100vw #fff;
-	border-radius: 4px;
-	box-sizing: border-box;
-	cursor: pointer;
-}
-
-.calendarBtn span {
-	background: var(--gradient-btn);
-	-webkit-background-clip: text;
-	-webkit-text-fill-color: transparent;
-	background-clip: text;
-	text-fill-color: transparent;
-
-	font-family: TT Hoves;
-	font-size: 22px;
-	font-weight: 500;
-	line-height: 115%;
-	letter-spacing: 0px;
-	text-align: center;
-}
-
-.calendarBtn:hover {
-	box-shadow: none;
-}
-
-.calendarBtn:hover span {
-	background: none;
-	color: white;
-	-webkit-background-clip: inherit;
-	-webkit-text-fill-color: inherit;
-}
-
 
 /* CONTACTS */
 
@@ -1014,6 +820,18 @@
 
 /* REVIEWS */
 
+.reviewsSection {
+	display: flex;
+	flex-direction: column;
+	padding: 135px 0 90px 0;
+}
+
+.reviewsWrapper {
+	display: flex;
+	flex-direction: column;
+	gap: 60px;
+}
+
 .reviewsHeader {
 	color: rgb(55, 63, 65);
 	font-family: TT Hoves;
@@ -1024,14 +842,6 @@
 	text-align: left;
 
 	padding-top: 55px;
-}
-
-.reviewsWrapper {
-	display: flex;
-	flex-direction: column;
-	gap: 60px;
-
-	padding: 135px 0 90px 0;
 }
 
 .reviewsCarts {
@@ -1094,45 +904,6 @@
 	line-height: 18px;
 	letter-spacing: 0.2px;
 	text-align: left;
-}
-
-.reviewsBtn {
-	padding: 17.5px;
-	margin-top: 5px;
-
-	border: 2px solid transparent;
-	background-image: var(--gradient-wheat);
-	box-shadow: inset 0px 0px 0px 100vw #fff;
-	border-radius: 4px;
-	box-sizing: border-box;
-	cursor: pointer;
-}
-
-.reviewsBtn span {
-	background: var(--gradient-btn);
-	-webkit-background-clip: text;
-	-webkit-text-fill-color: transparent;
-	background-clip: text;
-	text-fill-color: transparent;
-
-	font-family: TT Hoves;
-	font-size: 22px;
-	font-weight: 500;
-	line-height: 115%;
-	letter-spacing: 0px;
-	text-align: center;
-}
-
-.reviewsBtn:hover {
-	box-shadow: none;
-}
-
-.reviewsBtn:hover span {
-	background: none;
-	color: white;
-	-webkit-background-clip: inherit;
-	-webkit-text-fill-color: inherit;
-
 }
 
 .reviewsStars {

@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import icons from '../../resources/icon';
 import AuthorizationModal from '../Modals/AuthorizationModal';
+import ContactManagerModal from '../Modals/ContactManagerModal';
 import styles from './index.module.css';
 import { menuItems } from './menuItems';
 
@@ -10,6 +11,7 @@ const Header = () => {
   const [isAuthModalOpen, setAuthModalOpen] = useState(false);
   const donateMenuRef = useRef(null);
   const headerRef = useRef(null);
+	const [isContactManagerModalOpen, setContactManagerModalOpen] = useState(false);
 
   const handleToggleDropdown = useCallback((index) => {
     setOpenDropdownIndex((prevIndex) => (prevIndex === index ? null : index));
@@ -39,6 +41,10 @@ const Header = () => {
   const toggleAuthModal = () => {
     setAuthModalOpen((prevState) => !prevState);
   };
+
+  const toggleContactManagerModal = () => {
+		setContactManagerModalOpen((prevState) => !prevState);
+	};
 
   return (
     <div className="container" ref={headerRef}>
@@ -75,7 +81,9 @@ const Header = () => {
                     <p>Сервис создан благодаря инициативе сотрудников Северо-Западного Центра лечения глютен-ассоциированных заболеваний и поддержке пациентского сообщества.</p>
                      <p>Мы будем благодарны любой сумме для продвижения нашего дела. Каждое пожертвование будет направлено на реализацию социальных программ для больных целиакией.</p>
                   </div>
-                  <button className={styles.donateButton}>Пожертвовать</button>
+                  <button className={styles.donateButton}>
+                    <span>Пожертвовать</span>
+                  </button>
                 </div>
               </div>
             </div>
@@ -84,7 +92,7 @@ const Header = () => {
                 <button
                   key={icon}
                   className={styles.iconButton}
-                  onClick={icon === 'avatarIcon' ? toggleAuthModal : null}
+                  onClick={icon === 'avatarIcon' ? toggleAuthModal : icon === 'callIcon' ? toggleContactManagerModal : null}
                 >
                   <div className={styles.iconButtonContainer}>
                     <img src={icons[icon]} alt={icon} />
@@ -124,6 +132,7 @@ const Header = () => {
         </nav>
       </header>
       <AuthorizationModal isOpen={isAuthModalOpen} onClose={toggleAuthModal} />
+				<ContactManagerModal isOpen={isContactManagerModalOpen} onClose={toggleContactManagerModal} />
     </div>
   );
 };

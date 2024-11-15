@@ -1,19 +1,11 @@
-.container {
-	display: flex;
-	flex-direction: column;
-	min-height: 100vh;
-}
-
-.mainContent {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	flex-direction: column;
-}
-
 .successSection {
 	width: 100%;
 	max-width: 589px;
+}
+
+.Wrapper {
+	display: flex;
+	justify-content: center;
 }
 
 .successTitleWrapper {

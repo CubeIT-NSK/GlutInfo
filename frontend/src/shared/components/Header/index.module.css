@@ -2,7 +2,7 @@
 	display: flex;
 	flex-direction: column;
 	background-color: #fff;
-	padding: 10px 0;
+	padding: 10px 0 0 0;
 }
 
 .headerTop {
@@ -52,7 +52,8 @@
 	line-height: 18px;
 	letter-spacing: 0.2px;
 	text-align: left;
-	transition: background 2s ease;
+	color: var(--black);
+	transition: all .3s;
 }
 
 .socialIconText span:hover {
@@ -72,21 +73,27 @@
 	border: none;
 	margin-left: 10px;
 	font-size: 16px;
-	cursor: pointer;
+	background: var(--gradient-wheat);
+	border-radius: 156px;
 }
 
 .iconButtonContainer {
-	background: var(--gradient-wheat);
 	border-radius: 156px;
 	width: 30px;
 	height: 30px;
 	display: flex;
 	justify-content: center;
+	cursor: pointer;
 	align-items: center;
+	transition: .3s all;
 }
 
 .iconButtonContainer:hover {
 	background: var(--dark-wheat);
+}
+
+.iconButtonContainer img {
+	transition: all .3s;
 }
 
 .iconButtonContainer:hover img {
@@ -269,12 +276,6 @@
 	background: var(--gradient-wheat);
 	padding: 10px;
 	width: 100%;
-	color: rgb(255, 255, 255);
-	font-family: 'Mulish';
-	font-size: 14px;
-	font-weight: 600;
-	line-height: 18px;
-	letter-spacing: 0.2px;
 	text-align: center;
 	cursor: pointer;
 }
@@ -285,6 +286,15 @@
 
 .donateButton:active {
 	border: transparent;
+}
+
+.donateButton span {
+	color: rgb(255, 255, 255);
+	font-family: 'Mulish';
+	font-size: 14px;
+	font-weight: 600;
+	line-height: 18px;
+	letter-spacing: 0.2px;
 }
 
 .showDonateMenu {

@@ -1,14 +1,6 @@
-.container {
-	display: flex;
-	flex-direction: column;
-	min-height: 100vh;
-}
-
-.mainContent {
+.Wrapper{
 	display: flex;
 	justify-content: center;
-	align-items: center;
-	flex-direction: column;
 }
 
 .registrationSection {
@@ -89,25 +81,6 @@
 .authFormGenderWrapper label {
 	display: flex;
 	gap: 6px;
-}
-
-.submitButton {
-	border-radius: 4px;
-	border: transparent;
-	box-shadow: 0px 4px 12px 0px rgba(0, 0, 0, 0.25);
-	background: linear-gradient(184.89deg, rgb(248, 169, 74) 34.052%, rgb(201, 119, 19) 98.809%);
-	padding: 15px 40px;
-	cursor: pointer;
-
-	color: rgb(255, 255, 255);
-	font-family: TT Hoves;
-	font-size: 22px;
-	font-weight: 500;
-	line-height: 115%;
-	letter-spacing: 0px;
-	text-align: center;
-
-	width: 100%;
 }
 
 .authFormAgreement {

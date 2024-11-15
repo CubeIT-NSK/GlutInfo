@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import styles from './index.module.css';
 import icons from '../../../resources/icon';
 import { useNavigate } from "react-router-dom";
+import Button from '../../Buttons';
 
 const AuthorizationModal = ({ isOpen, onClose }) => {
   const navigate = useNavigate();
@@ -43,6 +44,7 @@ const AuthorizationModal = ({ isOpen, onClose }) => {
 
   const handleRegister = (e) => {
     e.preventDefault();
+    onClose();
     navigate('/registration');
   };
 
@@ -95,12 +97,26 @@ const AuthorizationModal = ({ isOpen, onClose }) => {
                 />
                 {errors.password && <span className={styles.error}>{errors.password}</span>}
               </div>
-              <button className={styles.authorizationModalYButton} type="submit">
-                <span>Войти</span>
-              </button>
-              <button className={styles.authorizationModalWButton} onClick={handleRegister}>
-                <span>Зарегистрироваться</span>
-              </button>
+              <Button
+                  variant="gradient"
+                  type="submit"
+                  fontSize='mini'
+                  boxShadow='none'
+                  padding="11px 155.5px"
+              >
+                  Войти
+              </Button>
+              <Button
+                  variant="white"
+                  type="submit"
+                  fontSize='mini'
+                  color='black'
+                  boxShadow='none'
+                  onClick={handleRegister}
+                  padding="11px 106.5px"
+              >
+                  Зарегистрироваться
+              </Button>
             </div>
             <div className={styles.authorizationModalWButtonWrapper}>
               <div className={styles.lineWrapper}>

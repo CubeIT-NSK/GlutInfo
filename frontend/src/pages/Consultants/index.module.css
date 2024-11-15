@@ -1,0 +1,121 @@
+.consultsSection {
+	width: 100%;
+	padding: 40px 0 89px 0;
+}
+
+.consultsTitle {
+	color: rgb(55, 63, 65);
+	font-family: TT Hoves;
+	font-size: 42px;
+	font-weight: 700;
+	line-height: 115%;
+	letter-spacing: 0px;
+	text-align: left;
+}
+
+.consultsWrapper {
+	display: flex;
+	flex-direction: column;
+	gap: 50px;
+}
+
+.consultsHeader {
+	display: flex;
+	justify-content: space-between;
+}
+
+.consultsLeft {
+	display: flex;
+	flex-direction: column;
+	gap: 30px;
+}
+
+.consultsLeftItems {
+	display: flex;
+	gap: 10px;
+}
+
+.consultsLeftItem {
+	padding: 6px 10px 6px 10px;
+	border: 1px solid var(--gray);
+	border-radius: 8px;
+	cursor: pointer;
+}
+
+.consultsLeftItem p {
+	font-family: Mulish;
+	font-size: 14px;
+	font-weight: 600;
+	line-height: 18px;
+	letter-spacing: 0.2px;
+	text-align: left;
+	text-underline-position: from-font;
+	text-decoration-skip-ink: none;
+	color: var(--gray-form);
+}
+
+
+.consultsCardWrapper {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 30px 30px;
+}
+
+.consultsCardItem {
+	display: flex;
+	flex-direction: column;
+	gap: 30px;
+	width: 370px;
+}
+
+.consultsCardItemText {
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+}
+
+.consultsCardItemBtns {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+}
+
+.consultsCardItemTextWHead {
+	font-family: TT Hoves;
+	font-size: 20px;
+	font-weight: 500;
+	line-height: 23px;
+	text-align: left;
+	text-underline-position: from-font;
+	text-decoration-skip-ink: none;
+}
+
+.consultsCardItemTextWPost {
+	font-family: Mulish;
+	font-size: 14px;
+	font-weight: 400;
+	line-height: 18px;
+	letter-spacing: 0.2px;
+	text-align: left;
+	text-underline-position: from-font;
+	text-decoration-skip-ink: none;
+}
+
+.consultsCardItemTextW {
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+	padding-left: 70px;
+	position: relative;
+}
+
+.consultsCardItemTextWPost::before {
+	content: "";
+	position: absolute;
+	margin-top: 10px;
+	left: 0;
+	border-radius: 10px;
+	width: 50px;
+	height: 1px;
+	background: var(--gradient-btn);
+}

@@ -1,5 +1,6 @@
 import React, { useCallback, useMemo, useState } from 'react';
 import styles from './index.module.css';
+import Button from '../../Buttons';
 
 const SubscribeNewsForm = () => {
   const [formData, setFormData] = useState({
@@ -70,8 +71,13 @@ const SubscribeNewsForm = () => {
             {errors[name] && <span className={styles.error}>{errors[name]}</span>}
           </div>
         ))}
-
-          <button type="submit">Отправить предложение</button>
+          <Button
+              variant="gradient"
+              type="submit"
+              padding="17.5px 77.5px"
+          >
+              Отправить предложение
+          </Button>
         </div>
         <div className={styles.consent}>
           <input

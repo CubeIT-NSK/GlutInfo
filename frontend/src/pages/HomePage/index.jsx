@@ -1,10 +1,11 @@
+import { useState } from "react";
 import CooperationForm from "../../shared/components/Forms/CooperationForm";
-import Footer from "../../shared/components/Footer";
-import Header from "../../shared/components/Header";
+import Button from "../../shared/components/Buttons";
 import NewsSlider from "../../shared/components/Sliders/NewsSlider";
 import PatientSlider from "../../shared/components/Sliders/PatientSlider";
 import PhotoSlider from "../../shared/components/Sliders/PhotoSlider";
 import SubscribeNewsForm from "../../shared/components/Forms/SubscribeNewsForm";
+import ContactManagerModal from "../../shared/components/Modals/ContactManagerModal";
 
 import images from "../../shared/resources/images";
 
@@ -12,6 +13,7 @@ import icons from "../../shared/resources/icon";
 import styles from "./index.module.css";
 
 export default function HomePage() {
+	const [isContactManagerModalOpen, setContactManagerModalOpen] = useState(false);
 
     const sliderData = {
         PatientData: [
@@ -123,10 +125,12 @@ export default function HomePage() {
         }, ],
     };
 
+	const toggleContactManagerModal = () => {
+		setContactManagerModalOpen((prevState) => !prevState);
+	};
+
     return (
-        <div className={styles.container}>
-            <Header />
-            <main className={styles.mainContent}>
+        <>
             	<section className={styles.teleService}>
 					<div className="container">
 						<div className={styles.teleWrapper}>
@@ -136,33 +140,49 @@ export default function HomePage() {
 										<div className={styles.teleTop}>
 											<p>ДЕЛАЕМ ЖИЗНЬ БЕЗ ГЛЮТЕНА ЛУЧШЕ</p>
 										</div>
-										<header>Телемедицинский сервис <span>«ГастроГлютен</span>.инфо»</header>
+										<p className={styles.teleTopText}>Телемедицинский сервис <span>«ГастроГлютен</span>.инфо»</p>
 									</div>
 									<h3>Первая в России медицинская информационно-консультативная платформа для пациентов и консультантов</h3>
-									<button>Записаться на онлайн-консультацию</button>
-								</div> <img src={images.teleServiceImage} alt="teleService" /> </div>
+									<Button
+										variant="gradient"
+										onClick={toggleContactManagerModal}
+										padding="22.5px 44.5px"
+									>
+										Записаться на онлайн-консультацию
+									</Button>
+								</div>
+								<img src={images.teleServiceImage} alt="teleServiceImage" />
+							</div>
 						</div>
 					</div>
             	</section>
-            	<section className={styles.aboutUs}>
+
+            	<section className={styles.aboutUs} style={{ backgroundImage: `url(${images.aboutUsBackground1Image})` }}>
 					<div className="container">
 						<div className={styles.aboutUsWrapper}>
 							<div className={styles.aboutUsLeft}>
 								<div className={styles.aboutUsTextWrapper}>
-									<header>О нас</header>
+									<p className={styles.aboutUsLeftText}>О нас</p>
 									<h3>Наша миссия — сделать данный ресурс полезным для пациентов и врачей и стандартизировать подходы к ведению больных с глютен-ассоциированными заболеваниями по всей стране.
-        			                                    <br />
-        			                                    <br />
-        			                                    Приоритетами являются правильная диагностикаи ведение пациентов с глютен-ассоциированными заболеваниями (целиакией, нецелиакийной чувствительностью к глютену, аллергией на пшеницу), помощь в соблюдении безглютеновой диеты, повышение качества жизни данной категории пациентов.
-        			                                </h3> </div>
-								<button>Подробнее</button>
+										<br />
+										<br />
+										Приоритетами являются правильная диагностикаи ведение пациентов с глютен-ассоциированными заболеваниями (целиакией, нецелиакийной чувствительностью к глютену, аллергией на пшеницу), помощь в соблюдении безглютеновой диеты, повышение качества жизни данной категории пациентов.
+									</h3>
+								</div>
+								<Button
+									variant="gradient"
+									padding="22.5px 176.5px"
+								>
+									Подробнее
+								</Button>
 							</div>
-							<div className={styles.aboutUsRight}> <img src={images.aboutUsImage} alt="aboutUs" />
+							<div className={styles.aboutUsRight}> <img src={images.aboutUsLogoImage} alt="aboutUsImage" />
 								<p><span>ГАСТРОГЛЮТЕН.</span>ИНФО</p>
 							</div>
 						</div>
 					</div>
             	</section>
+
             	<section className={styles.relevanceProblem}>
 					<div className="container">
 						<div className={styles.relevanceWrapper}>
@@ -170,7 +190,7 @@ export default function HomePage() {
 								<div className={styles.relevanceTopWrapper}>
 									<div className={styles.relevanceHeader}>Актуальность проблемы</div>
 									<div className={styles.relevanceProblemHeaderBlock}>
-										<div className={styles.relevanceProblemHeaderBlockEl}> <img src={images.glutFrameImage} alt="glutFrameImage" />
+										<div className={styles.relevanceProblemHeaderBlockEl}> <img src={icons.glutFrameIcon} alt="glutFrameImage" />
 											<p> <span>Глютен </span> — это не просто белок злаковых культур,
 												<br /> но и причина разнообразных симптомов и состояний. </p>
 										</div>
@@ -194,19 +214,19 @@ export default function HomePage() {
 							</div>
 							<div className={styles.relevanceBottom}>
 								<div className={styles.relevanceCardsWrapper}>
-									<div className={styles.relevanceCard} id={styles.tselikation}>
+									<div className={styles.relevanceCard} id={styles.tselikation} style={{ backgroundImage: `url(${images.glutTselikationImage})` }}>
 										<div className={styles.relevanceCardToptext}>1 из 100</div>
 										<div className={styles.relevanceCardMiddletext}>людей имеют целиакию</div>
 									</div>
-									<div className={styles.relevanceCard} id={styles.percent}>
+									<div className={styles.relevanceCard} id={styles.percent} style={{ backgroundImage: `url(${images.glutPercentImage})` }}>
 										<div className={styles.relevanceCardToptext}>80%</div>
 										<div className={styles.relevanceCardMiddletext}>пациентов живут с неустановленным диагнозом</div>
 									</div>
-									<div className={styles.relevanceCard} id={styles.patient}>
+									<div className={styles.relevanceCard} id={styles.patient} style={{ backgroundImage: `url(${images.glutPatientImage})` }}>
 										<div className={styles.relevanceCardToptext}>&gt;200</div>
 										<div className={styles.relevanceCardMiddletext}>симптомов наблюдается у пациентов с целиакией</div>
 									</div>
-									<div className={styles.relevanceCard} id={styles.disease}>
+									<div className={styles.relevanceCard} id={styles.disease} style={{ backgroundImage: `url(${images.glutDiseaseImage})` }}>
 										<div className={styles.relevanceCardToptext}>Целиакия</div>
 										<div className={styles.relevanceCardMiddletext}>— это не детское заболевание</div>
 									</div>
@@ -215,17 +235,29 @@ export default function HomePage() {
 						</div>
 					</div>
             	</section>
-            	<section className={styles.patientHistory}>
+
+            	<section className={styles.patientHistory} style={{ backgroundImage: `url(${images.bgPatientHistoryImage})` }}>
 					<div className="container">
 						<h2>Истории пациентов</h2>
 						<PatientSlider slides={sliderData.PatientData} />
 						<div className={styles.patientHistoryActions}>
-							<button className={styles.patientHistoryActionsButtonLeft}><span>Записаться на онлайн-консультацию</span></button>
-							<button className={styles.patientHistoryActionsButtonRight}><span>Оставить отзыв</span></button>
+							<Button
+								variant="gradient"
+								padding="22.5px 44.5px"
+							>
+								Записаться на онлайн-консультацию
+							</Button>
+							<Button
+								variant="white"
+								padding="22.5px 104.5px"
+							>
+								Оставить отзыв
+							</Button>
 						</div>
 					</div>
             	</section>
-            	<section className={styles.cooperationForms}>
+
+            	<section className={styles.cooperationForms} id="cooperation">
 					<div className="container">
 						<div className={styles.coopFrameWrapper}>
 							<div className={styles.cooperationFormsWrapper}>
@@ -246,7 +278,8 @@ export default function HomePage() {
 									</div>
 								</div>
 								<div className={styles.cooperationFormsRightCol}>
-									<CooperationForm /> </div>
+									<CooperationForm />
+								</div>
 							</div>
 							<div className={styles.coopBackLinesWrapper}> <img src={images.backLinesImage} className={styles.backLinesImage} alt="backLinesImage" />
 								<div className={styles.coopBackLinesTextWrapper}>
@@ -258,6 +291,7 @@ export default function HomePage() {
 						</div>
 					</div>
             	</section>
+
             	<section className={styles.newsSec}>
 					<div className="container">
 						<h2>Новости</h2>
@@ -276,52 +310,71 @@ export default function HomePage() {
 								</div>
 							</div>
 							<div className={styles.subcribeNewsRight}>
-								<SubscribeNewsForm /> </div>
+								<SubscribeNewsForm />
+							</div>
 						</div>
 					</div>
             	</section>
-            	<section className={styles.calendarEvents}>
+
+            	<section className={styles.calendarEvents} style={{ backgroundImage: `url(${images.celendarEventsBackgroundImage})` }}>
 					<div className="container">
 						<div className={styles.calendarEventsWrapper}>
 							<div className={styles.calendarEventsHeader}>Календарь событий</div>
 							<div className={styles.calendarEventsCardWrapper}>
 								<div className={styles.calendarEventsCard}>
-									<div className={styles.calendarEventsCardPaddTop}> <img className={styles.calendarEventImage} src={images.firstEventImage} alt="firstEventImage" />
+									<div className={styles.calendarEventsCardPaddTop}> <img className={styles.calendarEventImage} src={images.celendarEventsFirstImage} alt="celendarEventsFirstImage" />
 										<p className={styles.calendarEventsCardTopText}>1 сентября</p>
 										<p className={styles.calendarEventsCardBottomtext}>Выход подкаста «Вся правда о глютене»</p>
 									</div>
 									<div className={styles.calendarEventsCardPaddBot}>
-										<button>Подробнее</button>
+										<Button
+											variant="gradient"
+											padding="17.5px 106.5px"
+										>
+											Подробнее
+										</Button>
 									</div>
 								</div>
 								<div className={styles.calendarEventsCard}>
-									<div className={styles.calendarEventsCardPaddTop}> <img className={styles.calendarEventImage} src={images.secondEventImage} alt="secondEventImage" />
+									<div className={styles.calendarEventsCardPaddTop}> <img className={styles.calendarEventImage} src={images.celendarEventsSecondImage} alt="celendarEventsSecondImage" />
 										<p className={styles.calendarEventsCardTopText}>10 сентября</p>
 										<p className={styles.calendarEventsCardBottomtext}>Онлайн-школа пациента</p>
 									</div>
 									<div className={styles.calendarEventsCardPaddBot}>
-										<button>Подробнее</button>
+										<Button
+											variant="gradient"
+											padding="17.5px 106.5px"
+										>
+											Подробнее
+										</Button>
 									</div>
 								</div>
 								<div className={styles.calendarEventsCard}>
-									<div className={styles.calendarEventsCardPaddTop}> <img className={styles.calendarEventImage} src={images.thirdEventImage} alt="thirdEventImage" />
+									<div className={styles.calendarEventsCardPaddTop}> <img className={styles.calendarEventImage} src={images.celendarEventsThirdImage} alt="celendarEventsThirdImage" />
 										<p className={styles.calendarEventsCardTopText}>1 октября</p>
 										<p className={styles.calendarEventsCardBottomtext}>Посещение 179 лицея с лекцией</p>
 									</div>
 									<div className={styles.calendarEventsCardPaddBot}>
-										<button>Подробнее</button>
+										<Button
+											variant="gradient"
+											padding="17.5px 106.5px"
+										>
+											Подробнее
+										</Button>
 									</div>
 								</div>
 							</div>
-							<button className={styles.calendarBtn}>
-								<span>
-									Показать весь список мероприятий
-								</span>
-							</button>
+							<Button
+								variant="white"
+								padding="22.5px 398.5px"
+							>
+								Показать весь список мероприятий
+							</Button>
 						</div>
 					</div>
             	</section>
-            	<section className={styles.contacts}>
+
+            	<section className={styles.contacts} id="contacts">
 					<div className="container">
 						<div className={styles.contactsWrapper}>
 							<div className={styles.contactsLeft}>
@@ -346,85 +399,88 @@ export default function HomePage() {
 						</div>
 					</div>
             	</section>
-            	<section className={styles.reviews}>
+
+            	<section className={styles.reviewsSection} id="feedback">
 					<div className="container">
 						<div className={styles.reviewsWrapper}>
 							<div className={styles.reviewsHeader}>Отзывы о работе консультантах центра</div>
 							<div className={styles.reviewsCarts}>
 								<div className={styles.reviewsCart}>
-									<div className={styles.reviewsCartTop}> <img src={images.reviewsMarks} alt="reviewsMarks" /> </div>
+									<div className={styles.reviewsCartTop}> <img src={icons.reviewsMarksIcon} alt="reviewsMarksIcon" /> </div>
 									<div className={styles.reviewsCartBottom}>
 										<div className={styles.reviewsStars}>
-											<div className={styles.reviewsStarsWrapper}> <img src={images.reviewsStars} alt="reviewsStars" /> </div>
-											<div className={styles.reviewsStarsWrapper}> <img src={images.reviewsStars} alt="reviewsStars" /> </div>
-											<div className={styles.reviewsStarsWrapper}> <img src={images.reviewsStars} alt="reviewsStars" /> </div>
-											<div className={styles.reviewsStarsWrapper}> <img src={images.reviewsStars} alt="reviewsStars" /> </div>
-											<div className={styles.reviewsStarsWrapper}> <img src={images.reviewsStars} alt="reviewsStars" /> </div>
+											<div className={styles.reviewsStarsWrapper}> <img src={icons.reviewsStarsIcon} alt="reviewsStarsIcon" /> </div>
+											<div className={styles.reviewsStarsWrapper}> <img src={icons.reviewsStarsIcon} alt="reviewsStarsIcon" /> </div>
+											<div className={styles.reviewsStarsWrapper}> <img src={icons.reviewsStarsIcon} alt="reviewsStarsIcon" /> </div>
+											<div className={styles.reviewsStarsWrapper}> <img src={icons.reviewsStarsIcon} alt="reviewsStarsIcon" /> </div>
+											<div className={styles.reviewsStarsWrapper}> <img src={icons.reviewsStarsIcon} alt="reviewsStarsIcon" /> </div>
 										</div>
 										<div className={styles.reviewsCartUsers}>
 											<p className={styles.reviewsCartUser}> Мария И. </p>
 											<p className={styles.reviewsCartUserDate}> 31.10.2023, консультация у Семеновой Е.А. </p>
 										</div>
 										<div className={styles.reviewsCartComments}>
-											<p> «Благодарны консультанту за доброжелательный и квалифицированный приём» </p>
+											<p className={styles.reviewsCartCommentsText}> «Благодарны консультанту за доброжелательный и квалифицированный приём» </p>
 										</div>
 									</div>
 								</div>
 								<div className={styles.reviewsCart}>
-									<div className={styles.reviewsCartTop}> <img src={images.reviewsMarks} alt="reviewsMarks" /> </div>
+									<div className={styles.reviewsCartTop}> <img src={icons.reviewsMarksIcon} alt="reviewsMarksIcon" /> </div>
 									<div className={styles.reviewsCartBottom}>
 										<div className={styles.reviewsStars}>
-											<div className={styles.reviewsStarsWrapper}> <img src={images.reviewsStars} alt="reviewsStars" /> </div>
-											<div className={styles.reviewsStarsWrapper}> <img src={images.reviewsStars} alt="reviewsStars" /> </div>
-											<div className={styles.reviewsStarsWrapper}> <img src={images.reviewsStars} alt="reviewsStars" /> </div>
-											<div className={styles.reviewsStarsWrapper}> <img src={images.reviewsStars} alt="reviewsStars" /> </div>
-											<div className={styles.reviewsStarsWrapper}> <img src={images.reviewsStars} alt="reviewsStars" /> </div>
+											<div className={styles.reviewsStarsWrapper}> <img src={icons.reviewsStarsIcon} alt="reviewsStarsIcon" /> </div>
+											<div className={styles.reviewsStarsWrapper}> <img src={icons.reviewsStarsIcon} alt="reviewsStarsIcon" /> </div>
+											<div className={styles.reviewsStarsWrapper}> <img src={icons.reviewsStarsIcon} alt="reviewsStarsIcon" /> </div>
+											<div className={styles.reviewsStarsWrapper}> <img src={icons.reviewsStarsIcon} alt="reviewsStarsIcon" /> </div>
+											<div className={styles.reviewsStarsWrapper}> <img src={icons.reviewsStarsIcon} alt="reviewsStarsIcon" /> </div>
 										</div>
 										<div className={styles.reviewsCartUsers}>
 											<p className={styles.reviewsCartUser}> Мария И. </p>
 											<p className={styles.reviewsCartUserDate}> 17.05.2023, консультация у Семеновой Е.А. </p>
 										</div>
 										<div className={styles.reviewsCartComments}>
-											<p> «Очень внимательный консультант. Подробная консультация. Очень много узнала о своём диагнозе. Спасибо,что организовали такой центр» </p>
+											<p className={styles.reviewsCartCommentsText}> «Очень внимательный консультант. Подробная консультация. Очень много узнала о своём диагнозе. Спасибо,что организовали такой центр» </p>
 										</div>
 									</div>
 								</div>
 								<div className={styles.reviewsCart}>
-									<div className={styles.reviewsCartTop}> <img src={images.reviewsMarks} alt="reviewsMarks" /> </div>
+									<div className={styles.reviewsCartTop}> <img src={icons.reviewsMarksIcon} alt="reviewsMarksIcon" /> </div>
 									<div className={styles.reviewsCartBottom}>
 										<div className={styles.reviewsStars}>
-											<div className={styles.reviewsStarsWrapper}> <img src={images.reviewsStars} alt="reviewsStars" /> </div>
-											<div className={styles.reviewsStarsWrapper}> <img src={images.reviewsStars} alt="reviewsStars" /> </div>
-											<div className={styles.reviewsStarsWrapper}> <img src={images.reviewsStars} alt="reviewsStars" /> </div>
-											<div className={styles.reviewsStarsWrapper}> <img src={images.reviewsStars} alt="reviewsStars" /> </div>
-											<div className={styles.reviewsStarsWrapper}> <img src={images.reviewsStars} alt="reviewsStars" /> </div>
+											<div className={styles.reviewsStarsWrapper}> <img src={icons.reviewsStarsIcon} alt="reviewsStarsIcon" /> </div>
+											<div className={styles.reviewsStarsWrapper}> <img src={icons.reviewsStarsIcon} alt="reviewsStarsIcon" /> </div>
+											<div className={styles.reviewsStarsWrapper}> <img src={icons.reviewsStarsIcon} alt="reviewsStarsIcon" /> </div>
+											<div className={styles.reviewsStarsWrapper}> <img src={icons.reviewsStarsIcon} alt="reviewsStarsIcon" /> </div>
+											<div className={styles.reviewsStarsWrapper}> <img src={icons.reviewsStarsIcon} alt="reviewsStarsIcon" /> </div>
 										</div>
 										<div className={styles.reviewsCartUsers}>
 											<p className={styles.reviewsCartUser}> Антон Г. </p>
 											<p className={styles.reviewsCartUserDate}> 13.12.2023, консультация у Семеновой Е.А. </p>
 										</div>
 										<div className={styles.reviewsCartComments}>
-											<p> «Все отлично. Очень профессионально» </p>
+											<p className={styles.reviewsCartCommentsText}> «Все отлично. Очень профессионально» </p>
 										</div>
 									</div>
 								</div>
 							</div>
-							<button className={styles.reviewsBtn}>
-								<span>
-									Показать все отзывы о консультантах
-								</span>
-							</button>
+							<Button
+								variant="white"
+								padding="22.5px 389.5px"
+							>
+								Показать все отзывы о консультантах
+							</Button>
 						</div>
 					</div>
             	</section>
+
             	<section className={styles.photoGallery}>
 					<div className="container">
 						<h2>Фотогалерея</h2>
 						<PhotoSlider slides={sliderData.PhotoData} />
 					</div>
         		</section>
-        	</main>
-        	<Footer />
-        </div>
+
+				<ContactManagerModal isOpen={isContactManagerModalOpen} onClose={toggleContactManagerModal} />
+        </>
     );
 }
