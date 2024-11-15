@@ -1,0 +1,51 @@
+.educationalSection {
+	padding: 70px 0 100px 0;
+}
+
+.educationalWrapper {
+	display: flex;
+	flex-direction: column;
+	gap: 50px;
+}
+
+.educationalHeader {
+	font-family: TT Hoves;
+	font-size: 42px;
+	font-weight: 700;
+	line-height: 48.3px;
+	text-align: left;
+}
+
+.educationalText {
+	font-family: Mulish;
+	font-size: 20px;
+	font-weight: 400;
+	line-height: 25.1px;
+	text-align: left;
+}
+
+.educationalTextOrange {
+	font-family: Mulish;
+	font-size: 20px;
+	font-weight: 400;
+	line-height: 25.1px;
+	text-align: left;
+	background: linear-gradient(185deg, #f8a94a 0%, #c97713 100%);
+	background-clip: text;
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+}
+
+.educationalTextBlack {
+	font-family: Mulish;
+	font-size: 20px;
+	font-weight: 700;
+	line-height: 25.1px;
+	text-align: left;
+}
+
+.educationalTextContain {
+	display: flex;
+	flex-direction: column;
+	gap: 15px;
+}

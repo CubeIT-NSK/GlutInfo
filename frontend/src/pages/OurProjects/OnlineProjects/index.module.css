@@ -1,0 +1,145 @@
+.onlineWrapper {
+	display: flex;
+	flex-direction: column;
+	gap: 50px;
+}
+
+.onlineHeader {
+	font-family: TT Hoves;
+	font-size: 42px;
+	font-weight: 700;
+	line-height: 48.3px;
+	text-align: left;
+	max-width: 1034px;
+}
+
+.onlineText {
+	font-family: Mulish;
+	font-size: 20px;
+	font-weight: 400;
+	line-height: 25.1px;
+	text-align: left;
+	max-width: 1034px;
+}
+
+.onlineTextOrange {
+	font-family: Mulish;
+	font-size: 20px;
+	font-weight: 400;
+	line-height: 25.1px;
+	text-align: left;
+	background: linear-gradient(185deg, #f8a94a 0%, #c97713 100%);
+	background-clip: text;
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+}
+
+.onlineSection {
+	padding: 70px 0 100px 0;
+}
+
+.onlineTextContain {
+	display: flex;
+	flex-direction: column;
+	gap: 15px;
+}
+
+.onlineVideoBottomContain {
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
+}
+
+.onlineTextBlack {
+	font-family: Mulish;
+	font-size: 20px;
+	font-weight: 700;
+	line-height: 25.1px;
+	text-align: left;
+}
+
+.onlineVideoCartWrapper {
+	display: flex;
+	gap: 30px;
+}
+
+.onlineVideoCart {
+	padding: 30px 20px 30px 20px;
+	border: 1px solid #E2E5E6;
+	box-shadow: 0px 4px 12px 0px #0000001A;
+	display: flex;
+	flex-direction: column;
+	gap: 30px;
+}
+
+.onlineVideo {
+	width: 530px;
+	height: 300px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: black;
+	position: relative;
+}
+
+.onlineVideo img {
+	position: absolute;
+	left: 0;
+	top: 0;
+}
+
+.onlineVideoBottom {
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+}
+
+.onlineVideoAuthor {
+	font-family: Mulish;
+	font-size: 20px;
+	font-weight: 400;
+	line-height: 25.1px;
+	text-align: left;
+}
+
+.onlineVideoName {
+	font-family: Mulish;
+	font-size: 24px;
+	font-weight: 600;
+	line-height: 27.6px;
+	text-align: left;
+
+}
+
+.onlineVideoPlay {
+	width: 75px;
+	height: 75px;
+	background-color: #F8A94A;
+	border-radius: 100px;
+	border: none;
+	position: relative;
+	z-index: 10;
+	cursor: pointer;
+}
+
+.onlineVideoPlay::before {
+	content: "";
+	position: absolute;
+	top: -12px;
+	left: -12px;
+	width: 100px;
+	height: 100px;
+	background: #F8A94A26;
+	border-radius: 100px;
+
+}
+
+.onlineVideoPlay::after {
+	content: var(--after-image);
+	width: 37.5px;
+	height: 37px;
+	position: absolute;
+	top: 19px;
+	left: 24px;
+}
+

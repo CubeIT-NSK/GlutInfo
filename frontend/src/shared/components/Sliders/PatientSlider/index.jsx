@@ -98,7 +98,7 @@ const PatientSlider = ({ slides }) => {
                                             className={styles.sliderExpandButton}
                                             onClick={() => openModal(formatDescription(slide.description), renderBottomContent(slide))}
                                         >
-                                            Читать полностью
+                                            <span>Читать полностью</span>
                                         </button>
                                     </div>
                                     {renderBottomContent(slide)}

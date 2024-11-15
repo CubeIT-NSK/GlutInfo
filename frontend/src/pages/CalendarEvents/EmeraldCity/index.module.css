@@ -1,0 +1,87 @@
+.emeraldWrapper {
+	display: flex;
+	flex-direction: column;
+	gap: 50px;
+	padding: 70px 0 100px 0;
+}
+
+.emeraldHeader {
+	display: flex;
+	flex-direction: column;
+	gap: 30px;
+}
+
+.emeraldMain {
+	display: flex;
+	flex-direction: column;
+	gap: 30px;
+}
+
+.emeraldMainHead {
+	display: flex;
+	align-items: center;
+	gap: 30px;
+}
+
+.emeraldMainList {
+	display: flex;
+	flex-direction: column;
+	gap: 15px;
+}
+
+.emeraldTitle {
+	font-family: TT Hoves;
+	font-size: 42px;
+	font-weight: 700;
+	line-height: 48.3px;
+	text-align: left;
+	background: linear-gradient(185deg, #f8a94a 0%, #c97713 100%);
+	background-clip: text;
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+}
+
+.emeraldHeader p {
+	font-family: TT Hoves;
+	font-size: 32px;
+	font-weight: 600;
+	line-height: 36.8px;
+	text-align: left;
+}
+
+.emeraldMainHead p {
+	font-family: TT Hoves;
+	font-size: 26px;
+	font-weight: 500;
+	line-height: 29.9px;
+	text-align: left;
+}
+
+.emeraldMainList li {
+	font-family: TT Hoves;
+	font-size: 20px;
+	font-weight: 400;
+	line-height: 23px;
+	text-align: left;
+	list-style: none;
+}
+
+.emeraldMainListOrange {
+	font-family: TT Hoves;
+	font-size: 20px;
+	font-weight: 400;
+	line-height: 23px;
+	text-align: left;
+	background: linear-gradient(185deg, #f8a94a 0%, #c97713 100%);
+	background-clip: text;
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+}
+
+.emeraldMainListBlack {
+	font-family: TT Hoves;
+	font-size: 20px;
+	font-weight: 600;
+	line-height: 23.56px;
+	text-align: left;
+}

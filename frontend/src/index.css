@@ -65,6 +65,7 @@
  --light-wheat: #F8A94A;
  --dark-wheat: #C97713;
  --gradient-wheat: linear-gradient(249.03deg, #F8A94A 23.57%, #C97713 134.39%);
+ --gradient-active: linear-gradient(184.89deg, rgb(248, 169, 74) 6.23%,rgb(201, 119, 19) 193.218%);
  --gradient-btn: linear-gradient(184.89deg, rgb(248, 169, 74),rgb(201, 119, 19))
 }
 
@@ -83,6 +84,7 @@
 
 html{
   font-size: 16px;
+  scroll-behavior: smooth;
 }
 
 body {

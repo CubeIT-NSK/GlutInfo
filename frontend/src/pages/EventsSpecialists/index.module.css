@@ -1,0 +1,26 @@
+.eventsSpecialistsSection {
+	width: 100%;
+	padding: 50px 0 66px 0;
+}
+
+.eventsSpecialistsWrapper {
+	display: flex;
+	align-items: center;
+	gap: 110px;
+}
+
+.eventsSpecialistsText p {
+	font-family: TT Hoves;
+	font-size: 42px;
+	font-weight: 700;
+	line-height: 48.3px;
+	text-align: left;
+	text-underline-position: from-font;
+	text-decoration-skip-ink: none;
+}
+
+.eventsSpecialistsText {
+	display: flex;
+	flex-direction: column;
+	gap: 50px;
+}

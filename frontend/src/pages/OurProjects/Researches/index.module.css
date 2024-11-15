@@ -1,0 +1,139 @@
+.researchesWrapper {
+	display: flex;
+	flex-direction: column;
+	gap: 50px;
+}
+
+.researchesSection {
+	padding: 70px 0 100px 0;
+}
+
+.researchesTitle {
+	font-family: TT Hoves;
+	font-size: 42px;
+	font-weight: 700;
+	line-height: 48.3px;
+	text-align: left;
+}
+
+.researchesAboutTop p {
+	font-family: TT Hoves;
+	font-size: 32px;
+	font-weight: 600;
+	line-height: 36.8px;
+	text-align: left;
+}
+
+.researchesAboutCol {
+	font-family: TT Hoves;
+	font-size: 20px;
+	font-weight: 400;
+	line-height: 23px;
+	text-align: left;
+}
+
+.researchesAboutColOrange {
+	font-family: TT Hoves;
+	font-size: 20px;
+	font-weight: 400;
+	line-height: 23px;
+	text-align: left;
+	background: linear-gradient(185deg, #f8a94a 0%, #c97713 100%);
+	background-clip: text;
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+}
+
+.researchesAboutColBlack {
+	font-family: TT Hoves;
+	font-size: 20px;
+	font-weight: 600;
+	line-height: 23px;
+	text-align: left;
+}
+
+.researchesAboutTop {
+	display: flex;
+	align-items: center;
+	gap: 30px;
+	padding-bottom: 10px;
+}
+
+.researchesDoc {
+	padding-top: 20px;
+	display: flex;
+	flex-direction: column;
+	gap: 50px;
+}
+
+.researchesAbout {
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+}
+
+.researchesDocTitle {
+	font-family: TT Hoves;
+	font-size: 32px;
+	font-weight: 600;
+	line-height: 36.8px;
+	text-align: left;
+}
+
+.researchesDocTitleOrange {
+	font-family: TT Hoves;
+	font-size: 32px;
+	font-weight: 600;
+	line-height: 36.8px;
+	text-align: left;
+	background: linear-gradient(185deg, #f8a94a 0%, #c97713 100%);
+	background-clip: text;
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+}
+
+.researchesDocItem {
+	display: flex;
+	align-items: center;
+	gap: 30px;
+}
+
+.researchesDocItem {
+	flex-grow: 1;
+	flex-basis: 0;
+}
+
+.researchesDocItem a {
+	font-family: TT Hoves;
+	font-size: 26px;
+	font-weight: 500;
+	line-height: 29.9px;
+	text-align: left;
+	background: linear-gradient(185deg, #f8a94a 0%, #c97713 100%);
+	background-clip: text;
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	text-decoration: underline;
+	text-decoration-color: #f8a94a;
+	text-decoration-skip-ink: none;
+}
+
+.researchesDocItem a:hover {
+	background: var(--dark-wheat);
+	background-clip: text;
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	text-decoration-color: var(--dark-wheat);
+
+}
+
+.researchesDocItems {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 30px;
+}
+
+.researchesDocItemsCol {
+	display: flex;
+	gap: 30px;
+}

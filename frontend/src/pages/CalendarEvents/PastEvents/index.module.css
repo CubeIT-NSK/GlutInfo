@@ -1,0 +1,128 @@
+.pastEventsSection {
+	padding: 70px 0 100px 0;
+}
+
+.pastEvents {
+	display: flex;
+	gap: 65px;
+}
+
+.pastEventsLeft {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	gap: 50px;
+}
+
+.pastEventsLeftText {
+	display: flex;
+	flex-direction: column;
+	gap: 30px;
+}
+
+.pastEventsLeftText p {
+	font-family: Mulish;
+	font-size: 20px;
+	font-weight: 400;
+	line-height: 25.1px;
+	text-align: left;
+}
+
+.pastEventsTitle {
+	font-family: TT Hoves;
+	font-size: 42px;
+	font-weight: 700;
+	line-height: 48.3px;
+	text-align: left;
+}
+
+.pastEventSection {
+	padding: 100px 0 100px 0;
+}
+
+.pastEvent {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 30px;
+}
+
+.pastEventTitle {
+	display: flex;
+	flex-direction: column;
+	gap: 25px;
+}
+
+.pastEventTitlePMin {
+	font-family: Mulish;
+	font-size: 20px;
+	font-weight: 400;
+	line-height: 25.1px;
+	text-align: center;
+}
+
+.pastEventTitleP {
+	font-family: TT Hoves;
+	font-size: 20px;
+	font-weight: 500;
+	line-height: 23px;
+	text-align: center;
+}
+
+.pastEventTitleP span {
+	font-family: TT Hoves;
+	font-size: 20px;
+	font-weight: 500;
+	line-height: 23px;
+	text-align: center;
+	background: linear-gradient(185deg, #f8a94a 0%, #c97713 100%);
+	background-clip: text;
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+}
+
+.pastEventMain {
+	display: flex;
+	flex-direction: column;
+	gap: 15px;
+}
+
+.pastEventMain p {
+	font-family: Mulish;
+	font-size: 20px;
+	font-weight: 400;
+	line-height: 25.1px;
+	text-align: left;
+}
+
+.pastEventMain span {
+	font-family: Mulish;
+	font-size: 20px;
+	font-weight: 400;
+	line-height: 25.1px;
+	text-align: left;
+	background: linear-gradient(185deg, #f8a94a 0%, #c97713 100%);
+	background-clip: text;
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+}
+
+.pastEventMainLink {
+	max-width: 500px;
+}
+
+.pastEventMainLink a {
+	color: var(--black);
+	text-wrap: nowrap;
+	font-family: Mulish;
+	font-size: 20px;
+	font-weight: 400;
+	line-height: 25.1px;
+	text-align: left;
+	transition: color .2s;
+}
+
+.pastEventMainLink a:hover {
+	color: var(--black);
+	color: #f8a94a;
+}

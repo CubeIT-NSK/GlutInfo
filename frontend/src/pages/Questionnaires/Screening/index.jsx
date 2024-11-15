@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { useNavigate } from "react-router-dom";
 import { useForm } from 'react-hook-form';
-import Footer from "../../../shared/components/Footer";
-import Header from "../../../shared/components/Header";
 import UniversalMessage from '../../../shared/components/Messages/UniversalMessage';
 import styles from "./index.module.css";
 import highlightDescription from './data/highlightDescription';
 import questionBlocks from './data/questionBlocks';
+import Button from '../../../shared/components/Buttons';
+
 
 const renderDescription = (description) => {
     return description.split('/n').map((text, index) => {
@@ -93,84 +93,96 @@ export default function ScreeningPage() {
     };
 
     return (
-        <div className={styles.container}>
-            <Header />
-            <main className={styles.mainContent}>
-                <section className={styles.screeningSection}>
-                    <form className={styles.questionsForm} onSubmit={handleSubmit(submitResults)}>
-                        {submitted ? (
-                            <UniversalMessage
-                                title="Анкета-скрининг по выявлению целиакии"
-                                subtitle="Спасибо за прохождение анкеты! Ваш результат успешно отправлен."
-                                buttonLabel="Назад в личный кабинет"
-                                onButtonClick={onSubmit}
-                            />
-                        ) : (
-                            currentQuestionBlock && (
-                                <>
-                                    <div className={styles.screeningTitlesWrapper}>
-                                        <h1 className={styles.screeningTitle}>Анкета-скрининг по выявлению целиакии</h1>
-                                        {currentQuestionBlock.description && (
-                                            <div className={`${styles.descriptionBlock} ${fadeDescription ? styles.fadeOut : styles.fadeIn}`}>
-                                                {renderDescription(currentQuestionBlock.description)}
-                                            </div>
-                                        )}
-                                    </div>
-                                    <div className={`${styles.questionsWithBtnWrapper} ${fade ? styles.fadeOut : styles.fadeIn}`}>
-                                        <div className={`${styles.questionsWrapper} ${fade ? styles.scaleDown : styles.scaleUp}`}>
-                                            {currentQuestionBlock.questions?.map((question, q_idx) => (
-                                                <div key={q_idx} className={styles.questionBlock}>
-                                                    <div className={styles.titleWrapper}>
-                                                        <p>
-                                                            {questionBlocks
-                                                                .slice(0, currentBlock)
-                                                                .reduce((total, block) => total + block.questions.length, 0) + (q_idx + 1)}.
-                                                        </p>
-                                                        <h2 className={styles.screeningSubTitle}>
-                                                            {question.title}
-                                                        </h2>
-                                                    </div>
-                                                    <div className={`${styles.radioAnswersWrapper} ${getPaddingLeft(q_idx)}`}>
-                                                        {question.options.map((option, icon_idx) => (
-                                                            <div key={icon_idx} className={styles.radioOption}>
-                                                                <input
-                                                                    type="radio"
-                                                                    id={`question-${currentBlock}-answer-${q_idx}-${icon_idx}`}
-                                                                    name={`question-${currentBlock}-${q_idx}`}
-                                                                    value={icon_idx + 1}
-                                                                    checked={answers[currentBlock][q_idx] === icon_idx + 1}
-                                                                    onChange={() => handleAnswerChange(currentBlock, q_idx, icon_idx + 1)}
-                                                                    className={styles.radioInput}
-                                                                />
-                                                                <label htmlFor={`question-${currentBlock}-answer-${q_idx}-${icon_idx}`} className={styles.radioLabel}>
-                                                                    {option}
-                                                                </label>
-                                                            </div>
-                                                        ))}
-                                                    </div>
+            <>
+                <div className={styles.Wrapper}>
+    `                <section className={styles.screeningSection}>
+                        <form className={styles.questionsForm} onSubmit={handleSubmit(submitResults)}>
+                            {submitted ? (
+                                <UniversalMessage
+                                    title="Анкета-скрининг по выявлению целиакии"
+                                    subtitle="Спасибо за прохождение анкеты! Ваш результат успешно отправлен."
+                                    buttonLabel="Назад в личный кабинет"
+                                    onButtonClick={onSubmit}
+                                />
+                            ) : (
+                                currentQuestionBlock && (
+                                    <>
+                                        <div className={styles.screeningTitlesWrapper}>
+                                            <h1 className={styles.screeningTitle}>Анкета-скрининг по выявлению целиакии</h1>
+                                            {currentQuestionBlock.description && (
+                                                <div className={`${styles.descriptionBlock} ${fadeDescription ? styles.fadeOut : styles.fadeIn}`}>
+                                                    {renderDescription(currentQuestionBlock.description)}
                                                 </div>
-                                            ))}
-                                        </div>
-                                        <div className={styles.buttonWrapper}>
-                                            {currentBlock < questionBlocks.length - 1 ? (
-                                                <button type="button" className={styles.questionsBtn} onClick={nextBlock} disabled={!isBlockComplete}>
-                                                    Далее {currentBlock + 1}/{questionBlocks.length}
-                                                </button>
-                                            ) : (
-                                                <button type="submit" className={styles.submitButton} disabled={!isBlockComplete}>
-                                                    Отправить результат
-                                                </button>
                                             )}
                                         </div>
-                                    </div>
-                                </>
-                            )
-                        )}
-                    </form>
-                    <button className={styles.exitButton} onClick={handleExit}>Выход</button>
-                </section>
-            </main>
-            <Footer />
-        </div>
+                                        <div className={`${styles.questionsWithBtnWrapper} ${fade ? styles.fadeOut : styles.fadeIn}`}>
+                                            <div className={`${styles.questionsWrapper} ${fade ? styles.scaleDown : styles.scaleUp}`}>
+                                                {currentQuestionBlock.questions?.map((question, q_idx) => (
+                                                    <div key={q_idx} className={styles.questionBlock}>
+                                                        <div className={styles.titleWrapper}>
+                                                            <p>
+                                                                {questionBlocks
+                                                                    .slice(0, currentBlock)
+                                                                    .reduce((total, block) => total + block.questions.length, 0) + (q_idx + 1)}.
+                                                            </p>
+                                                            <h2 className={styles.screeningSubTitle}>
+                                                                {question.title}
+                                                            </h2>
+                                                        </div>
+                                                        <div className={`${styles.radioAnswersWrapper} ${getPaddingLeft(q_idx)}`}>
+                                                            {question.options.map((option, icon_idx) => (
+                                                                <div key={icon_idx} className={styles.radioOption}>
+                                                                    <input
+                                                                        type="radio"
+                                                                        id={`question-${currentBlock}-answer-${q_idx}-${icon_idx}`}
+                                                                        name={`question-${currentBlock}-${q_idx}`}
+                                                                        value={icon_idx + 1}
+                                                                        checked={answers[currentBlock][q_idx] === icon_idx + 1}
+                                                                        onChange={() => handleAnswerChange(currentBlock, q_idx, icon_idx + 1)}
+                                                                        className={styles.radioInput}
+                                                                    />
+                                                                    <label htmlFor={`question-${currentBlock}-answer-${q_idx}-${icon_idx}`} className={styles.radioLabel}>
+                                                                        {option}
+                                                                    </label>
+                                                                </div>
+                                                            ))}
+                                                        </div>
+                                                    </div>
+                                                ))}
+                                            </div>
+                                            <div className={styles.buttonWrapper}>
+                                                {currentBlock < questionBlocks.length - 1 ? (
+                                                <Button
+                                                    variant="gradient"
+                                                    type="button"
+                                                    onClick={nextBlock}
+                                                    disabled={!isBlockComplete}
+                                                    padding="15px 336px"
+                                                >
+                                                    Далее {currentBlock + 1}/{questionBlocks.length}
+                                                </Button>
+                                            ) : (
+                                                <Button
+                                                    variant="gradient"
+                                                    type="submit"
+                                                    onClick={submitResults}
+                                                    disabled={!isBlockComplete}
+                                                    padding="15px 277px"
+                                                >
+                                                    Отправить результат
+                                                </Button>
+                                                )}
+                                            </div>
+                                        </div>
+                                    </>
+                                )
+                            )}
+                        </form>
+                        <button className={styles.exitButton} onClick={handleExit}>
+                            <span>Выход</span>
+                        </button>
+                    </section>
+                </div>
+            </>
     );
 }

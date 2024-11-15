@@ -134,17 +134,7 @@
 .sliderExpandButton {
 	background: none;
 	border: none;
-
-	color: rgb(152, 156, 157);
-	font-family: Mulish;
-	font-size: 16px;
-	font-weight: 600;
-	line-height: 20px;
-	letter-spacing: 0px;
-	text-align: left;
-	text-decoration-line: underline;
 	cursor: pointer;
-
 	max-width: fit-content;
 }
 
@@ -165,6 +155,17 @@
 	width: 100%;
 	height: 1.6px;
 	background: var(--light-wheat);
+}
+
+.sliderExpandButton span {
+	color: rgb(152, 156, 157);
+	font-family: Mulish;
+	font-size: 16px;
+	font-weight: 600;
+	line-height: 20px;
+	letter-spacing: 0px;
+	text-align: left;
+	text-decoration-line: underline;
 }
 
 @keyframes modalOpen {

@@ -1,0 +1,27 @@
+.sideLinkWrapper {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 20px;
+	user-select: none;
+}
+
+.sideLink {
+	color: #373F41;
+	font-family: Mulish;
+	font-size: 14px;
+	font-weight: 600;
+	line-height: 18px;
+	text-align: left;
+	text-decoration: none;
+	opacity: .7;
+	transition: color 0.3s ease;
+}
+
+.sideLink:hover {
+	color: var(--dark-wheat);
+}
+
+.sideLink:last-child {
+	opacity: 1;
+}

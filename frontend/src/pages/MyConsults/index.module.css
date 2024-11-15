@@ -1,0 +1,87 @@
+.myConsultsSection {
+	width: 100%;
+	padding: 30px 0 61px 0;
+}
+
+.myConsultsWrapper {
+	display: flex;
+	flex-direction: column;
+	gap: 50px;
+}
+
+.myConsultsTitle {
+	color: rgb(55, 63, 65);
+	font-family: TT Hoves;
+	font-size: 42px;
+	font-weight: 700;
+	line-height: 115%;
+	letter-spacing: 0px;
+	text-align: left;
+}
+
+.myConsultsBlock {
+	display: flex;
+	flex-direction: column;
+	gap: 22px;
+	width: 370px;
+}
+
+.myConsultsContain {
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+	padding: 25px 30px;
+}
+
+.myConsultsBtn {
+	align-self: center;
+}
+
+
+.myConsultsHeader {
+	color: rgb(55, 63, 65);
+	font-family: TT Hoves;
+	font-size: 20px;
+	font-weight: 500;
+	line-height: 115%;
+	letter-spacing: 0px;
+
+	text-align: left;
+}
+
+.myConsultsItem {
+	display: flex;
+	flex-direction: column;
+	gap: 15px;
+}
+
+.myConsultsText {
+	display: flex;
+	justify-content: space-between;
+}
+
+.myConsultsTextTop,
+.myConsultsTextBot {
+	color: rgb(55, 63, 65);
+	font-family: Mulish;
+	font-size: 14px;
+	font-weight: 600;
+	line-height: 18px;
+	letter-spacing: 0.2px;
+	text-align: right;
+}
+
+.myConsultsTextTop {
+	opacity: 0.7;
+}
+
+.myConsultsBtnsWrapper {
+	display: flex;
+	flex-direction: column;
+	gap: 15px;
+}
+
+.myConsults {
+	display: flex;
+	gap: 30px;
+}

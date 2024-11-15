@@ -56,11 +56,12 @@
 	border-radius: 4px;
 	box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.1);
 	display: none;
-	z-index: 10;
+	z-index: 1;
 }
 
 .optionsContainer.open {
 	display: block;
+	z-index: 100;
 }
 
 .option {

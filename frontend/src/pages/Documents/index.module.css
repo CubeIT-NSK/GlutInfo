@@ -1,0 +1,70 @@
+.documentsSection {
+	width: 100%;
+	padding: 70px 0 85px 0;
+}
+
+.documentsWrapper {
+	display: flex;
+	flex-direction: column;
+	gap: 50px;
+}
+
+.documentsWrapper h2 {
+	font-family: TT Hoves;
+	font-size: 42px;
+	font-weight: 700;
+	line-height: 48.3px;
+	text-align: left;
+}
+
+.document {
+	display: flex;
+	align-items: center;
+	gap: 30px;
+	flex-grow: 1;
+	flex-basis: 0;
+	min-width: 370px;
+}
+
+.document a {
+	font-family: TT Hoves;
+	font-size: 26px;
+	font-weight: 500;
+	line-height: 29.9px;
+	text-align: left;
+	background: linear-gradient(185deg, #f8a94a 0%, #c97713 100%);
+	background-clip: text;
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	text-decoration: underline;
+	text-decoration-color: #f8a94a;
+	text-decoration-skip-ink: none;
+}
+
+.document a:hover {
+	background: var(--dark-wheat);
+	background-clip: text;
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	text-decoration-color: var(--dark-wheat);
+
+}
+
+.documents {
+	display: flex;
+	flex-flow: row wrap;
+	gap: 30px;
+}
+
+.documentsBtn {
+	align-self: center;
+
+	font-family: Ubuntu;
+	font-size: 18px;
+	font-weight: 400;
+	line-height: 20.68px;
+	text-align: left;
+	text-underline-position: from-font;
+	text-decoration-skip-ink: none;
+
+}

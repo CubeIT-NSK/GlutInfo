@@ -1,0 +1,220 @@
+.spefsSection {
+	padding: 70px 0 100px 0;
+}
+
+.spefsTitle {
+	font-family: TT Hoves;
+	font-size: 32px;
+	font-weight: 600;
+	line-height: 36.8px;
+	text-align: left;
+}
+
+.spefsTitleOrange {
+	font-family: TT Hoves;
+	font-size: 42px;
+	font-weight: 700;
+	line-height: 48.3px;
+	text-align: left;
+	background: linear-gradient(185deg, #f8a94a 0%, #c97713 100%);
+	background-clip: text;
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+}
+
+.spefsText {
+	font-family: Mulish;
+	font-size: 20px;
+	font-weight: 400;
+	line-height: 25.1px;
+	text-align: left;
+}
+
+.spefsTextOrange {
+	font-family: Mulish;
+	font-size: 20px;
+	font-weight: 400;
+	line-height: 25.1px;
+	text-align: left;
+	background: linear-gradient(185deg, #f8a94a 0%, #c97713 100%);
+	background-clip: text;
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+}
+
+.spefsTextBlack {
+	font-family: Mulish;
+	font-size: 20px;
+	font-weight: 400;
+	line-height: 25.1px;
+	text-align: left;
+	color: var(--gray-form);
+}
+
+.spefsWrapper {
+	display: flex;
+	gap: 30px;
+}
+
+.spefsLeft {
+	display: flex;
+	flex-direction: column;
+	gap: 30px;
+	max-width: 670px;
+}
+
+.spefsLeftMain {
+	display: flex;
+	flex-direction: column;
+	gap: 50px;
+}
+
+.spefsTextContain {
+	display: flex;
+	flex-direction: column;
+	gap: 15px;
+}
+
+.spefsBtn {
+	display: flex;
+	align-items: center;
+	gap: 30px;
+	border-radius: 4px;
+	padding: 15px 40px 15px 20px;
+	width: 370px;
+	height: 100px;
+	box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.25);
+	outline: none;
+	border: transparent;
+	z-index: 100;
+	cursor: pointer;
+	position: relative;
+	overflow: hidden;
+	background: linear-gradient(249.03deg, #F8A94A 23.57%, #C97713 134.39%);
+	transition: -webkit-text-fill-color 0.3s ease-out;
+	-webkit-transition: -webkit-text-fill-color 0.3s ease-out;
+	-moz-transition: -webkit-text-fill-color 0.3s ease-out;
+	-ms-transition: -webkit-text-fill-color 0.3s ease-out;
+	-o-transition: -webkit-text-fill-color 0.3s ease-out;
+}
+
+.spefsBtn span {
+	font-family: TT Hoves;
+	font-weight: 500;
+	z-index: 100;
+	font-size: 22px;
+	line-height: 115%;
+	color: white;
+	z-index: 100000;
+}
+
+.spefsBtn:hover.spefsBtn span {
+	background: linear-gradient(185deg, #f8a94a 0%, #c97713 100%);
+	background-clip: text;
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+}
+
+.spefsBtn::before {
+	content: "";
+	display: block;
+	opacity: 0;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: var(--white);
+	transition: opacity 0.3s ease-in-out;
+	-webkit-transition: opacity 0.3s ease-in-out;
+	-moz-transition: opacity 0.3s ease-in-out;
+	-ms-transition: opacity 0.3s ease-in-out;
+	-o-transition: opacity 0.3s ease-in-out;
+	z-index: -100;
+}
+
+.spefsBtn::after {
+	content: "";
+	display: block;
+	opacity: 0;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: var(--white);
+	z-index: 1000000;
+}
+
+.spefsBtn:hover::before {
+	opacity: 1;
+}
+
+.spefsCircle {
+	width: 72px;
+	height: 72px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border-radius: 50%;
+	background: transparent;
+	position: relative;
+	background: #FFFFFF26;
+	border: 1px solid white;
+}
+
+.spefsInnerCircle {
+	width: 54px;
+	height: 54px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border-radius: 50%;
+	background-color: var(--white);
+	transition: width 0.3s, height 0.3s;
+	-webkit-transition: width 0.3s, height 0.3s;
+	-moz-transition: width 0.3s, height 0.3s;
+	-ms-transition: width 0.3s, height 0.3s;
+	-o-transition: width 0.3s, height 0.3s;
+}
+
+.spefsBtn:hover .spefsInnerCircle {
+	width: 70px;
+	height: 70px;
+	background-color: var(--light-wheat);
+}
+
+.spefsPlayIconOrange {
+	position: relative;
+	left: 3px;
+	width: 20px;
+	height: 24px;
+	transition: width 0.3s, height 0.3s;
+	-webkit-transition: width 0.3s, height 0.3s;
+	-moz-transition: width 0.3s, height 0.3s;
+	-ms-transition: width 0.3s, height 0.3s;
+	-o-transition: width 0.3s, height 0.3s;
+}
+
+.spefsBtn:hover .spefsPlayIconOrange {
+	display: none;
+}
+
+.spefsPlayIcon {
+	display: none;
+	position: relative;
+	left: 3px;
+	width: 20px;
+	height: 24px;
+	transition: width 0.3s, height 0.3s;
+	-webkit-transition: width 0.3s, height 0.3s;
+	-moz-transition: width 0.3s, height 0.3s;
+	-ms-transition: width 0.3s, height 0.3s;
+	-o-transition: width 0.3s, height 0.3s;
+}
+
+.spefsBtn:hover .spefsPlayIcon {
+	display: block;
+	width: 26px;
+	height: 32px;
+}

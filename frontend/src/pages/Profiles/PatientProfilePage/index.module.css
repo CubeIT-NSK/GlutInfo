@@ -1,13 +1,4 @@
-.container {
-	display: flex;
-	flex-direction: column;
-	min-height: 100vh;
-}
-
-.mainContent {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
+.backContent {
 	padding: 20px 20px 150px 20px;
 	background-color: #f9f9f9;
 }
@@ -92,66 +83,6 @@
 	text-align: left;
 }
 
-.primaryButton,
-.secondaryButton,
-.secondaryButtonBig,
-.secondaryButtonDisable {
-	padding: 10px;
-	cursor: pointer;
-	height: 51px;
-	width: 270px;
-
-	font-family: Ubuntu;
-	font-size: 18px;
-	font-weight: 400;
-	line-height: 20px;
-	letter-spacing: 0px;
-	text-align: center;
-
-}
-
-.primaryButton {
-	background-color: #f3962e;
-	color: white;
-	border: none;
-	border-radius: 5px;
-}
-
-.secondaryButton,
-.secondaryButtonBig,
-.secondaryButtonDisable {
-	color: black;
-	border: 2px solid transparent;
-	background-image: var(--gradient-wheat);
-	box-shadow: inset 0px 0px 0px 100vw #fff;
-	border-radius: 4px;
-	box-sizing: border-box;
-}
-
-.secondaryButtonBig span,
-.secondaryButtonDisable span,
-.secondaryButton span {
-	font-family: TT Hoves;
-	font-size: 22px;
-	font-weight: 500;
-	line-height: 25px;
-	letter-spacing: 0px;
-	text-align: left;
-	text-wrap: nowrap;
-}
-
-.secondaryButtonBig {
-	width: 570px;
-}
-
-.secondaryButtonDisable {
-	border: 0;
-	box-shadow: none;
-	background-image: none;
-	color: #494949;
-	background-color: var(--gray-form);
-}
-
 .profileSectionExit {
 	padding-top: 10px;
 	display: flex;
@@ -162,7 +93,7 @@
 	display: flex;
 	align-items: center;
 	flex-wrap: wrap;
-	gap: 30px;
+	gap: 29px;
 }
 
 .buttonsSection {

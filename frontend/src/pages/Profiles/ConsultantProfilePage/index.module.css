@@ -1,181 +1,219 @@
-.container {
-	display: flex;
-	flex-direction: column;
-	min-height: 100vh;
-}
-
-.mainContent {
-	display: flex;
-	flex-direction: column;
-}
-
-
-/* MAINPROFILE */
-
 .profileSection {
 	display: flex;
-	flex-direction: column;
-	padding: 47px 0 79px 0;
-}
-
-.profileSectionHeader {
-	color: rgb(55, 63, 65);
-	font-family: TT Hoves;
-	font-size: 42px;
-	font-weight: 700;
-	line-height: 49px;
-	text-align: left;
-	padding-bottom: 12px;
+	padding: 70px 0 75px 0;
 }
 
 .consProfileWrapper {
 	display: flex;
+	justify-content: space-between;
+}
+
+.consProfileLeftWrapper {
+	max-width: 670px;
+	display: flex;
+	flex-direction: column;
+	gap: 40px;
+}
+
+.consProfileLeftTop {
+	display: flex;
 	flex-direction: column;
 	gap: 30px;
-	padding-bottom: 70px;
-	border-bottom: 1px solid rgb(152, 156, 157);
 }
 
-.profileHeaderWrap {
-	display: flex;
-	gap: 30px;
-	align-items: center;
-}
-
-.profileAv {
-	width: 100px;
-	height: 100px;
-	border-radius: 50%;
-}
-
-.profileInfo h2 {
+.consultantName {
 	color: rgb(55, 63, 65);
-	font-family: Mulish;
-	font-size: 20px;
-	font-weight: 600;
-	line-height: 25px;
-	text-align: left;
-}
-
-.profileInfo p {
-	color: rgb(152, 156, 157);
-	font-family: Mulish;
-	font-size: 16px;
-	font-weight: 600;
-	line-height: 20px;
-	text-align: left;
-}
-
-.profileBtnActions {
-	display: flex;
-	flex-direction: column;
-	gap: 30px;
-}
-
-.profileBtnActionsW {
-	display: flex;
-	gap: 30px;
-}
-
-.actionBtn {
-	background-color: transparent;
-	border: 1px solid rgb(241, 153, 43);
-	border-radius: 4px;
-	color: black;
-	padding: 14.5px 20px;
-	width: 270px;
-	font-family: Mulish;
-	font-size: 18px;
-	font-weight: 400;
-	cursor: pointer;
-	transition: 0.3s;
-}
-
-.actionBtn:hover {
-	background-color: rgb(241, 153, 43);
-	color: white;
-}
-
-.actionBtnOrange {
-	border-radius: 4px;
-	border: transparent;
-	box-shadow: 0px 4px 12px 0px rgba(0, 0, 0, 0.25);
-	background: var(--gradient-wheat);
-
-	color: white;
-	padding: 14.5px 20px;
-	width: 270px;
-	font-family: Mulish;
-	font-size: 18px;
-	font-weight: 400;
-	cursor: pointer;
-}
-
-.actionBtnOrange:hover {
-	background: var(--dark-wheat);
-}
-
-
-/* CERTIFICATES */
-
-.certificatesSection {
-	display: flex;
-	flex-direction: column;
-	padding: 0 0 79px 0;
-}
-
-.certificatesProfConsWrap {
-	display: flex;
-	flex-direction: column;
-	gap: 39px;
-}
-
-.certificatesProfConsTopWrap {
-	display: flex;
-	flex-direction: column;
-	gap: 39px;
-}
-
-.certificatesProfConsTopText {
-	color: rgb(55, 63, 65);
-	font-family: Mulish;
-	font-size: 32px;
-	font-weight: 600;
-	line-height: 40px;
+	font-family: TT Hoves;
+	font-size: 42px;
+	font-weight: 700;
+	line-height: 115%;
 	letter-spacing: 0px;
 	text-align: left;
 }
 
-.certificatesProfConsMidWrap {
+.consultantTitle {
+	color: rgb(55, 63, 65);
+	font-family: Mulish;
+	font-size: 14px;
+	font-weight: 400;
+	line-height: 18px;
+	letter-spacing: 0.2px;
+	text-align: left;
+
+	max-width: 590px;
+}
+
+.consultantDescriptionList {
 	display: flex;
+	flex-direction: column;
+	gap: 20px;
+
+	list-style-type: none;
+	padding: 0;
+	margin: 0;
+}
+
+.consultantDescriptionItem {
+	display: flex;
+	align-items: flex-start;
+	gap: 20px;
+}
+
+.consultantDescriptionItem .yellowDash {
+	margin-top: 10px;
+}
+
+.yellowDash {
+	width: 50px;
+	height: 1.5px;
+	background: var(--gradient-wheat);
+}
+
+.serviceWrapper {
+	display: flex;
+	flex-direction: column;
 	gap: 30px;
 }
 
-.certificatesProfImg {
-	width: 470px;
-	height: 722px;
-}
-
-.certificatesMidWrapRightCol {
+.serviceItem {
 	display: flex;
 	flex-direction: column;
+	gap: 15px;
+}
+
+.serviceHeader {
+	display: flex;
 	justify-content: space-between;
+	align-items: center;
 }
 
-.certificatesProfile {
+.serviceTi {
+	color: rgb(55, 63, 65);
+	font-family: Mulish;
+	font-size: 14px;
+	font-weight: 600;
+	line-height: 18px;
+	letter-spacing: 0.2px;
+	text-align: left;
+
+	max-width: 490px;
+}
+
+.expandButton {
+	border: none;
+	background: none;
+	cursor: pointer;
+	height: 20px;
+
+	background: var(--gradient-wheat);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+
+	font-family: Mulish;
+	font-size: 14px;
+	font-weight: 400;
+	line-height: 18px;
+	letter-spacing: 0.2px;
+	text-align: left;
+	text-decoration-line: underline;
+	transition: color 0.3s ease;
+}
+
+.serviceDetails {
+	overflow: hidden;
+	max-height: 0;
+	transition: max-height 0.3s ease, opacity 0.3s ease;
+	opacity: 0;
+}
+
+.serviceDetails.expanded {
+	opacity: 1;
+}
+
+.consProfileRightWrapper {
 	display: flex;
 	flex-direction: column;
 	gap: 30px;
-	width: 670px;
 }
 
-.certificatesProfileTop {
+.consultantImage {
+	width: 100%;
+	border-radius: 10px;
+}
+
+.experienceWrapper {
+	display: flex;
+	align-items: center;
+	gap: 25px;
+}
+
+.experienceYearsWrapper {
+	display: flex;
+	align-items: last baseline;
+	gap: 5px;
+}
+
+.experienceYearsNumber,
+.experienceYears {
+	color: #373F41;
+	font-family: TT Hoves;
+	font-size: 90px;
+	font-weight: 500;
+	line-height: 115%;
+	letter-spacing: 0px;
+	text-align: left;
+}
+
+.experienceYearsNumber {
+	background: var(--gradient-wheat);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+}
+
+.experienceYears {
+	font-size: 32px;
+	line-height: 32px;
+}
+
+.experienceText {
+	font-family: Mulish;
+	font-size: 14px;
+	font-weight: 400;
+	line-height: 25.1px;
+	letter-spacing: 0px;
+	text-align: left;
+
+	max-width: 150px;
+}
+
+/* TABS */
+
+.educationTabs {
+	padding-bottom: 118px;
+}
+
+.tabWrapper {
 	display: flex;
 	flex-direction: column;
-	gap: 12px;
+	gap: 57px;
 }
 
-.certificatesProfileTop h2 {
+.tabHeaders {
+	display: flex;
+	gap: 136px;
+	max-width: 610px;
+	border-bottom: 3px solid #e0e0e0;
+}
+
+.tabButton {
+	background: none;
+	border: none;
+	padding-bottom: 26px;
+	cursor: pointer;
+	position: relative;
+}
+
+.tabButton span {
 	color: rgb(55, 63, 65);
 	font-family: TT Hoves;
 	font-size: 26px;
@@ -185,62 +223,124 @@
 	text-align: left;
 }
 
-.certificatesProfileTop p {
+.tabButton.activeTab::after {
+	content: "";
+	position: absolute;
+	left: 0;
+	bottom: -3px;
+	height: 3px;
+	width: 100%;
+	background-color: #ffa500;
+}
+
+.tabButton:not(.activeTab)::after {
+	content: "";
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	height: 3px;
+	width: 0;
+	background-color: transparent;
+	transition: all 0.3s ease;
+}
+
+.tabContent {
+	opacity: 0;
+	transform: translateX(-20px);
+	visibility: hidden;
+	transition: opacity 0.5s ease, transform 0.5s ease, visibility 0s 0.5s;
+}
+
+.tabContent.active {
+	opacity: 1;
+	transform: translateX(0);
+	visibility: visible;
+	transition: opacity 0.5s ease, transform 0.5s ease, visibility 0s 0s;
+}
+
+
+.tabButton.activeTab::after {
+	background-color: #ffa500;
+	width: 100%;
+	transition: width 0.3s ease-in-out;
+}
+
+.tabButton:not(.activeTab)::after {
+	background-color: transparent;
+	width: 0;
+}
+
+.educationContent,
+.documentsContent {
+	display: flex;
+	flex-direction: column;
+	gap: 34px;
+}
+
+.educationContentTitle,
+.documentsContentTitle {
+	color: rgb(55, 63, 65);
+	font-family: TT Hoves;
+	font-size: 32px;
+	font-weight: 600;
+	line-height: 26.8px;
+	letter-spacing: 0px;
+	text-align: left;
+}
+
+.educationContentDescription {
+	display: flex;
+	align-items: center;
+	gap: 20px;
+}
+
+.educationContentDe {
 	color: rgb(55, 63, 65);
 	font-family: Mulish;
 	font-size: 20px;
 	font-weight: 400;
 	line-height: 25.1px;
-	letter-spacing: 0px;
+	letter-spacing: 0;
 	text-align: left;
 }
 
-.certificatesProfileBot,
-.certificatesProfileMid {
-	color: rgb(55, 63, 65);
-	font-family: TT Hoves;
-	font-size: 20px;
-	font-weight: 400;
-	line-height: 23px;
-	letter-spacing: 0px;
-	text-align: left;
-}
+/* VIDEO CUTAWAY */
 
-.certificatesProfileBot span,
-.certificatesProfileMid span {
-	color: rgb(55, 63, 65);
-	font-family: TT Hoves;
-	font-size: 20px;
-	font-weight: 500;
-	line-height: 23px;
-	letter-spacing: 0px;
-	text-align: left;
-}
-
-
-.certificatesProfileSLider {
+.videoСutawaySection {
 	display: flex;
 	flex-direction: column;
-	gap: 30px;
+	padding: 100px 0;
 }
 
-.certificatesProfileSliderTitle {
+.videoСutawayWrapper {
+	display: flex;
+	flex-direction: column;
+	gap: 50px;
+}
+
+.videoHeader {
 	color: rgb(55, 63, 65);
 	font-family: TT Hoves;
-	font-size: 26px;
-	font-weight: 500;
-	line-height: 29.9px;
+	font-size: 42px;
+	font-weight: 700;
+	line-height: 48.3px;
 	letter-spacing: 0px;
-	text-align: left;
+	text-align: center;
 }
 
+.videoBanner {
+	width: 1170px;
+	height: 660px;
+	background-color: #d9d9d9;
+	border-radius: 10px;
+}
 
 /* PHOTO GALLERY */
 
 .phGalCertificatesSection {
 	display: flex;
 	flex-direction: column;
-	padding: 0 0 70px 0;
+	padding: 100px 0;
 }
 
 .galleryHeader {
@@ -326,55 +426,103 @@
 }
 
 
-/* VIDEO CUTAWAY */
+/* REVIEWS */
 
-.videoСutawaySection {
+.reviewsSection {
 	display: flex;
 	flex-direction: column;
-	padding: 0 0 70px 0;
+	padding: 100px 0;
 }
 
-.videoHeader {
+.reviewsWrapper {
+	display: flex;
+	flex-direction: column;
+	gap: 60px;
+}
+
+.reviewsHeader {
 	color: rgb(55, 63, 65);
 	font-family: TT Hoves;
-	font-size: 26px;
-	font-weight: 500;
-	line-height: 29.9px;
+	font-size: 42px;
+	font-weight: 700;
+	line-height: 115%;
 	letter-spacing: 0px;
 	text-align: left;
-	padding-bottom: 30px;
 }
 
-.videoBanner {
-	width: 1170px;
-	height: 499px;
-	background-color: #d9d9d9;
+.reviewsCarts {
+	display: flex;
+	justify-content: space-between;
 }
 
-.videoСutawaySectionBtn {
-	border-radius: 4px;
-	border: transparent;
-	box-shadow: 0px 4px 12px 0px rgba(0, 0, 0, 0.25);
-	background: var(--gradient-wheat);
+.reviewsCart {
+	padding: 0 25px 58px 25px;
 
-	color: white;
-	padding: 14.5px 20px;
-	width: 1130px;
-	font-family: Mulish;
-	font-size: 18px;
-	font-weight: 400;
-	cursor: pointer;
-	margin-left: 20px;
-}
-
-.videoСutawaySectionBtn:hover {
-	background: var(--dark-wheat);
-}
-
-/* SERVICES */
-
-.servicesCertificatesSection {
 	display: flex;
 	flex-direction: column;
-	padding: 0 0 40px 0;
+}
+
+.reviewsCartTop {
+	align-self: flex-end;
+	margin-bottom: -15px;
+}
+
+.reviewsCartBottom {
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+
+	max-width: 320px;
+}
+
+.reviewsCartUsers {
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
+
+}
+
+.reviewsCartUserDate {
+	color: rgb(0, 0, 0);
+	font-family: Mulish;
+	font-size: 14px;
+	font-weight: 700;
+	line-height: 18px;
+	letter-spacing: 0.2px;
+	text-align: left;
+}
+
+.reviewsCartUser {
+	color: rgb(0, 0, 0);
+	font-family: TT Hoves;
+	font-size: 20px;
+	font-weight: 500;
+	line-height: 115%;
+	letter-spacing: 0px;
+	text-align: left;
+}
+
+.reviewsCartCommentsText {
+	color: rgb(0, 0, 0);
+	font-family: Mulish;
+	font-size: 14px;
+	font-weight: 600;
+	line-height: 18px;
+	letter-spacing: 0.2px;
+	text-align: left;
+}
+
+.reviewsStars {
+	display: flex;
+	gap: 1.7px;
+}
+
+.reviewsStarsWrapper {
+	width: 20px;
+	height: 20px;
+	background: #F8A94A;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
