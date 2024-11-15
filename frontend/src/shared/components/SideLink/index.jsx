@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { useBreadcrumbs } from '../../lib/useBreadcrumbs';
+import { useBreadcrumbs } from '../../library/useBreadcrumbs';
 import styles from './index.module.css';
 import icons from '../../resources/icon';
 
