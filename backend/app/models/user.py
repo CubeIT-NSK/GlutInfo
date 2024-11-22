@@ -12,6 +12,7 @@ from app.core.constants import (
     MAX_NAME_CHAR,
     MAX_SURNAME_CHAR,
     MAX_PATRONYMIC_CHAR,
+    MAX_PHONE_NUMBER_DIGITS,
 )
 
 Sex = Literal['male', 'female']
@@ -35,7 +36,7 @@ class User(SQLAlchemyBaseUserTable[int], Base):
         create_constraint=True,
         validate_strings=True,
     ))
-    phone: Mapped[int] = mapped_column(Integer)
+    phone: Mapped[str] = mapped_column(String(MAX_PHONE_NUMBER_DIGITS))
     role: Mapped[Role] = mapped_column(Enum(
         *get_args(Role),
         name="rolestatus",

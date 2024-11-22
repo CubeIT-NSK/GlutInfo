@@ -22,6 +22,7 @@ from app.crud.patient import patient_crud
 from app.crud.records import records_crud
 from app.api.validators import (
     check_patient_duplicate,
+    check_patient_exists_by_user,
     current_user_patient,
     check_consultant_exists,
     check_service_exists,
@@ -51,6 +52,24 @@ async def post_new_patient(
 ):
     await check_patient_duplicate(user.id, session)
     patient = await patient_crud.create(patient, session, user)
+    return patient
+
+
+@router.get(
+    '/me',
+    response_model=PatientDB,
+    summary='Получение текущего пациента.',
+    description='Выводятся вся информация '
+                'по пациенту.',
+)
+async def get_me_patient(
+    user: User = Depends(current_user),
+    session: AsyncSession = Depends(get_async_session)
+):
+    patient = await check_patient_exists_by_user(
+        user=user,
+        session=session
+    )
     return patient
 
 
