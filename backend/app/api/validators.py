@@ -9,7 +9,7 @@ from app.crud.schedule import schedule_crud
 from app.crud.service import services_crud
 from app.crud.records import records_crud
 from app.core.user import current_user
-from app.models.user import User, Consultants
+from app.models.user import User, Consultants, Patients
 from app.models.record import Services, Schedule
 
 
@@ -27,6 +27,38 @@ async def check_consultant_exists(
             detail='Consultant dosen`t exist!'
         )
     return consultant
+
+
+async def check_consultant_exists_by_user(
+    user: User,
+    session: AsyncSession
+) -> Consultants:
+    consultant = await consultant_crud.get_consultant_by_userid(
+        user_id=user.id,
+        session=session,
+    )
+    if consultant is None:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail='Consultant dosen`t exist!'
+        )
+    return consultant
+
+
+async def check_patient_exists_by_user(
+    user: User,
+    session: AsyncSession
+) -> Patients:
+    patient = await patient_crud.get_patient_by_userid(
+        user_id=user.id,
+        session=session,
+    )
+    if patient is None:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail='Patient dosen`t exist!'
+        )
+    return patient
 
 
 async def check_service_exists(

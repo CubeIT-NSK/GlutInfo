@@ -20,11 +20,11 @@ services:
     depends_on:
       - db
     restart: on-failure
-  # frontend:
-  #   build: ./frontend/
-  #   command: cp -r /app/dist/. /static/
-  #   volumes:
-  #     - static:/static
+  frontend:
+    build: ./frontend/
+    command: cp -r /app/dist/. /static/
+    volumes:
+      - static:/static
   gateway:
     build: ./gateway/
     ports:

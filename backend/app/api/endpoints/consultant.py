@@ -33,6 +33,7 @@ from app.crud.records import records_crud
 from app.api.validators import (
     check_consultant_duplicate,
     check_consultant_exists,
+    check_consultant_exists_by_user,
     check_service_exists,
     check_consultant_schedule_exists,
     check_consultant_own_service,
@@ -118,6 +119,24 @@ async def post_new_consultant(
         )
     )
     consultant = await consultant_crud.create(consultant, session, user)
+    return consultant
+
+
+@router.get(
+    '/me',
+    response_model=ConsultantDB,
+    summary='Получение текущего подтвержденного консультанта',
+    description='Выводятся вся информация '
+                'по консультанту.',
+)
+async def get_me_consultant(
+    user: User = Depends(current_user),
+    session: AsyncSession = Depends(get_async_session)
+):
+    consultant = await check_consultant_exists_by_user(
+        user=user,
+        session=session
+    )
     return consultant
 
 
