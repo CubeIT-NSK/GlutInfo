@@ -4,6 +4,9 @@ import icons from '../../../resources/icon';
 import { useNavigate } from "react-router-dom";
 import Button from '../../Buttons';
 
+import { postApiAuth } from '../../../api/api';
+
+
 const AuthorizationModal = ({ isOpen, onClose }) => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
@@ -35,10 +38,15 @@ const AuthorizationModal = ({ isOpen, onClose }) => {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
     if (validate()) {
       console.log('Authorization data:', formData);
+      const { email:username, password:password }  = formData
+      const status = await postApiAuth({username, password})
+      console.log(status)
+      // если статус 400, то плохой пароль или мыло (пользователь для теста ptyrtin@mail.ru badpassword)
+      // если 200, то в личный кабинет
     }
   };
 
