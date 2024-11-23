@@ -45,7 +45,7 @@ get_user_manager_context = contextlib.asynccontextmanager(get_user_manager)
 
 class UserAdmin(ModelView, model=User):
     can_create = False
-    can_edit = False
+    can_edit = True
     can_delete = False
     column_list = [User.id,
                    User.name,
