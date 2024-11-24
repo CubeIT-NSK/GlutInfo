@@ -54,6 +54,9 @@ import reviewsStarsIcon from '../../assets/img/icons/reviews/reviewsStarsIcon.sv
 
 import glutFrameIcon from '../../assets/img/icons/relevanceProblem/glutFrameIcon.svg';
 
+import showPasswordIcon from '../../assets/img/icons/registrationPage/showPasswordIcon.svg';
+import hidePasswordIcon from '../../assets/img/icons/registrationPage/hidePasswordIcon.svg';
+
 const icons = {
     arrowIcon,
     avatarIcon,
@@ -105,6 +108,10 @@ const icons = {
     reviewsMarksIcon,
     reviewsStarsIcon,
     glutFrameIcon,
+
+    showPasswordIcon,
+    hidePasswordIcon,
+
 };
 
 export default icons;

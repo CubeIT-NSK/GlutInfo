@@ -183,3 +183,17 @@
 .redPlaceholder::placeholder {
 	color: #FF162E;
 }
+
+.passwordWrapper {
+	position: relative;
+	display: flex;
+	align-items: center;
+}
+
+.passwordToggleIcon {
+    position: absolute;
+    right: 10px;
+    cursor: pointer;
+    width: 24px;
+    height: 24px;
+}
