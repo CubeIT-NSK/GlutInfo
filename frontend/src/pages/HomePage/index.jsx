@@ -203,8 +203,8 @@ export default function HomePage() {
 									Подробнее
 								</Button>
 							</div>
-							<div className={styles.aboutUsRight}> <img src={images.aboutUsLogoImage} alt="aboutUsImage" />
-								<p><span>ГАСТРОГЛЮТЕН.</span>ИНФО</p>
+							<div className={styles.aboutUsRight}>
+								<img src={images.aboutUsLogoImage} alt="aboutUsImage" />
 							</div>
 						</div>
 					</div>
