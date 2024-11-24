@@ -119,14 +119,20 @@ const ContactManagerModal = ({ isOpen, onClose }) => {
                     <div className={styles.contactManagerModalRightLinks}>
                         <div className={styles.contactManagerModalRightLink}>
                             <div className={styles.contactManagerModalRightIcons}>
-                                <img src={icons.telegramIcon} alt="telegramIcon" />
-                                <img src={icons.whatsappIcon} alt="whatsappIcon" />
+                                <a href="https://t.me/gluteninfo" className={styles.contactsIconText}>
+                                     <img src={icons.telegramIcon} alt="telegramIcon" />
+                                </a>
+                                <a href="https://whatsapp.com/link" className={styles.contactsIconText}>
+                                     <img src={icons.whatsappIcon} alt="whatsappIcon" />
+                                </a>
                             </div>
                             <a href="tel:+79697305778">+7 969 730 57 78</a>
                         </div>
                         <div className={styles.contactManagerModalRightLink}>
                             <div className={styles.contactManagerModalRightIcons}>
-                                <img src={icons.mailIcon} alt="mailIcon" />
+                                <a href="mailto:gluten-center@mail.ru" className={styles.contactsIconText}>
+                                     <img src={icons.mailIcon} alt="mailIcon" />
+                                </a>
                             </div>
                             <a href="mailto:gluten-center@mail.ru">gluten-center@mail.ru</a>
                         </div>

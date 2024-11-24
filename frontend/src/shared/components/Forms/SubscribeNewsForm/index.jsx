@@ -1,96 +1,83 @@
-import React, { useCallback, useMemo, useState } from 'react';
+import React from 'react';
 import styles from './index.module.css';
 import Button from '../../Buttons';
+import * as yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { useForm } from "react-hook-form";
+
+const schema = yup.object().shape({
+  name: yup.string().required("Введите ваше имя"),
+  email: yup
+    .string()
+    .email("Введите корректный адрес электронной почты")
+    .required("Введите электронную почту"),
+});
 
 const SubscribeNewsForm = () => {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-  });
+    const {
+      register,
+      handleSubmit,
+      formState: { errors },
+    } = useForm({
+      resolver: yupResolver(schema),
+    });
 
-  const [errors, setErrors] = useState({});
-
-  const validate = useCallback(() => {
-    const newErrors = {};
-
-    if (!formData.name.trim()) newErrors.name = 'Введите ваше имя.';
-    if (!formData.email.trim()) {
-      newErrors.email = 'Введите электронную почту.';
-    } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
-      newErrors.email = 'Введите корректный адрес электронной почты.';
-    }
-
-    setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
-  }, [formData]);
-
-  const handleChange = useCallback(
-    ({ target: { name, value } }) => {
-      setFormData((prevData) => ({ ...prevData, [name]: value }));
-    },
-    []
-  );
-
-  const handleSubmit = useCallback(
-    (e) => {
+    const onSubmit = (data, e) => {
       e.preventDefault();
-      if (validate()) {
-        console.log('Form submitted:', formData);
-      }
-    },
-    [formData, validate]
-  );
+      console.log("Submitted data:", data);
+    };
 
-  const inputFields = useMemo(
-    () => [
-      { name: 'name', type: 'text', placeholder: 'Ваше имя', label: 'Имя' },
-      { name: 'email', type: 'email', placeholder: 'Электронная почта', label: 'Электронная почта' },
-    ],
-    []
-  );
-
-  return (
-    <form onSubmit={handleSubmit} className={styles.subscribeNewsForm}>
-      <div className={styles.subscribeNewsFormTextWrapper}>
-        <h2>Заполните форму</h2>
-        <p>И будьте в курсе всех событий и обновлений</p>
-      </div>
-
-      <div className={styles.formConsentWrapper}>
-        <div className={styles.formGroupWrapper}>
-        {inputFields.map(({ name, type, placeholder }) => (
-          <div className={styles.formGroup} key={name}>
-            <input
-              type={type}
-              name={name}
-              placeholder={placeholder}
-              value={formData[name]}
-              onChange={handleChange}
-              required
-            />
-            {errors[name] && <span className={styles.error}>{errors[name]}</span>}
+    return (
+      <form onSubmit={handleSubmit(onSubmit)} className={styles.subscribeNewsForm}>
+          <div className={styles.subscribeNewsFormTextWrapper}>
+              <h2>Заполните форму</h2>
+              <p className={styles.subscribeNewsSubTitle}>И будьте в курсе всех событий и обновлений</p>
           </div>
-        ))}
-          <Button
-              variant="gradient"
-              type="submit"
-              padding="17.5px 77.5px"
-          >
-              Отправить предложение
-          </Button>
-        </div>
-        <div className={styles.consent}>
-          <input
-            type="radio"
-            defaultChecked
-            readOnly
-            className={styles.roundRadio}
-          />
-          <label>Даю согласие на обработку персональных данных</label>
-        </div>
-      </div>
-    </form>
-  );
+
+          <div className={styles.formConsentWrapper}>
+              <div className={styles.formGroupWrapper}>
+                  <div className={styles.formGroup} >
+                      <div className={styles.subscribeNewsErrorsWrapper}>
+                          <input
+                              type="name"
+                              {...register("name")}
+                              autoComplete="name"
+                              placeholder="Ваше имя"
+                              className={`${styles.subscribeNewsInput} ${errors.name ? styles.errorInput : ''} ${errors.name ? styles.errorText : ''} ${errors.name ? styles.redPlaceholder : ''}`}
+                          />
+                          {errors.name && <p className={styles.error}>{errors.name.message}</p>}
+                      </div>
+                      <div className={styles.subscribeNewsErrorsWrapper}>
+                          <input
+                              type="email"
+                              {...register("email")}
+                              autoComplete="email"
+                              placeholder="Электронная почта"
+                              className={`${styles.subscribeNewsInput} ${errors.email ? styles.errorInput : ''} ${errors.email ? styles.errorText : ''} ${errors.email ? styles.redPlaceholder : ''}`}
+                          />
+                          {errors.email && <p className={styles.error}>{errors.email.message}</p>}
+                      </div>
+                  </div>
+                  <Button
+                      variant="gradient"
+                      type="submit"
+                      padding="17.5px 78.64px"
+                  >
+                      Подписаться на новости
+                  </Button>
+              </div>
+              <div className={styles.consent}>
+                  <input
+                    type="radio"
+                    defaultChecked
+                    readOnly
+                    className={styles.roundRadio}
+                  />
+                  <label>Даю согласие на обработку персональных данных</label>
+              </div>
+          </div>
+      </form>
+    );
 };
 
 export default SubscribeNewsForm;

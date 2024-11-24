@@ -57,9 +57,7 @@
 }
 
 .socialIconText span:hover {
-	background: var(--gradient-wheat);
-	-webkit-background-clip: text;
-	-webkit-text-fill-color: transparent;
+	color: var(--dark-wheat);
 }
 
 .icons {
@@ -268,33 +266,6 @@
 	line-height: 13px;
 	letter-spacing: 0.2px;
 	text-align: left;
-}
-
-.donateButton {
-	border: transparent;
-	border-radius: 4px;
-	background: var(--gradient-wheat);
-	padding: 10px;
-	width: 100%;
-	text-align: center;
-	cursor: pointer;
-}
-
-.donateButton:hover {
-	background-color: var(--wheat);
-}
-
-.donateButton:active {
-	border: transparent;
-}
-
-.donateButton span {
-	color: rgb(255, 255, 255);
-	font-family: 'Mulish';
-	font-size: 14px;
-	font-weight: 600;
-	line-height: 18px;
-	letter-spacing: 0.2px;
 }
 
 .showDonateMenu {

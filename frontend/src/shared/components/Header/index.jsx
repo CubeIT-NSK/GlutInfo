@@ -4,6 +4,7 @@ import AuthorizationModal from '../Modals/AuthorizationModal';
 import ContactManagerModal from '../Modals/ContactManagerModal';
 import styles from './index.module.css';
 import { menuItems } from './menuItems';
+import Button from '../Buttons';
 
 const Header = () => {
   const [openDropdownIndex, setOpenDropdownIndex] = useState(null);
@@ -64,7 +65,7 @@ const Header = () => {
           </div>
           <div className={styles.headerRight}>
             <div className={styles.headerRightWrapper}>
-              <a href="https://t.me/" className={styles.socialIconText}>
+              <a href="https://t.me/gluteninfo" className={styles.socialIconText}>
                 <img src={icons.telegramIcon} alt="telegramIcon" />
                 <span>Наш телеграм канал</span>
               </a>
@@ -81,9 +82,13 @@ const Header = () => {
                     <p>Сервис создан благодаря инициативе сотрудников Северо-Западного Центра лечения глютен-ассоциированных заболеваний и поддержке пациентского сообщества.</p>
                      <p>Мы будем благодарны любой сумме для продвижения нашего дела. Каждое пожертвование будет направлено на реализацию социальных программ для больных целиакией.</p>
                   </div>
-                  <button className={styles.donateButton}>
-                    <span>Пожертвовать</span>
-                  </button>
+                  <Button
+                      variant="gradient"
+                      padding="10px 72.09px"
+                      fontSize='mini'
+                  >
+                      Пожертвовать
+                  </Button>
                 </div>
               </div>
             </div>

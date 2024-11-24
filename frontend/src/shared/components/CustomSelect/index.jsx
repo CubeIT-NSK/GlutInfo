@@ -60,7 +60,10 @@ const CustomSelect = ({ options, value, name, onChange, errors, setError }) => {
                     className={styles.arrowIcon}
                 />
             </div>
-            <div className={`${styles.optionsContainer} ${isOpen ? styles.open : ''}`}>
+            <div
+                className={`${styles.optionsContainer} ${isOpen ? styles.open : ''}`}
+                style={{ zIndex: isOpen ? 1000 : 'auto' }}  // динамически меняем z-index
+            >
                 {options.filter(option => !option.isPlaceholder).map((option) => (
                     <div
                         key={option.value}
@@ -75,5 +78,6 @@ const CustomSelect = ({ options, value, name, onChange, errors, setError }) => {
         </div>
     );
 };
+
 
 export default CustomSelect;

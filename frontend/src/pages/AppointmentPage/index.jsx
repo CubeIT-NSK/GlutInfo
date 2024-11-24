@@ -44,6 +44,12 @@ const serviceOptions = [
     { value: '', label: 'Выберите услугу', isPlaceholder: true },
     { value: 'consultation', label: 'Консультация' },
     { value: 'diagnosis', label: 'Диагностика' },
+    { value: 'diagnosis2', label: 'Диагностика2' },
+    { value: 'diagnosis3', label: 'Диагностика3' },
+    { value: 'diagnosis4', label: 'Диагностика4' },
+    { value: 'diagnosis5', label: 'Диагностика5' },
+    { value: 'diagnosis6', label: 'Диагностика6' },
+    { value: 'diagnosis7', label: 'Диагностика7' },
 ];
 
 export default function AppointmentPage() {
@@ -59,6 +65,8 @@ export default function AppointmentPage() {
     const service = watch('service');
     const serviceTime = watch('serviceTime');
 
+    const isFormValid = doctor && date && service && serviceTime;
+
     const onSubmit = (data) => {
         console.log(data);
         setStep(2);
@@ -73,6 +81,21 @@ export default function AppointmentPage() {
         event.preventDefault();
         navigate('/profile-patient');
     };
+
+    const handleAnimationEnd = (field) => {
+        setAnimationCompleted((prev) => ({
+            ...prev,
+            [field]: true,
+        }));
+    };
+
+    const [animationCompleted, setAnimationCompleted] = useState({
+        doctor: false,
+        date: false,
+        service: false,
+        serviceTime: false,
+        serviceCard: false,
+    });
 
     const selectedDoctor = doctorOptions.find(option => option.value === doctor)?.label || '';
     const selectedService = serviceOptions.find(option => option.value === service)?.label || '';
@@ -90,71 +113,102 @@ export default function AppointmentPage() {
                         </h2>
 
                         {step === 1 && (
-                            <form onSubmit={handleSubmit(onSubmit)} className={styles.registrationForm}>
-                                <label className={`${styles.authFormLabel} ${styles.fadeIn}`}>
-                                    <p className={styles.authFormTitle}>Выберите врача</p>
-                                    <CustomSelect
-                                        options={doctorOptions}
-                                        value={doctor}
-                                        name="doctor"
-                                        onChange={(value) => setValue('doctor', value)}
-                                        errors={errors}
-                                    />
-                                </label>
-
-                                {doctor && (
-                                    <label className={`${styles.authFormLabel} ${styles.fadeIn}`}>
-                                        <p className={styles.authFormTitle}>Выберите дату</p>
-                                        <div className={styles.inpWrap}>
-                                            <input
-                                                type="date"
-                                                {...register("date")}
-                                                max={new Date().toISOString().split("T")[0]}
-                                                min={new Date(new Date().setFullYear(new Date().getFullYear() - 100)).toISOString().split("T")[0]}
-                                                className={`${styles.authFormInput} ${errors.date ? styles.errorInput : ''}`}
+                            <form onSubmit={handleSubmit(onSubmit)} className={styles.appointmentForm}>
+                                <div className={styles.formGroupWrapper}>
+                                    <div className={styles.formGroup}>
+                                        <label
+                                            className={`${styles.appointmentFormLabel}  ${!animationCompleted.doctor ? styles.fadeIn : ''}`}
+                                            onAnimationEnd={() => handleAnimationEnd('doctor')}
+                                        >
+                                            Выберите врача
+                                            <CustomSelect
+                                                options={doctorOptions}
+                                                value={doctor}
+                                                name="doctor"
+                                                onChange={(value) => setValue('doctor', value)}
+                                                errors={errors}
                                             />
+                                        </label>
+
+                                        {doctor && (
+                                            <label
+                                                className={`${styles.appointmentFormLabel}  ${!animationCompleted.date ? styles.fadeIn : ''}`}
+                                                onAnimationEnd={() => handleAnimationEnd('date')}
+                                            >
+                                                Выберите дату
+                                                <div className={styles.inpWrap}>
+                                                    <input
+                                                        type="date"
+                                                        {...register("date")}
+                                                        max={new Date().toISOString().split("T")[0]}
+                                                        min={new Date(new Date().setFullYear(new Date().getFullYear() - 100)).toISOString().split("T")[0]}
+                                                        className={`${styles.appointmentFormInput} ${errors.date ? styles.errorInput : ''}`}
+                                                    />
+                                                </div>
+                                            </label>
+                                        )}
+
+                                        {doctor && date && (
+                                            <label
+                                                className={`${styles.appointmentFormLabel}  ${!animationCompleted.service ? styles.fadeIn : ''}`}
+                                                onAnimationEnd={() => handleAnimationEnd('service')}
+                                            >
+                                                Выберите услугу
+                                                <CustomSelect
+                                                    options={serviceOptions}
+                                                    value={service}
+                                                    name="service"
+                                                    onChange={(value) => {
+                                                        setValue('service', value);
+                                                        clearErrors('serviceTime');
+                                                        setValue('serviceTime', '');
+                                                    }}
+                                                    errors={errors}
+                                                />
+                                            </label>
+                                        )}
+
+                                        {doctor && date && service && (
+                                            <label
+                                                className={`${styles.appointmentFormLabel}  ${!animationCompleted.serviceTime ? styles.fadeIn : ''}`}
+                                                onAnimationEnd={() => handleAnimationEnd('serviceTime')}
+                                            >
+                                                Выберите время
+                                                <CustomSelect
+                                                    options={serviceTimeOptions}
+                                                    value={serviceTime}
+                                                    name="serviceTime"
+                                                    onChange={(value) => setValue('serviceTime', value)}
+                                                    errors={errors}
+                                                />
+                                            </label>
+                                        )}
+
+                                        <div className={styles.formGroup}>
+                                            <Button
+                                                variant="gradient"
+                                                type="submit"
+                                                padding="15px 173px"
+                                                disabled={!isFormValid}
+                                            >
+                                                Записаться
+                                            </Button>
                                         </div>
-                                    </label>
-                                )}
-
-                                {doctor && date && (
-                                    <label className={`${styles.authFormLabel} ${styles.fadeIn}`}>
-                                        <p className={styles.authFormTitle}>Выберите услугу</p>
-                                        <CustomSelect
-                                            options={serviceOptions}
-                                            value={service}
-                                            name="service"
-                                            onChange={(value) => {
-                                                setValue('service', value);
-                                                clearErrors('serviceTime');
-                                                setValue('serviceTime', '');
-                                            }}
-                                            errors={errors}
-                                        />
-                                    </label>
-                                )}
-
-                                {doctor && date && service && (
-                                    <label className={`${styles.authFormLabel} ${styles.fadeIn}`}>
-                                        <p className={styles.authFormTitle}>Выберите время</p>
-                                        <CustomSelect
-                                            options={serviceTimeOptions}
-                                            value={serviceTime}
-                                            name="serviceTime"
-                                            onChange={(value) => setValue('serviceTime', value)}
-                                            errors={errors}
-                                        />
-                                    </label>
-                                )}
-
-                                <div className={styles.formGroup}>
-                                    <Button
-                                        variant="gradient"
-                                        type="submit"
-                                        padding="15px 173px"
-                                    >
-                                        Записаться
-                                    </Button>
+                                    </div>
+                                    {isFormValid && (
+                                        <div
+                                            className={`${styles.appointmentServiceCard} ${!animationCompleted.serviceCard ? styles.fadeIn : ''}`}
+                                            onAnimationEnd={() => handleAnimationEnd('serviceCard')}
+                                        >
+                                            <div className={styles.appointmentServiceCardTop}>
+                                                <h3 className={styles.appointmentServiceCardTopText}>Итоговая стоимость</h3>
+                                            </div>
+                                            <div className={styles.appointmentServiceCardBot}>
+                                                <p className={styles.appointmentServiceCardBotLeftText}>{selectedService}</p>
+                                                <p className={styles.appointmentServiceCardBotRightText}>6 690 р.</p>
+                                            </div>
+                                        </div>
+                                    )}
                                 </div>
                             </form>
                         )}
@@ -190,7 +244,7 @@ export default function AppointmentPage() {
                                     >
                                         Оплатить и записаться
                                     </Button>
-                                    <label className={styles.authFormAgreementLabel}>
+                                    <label className={styles.appointmentFormAgreementLabel}>
                                         <input
                                             type="radio"
                                             defaultChecked

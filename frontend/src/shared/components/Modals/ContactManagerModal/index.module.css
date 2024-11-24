@@ -373,6 +373,10 @@
 	gap: 10px;
 }
 
+.contactsIconText {
+	text-decoration: none;
+	cursor: pointer;
+}
 
 @keyframes modalOpen {
 	0% {
