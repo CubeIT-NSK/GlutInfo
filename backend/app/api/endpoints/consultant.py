@@ -4,6 +4,7 @@ from fastapi import APIRouter, Depends, BackgroundTasks, status
 from fastapi.responses import StreamingResponse, Response
 from sqlalchemy.ext.asyncio import AsyncSession
 from fastapi_users import BaseUserManager
+from fastapi_pagination import Page, paginate
 
 from app.core.db import get_async_session
 from app.core.user import (
@@ -45,7 +46,7 @@ from app.services.fastMail import (
     EmailSchema,
     send_email_to_notify_consultant_accept
 )
-from app.api.utils import append_unselected_days
+from app.api.utils import append_unselected_days, CustomPage
 from app.core.constants import EMAIL_TO_NOTIFY_CONSULTANT_ACCEPT
 
 
@@ -54,10 +55,12 @@ router = APIRouter()
 
 @router.get(
     '/',
-    response_model=list[ConsultantDB],
+    response_model=CustomPage[ConsultantDB],
     summary='Получение всех подтвержденных консультантов',
     description='Выводятся все консультанты вместе с информацией '
-                'по пользователю.',
+                'по пользователю. '
+                'Пагинация срабатывает, если указаны параметры запроса '
+                '`size` & `page`',
     tags=['Make record', 'Consultants']
 )
 async def get_all_working_consultants(
@@ -68,7 +71,7 @@ async def get_all_working_consultants(
         session,
         speciality
         )
-    return consultants
+    return paginate(consultants)
 
 
 @router.get(

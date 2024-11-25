@@ -1,3 +1,8 @@
+from typing import TypeVar
+
+from fastapi_pagination import Page, add_pagination, paginate
+from fastapi_pagination.customization import CustomizedPage, UseOptionalParams
+
 from app.schemas.schedule import (
     ScheduleCreate,
 )
@@ -19,3 +24,12 @@ def append_unselected_days(
             working=False,
         )
         list_schedule.append(day_off)
+
+
+T = TypeVar("T")
+
+
+CustomPage = CustomizedPage[
+    Page[T],
+    UseOptionalParams()
+]
