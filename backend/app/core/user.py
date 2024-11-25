@@ -18,6 +18,7 @@ from app.schemas.user import UserCreate
 from app.core.constants import (
     TOKEN_LIVETIME,
     MIN_PASSWORD_LENGTH,
+    MAIN_DOMAIN,
 )
 from app.services.fastMail import EmailSchema, send_email_task
 
@@ -74,8 +75,10 @@ class UserManager(IntegerIDMixin, BaseUserManager[User, int]):
                 email=user.email,
                 subject='От Глютен.ИНФО',
                 body={
-                    'title': 'Ваш токен для верификации аккаунта',
-                    'message': token
+                    'title': 'Ваша ссылка для верификации аккаунта',
+                    'message': (MAIN_DOMAIN
+                                + '/confirmation-success/?token='
+                                + token)
                 }
             )
         )

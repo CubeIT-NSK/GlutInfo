@@ -5,27 +5,32 @@ import { apiUrl } from "./config";
 
 export const apiAuth = axios.create({
     baseURL: `${apiUrl}/auth/jwt`
-  });
-  
-  
-  export const api = axios.create({
+});
+
+
+export const apiEmail = axios.create({
+    baseURL: `${apiUrl}/auth/email-verification`
+});
+
+
+export const api = axios.create({
     baseURL: apiUrl,
-  });
-  
-  
-  api.interceptors.request.use(
+});
+
+
+api.interceptors.request.use(
     (config) => {
-      const token = localStorage.getItem('token');
-      if (token) {
-        config.headers.Authorization = `Bearer ${token}`;
-      }
-      return config;
+        const token = localStorage.getItem('token');
+        if (token) {
+            config.headers.Authorization = `Bearer ${token}`;
+        }
+        return config;
     },
     (error) => Promise.reject(error)
-  );
+);
 
 
-export const postApiAuth = async ({username, password}) => {
+export const postApiAuth = async ({ username, password }) => {
     var status;
 
     console.time("Login Request Time");
@@ -47,7 +52,39 @@ export const postApiAuth = async ({username, password}) => {
     console.timeEnd("Login Request Time");
     return status
 };
-  
-  
 
 
+export const postApiEmailConfirmationRequest = async ({ email }) => {
+    var status;
+    const response = await apiEmail
+        .post(
+            '/request-verify-token',
+            { 'email': email }
+        )
+        .then((response) => {
+            status = response.status
+            console.log(status) // должен быть 202 при успехе
+        })
+        .catch((error) => {
+            status = error.request.status
+        });
+    return status
+};
+
+
+export const postApiEmailConfirmationVerify = async ({ token }) => {
+    var status;
+    const response = await apiEmail
+        .post(
+            '/verify',
+            { 'token': token }
+        )
+        .then((response) => {
+            status = response.status
+            console.log(status) // должен быть 200 при успехе
+        })
+        .catch((error) => {
+            status = error.request.status // должен быть 400(VERIFY_USER_BAD_TOKEN) при неуспехе
+        });
+    return status
+};
