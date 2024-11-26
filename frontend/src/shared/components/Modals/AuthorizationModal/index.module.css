@@ -46,7 +46,7 @@
 	width: 350px;
 }
 
-.authorizationModal input {
+.authFormInput{
 	width: 100%;
 	padding: 9px;
 	border: 1px solid rgb(55, 63, 65);
@@ -134,17 +134,28 @@
 	gap: 3px;
 }
 
-.authorizationModal .error {
+.error {
+	color: #FF162E;
 	font-size: 12px;
+}
+
+.errorInput {
+	border: 1px solid #FF162E;
 	color: #FF162E;
 }
 
+.errorText {
+	color: #FF162E;
+}
+
+.redPlaceholder::placeholder {
+	color: #FF162E;
+}
 .authorizationModalWButtonWrapper {
 	display: flex;
 	flex-direction: column;
 	gap: 15px;
 }
-
 
 .lineWrapper {
 	display: flex;
@@ -179,6 +190,20 @@
 .closeButton img {
 	width: 20px;
 	height: 20px;
+}
+
+.passwordWrapper {
+	position: relative;
+	display: flex;
+	align-items: center;
+}
+
+.passwordToggleIcon {
+    position: absolute;
+    right: 10px;
+    cursor: pointer;
+    width: 24px;
+    height: 24px;
 }
 
 

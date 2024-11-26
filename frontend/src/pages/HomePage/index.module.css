@@ -98,7 +98,7 @@
 
 .aboutUsWrapper {
 	display: flex;
-	gap: 100px;
+	gap: 177px;
 	padding-top: 100px;
 }
 
@@ -140,27 +140,6 @@
 	line-height: 25px;
 	letter-spacing: 0px;
 	text-align: left;
-}
-
-.aboutUsRight p {
-	color: var(--black);
-	font-family: Jost;
-	font-size: 34px;
-	font-weight: 600;
-	line-height: 115%;
-	letter-spacing: 0px;
-}
-
-.aboutUsRight p span {
-	font-family: Jost;
-	font-size: 34px;
-	font-weight: 600;
-	line-height: 115%;
-	letter-spacing: 0px;
-	background: var(--gradient-wheat);
-	-webkit-background-clip: text;
-	-webkit-text-fill-color: transparent;
-	background-clip: text;
 }
 
 .aboutUsRight img {

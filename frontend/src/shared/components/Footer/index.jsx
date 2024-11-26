@@ -21,7 +21,7 @@ const Footer = () => {
       				</div>
       				<div className={styles.footerBottomInfo}>
       					<div className={styles.footerSocialIcons}>
-      						<a href="https://t.me/" className={styles.socialIconText} target="_blank" rel="noopener noreferrer"> <img src={icons.telegramIcon} alt="telegramIcon" /> </a>
+      						<a href="https://t.me/gluteninfo" className={styles.socialIconText} target="_blank" rel="noopener noreferrer"> <img src={icons.telegramIcon} alt="telegramIcon" /> </a>
       						<a href="https://whatsapp.com/link" className={styles.socialIconText} target="_blank" rel="noopener noreferrer"> <img src={icons.whatsappIcon} alt="whatsappIcon" /> </a>
       					</div> <a href="#privacy-policy" className={styles.footerPrivacy}>Политика конфиденциальности</a> </div>
       			</div>

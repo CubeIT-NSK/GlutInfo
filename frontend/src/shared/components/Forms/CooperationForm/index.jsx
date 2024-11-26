@@ -1,101 +1,108 @@
-import React, { useCallback, useMemo, useState } from 'react';
+import React from 'react';
 import styles from './index.module.css';
 import Button from '../../Buttons';
+import * as yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
+import InputMask from "react-input-mask";
+import { useForm } from "react-hook-form";
+
+const schema = yup.object().shape({
+  name: yup.string().required("Введите ваше имя"),
+  email: yup
+    .string()
+    .email("Введите корректный адрес электронной почты")
+    .required("Введите электронную почту"),
+  phoneNumber: yup
+    .string()
+    .required("Номер телефона обязателен")
+    .matches(/^\+7 \(\d{3}\) \d{3}-\d{2}-\d{2}$/, "Неверный формат телефона"),
+  proposal: yup.string().required("Введите ваше предложение"),
+});
 
 const CooperationForm = () => {
-  const [formData, setFormData] = useState({
-    name: '',
-    phone: '',
-    email: '',
-    proposal: '',
-  });
+    const {
+      register,
+      handleSubmit,
+      formState: { errors },
+    } = useForm({
+      resolver: yupResolver(schema),
+    });
 
-  const [errors, setErrors] = useState({});
-
-  const validate = useCallback(() => {
-    const newErrors = {};
-
-    if (!formData.name.trim()) newErrors.name = 'Введите ваше имя.';
-    if (!formData.phone.trim()) newErrors.phone = 'Введите номер телефона.';
-    if (!formData.email.trim()) {
-      newErrors.email = 'Введите электронную почту.';
-    } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
-      newErrors.email = 'Введите корректный адрес электронной почты.';
-    }
-
-    setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
-  }, [formData]);
-
-  const handleChange = useCallback(
-    ({ target: { name, value } }) => {
-      setFormData((prevData) => ({ ...prevData, [name]: value }));
-    },
-    []
-  );
-
-  const handleSubmit = useCallback(
-    (e) => {
+    const onSubmit = (data, e) => {
       e.preventDefault();
-      if (validate()) {
-        console.log('Form submitted:', formData);
-      }
-    },
-    [formData, validate]
-  );
+      console.log("Submitted data:", data);
+    };
 
-  const inputFields = useMemo(
-    () => [
-      { name: 'name', type: 'text', placeholder: 'Ваше имя', label: 'Имя' },
-      { name: 'phone', type: 'text', placeholder: 'Номер телефона', label: 'Телефон' },
-      { name: 'email', type: 'email', placeholder: 'Электронная почта', label: 'Электронная почта' },
-      { name: 'proposal', type: 'text', placeholder: 'Предложение о сотрудничестве', label: 'Предложение' },
-    ],
-    []
-  );
-
-  return (
-    <form onSubmit={handleSubmit} className={styles.cooperationForm}>
-      <div className={styles.CooperationFormTextWrapper}>
-        <h2>Форма о сотрудничестве</h2>
-        <p>После заполнения формы с Вами свяжется менеджер для обсуждения деталей</p>
-      </div>
-
-      <div className={styles.formConsentWrapper}>
-        <div className={styles.formGroupWrapper}>
-        {inputFields.map(({ name, type, placeholder }) => (
-          <div className={styles.formGroup} key={name}>
-            <input
-              type={type}
-              name={name}
-              placeholder={placeholder}
-              value={formData[name]}
-              onChange={handleChange}
-              required
-            />
-            {errors[name] && <span className={styles.error}>{errors[name]}</span>}
+    return (
+      <form onSubmit={handleSubmit(onSubmit)} className={styles.cooperationForm}>
+          <div className={styles.CooperationFormTextWrapper}>
+              <h2>Форма о сотрудничестве</h2>
+              <p className={styles.cooperationFormSubTitle}>После заполнения формы с Вами свяжется менеджер для обсуждения деталей</p>
           </div>
-        ))}
-          <Button
-              variant="gradient"
-              type="submit"
-              padding="17.5px 71.5px"
-          >
-              Отправить предложение
-          </Button>
-        </div>
-        <div className={styles.consent}>
-          <input
-            type="radio"
-            defaultChecked
-            readOnly
-            className={styles.roundRadio}
-          />
-          <label>Даю согласие на обработку персональных данных</label>
-        </div>
-      </div>
-    </form>
-  );
+
+          <div className={styles.formConsentWrapper}>
+              <div className={styles.formGroupWrapper}>
+                  <div className={styles.formGroup} >
+                      <div className={styles.cooperationFormErrorsWrapper}>
+                          <input
+                              type="name"
+                              {...register("name")}
+                              autoComplete="name"
+                              placeholder="Ваше имя"
+                              className={`${styles.cooperationFormInput} ${errors.name ? styles.errorInput : ''} ${errors.name ? styles.errorText : ''} ${errors.name ? styles.redPlaceholder : ''}`}
+                          />
+                          {errors.name && <p className={styles.error}>{errors.name.message}</p>}
+                      </div>
+                      <div className={styles.cooperationFormErrorsWrapper}>
+                          <InputMask
+                              mask="+7 (999) 999-99-99"
+                              {...register("phoneNumber")}
+                              className={`${styles.cooperationFormInput} ${errors.phoneNumber ? styles.errorInput : ''} ${errors.phoneNumber ? styles.errorText : ''} ${errors.phoneNumber ? styles.redPlaceholder : ''}`}
+                              placeholder="+7 (___) ___-__-__"
+                          />
+                          {errors.phoneNumber && <p className={styles.error}>{errors.phoneNumber.message}</p>}
+                      </div>
+                      <div className={styles.cooperationFormErrorsWrapper}>
+                          <input
+                              type="email"
+                              {...register("email")}
+                              autoComplete="email"
+                              placeholder="Электронная почта"
+                              className={`${styles.cooperationFormInput} ${errors.email ? styles.errorInput : ''} ${errors.email ? styles.errorText : ''} ${errors.email ? styles.redPlaceholder : ''}`}
+                          />
+                          {errors.email && <p className={styles.error}>{errors.email.message}</p>}
+                      </div>
+                      <div className={styles.cooperationFormErrorsWrapper}>
+                          <input
+                              type="proposal"
+                              {...register("proposal")}
+                              autoComplete="proposal"
+                              placeholder="Предложение о сотрудничестве"
+                              className={`${styles.cooperationFormInput} ${errors.proposal ? styles.errorInput : ''} ${errors.proposal ? styles.errorText : ''} ${errors.proposal ? styles.redPlaceholder : ''}`}
+                          />
+                          {errors.proposal && <p className={styles.error}>{errors.proposal.message}</p>}
+                      </div>
+                  </div>
+                  <Button
+                      variant="gradient"
+                      type="submit"
+                      padding="17.5px 71.5px"
+                  >
+                      Отправить предложение
+                  </Button>
+              </div>
+              <div className={styles.consent}>
+                  <input
+                    type="radio"
+                    defaultChecked
+                    readOnly
+                    className={styles.roundRadio}
+                  />
+                  <label>Даю согласие на обработку персональных данных</label>
+              </div>
+          </div>
+      </form>
+    );
 };
 
 export default CooperationForm;

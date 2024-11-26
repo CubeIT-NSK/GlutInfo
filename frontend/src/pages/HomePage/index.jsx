@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import CooperationForm from "../../shared/components/Forms/CooperationForm";
 import Button from "../../shared/components/Buttons";
 import NewsSlider from "../../shared/components/Sliders/NewsSlider";
@@ -6,13 +7,13 @@ import PatientSlider from "../../shared/components/Sliders/PatientSlider";
 import PhotoSlider from "../../shared/components/Sliders/PhotoSlider";
 import SubscribeNewsForm from "../../shared/components/Forms/SubscribeNewsForm";
 import ContactManagerModal from "../../shared/components/Modals/ContactManagerModal";
-
 import images from "../../shared/resources/images";
 
 import icons from "../../shared/resources/icon";
 import styles from "./index.module.css";
 
 export default function HomePage() {
+    const navigate = useNavigate();
 	const [isContactManagerModalOpen, setContactManagerModalOpen] = useState(false);
 
     const sliderData = {
@@ -129,6 +130,31 @@ export default function HomePage() {
 		setContactManagerModalOpen((prevState) => !prevState);
 	};
 
+	const handleNavigate  = (page) => {
+        switch (page) {
+            case "make-appointment":
+                navigate("/profile-patient/make-appointment");
+                break;
+            case "about-us":
+                navigate("/about-us");
+                break;
+            case "about-gluten-event":
+                navigate("/calendar-events/held-events/about-gluten");
+                break;
+            case "online-school-patient":
+                navigate("/calendar-events/online-school-patient");
+                break;
+            case "gluten-focus":
+                navigate("/calendar-events/held-events/gluten-focus");
+                break;
+            case "":
+                navigate("/");
+                break;
+            default:
+                break;
+        }
+    };
+
     return (
         <>
             	<section className={styles.teleService}>
@@ -145,7 +171,7 @@ export default function HomePage() {
 									<h3>Первая в России медицинская информационно-консультативная платформа для пациентов и консультантов</h3>
 									<Button
 										variant="gradient"
-										onClick={toggleContactManagerModal}
+										onClick={() => handleNavigate('make-appointment')}
 										padding="22.5px 44.5px"
 									>
 										Записаться на онлайн-консультацию
@@ -172,12 +198,13 @@ export default function HomePage() {
 								<Button
 									variant="gradient"
 									padding="22.5px 176.5px"
+									onClick={() => handleNavigate('about-us')}
 								>
 									Подробнее
 								</Button>
 							</div>
-							<div className={styles.aboutUsRight}> <img src={images.aboutUsLogoImage} alt="aboutUsImage" />
-								<p><span>ГАСТРОГЛЮТЕН.</span>ИНФО</p>
+							<div className={styles.aboutUsRight}>
+								<img src={images.aboutUsLogoImage} alt="aboutUsImage" />
 							</div>
 						</div>
 					</div>
@@ -244,6 +271,7 @@ export default function HomePage() {
 							<Button
 								variant="gradient"
 								padding="22.5px 44.5px"
+								onClick={() => handleNavigate('make-appointment')}
 							>
 								Записаться на онлайн-консультацию
 							</Button>
@@ -330,6 +358,7 @@ export default function HomePage() {
 										<Button
 											variant="gradient"
 											padding="17.5px 106.5px"
+											onClick={() => handleNavigate('about-gluten-event')}
 										>
 											Подробнее
 										</Button>
@@ -344,6 +373,7 @@ export default function HomePage() {
 										<Button
 											variant="gradient"
 											padding="17.5px 106.5px"
+											onClick={() => handleNavigate('online-school-patient')}
 										>
 											Подробнее
 										</Button>
@@ -358,7 +388,8 @@ export default function HomePage() {
 										<Button
 											variant="gradient"
 											padding="17.5px 106.5px"
-										>
+											onClick={() => handleNavigate('gluten-focus')}
+											>
 											Подробнее
 										</Button>
 									</div>
@@ -389,7 +420,7 @@ export default function HomePage() {
 									</div>
 								</div>
 								<div className={styles.contactIcons}>
-									<a href="https://t.me/" className={styles.contactsIconText}> <img src={icons.telegramIcon} alt="telegramIcon" /> </a>
+									<a href="https://t.me/gluteninfo" className={styles.contactsIconText}> <img src={icons.telegramIcon} alt="telegramIcon" /> </a>
 									<a href="https://whatsapp.com/link" className={styles.contactsIconText}> <img src={icons.whatsappIcon} alt="whatsappIcon" /> </a>
 								</div>
 							</div>

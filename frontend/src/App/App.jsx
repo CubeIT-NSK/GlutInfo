@@ -3,6 +3,8 @@ import { Context } from '../context';
 
 import HomePage from '../pages/HomePage';
 import RegistrationPage from '../pages/RegistrationPage';
+import RegistrationEmailMessage from '../shared/components/Messages/Registration/RegistrationEmailMessage';
+import RegistrationSuccessMessage from '../shared/components/Messages/Registration/RegistrationSuccessMessage';
 import ErrorPage from '../pages/ErrorPage';
 import SuccessPage from '../pages/FillPages/FillConsultantProfilePage/SuccessPage';
 import ConsultsPage from '../pages/Consultants';
@@ -69,7 +71,6 @@ function App() {
 
 					{/* ROUTES */}
 					<Route index element={<HomePage />}/>
-					<Route path="registration" element={<RegistrationPage />}/>
 					<Route path="*" element={<ErrorPage  />}/>
 					<Route path="success" element={<SuccessPage  />}/>
 					<Route path="consultants" element={<ConsultsPage />}/>
@@ -83,6 +84,13 @@ function App() {
 						<Route path="make-appointment" element={<AppointmentPage />}/>
 						<Route path="my-documents" element={<DocumentsPage />}/>
 						<Route path="messages" element={<ChatPage  />}/>
+					</Route>
+
+					{/* REGISTRATION */}
+					<Route path="registration/*">
+						<Route index element={<RegistrationPage />}/>
+						<Route path="email-confirmation" element={<RegistrationEmailMessage />}/>
+						<Route path="confirmation-success" element={<RegistrationSuccessMessage />}/>
 					</Route>
 
 					{/* PROFILE CONSULTANT */}
