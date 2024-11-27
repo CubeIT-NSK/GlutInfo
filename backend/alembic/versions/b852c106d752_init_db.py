@@ -1,8 +1,8 @@
-"""init
+"""init db
 
-Revision ID: 66c8b9d509e5
+Revision ID: b852c106d752
 Revises: 
-Create Date: 2024-11-11 03:03:32.652036
+Create Date: 2024-11-27 04:49:51.175487
 
 """
 from typing import Sequence, Union
@@ -13,7 +13,7 @@ import app.services.custom_types
 
 
 # revision identifiers, used by Alembic.
-revision: str = '66c8b9d509e5'
+revision: str = 'b852c106d752'
 down_revision: Union[str, None] = None
 branch_labels: Union[str, Sequence[str], None] = None
 depends_on: Union[str, Sequence[str], None] = None
@@ -111,7 +111,7 @@ def upgrade() -> None:
     sa.Column('patronymic', sa.String(length=15), nullable=True),
     sa.Column('born_date', sa.Date(), nullable=True),
     sa.Column('sex', sa.Enum('male', 'female', name='sexstatus', create_constraint=True), nullable=True),
-    sa.Column('phone', sa.Integer(), nullable=False),
+    sa.Column('phone', sa.String(length=15), nullable=False),
     sa.Column('role', sa.Enum('patient', 'consultant', name='rolestatus', create_constraint=True), nullable=False),
     sa.Column('email', sa.String(length=320), nullable=False),
     sa.Column('hashed_password', sa.String(length=1024), nullable=False),

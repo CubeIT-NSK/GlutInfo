@@ -88,3 +88,60 @@ export const postApiEmailConfirmationVerify = async ({ token }) => {
         });
     return status
 };
+
+
+export const getUsersMe = async () => {
+    var status, data;
+    const response = await api
+        .get('/users/me')
+        .then((response) => {
+            status = response.status
+            console.log(status) // должен быть 200 при успехе
+            data = response.data
+        })
+        .catch((error) => {
+            status = error.request.status // должен быть 401(Missing token or inactive user) при неуспехе
+        })
+    return {
+        status: status,
+        data: data
+    }
+}
+
+
+export const getConsultantsMe = async () => {
+    var status, data;
+    const response = await api
+        .get('/consultants/me')
+        .then((response) => {
+            status = response.status
+            console.log(status) // должен быть 200 при успехе
+            data = response.data
+        })
+        .catch((error) => {
+            status = error.request.status // должен быть 404(Consultant dosen`t exist!) при неуспехе
+        })
+    return {
+        status: status,
+        data: data
+    }
+}
+
+
+export const getPatientsMe = async () => {
+    var status, data;
+    const response = await api
+        .get('/patients/me')
+        .then((response) => {
+            status = response.status
+            console.log(status) // должен быть 200 при успехе
+            data = response.data
+        })
+        .catch((error) => {
+            status = error.request.status // должен быть 404(Patient dosen`t exist!) при неуспехе
+        })
+    return {
+        status: status,
+        data: data
+    }
+}

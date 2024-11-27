@@ -74,24 +74,6 @@ async def get_all_working_consultants(
     return paginate(consultants)
 
 
-@router.get(
-    '/{id}',
-    response_model=ConsultantDB,
-    summary='Получение подтвержденного консультанта',
-    description='Выводятся вся информация '
-                'по консультанту.',
-)
-async def get_working_consultant(
-    id: int,
-    session: AsyncSession = Depends(get_async_session)
-):
-    consultant = await check_consultant_exists(
-        consultant_id=id,
-        session=session
-    )
-    return consultant
-
-
 @router.post(
     '/',
     dependencies=[Depends(current_user_consultant)],
@@ -227,25 +209,6 @@ async def patch_schedule(
     return new_schedule
 
 
-@router.get(
-    '/{id}/services',
-    response_model=list[ServiceDB],
-    summary='Получение всех услуг консультанта.',
-    description='Услуги',
-    tags=['Make record']
-)
-async def get_all_consultant_services(
-    id: int,
-    session: AsyncSession = Depends(get_async_session)
-):
-    consultant = await check_consultant_exists(
-        consultant_id=id,
-        session=session
-    )
-    services = consultant.services
-    return services
-
-
 @router.post(
     '/me/services',
     dependencies=[Depends(current_user_consultant)],
@@ -265,6 +228,43 @@ async def post_service(
         session=session
     )
     return service
+
+
+@router.get(
+    '/{id}',
+    response_model=ConsultantDB,
+    summary='Получение подтвержденного консультанта',
+    description='Выводятся вся информация '
+                'по консультанту.',
+)
+async def get_working_consultant(
+    id: int,
+    session: AsyncSession = Depends(get_async_session)
+):
+    consultant = await check_consultant_exists(
+        consultant_id=id,
+        session=session
+    )
+    return consultant
+
+
+@router.get(
+    '/{id}/services',
+    response_model=list[ServiceDB],
+    summary='Получение всех услуг консультанта.',
+    description='Услуги',
+    tags=['Make record']
+)
+async def get_all_consultant_services(
+    id: int,
+    session: AsyncSession = Depends(get_async_session)
+):
+    consultant = await check_consultant_exists(
+        consultant_id=id,
+        session=session
+    )
+    services = consultant.services
+    return services
 
 
 @router.get(
