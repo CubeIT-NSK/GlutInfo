@@ -1,4 +1,5 @@
 from pathlib import Path
+import logging
 
 from pydantic import EmailStr, BaseModel, Field
 from fastapi_mail import FastMail, MessageSchema, ConnectionConfig, MessageType
@@ -27,6 +28,7 @@ conf = ConnectionConfig(
 )
 
 fast_mail = FastMail(config=conf)
+logger = logging.getLogger('uvicorn.error')
 
 
 async def send_email_task(data: EmailSchema):
@@ -36,7 +38,11 @@ async def send_email_task(data: EmailSchema):
         template_body=data.model_dump().get('body'),
         subtype=MessageType.html
     )
-
+    logger.error(settings.MAIL_FROM)
+    logger.error(settings.MAIL_USERNAME)
+    logger.error(settings.MAIL_PASSWORD)
+    logger.error(settings.MAIL_STARTTLS)
+    logger.error(settings.MAIL_SSL_TLS)
     await fast_mail.send_message(message,
                                  template_name='mail_verification.html')
 
