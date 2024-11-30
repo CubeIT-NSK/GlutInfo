@@ -1,4 +1,4 @@
-from pydantic_settings import BaseSettings
+from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
 class Settings(BaseSettings):
@@ -26,8 +26,7 @@ class Settings(BaseSettings):
     ENDPOINT_URL: str = 'https://s3.ru-1.storage.selcloud.ru'
     BUCKET_NAME: str = 'test-gluten-info'
 
-    class Config:
-        env_file = '.env'
+    model_config = SettingsConfigDict()
 
 
 settings = Settings()
