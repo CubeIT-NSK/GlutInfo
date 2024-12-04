@@ -54,6 +54,25 @@ export const postApiAuth = async ({ username, password }) => {
 };
 
 
+export const postApiRegisterUser = async ({ registerData }) => {
+    var status;
+    const response = await api
+        .post(
+            '/register',
+            registerData
+        )
+        .then((response) => {
+            status = response.status
+            console.log(status)    // должен быть 201 при успехе
+            // data = response.data   также здесь возращается инфа по созданному юзеру, если нужно
+        })
+        .catch((error) => {
+            status = error.request.status
+        });
+    return status
+};
+
+
 export const postApiEmailConfirmationRequest = async ({ email }) => {
     var status;
     const response = await apiEmail
