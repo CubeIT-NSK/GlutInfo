@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from "react-router-dom";
+import Footer from '../../../shared/components/Footer';
+import Header from '../../../shared/components/Header';
 import styles from './index.module.css';
 import images from '../../../shared/resources/images';
 import CertificateProfileSlider from '../../../shared/components/Sliders/CertificateProfileSlider';
@@ -50,7 +52,7 @@ function DocumentsContent() {
     );
 }
 
-export default function ConsultantProfilePage() {
+export default function ConsultantListProfilePage() {
     const [galleryItems, setGalleryItems] = useState([]);
     const [expandedIndex, setExpandedIndex] = useState(null);
     const [activeTab, setActiveTab] = useState('education');
@@ -58,7 +60,7 @@ export default function ConsultantProfilePage() {
     const navigate = useNavigate();
 
     const handleNavigate = () => {
-        navigate('/profile-patient/make-appointment');
+        navigate('/make-appointment');
     };
 
     const toggleExpand = (index) => {
@@ -90,80 +92,6 @@ useEffect(() => {
     return (
             <>
                 <SideLink />
-                <section className={styles.profileSectionW}>
-                    <div className="container">
-                        <div className={styles.consProfileWrapperW}>
-                            <h1 className={styles.profileSectionHeader}>Личный кабинет</h1>
-                            <div className={styles.profileHeaderWrap}>
-                                <img src={icons.profileAvIcon} className={styles.profileAv} alt="profileAvIcon" />
-                                <div className={styles.profileInfo}>
-                                    <h2>Семенова Елена Анатольевна</h2>
-                                    <p>Заполненность профиля - 50%</p>
-                                </div>
-                            </div>
-                            <div className={styles.profileBtnActions}>
-                                <div className={styles.profileBtnActionsW}>
-                                    <Button
-                                        variant="gradient"
-                                        fontSize='small'
-                                        padding="15.5px 63.2px"
-                                    >
-                                        Изменить услуги
-                                    </Button>
-                                    <Button
-                                        variant="white"
-                                        color='black'
-                                        fontSize='small'
-                                        padding="15.5px 78.5px"
-                                    >
-                                        Указать цены
-                                    </Button>
-                                    <Button
-                                        variant="gradient"
-                                        fontSize='small'
-                                        padding="15.5px 103.8px"
-                                    >
-                                        Баланс
-                                    </Button>
-                                    <Button
-                                        variant="white"
-                                        color='black'
-                                        fontSize='small'
-                                        padding="15.5px 54px"
-                                    >
-                                        Изменить профиль
-                                    </Button>
-                                </div>
-                                <div className={styles.profileBtnActionsW}>
-                                    <Button
-                                        variant="white"
-                                        color='black'
-                                        fontSize='small'
-                                        padding="15.5px 56px"
-                                    >
-                                        Мои консультации
-                                    </Button>
-                                    <Button
-                                        variant="white"
-                                        color='black'
-                                        fontSize='small'
-                                        padding="15.5px 84.4px"
-                                    >
-                                        Сообщения
-                                    </Button>
-                                    <Button
-                                        variant="white"
-                                        color='black'
-                                        fontSize='small'
-                                        padding="15.5px 76.5px"
-                                    >
-                                        Уведомления
-                                    </Button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
 
                 <section className={styles.profileSection}>
                     <div className="container">
@@ -202,6 +130,16 @@ useEffect(() => {
                                         </div>
                                     </div>
                                     ))}
+                                </div>
+
+                                <div className={styles.buttonWrapper}>
+                                    <Button
+                                        variant="gradient"
+                                        padding="24.5px 275.5px"
+                                        onClick={handleNavigate}
+                                    >
+                                        Записаться
+                                    </Button>
                                 </div>
                             </div>
 
@@ -332,7 +270,6 @@ useEffect(() => {
                         </div>
                     </div>
                 </section>
-
                 <section className={styles.reviewsSection}>
 					<div className="container">
 						<div className={styles.reviewsWrapper}>
@@ -361,11 +298,11 @@ useEffect(() => {
 									<div className={styles.reviewsCartTop}> <img src={icons.reviewsMarksIcon} alt="reviewsMarksIcon" /> </div>
 									<div className={styles.reviewsCartBottom}>
 										<div className={styles.reviewsStars}>
-											<div className={styles.reviewsStarsWrapper}> <img src={icons.reviewsStarsIcon} alt="reviewsStarsIcon" /> </div>
-											<div className={styles.reviewsStarsWrapper}> <img src={icons.reviewsStarsIcon} alt="reviewsStarsIcon" /> </div>
-											<div className={styles.reviewsStarsWrapper}> <img src={icons.reviewsStarsIcon} alt="reviewsStarsIcon" /> </div>
-											<div className={styles.reviewsStarsWrapper}> <img src={icons.reviewsStarsIcon} alt="reviewsStarsIcon" /> </div>
-											<div className={styles.reviewsStarsWrapper}> <img src={icons.reviewsStarsIcon} alt="reviewsStarsIcon" /> </div>
+											<div className={styles.reviewsStarsWrapper}> <img src={icons.reviewsStarsIcon} alt="reviewsStars" /> </div>
+											<div className={styles.reviewsStarsWrapper}> <img src={icons.reviewsStarsIcon} alt="reviewsStars" /> </div>
+											<div className={styles.reviewsStarsWrapper}> <img src={icons.reviewsStarsIcon} alt="reviewsStars" /> </div>
+											<div className={styles.reviewsStarsWrapper}> <img src={icons.reviewsStarsIcon} alt="reviewsStars" /> </div>
+											<div className={styles.reviewsStarsWrapper}> <img src={icons.reviewsStarsIcon} alt="reviewsStars" /> </div>
 										</div>
 										<div className={styles.reviewsCartUsers}>
 											<p className={styles.reviewsCartUser}> Мария И. </p>
@@ -380,11 +317,11 @@ useEffect(() => {
 									<div className={styles.reviewsCartTop}> <img src={icons.reviewsMarksIcon} alt="reviewsMarksIcon" /> </div>
 									<div className={styles.reviewsCartBottom}>
 										<div className={styles.reviewsStars}>
-											<div className={styles.reviewsStarsWrapper}> <img src={icons.reviewsStarsIcon} alt="reviewsStarsIcon" /> </div>
-											<div className={styles.reviewsStarsWrapper}> <img src={icons.reviewsStarsIcon} alt="reviewsStarsIcon" /> </div>
-											<div className={styles.reviewsStarsWrapper}> <img src={icons.reviewsStarsIcon} alt="reviewsStarsIcon" /> </div>
-											<div className={styles.reviewsStarsWrapper}> <img src={icons.reviewsStarsIcon} alt="reviewsStarsIcon" /> </div>
-											<div className={styles.reviewsStarsWrapper}> <img src={icons.reviewsStarsIcon} alt="reviewsStarsIcon" /> </div>
+											<div className={styles.reviewsStarsWrapper}> <img src={icons.reviewsStarsIcon} alt="reviewsStars" /> </div>
+											<div className={styles.reviewsStarsWrapper}> <img src={icons.reviewsStarsIcon} alt="reviewsStars" /> </div>
+											<div className={styles.reviewsStarsWrapper}> <img src={icons.reviewsStarsIcon} alt="reviewsStars" /> </div>
+											<div className={styles.reviewsStarsWrapper}> <img src={icons.reviewsStarsIcon} alt="reviewsStars" /> </div>
+											<div className={styles.reviewsStarsWrapper}> <img src={icons.reviewsStarsIcon} alt="reviewsStars" /> </div>
 										</div>
 										<div className={styles.reviewsCartUsers}>
 											<p className={styles.reviewsCartUser}> Антон Г. </p>

@@ -54,7 +54,8 @@ const breadcrumbMap = [
     name: 'consultations',
     label: 'Консультации',
     children: [
-      { name: 'consultants', label: 'Консультанты', link: '/consultants' },
+      { name: 'consultants', label: 'Консультанты', link: '/consultants-list' },
+      { name: 'consultants', label: 'Консультант №', link: '/consultants-list/prof' },
     ],
   },
 

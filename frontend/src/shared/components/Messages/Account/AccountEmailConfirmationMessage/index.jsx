@@ -22,7 +22,7 @@ export default function RegistrationEmailConfirmationMessage() {
                 const status = await postApiEmailConfirmationVerify({ token });
 
                 if (status === 200) {
-                    console.error("Verification complete", status);
+                    console.log("Verification complete", status);
                     navigate('/registration/confirmation-success');
                 } else if (status === 400) {
                     console.error("Invalid or expired token", status);
@@ -32,7 +32,7 @@ export default function RegistrationEmailConfirmationMessage() {
                     navigate('/registration/account-confirmation-error');
                 }
             } catch (error) {
-                console.error("Error during email confirmation", status);
+                console.error("Error during email confirmation");
                 navigate('/registration/account-confirmation-error');
             }
         };

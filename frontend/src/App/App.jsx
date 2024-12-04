@@ -9,7 +9,9 @@ import AccountErrorMessage from '../shared/components/Messages/Account/AccountEr
 import AccountEmailConfirmationMessage from '../shared/components/Messages/Account/AccountEmailConfirmationMessage';
 import ErrorPage from '../pages/ErrorPage';
 import SuccessPage from '../pages/FillPages/FillConsultantProfilePage/SuccessPage';
-import ConsultsPage from '../pages/Consultants';
+import ConsultantsListPage from '../pages/Consultants/ConsultantsListPage';
+import ConsultantListProfilePage from '../pages/Consultants/ConsultantListProfilePage';
+
 
 import PatientProfilePage from '../pages/Profiles/PatientProfilePage';
 import FillPatientProfilePage from '../pages/FillPages/FillPatientProfilePage';
@@ -75,7 +77,12 @@ function App() {
 					<Route index element={<HomePage />}/>
 					<Route path="*" element={<ErrorPage  />}/>
 					<Route path="success" element={<SuccessPage  />}/>
-					<Route path="consultants" element={<ConsultsPage />}/>
+
+					{/* PROFILE PATIENT */}
+					<Route path="consultants-list/*">
+						<Route index element={<ConsultantsListPage />}/>
+						<Route path="prof" element={<ConsultantListProfilePage />}/>
+					</Route>
 
 					{/* PROFILE PATIENT */}
 					<Route path="profile-patient/*">

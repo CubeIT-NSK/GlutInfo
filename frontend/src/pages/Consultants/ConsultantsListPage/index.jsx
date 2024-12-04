@@ -1,10 +1,10 @@
 import React from "react";
 import styles from "./index.module.css";
-import images from "../../shared/resources/images";
-import Button from "../../shared/components/Buttons";
-import SideLink from "../../shared/components/SideLink";
+import images from "../../../shared/resources/images";
+import Button from "../../../shared/components/Buttons";
+import SideLink from "../../../shared/components/SideLink";
 
-export default function ConsultsPage() {
+export default function ConsultantsListPage() {
 
     return (
             <>

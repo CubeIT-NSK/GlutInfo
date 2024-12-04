@@ -91,7 +91,7 @@
 	color: rgb(55, 63, 65);
 	font-family: Mulish;
 	font-size: 14px;
-	font-weight: bold;
+	font-weight: 600;
 	line-height: 18px;
 	letter-spacing: 0.2px;
 	text-align: left;
@@ -124,14 +124,6 @@
 	max-height: 0;
 	transition: max-height 0.3s ease, opacity 0.3s ease;
 	opacity: 0;
-
-	color: rgb(55, 63, 65);
-	font-family: Mulish;
-	font-size: 14px;
-	font-weight: 400;
-	line-height: 18px;
-	letter-spacing: 0.2px;
-	text-align: left;
 }
 
 .serviceDetails.expanded {
@@ -533,71 +525,4 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
-}
-
-/* MAINPROFILE */
-
-.profileSectionW {
-	display: flex;
-	flex-direction: column;
-	padding: 47px 0 79px 0;
-}
-
-.profileSectionHeader {
-	color: rgb(55, 63, 65);
-	font-family: TT Hoves;
-	font-size: 42px;
-	font-weight: 700;
-	line-height: 49px;
-	text-align: left;
-	padding-bottom: 12px;
-}
-
-.consProfileWrapperW {
-	display: flex;
-	flex-direction: column;
-	gap: 30px;
-	padding-bottom: 70px;
-	border-bottom: 1px solid rgb(152, 156, 157);
-}
-
-.profileHeaderWrap {
-	display: flex;
-	gap: 30px;
-	align-items: center;
-}
-
-.profileAv {
-	width: 100px;
-	height: 100px;
-	border-radius: 50%;
-}
-
-.profileInfo h2 {
-	color: rgb(55, 63, 65);
-	font-family: Mulish;
-	font-size: 20px;
-	font-weight: 600;
-	line-height: 25px;
-	text-align: left;
-}
-
-.profileInfo p {
-	color: rgb(152, 156, 157);
-	font-family: Mulish;
-	font-size: 16px;
-	font-weight: 600;
-	line-height: 20px;
-	text-align: left;
-}
-
-.profileBtnActions {
-	display: flex;
-	flex-direction: column;
-	gap: 30px;
-}
-
-.profileBtnActionsW {
-	display: flex;
-	gap: 29px;
 }
