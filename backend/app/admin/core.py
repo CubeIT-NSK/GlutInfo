@@ -46,7 +46,7 @@ get_user_manager_context = contextlib.asynccontextmanager(get_user_manager)
 class UserAdmin(ModelView, model=User):
     can_create = False
     can_edit = True
-    can_delete = False
+    can_delete = True
     column_list = [User.id,
                    User.name,
                    User.surname,
@@ -105,7 +105,8 @@ class UserAdmin(ModelView, model=User):
 class PatientAdmin(ModelView, model=Patients):
     name_plural = Patients.__tablename__.title()
     can_create = False
-    can_delete = False
+    can_edit = True
+    can_delete = True
     column_list = [Patients.id,
                    Patients.user_id,
                    Patients.address,
