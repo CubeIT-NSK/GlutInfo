@@ -8,6 +8,7 @@ import CustomSelect from "../../shared/components/CustomSelect";
 import styles from "./index.module.css";
 import Button from "../../shared/components/Buttons";
 import icons from "../../shared/resources/icon";
+import { postApiRegisterUser, postApiEmailConfirmationRequest } from "../../shared/api/api";
 
 const schema = yup.object().shape({
     firstName: yup.string().required("Имя обязательно"),
@@ -28,8 +29,9 @@ const schema = yup.object().shape({
     password: yup
         .string()
         .required("Пароль обязателен")
-        // .min(8, "Пароль должен содержать минимум 8 символов")
-        // .matches(/[A-Z]/, "Пароль должен содержать хотя бы одну заглавную букву")
+        .min(8, "Пароль должен содержать минимум 8 символов")
+        .matches(/[A-Z]/, "Пароль должен содержать хотя бы одну заглавную букву"),
+    gender: yup.string().required("Укажите ваш пол"),
 });
 
 const userTypeOptions = [
@@ -40,9 +42,16 @@ const userTypeOptions = [
 
 export default function RegistrationPage() {
     const navigate = useNavigate();
-    const { register, handleSubmit, formState: { errors }, watch, setValue, setError } = useForm({
+    const {
+        register,
+        handleSubmit,
+        formState: { errors },
+        watch,
+        setValue,
+        setError
+      } = useForm({
         resolver: yupResolver(schema),
-    });
+      });
 
     const [showPassword, setShowPassword] = useState(false);
 
@@ -50,21 +59,74 @@ export default function RegistrationPage() {
         setShowPassword((prev) => !prev);
     };
 
-    const onSubmit = (data) => {
-        const formattedData = {
-            ...data,
-            birthDate: data.birthDate.toISOString().split("T")[0],
+    const getNavigationPath = (userType) => {
+        const routes = {
+            patient: "/registration/email-confirmation",
+            consultant: "/profile-consultant/fill",
         };
-        console.log(formattedData);
-        switch (formattedData.userType) {
-            case "patient":
-                navigate("/registration/email-confirmation");
-                break;
-            case "consultant":
-                navigate("/profile-consultant/fill");
-                break;
-            default:
-                break;
+
+        return routes[userType] || null;
+    };
+
+    const handleRegistrationSuccess = (userType) => {
+        const path = getNavigationPath(userType);
+        if (path) {
+            navigate(path);
+        } else {
+            console.log('Неизвестный тип пользователя:', userType);
+        }
+    };
+
+    const handleEmailConfirmation = async (email, userType) => {
+        try {
+            const emailStatus = await postApiEmailConfirmationRequest({ email });
+
+            if (emailStatus === 202) {
+                console.log('Email confirmation request successful');
+                handleRegistrationSuccess(userType);
+            } else {
+                console.error('Email confirmation request failed', emailStatus);
+            }
+        } catch (error) {
+            console.error('Error during email confirmation', error);
+        }
+    };
+
+    const onSubmit = async (data) => {
+        const registrationData = {
+            born_date: data.birthDate.toISOString().split("T")[0],
+            email: data.email,
+            name: data.firstName,
+            password: data.password,
+            patronymic: data.middleName,
+            phone: data.phoneNumber,
+            role: data.userType,
+            sex: data.gender,
+            surname: data.lastName,
+        };
+
+        try {
+            const status = await postApiRegisterUser({ registerData: registrationData });
+
+            switch (status) {
+                case 201:
+                    console.log('Registration successful');
+                    await handleEmailConfirmation(data.email, registrationData.userType);
+                    break;
+                case 400:
+                    console.log('Invalid registration data');
+                    setError("email", { type: "manual", message: "Электронная почта уже используется" });
+                    break;
+                case 500:
+                    console.error('Server error, please try again');
+                    break;
+                default:
+                    console.log("Registration Data:", registrationData);
+                    console.error('Unexpected error:', status);
+                    break;
+            }
+        } catch (error) {
+            console.error('Registration failed:', error);
         }
     };
 
@@ -74,91 +136,131 @@ export default function RegistrationPage() {
                 <h2 className={styles.title}>Данные необходимые для регистрации:</h2>
                 <form onSubmit={handleSubmit(onSubmit)} className={styles.registrationForm}>
                     <div className={styles.formGroup}>
-                        <label className={styles.authFormLabel}>
-                            Имя
-                            <input
-                                type="text"
-                                {...register("firstName")}
-                                placeholder="Иван"
-                                className={`${styles.authFormInput} ${errors.firstName ? styles.errorInput : ''} ${errors.firstName ? styles.errorText : ''} ${errors.firstName ? styles.redPlaceholder : ''}`}
-                            />
-                            {errors.firstName && <p className={styles.error}>{errors.firstName.message}</p>}
+                        <label className={styles.registerFormLabel}>
+                            <p className={styles.registerFormTitle}>Имя</p>
+                            <div className={styles.inpWrap}>
+                                <input
+                                    type="text"
+                                    {...register("firstName")}
+                                    placeholder="Иван"
+                                    className={`${styles.registerFormInput} ${errors.firstName ? styles.errorInput : ''} ${errors.firstName ? styles.errorText : ''} ${errors.firstName ? styles.redPlaceholder : ''}`}
+                                />
+                                {errors.firstName && <p className={styles.error}>{errors.firstName.message}</p>}
+                            </div>
                         </label>
-                        <label className={styles.authFormLabel}>
-                            Фамилия
-                            <input
-                                type="text"
-                                {...register("lastName")}
-                                placeholder="Иванов"
-                                className={`${styles.authFormInput} ${errors.lastName ? styles.errorInput : ''} ${errors.lastName ? styles.errorText : ''} ${errors.lastName ? styles.redPlaceholder : ''}`}
-                            />
-                            {errors.lastName && <p className={styles.error}>{errors.lastName.message}</p>}
+                        <label className={styles.registerFormLabel}>
+                            <p className={styles.registerFormTitle}>Фамилия</p>
+                            <div className={styles.inpWrap}>
+                                <input
+                                    type="text"
+                                    {...register("lastName")}
+                                    placeholder="Иванов"
+                                    className={`${styles.registerFormInput} ${errors.lastName ? styles.errorInput : ''} ${errors.lastName ? styles.errorText : ''} ${errors.lastName ? styles.redPlaceholder : ''}`}
+                                />
+                                {errors.lastName && <p className={styles.error}>{errors.lastName.message}</p>}
+                            </div>
                         </label>
-                        <label className={styles.authFormLabel}>
-                            Отчество
-                            <input
-                                type="text"
-                                {...register("middleName")}
-                                placeholder="Сергеевич"
-                                className={`${styles.authFormInput} ${errors.middleName ? styles.errorInput : ''} ${errors.middleName ? styles.errorText : ''} ${errors.middleName ? styles.redPlaceholder : ''}`}
-                            />
-                            {errors.middleName && <p className={styles.error}>{errors.middleName.message}</p>}
+                        <label className={styles.registerFormLabel}>
+                            <p className={styles.registerFormTitle}>Отчество</p>
+                            <div className={styles.inpWrap}>
+                                <input
+                                    type="text"
+                                    {...register("middleName")}
+                                    placeholder="Сергеевич"
+                                    className={`${styles.registerFormInput} ${errors.middleName ? styles.errorInput : ''} ${errors.middleName ? styles.errorText : ''} ${errors.middleName ? styles.redPlaceholder : ''}`}
+                                />
+                                {errors.middleName && <p className={styles.error}>{errors.middleName.message}</p>}
+                            </div>
                         </label>
-                        <label className={styles.authFormLabel}>
-                            Дата рождения
-                            <input
-                                type="date"
-                                {...register("birthDate")}
-                                max={new Date().toISOString().split("T")[0]}
-                                min={new Date(new Date().setFullYear(new Date().getFullYear() - 100)).toISOString().split("T")[0]}
-                                className={`${styles.authFormInput} ${errors.birthDate ? styles.errorInput : ''} ${errors.birthDate ? styles.errorText : ''} ${errors.birthDate ? styles.redPlaceholder : ''}`}
-                            />
-                            {errors.birthDate && <p className={styles.error}>{errors.birthDate.message}</p>}
+                        <div className={styles.registerFormGender}>
+                                <p className={styles.registerFormLabel}>Пол</p>
+                                <div className={styles.registerFormGenderWrapper}>
+                                    <label className={styles.registerFormGenderLabel}>
+                                        <input
+                                            type="radio"
+                                            value="male"
+                                            name="gender"
+                                            {...register("gender")}
+                                            defaultChecked
+                                            className={`${styles.roundRadio} ${errors.gender ? styles.errorText : ''}`}
+                                        /> Мужчина
+                                    </label>
+                                    <label className={styles.registerFormGenderLabel}>
+                                        <input
+                                            type="radio"
+                                            value="female"
+                                            name="gender"
+                                            {...register("gender")}
+                                            className={`${styles.roundRadio} ${errors.gender ? styles.errorText : ''}`}
+                                        /> Женщина
+                                    </label>
+                                </div>
+                                {errors.gender && <p className={styles.error}>{errors.gender.message}</p>}
+                        </div>
+                        <label className={styles.registerFormLabel}>
+                            <p className={styles.registerFormTitle}>Дата рождения</p>
+                            <div className={styles.inpWrap}>
+                                <input
+                                    type="date"
+                                    {...register("birthDate")}
+                                    max={new Date().toISOString().split("T")[0]}
+                                    min={new Date(new Date().setFullYear(new Date().getFullYear() - 100)).toISOString().split("T")[0]}
+                                    className={`${styles.registerFormInput} ${errors.birthDate ? styles.errorInput : ''} ${errors.birthDate ? styles.errorText : ''} ${errors.birthDate ? styles.redPlaceholder : ''}`}
+                                />
+                                {errors.birthDate && <p className={styles.error}>{errors.birthDate.message}</p>}
+                            </div>
                         </label>
                     </div>
                     <div className={styles.formGroup}>
-                        <label className={styles.authFormLabel}>
-                            Номер телефона
-                            <InputMask
-                                mask="+7 (999) 999-99-99"
-                                {...register("phoneNumber")}
-                                className={`${styles.authFormInput} ${errors.phoneNumber ? styles.errorInput : ''} ${errors.phoneNumber ? styles.errorText : ''} ${errors.phoneNumber ? styles.redPlaceholder : ''}`}
-                                placeholder="+7 (___) ___-__-__"
-                            />
-                            {errors.phoneNumber && <p className={styles.error}>{errors.phoneNumber.message}</p>}
-                        </label>
-                        <label className={styles.authFormLabel}>
-                            Электронная почта
-                            <input
-                                type="email"
-                                {...register("email")}
-                                autoComplete="email"
-                                placeholder="ivanov1990@mail.ru"
-                                className={`${styles.authFormInput} ${errors.email ? styles.errorInput : ''} ${errors.email ? styles.errorText : ''} ${errors.email ? styles.redPlaceholder : ''}`}
-                            />
-                            {errors.email && <p className={styles.error}>{errors.email.message}</p>}
-                        </label>
-                        <label className={styles.authFormLabel}>
-                            Пароль
-                            <div className={styles.passwordWrapper}>
-                                <input
-                                    type={showPassword ? "text" : "password"}
-                                    {...register("password")}
-                                    autoComplete="new-password"
-                                    placeholder="Введите пароль"
-                                    className={`${styles.authFormInput} ${errors.password ? styles.errorInput : ''} ${errors.password ? styles.errorText : ''} ${errors.password ? styles.redPlaceholder : ''}`}
+                        <label className={styles.registerFormLabel}>
+                            <p className={styles.registerFormTitle}>Номер телефона</p>
+                            <div className={styles.inpWrap}>
+                                <InputMask
+                                    mask="+7 (999) 999-99-99"
+                                    {...register("phoneNumber")}
+                                    className={`${styles.registerFormInput} ${errors.phoneNumber ? styles.errorInput : ''} ${errors.phoneNumber ? styles.errorText : ''} ${errors.phoneNumber ? styles.redPlaceholder : ''}`}
+                                    placeholder="+7 (___) ___-__-__"
                                 />
-                                <img
-                                    src={showPassword ? icons.hidePasswordIcon : icons.showPasswordIcon}
-                                    alt={showPassword ? "Скрыть пароль" : "Показать пароль"}
-                                    className={styles.passwordToggleIcon}
-                                    onClick={togglePasswordVisibility}
-                                />
+                                {errors.phoneNumber && <p className={styles.error}>{errors.phoneNumber.message}</p>}
                             </div>
-                            {errors.password && <p className={styles.error}>{errors.password.message}</p>}
                         </label>
-                        <label className={styles.authFormLabel}>
-                            Тип пользователя
+                        <label className={styles.registerFormLabel}>
+                            <p className={styles.registerFormTitle}>Электронная почта</p>
+                            <div className={styles.inpWrap}>
+                                <input
+                                    type="email"
+                                    {...register("email")}
+                                    autoComplete="email"
+                                    placeholder="ivanov1990@mail.ru"
+                                    className={`${styles.registerFormInput} ${errors.email ? styles.errorInput : ''} ${errors.email ? styles.errorText : ''} ${errors.email ? styles.redPlaceholder : ''}`}
+                                />
+                                {errors.email && <p className={styles.error}>{errors.email.message}</p>}
+                            </div>
+                        </label>
+                        <label className={styles.registerFormLabel}>
+
+                            <p className={styles.registerFormTitle}>Пароль</p>
+                            <div className={styles.inpWrap}>
+                                <div className={styles.passwordWrapper}>
+                                    <input
+                                        type={showPassword ? "text" : "password"}
+                                        {...register("password")}
+                                        autoComplete="new-password"
+                                        placeholder="Введите пароль"
+                                        className={`${styles.registerFormInput} ${errors.password ? styles.errorInput : ''} ${errors.password ? styles.errorText : ''} ${errors.password ? styles.redPlaceholder : ''}`}
+                                    />
+                                    <img
+                                        src={showPassword ? icons.hidePasswordIcon : icons.showPasswordIcon}
+                                        alt={showPassword ? "Скрыть пароль" : "Показать пароль"}
+                                        className={styles.passwordToggleIcon}
+                                        onClick={togglePasswordVisibility}
+                                    />
+                                </div>
+                                {errors.password && <p className={styles.error}>{errors.password.message}</p>}
+                            </div>
+                        </label>
+                        <label className={styles.registerFormLabel}>
+                            <p className={styles.registerFormTitle}>Тип пользователя</p>
                             <CustomSelect
                                 options={userTypeOptions}
                                 value={watch("userType")}
@@ -179,8 +281,8 @@ export default function RegistrationPage() {
                         </Button>
                     </div>
                     <div className={styles.formGroup}>
-                        <div className={styles.authFormAgreement}>
-                            <label className={styles.authFormAgreementLabel}>
+                        <div className={styles.registerFormAgreement}>
+                            <label className={styles.registerFormAgreementLabel}>
                                 <input
                                     type="radio"
                                     defaultChecked
@@ -188,7 +290,7 @@ export default function RegistrationPage() {
                                 />
                                 <span>Принимаю условия <a href="#">политики конфиденциальности и обработки персональных данных</a></span>
                             </label>
-                            <label className={styles.authFormAgreementLabel}>
+                            <label className={styles.registerFormAgreementLabel}>
                                 <input
                                     type="radio"
                                     defaultChecked
