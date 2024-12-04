@@ -77,7 +77,7 @@ class UserManager(IntegerIDMixin, BaseUserManager[User, int]):
                 body={
                     'title': 'Ваша ссылка для верификации аккаунта',
                     'message': (MAIN_DOMAIN
-                                + '/confirmation-success/?token='
+                                + '/registration/account-confirmation/?token='
                                 + token)
                 }
             )
