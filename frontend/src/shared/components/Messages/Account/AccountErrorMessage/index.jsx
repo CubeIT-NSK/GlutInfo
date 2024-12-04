@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import styles from "./index.module.css";
 import Button from "../../../Buttons";
 
-export default function RegistrationSuccessMessage() {
+export default function AccountErrorMessage() {
     const navigate = useNavigate();
 
     const handleNavigate = () => {
@@ -15,8 +15,8 @@ export default function RegistrationSuccessMessage() {
                 <div className={styles.Wrapper}>
                     <section className={styles.successRegSection}>
                         <div className={styles.successRegTitleWrapper}>
-                            <h1 className={styles.regTitle}>Спасибо за регистрацию</h1>
-                            <h3 className={styles.regSubTitle}>Вы подтвердили адрес электронной почты и завершили регистрацию.</h3>
+                            <h1 className={styles.regTitle}>Ошибка регистрации</h1>
+                            <h3 className={styles.regSubTitle}>Произошла ошибка регистрации. Обратитесь к администрации сайта.</h3>
                             <Button
                                 variant="gradient"
                                 padding="15px 184.5px"

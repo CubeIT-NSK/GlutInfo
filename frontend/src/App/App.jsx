@@ -5,6 +5,8 @@ import HomePage from '../pages/HomePage';
 import RegistrationPage from '../pages/RegistrationPage';
 import RegistrationEmailMessage from '../shared/components/Messages/Registration/RegistrationEmailMessage';
 import RegistrationSuccessMessage from '../shared/components/Messages/Registration/RegistrationSuccessMessage';
+import AccountErrorMessage from '../shared/components/Messages/Account/AccountErrorMessage';
+import AccountEmailConfirmationMessage from '../shared/components/Messages/Account/AccountEmailConfirmationMessage';
 import ErrorPage from '../pages/ErrorPage';
 import SuccessPage from '../pages/FillPages/FillConsultantProfilePage/SuccessPage';
 import ConsultsPage from '../pages/Consultants';
@@ -91,6 +93,8 @@ function App() {
 						<Route index element={<RegistrationPage />}/>
 						<Route path="email-confirmation" element={<RegistrationEmailMessage />}/>
 						<Route path="confirmation-success" element={<RegistrationSuccessMessage />}/>
+						<Route path="account-confirmation-error" element={<AccountErrorMessage />}/>
+						<Route path="account-confirmation" element={<AccountEmailConfirmationMessage />}/>
 					</Route>
 
 					{/* PROFILE CONSULTANT */}

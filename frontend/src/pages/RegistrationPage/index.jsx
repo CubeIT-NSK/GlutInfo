@@ -25,7 +25,7 @@ const schema = yup.object().shape({
         .required("Номер телефона обязателен")
         .matches(/^\+7 \(\d{3}\) \d{3}-\d{2}-\d{2}$/, "Неверный формат телефона"),
     email: yup.string().email("Неверный формат почты").required("Электронная почта обязательна"),
-    userType: yup.string().required("Выберите тип пользователя"),
+    role: yup.string().required("Выберите тип пользователя"),
     password: yup
         .string()
         .required("Пароль обязателен")
@@ -34,7 +34,7 @@ const schema = yup.object().shape({
     gender: yup.string().required("Укажите ваш пол"),
 });
 
-const userTypeOptions = [
+const roleOptions = [
     { value: "", label: "Выберите тип пользователя", isPlaceholder: true },
     { value: "patient", label: "Пациент" },
     { value: "consultant", label: "Консультант" },
@@ -59,31 +59,31 @@ export default function RegistrationPage() {
         setShowPassword((prev) => !prev);
     };
 
-    const getNavigationPath = (userType) => {
+    const getNavigationPath = (role) => {
         const routes = {
             patient: "/registration/email-confirmation",
             consultant: "/profile-consultant/fill",
         };
 
-        return routes[userType] || null;
+        return routes[role] || null;
     };
 
-    const handleRegistrationSuccess = (userType) => {
-        const path = getNavigationPath(userType);
+    const handleRegistrationSuccess = (role) => {
+        const path = getNavigationPath(role);
         if (path) {
             navigate(path);
         } else {
-            console.log('Неизвестный тип пользователя:', userType);
+            console.log('Неизвестный тип пользователя:', role);
         }
     };
 
-    const handleEmailConfirmation = async (email, userType) => {
+    const handleEmailConfirmation = async (email, role) => {
         try {
             const emailStatus = await postApiEmailConfirmationRequest({ email });
 
             if (emailStatus === 202) {
                 console.log('Email confirmation request successful');
-                handleRegistrationSuccess(userType);
+                handleRegistrationSuccess(role);
             } else {
                 console.error('Email confirmation request failed', emailStatus);
             }
@@ -99,8 +99,8 @@ export default function RegistrationPage() {
             name: data.firstName,
             password: data.password,
             patronymic: data.middleName,
-            phone: data.phoneNumber,
-            role: data.userType,
+            phone: data.phoneNumber.replace(/[^\d+]/g, ''),
+            role: data.role,
             sex: data.gender,
             surname: data.lastName,
         };
@@ -111,7 +111,7 @@ export default function RegistrationPage() {
             switch (status) {
                 case 201:
                     console.log('Registration successful');
-                    await handleEmailConfirmation(data.email, registrationData.userType);
+                    await handleEmailConfirmation(data.email, registrationData.role);
                     break;
                 case 400:
                     console.log('Invalid registration data');
@@ -262,10 +262,10 @@ export default function RegistrationPage() {
                         <label className={styles.registerFormLabel}>
                             <p className={styles.registerFormTitle}>Тип пользователя</p>
                             <CustomSelect
-                                options={userTypeOptions}
-                                value={watch("userType")}
-                                name="userType"
-                                onChange={(value) => setValue("userType", value)}
+                                options={roleOptions}
+                                value={watch("role")}
+                                name="role"
+                                onChange={(value) => setValue("role", value)}
                                 errors={errors}
                                 setError={setError}
                             />
