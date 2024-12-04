@@ -62,7 +62,7 @@ export default function RegistrationPage() {
     const getNavigationPath = (role) => {
         const routes = {
             patient: "/registration/email-confirmation",
-            consultant: "/profile-consultant/fill",
+            consultant: "/registration/email-confirmation",
         };
 
         return routes[role] || null;
@@ -116,6 +116,7 @@ export default function RegistrationPage() {
                 case 400:
                     console.log('Invalid registration data');
                     setError("email", { type: "manual", message: "Электронная почта уже используется" });
+                    setError("phoneNumber", { type: "manual", message: "Номер телефон уже используется" });
                     break;
                 case 500:
                     console.error('Server error, please try again');

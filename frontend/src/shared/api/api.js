@@ -125,7 +125,7 @@ export const getUsersMe = async () => {
         status: status,
         data: data
     }
-}
+};
 
 
 export const getConsultantsMe = async () => {

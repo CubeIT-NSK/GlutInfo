@@ -85,7 +85,7 @@ function App() {
 					</Route>
 
 					{/* PROFILE PATIENT */}
-					<Route path="profile-patient/*">
+					<Route path="profile-patient/:id/*">
 						<Route index element={<PatientProfilePage />}/>
 						<Route path="fill" element={<FillPatientProfilePage />}/>
 						<Route path="edit" element={<EditPatientProfilePage />}/>
@@ -105,7 +105,7 @@ function App() {
 					</Route>
 
 					{/* PROFILE CONSULTANT */}
-					<Route path="profile-consultant/*">
+					<Route path="profile-consultant/:id/*">
 						<Route index element={<ConsultantProfilePage />}/>
 						<Route path="fill" element={<FillConsultantProfilePage />}/>
 						<Route path="edit" element={<EditConsultantProfilePage />}/>

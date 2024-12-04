@@ -1,5 +1,5 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import styles from "./index.module.css";
 import icons from "../../../shared/resources/icon";
 import Button from "../../../shared/components/Buttons";
@@ -52,6 +52,9 @@ const SECTIONS = [
 
 export default function PatientProfilePage() {
     const navigate = useNavigate();
+    
+    const { id } = useParams();
+    console.log("User ID:", id);
 
     const handleNavigation = (route) => {
         navigate(route);

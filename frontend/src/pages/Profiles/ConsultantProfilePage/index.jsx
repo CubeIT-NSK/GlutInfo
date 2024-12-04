@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import styles from './index.module.css';
 import images from '../../../shared/resources/images';
 import CertificateProfileSlider from '../../../shared/components/Sliders/CertificateProfileSlider';
@@ -54,6 +54,9 @@ export default function ConsultantProfilePage() {
     const [galleryItems, setGalleryItems] = useState([]);
     const [expandedIndex, setExpandedIndex] = useState(null);
     const [activeTab, setActiveTab] = useState('education');
+    
+    const { id } = useParams();
+    console.log("User ID:", id);
 
     const navigate = useNavigate();
 

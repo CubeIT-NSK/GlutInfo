@@ -1,25 +1,46 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+
 import icons from '../../resources/icon';
 import AuthorizationModal from '../Modals/AuthorizationModal';
 import ContactManagerModal from '../Modals/ContactManagerModal';
-import styles from './index.module.css';
-import { menuItems } from './menuItems';
 import Button from '../Buttons';
+import { getUsersMe } from '../../api/api';
+import { menuItems } from './menuItems';
+
+import styles from './index.module.css';
 
 const Header = () => {
-  const [openDropdownIndex, setOpenDropdownIndex] = useState(null);
-  const [isDonateMenuVisible, setDonateMenuVisible] = useState(false);
-  const [isAuthModalOpen, setAuthModalOpen] = useState(false);
+  const [state, setState] = useState({
+    openDropdownIndex: null,
+    isDonateMenuVisible: false,
+    isAuthModalOpen: false,
+    isContactManagerModalOpen: false,
+    isAuthenticated: false,
+  });
+
   const donateMenuRef = useRef(null);
   const headerRef = useRef(null);
-	const [isContactManagerModalOpen, setContactManagerModalOpen] = useState(false);
+  const navigate = useNavigate();
+
+  const checkAuthStatus = useCallback(async () => {
+    const token = localStorage.getItem('token');
+    if (token) {
+      const { status } = await getUsersMe();
+      setState(prevState => ({ ...prevState, isAuthenticated: status === 200 }));
+    }
+  }, []);
+
+  useEffect(() => {
+    checkAuthStatus();
+  }, [checkAuthStatus]);
 
   const handleToggleDropdown = useCallback((index) => {
-    setOpenDropdownIndex((prevIndex) => (prevIndex === index ? null : index));
+    setState(prevState => ({ ...prevState, openDropdownIndex: prevState.openDropdownIndex === index ? null : index }));
   }, []);
 
   const handleToggleDonateMenu = useCallback(() => {
-    setDonateMenuVisible((prevState) => !prevState);
+    setState(prevState => ({ ...prevState, isDonateMenuVisible: !prevState.isDonateMenuVisible }));
   }, []);
 
   const handleClickOutside = useCallback((event) => {
@@ -27,25 +48,42 @@ const Header = () => {
       donateMenuRef.current && !donateMenuRef.current.contains(event.target) &&
       headerRef.current && !headerRef.current.contains(event.target)
     ) {
-      setDonateMenuVisible(false);
-      setOpenDropdownIndex(null);
+      setState(prevState => ({ ...prevState, isDonateMenuVisible: false, openDropdownIndex: null }));
     }
   }, []);
 
   useEffect(() => {
     document.addEventListener('click', handleClickOutside);
-    return () => {
-      document.removeEventListener('click', handleClickOutside);
-    };
+    return () => document.removeEventListener('click', handleClickOutside);
   }, [handleClickOutside]);
 
+  const handleAvatarClick = async () => {
+    if (state.isAuthenticated) {
+      try {
+        const { data } = await getUsersMe();
+        navigateToRolePage(data);
+      } catch (error) {
+        console.error('Failed to fetch user data:', error);
+      }
+    } else {
+      toggleAuthModal();
+    }
+  };
+
+  const navigateToRolePage = (userData) => {
+    const { role, id } = userData;
+    const route = role === 'patient' ? `/profile-patient/${id}` : role === 'consultant' ? `/profile-consultant/${id}` : null;
+    if (route) navigate(route);
+    else console.error('Unknown role');
+  };
+
   const toggleAuthModal = () => {
-    setAuthModalOpen((prevState) => !prevState);
+    setState(prevState => ({ ...prevState, isAuthModalOpen: !prevState.isAuthModalOpen }));
   };
 
   const toggleContactManagerModal = () => {
-		setContactManagerModalOpen((prevState) => !prevState);
-	};
+    setState(prevState => ({ ...prevState, isContactManagerModalOpen: !prevState.isContactManagerModalOpen }));
+  };
 
   return (
     <div className="container" ref={headerRef}>
@@ -74,20 +112,13 @@ const Header = () => {
                   <img src={icons.donateIcon} alt="donateIcon" />
                   <span>Пожертвовать</span>
                 </button>
-                <div
-                  ref={donateMenuRef}
-                  className={`${styles.donateMenu} ${isDonateMenuVisible ? styles.showDonateMenu : ''}`}
-                >
+                <div ref={donateMenuRef} className={`${styles.donateMenu} ${state.isDonateMenuVisible ? styles.showDonateMenu : ''}`}>
                   <div className={styles.donateMenuText}>
                     <p>Сервис создан благодаря инициативе сотрудников Северо-Западного Центра лечения глютен-ассоциированных заболеваний и поддержке пациентского сообщества.</p>
-                     <p>Мы будем благодарны любой сумме для продвижения нашего дела. Каждое пожертвование будет направлено на реализацию социальных программ для больных целиакией.</p>
+                    <p>Мы будем благодарны любой сумме для продвижения нашего дела. Каждое пожертвование будет направлено на реализацию социальных программ для больных целиакией.</p>
                   </div>
-                  <Button
-                      variant="gradient"
-                      padding="10px 72.09px"
-                      fontSize='mini'
-                  >
-                      Пожертвовать
+                  <Button variant="gradient" padding="10px 72.09px" fontSize='mini'>
+                    Пожертвовать
                   </Button>
                 </div>
               </div>
@@ -97,7 +128,7 @@ const Header = () => {
                 <button
                   key={icon}
                   className={styles.iconButton}
-                  onClick={icon === 'avatarIcon' ? toggleAuthModal : icon === 'callIcon' ? toggleContactManagerModal : null}
+                  onClick={icon === 'avatarIcon' ? handleAvatarClick : icon === 'callIcon' ? toggleContactManagerModal : null}
                 >
                   <div className={styles.iconButtonContainer}>
                     <img src={icons[icon]} alt={icon} />
@@ -120,7 +151,7 @@ const Header = () => {
                 {hasDropdown && (
                   <>
                     <img src={icons.arrowIcon} className={styles.arrowUl} alt="arrowIcon" />
-                    <div className={`${styles.dropdownMenu} ${openDropdownIndex === index ? styles.show : ''}`}>
+                    <div className={`${styles.dropdownMenu} ${state.openDropdownIndex === index ? styles.show : ''}`}>
                       <ul>
                         {dropdownItems.map(({ label: subLabel, link: subLink }, subIndex) => (
                           <li key={subIndex}>
@@ -136,8 +167,8 @@ const Header = () => {
           </ul>
         </nav>
       </header>
-      <AuthorizationModal isOpen={isAuthModalOpen} onClose={toggleAuthModal} />
-				<ContactManagerModal isOpen={isContactManagerModalOpen} onClose={toggleContactManagerModal} />
+      <AuthorizationModal isOpen={state.isAuthModalOpen} onClose={toggleAuthModal} setIsAuthenticated={(status) => setState(prevState => ({ ...prevState, isAuthenticated: status }))} />
+      <ContactManagerModal isOpen={state.isContactManagerModalOpen} onClose={toggleContactManagerModal} />
     </div>
   );
 };
