@@ -58,7 +58,7 @@ export const postApiRegisterUser = async ({ registerData }) => {
     var status;
     const response = await api
         .post(
-            '/register',
+            '/auth/register',
             registerData
         )
         .then((response) => {
