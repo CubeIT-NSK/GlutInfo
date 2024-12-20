@@ -46,6 +46,12 @@
 	width: 350px;
 }
 
+.authorizationModalForm {
+	display: flex;
+	flex-direction: column;
+	gap: 15px;
+}
+
 .authFormInput{
 	width: 100%;
 	padding: 9px;

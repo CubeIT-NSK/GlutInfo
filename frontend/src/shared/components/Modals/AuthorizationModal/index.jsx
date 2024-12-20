@@ -43,14 +43,20 @@ const AuthorizationModal = ({ isOpen, onClose, setIsAuthenticated }) => {
 
         try {
             const status = await postApiAuth({ username, password });
-
             if (status !== 200) return handleErrorStatus(status);
 
+            setIsAuthenticated(true);
             onClose();
+
             const userResponse = await getUsersMe();
+
             if (userResponse.status === 200) {
-                handleUserRole(userResponse.data);
-                setIsAuthenticated(true);
+                const userData = userResponse.data;
+                if (userData.is_verified === false) {
+                    navigate(`/profile-${userData.role}/${userData.id}/fill`);
+                } else {
+                    navigate(`/profile-${userData.role}/${userData.id}`);
+                }
             } else {
                 console.error('Failed to fetch user data');
             }
@@ -58,6 +64,7 @@ const AuthorizationModal = ({ isOpen, onClose, setIsAuthenticated }) => {
             console.error('Error during login process:', error);
         }
     };
+
 
     const handleErrorStatus = (status) => {
         switch (status) {
@@ -73,13 +80,6 @@ const AuthorizationModal = ({ isOpen, onClose, setIsAuthenticated }) => {
             default:
                 console.error('Unexpected error:', status);
         }
-    };
-
-    const handleUserRole = (userData) => {
-        const { role, id } = userData;
-        const route = role === 'patient' ? `/profile-patient/${id}` : role === 'consultant' ? `/profile-consultant/${id}` : '';
-        if (route) navigate(route);
-        else console.error('Unknown role');
     };
 
     useEffect(() => {
@@ -101,7 +101,7 @@ const AuthorizationModal = ({ isOpen, onClose, setIsAuthenticated }) => {
                     <img src={icons.closeIcon} alt="closeIcon" />
                 </button>
                 <h2>Для записи необходимо зарегистрироваться или войти в личный кабинет</h2>
-                <form onSubmit={handleSubmit(handleLogin)}>
+                <form className={styles.authorizationModalForm} onSubmit={handleSubmit(handleLogin)}>
                     <div className={styles.authorizationModalFormWrapper}>
                         <div className={styles.authorizationModalFormErrorsWrapper}>
                             <input
