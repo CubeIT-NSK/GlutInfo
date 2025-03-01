@@ -5,6 +5,7 @@ import ContactManagerModal from '../Modals/ContactManagerModal';
 import styles from './index.module.css';
 import { menuItems } from './menuItems';
 import Button from '../Buttons';
+import { Link } from 'react-router-dom';
 
 const Header = () => {
   const [openDropdownIndex, setOpenDropdownIndex] = useState(null);
@@ -57,12 +58,12 @@ const Header = () => {
               <span className={styles.gastroTitle}>ГАСТРОГЛЮТЕН.</span>ИНФО
             </a>
           </div>
-          <div className={styles.subTitle}>
+          <Link to={'https://fasie.ru/'} className={styles.subTitle}>
             <div className={styles.subTitleText}>
-              Проект выполнен при поддержке «Фонда содействия инновациям»
+            Проект создан при поддержке Федерального государственного бюджетного учреждения «Фонд содействия развитию малых форм предприятий в научно-технической сфере в рамках программы «Студенческий стартап» Федерального проекта «Платформа университетского технологического предпринимательства»
             </div>
             <img src={icons.fondIcon} className={styles.fond} alt="fond" />
-          </div>
+          </Link>
           <div className={styles.headerRight}>
             <div className={styles.headerRightWrapper}>
               <a href="https://t.me/gluteninfo" className={styles.socialIconText}>

@@ -33,6 +33,7 @@
 .headerRightWrapper {
 	display: flex;
 	gap: 30px;
+	align-items: center;
 }
 
 .socialIconText {
@@ -102,6 +103,7 @@
 	display: flex;
 	gap: 15px;
 	align-items: center;
+	text-decoration: none;
 }
 
 .mainTitle,
@@ -124,7 +126,7 @@
 }
 
 .subTitleText {
-	width: 139px;
+	/* width: 139px; */
 	color: var(--black);
 	font-family: 'Mulish';
 	font-size: 8px;
