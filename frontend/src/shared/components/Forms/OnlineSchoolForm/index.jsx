@@ -1,38 +1,46 @@
-import React from 'react';
+import React, { useMemo, useCallback } from 'react';
 import styles from './index.module.css';
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import Button from '../../Buttons';
-
-const schema = yup.object().shape({
-    name: yup.string().required("Имя обязательно"),
-    question: yup.string().required("Вопрос обязателен")
-});
+import { useTranslation } from '../../../../hooks/useTranslation';
 
 const OnlineSchoolForm = () => {
-    const { register, handleSubmit, formState: { errors } } = useForm({
+    const { t, language } = useTranslation();
+    
+    const schema = useMemo(() => yup.object().shape({
+        name: yup.string().required(t('forms.onlineSchool.validation.nameRequired')),
+        question: yup.string().required(t('forms.onlineSchool.validation.questionRequired'))
+    }), [t, language]);
+
+    const { register, handleSubmit, formState: { errors }, reset } = useForm({
         resolver: yupResolver(schema)
     });
 
-    const onSubmit = (data) => {
+    // Reset form when schema changes (language change)
+    React.useEffect(() => {
+        reset();
+    }, [schema, reset]);
+
+    const onSubmit = useCallback((data) => {
         console.log(data);
-    };
+    }, []);
 
     return (
         <div className={styles.onlineSchoolFormWrapper}>
-            <h2>Свои вопросы о глютене, глютен-ассоциированных заболеваниях, безглютеновой диете можете оставлять здесь</h2>
+            <h2>{t('forms.onlineSchool.mainTitle')}</h2>
             <form  className={styles.onlineSchoolForm} onSubmit={handleSubmit(onSubmit)} >
                 <div className={styles.onlineSchoolFormWrapper}>
                     <div className={styles.onlineSchoolFormTitle}>
-                        <h2>Заполните форму</h2>
-                        <p>И мы ответим на Ваш вопрос</p>
+                        <h2>{t('forms.onlineSchool.title')}</h2>
+                        <p>{t('forms.onlineSchool.subtitle')}</p>
                     </div>
                     <div className={styles.onlineSchoolFormInpWrapper}>
                         <div className={styles.inpWrap}>
                             <input
                                 type="text"
-                                placeholder="Иванов Иван Сергеевич"
+                                placeholder={t('forms.onlineSchool.placeholders.name')}
                                 {...register("name")}
                                 className={`${styles.authFormInput} ${errors.name ? styles.errorInput : ''} ${errors.name ? styles.errorText : ''} ${errors.name ? styles.redPlaceholder : ''}`}
                             />
@@ -40,7 +48,7 @@ const OnlineSchoolForm = () => {
                         </div>
                         <div className={styles.inpWrap}>
                             <textarea
-                                placeholder="Введите Ваш вопрос"
+                                placeholder={t('forms.onlineSchool.placeholders.question')}
                                 {...register("question")}
                                 className={`${styles.onlineSchoolFormTextarea} ${errors.question ? styles.errorInput : ''} ${errors.question ? styles.errorText : ''} ${errors.question ? styles.redPlaceholder : ''}`}
                             />
@@ -49,8 +57,9 @@ const OnlineSchoolForm = () => {
                         <Button
                             variant="gradient"
                             padding="22.5px 239.5px"
+                            style={{ width: '100%' }}
                         >
-                            Отправить вопрос
+                            {t('forms.onlineSchool.submitButton')}
                          </Button>
                         <div className={styles.onlineSchoolFormRadioWrapper}>
                             <input
@@ -59,7 +68,7 @@ const OnlineSchoolForm = () => {
                                 readOnly
                                 className={styles.onlineSchoolFormRadio}
                             />
-                            <label>Даю согласие на обработку персональных данных</label>
+                            <label>{t('forms.onlineSchool.consent')}</label>
                         </div>
                     </div>
                 </div>

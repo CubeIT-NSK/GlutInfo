@@ -200,6 +200,13 @@
 	color: #FF162E;
 }
 
+.helperText {
+	font-family: Mulish;
+	font-size: 12px;
+	font-weight: 500;
+	color: rgba(55, 63, 65, 0.6);
+}
+
 .appointmentFormAgreementLabel span a {
 	color: #ff9900;
 	text-decoration: underline;

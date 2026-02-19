@@ -91,7 +91,7 @@
 .socialMedDaysMainBtn {
 	width: 53px;
 	height: 53px;
-	background-color: #F8A94A;
+	background-color: var(--light-wheat);
 	border-radius: 100px;
 	border: none;
 	position: relative;
@@ -104,7 +104,7 @@
 	left: -9px;
 	width: 71px;
 	height: 71px;
-	background: #F8A94A26;
+	background: var(--light-wheat-transparent);
 	border-radius: 100px;
 }
 
@@ -290,7 +290,7 @@
 }
 
 .socialHomaMainImgBig {
-	width: 1170px;
+	width: 1400px;
 	height: 550px;
 }
 
@@ -312,7 +312,7 @@
 }
 
 .socialHomaMainImgTop {
-	width: 1170px;
+	width: 1400px;
 	height: 550px;
 }
 
@@ -335,7 +335,7 @@
 	gap: 30px;
 	border-radius: 4px;
 	padding: 15px 40px 15px 20px;
-	width: 1170px;
+	width: 1400px;
 	height: 100px;
 	box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.25);
 	outline: none;

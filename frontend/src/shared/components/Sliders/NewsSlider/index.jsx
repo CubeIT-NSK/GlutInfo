@@ -1,17 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import styles from './index.module.css';
 
 const NewsSlider = ({ slides }) => {
     const [currentIndex, setCurrentIndex] = useState(0);
 
-    const goToSlide = (index) => {
+    const goToSlide = useCallback((index) => {
         setCurrentIndex(index);
-    };
+    }, []);
 
-    const getShortTitle = (text, limit = 270) => {
+    const getShortTitle = useCallback((text, limit = 270) => {
         if (text.length <= limit) return text;
         return text.slice(0, limit) + '...';
-    };
+    }, []);
 
     return (
         <div className={styles.slider}>

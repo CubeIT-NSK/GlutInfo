@@ -1,0 +1,522 @@
+export const translations = {
+  ru: {
+    // Header
+    header: {
+      mainTitle: 'ГАСТРОГЛЮТЕН.ИНФО',
+      gastroTitle: 'ГАСТРОГЛЮТЕН.',
+      subTitle: 'Проект создан при поддержке Федерального государственного бюджетного учреждения «Фонд содействия развитию малых форм предприятий в научно-технической сфере в рамках программы «Студенческий стартап» Федерального проекта «Платформа университетского технологического предпринимательства»',
+      telegramChannel: 'Наш телеграм канал',
+      donate: 'Пожертвовать',
+      donateText1: 'Сервис создан благодаря инициативе сотрудников Северо-Западного Центра лечения глютен-ассоциированных заболеваний и поддержке пациентского сообщества.',
+      donateText2: 'Мы будем благодарны любой сумме для продвижения нашего дела. Каждое пожертвование будет направлено на реализацию социальных программ для больных целиакией.',
+      donateButton: 'Пожертвовать'
+    },
+    
+    // Menu items
+    menu: {
+      aboutUs: 'О нас',
+      consultants: 'Консультанты',
+      services: 'Услуги и цены',
+      aboutIllness: 'О заболеваниях',
+      glutenFreeDiet: 'Безглютеновая диета',
+      ourProjects: 'Наши проекты',
+      specialistsInfo: 'Информация для специалистов',
+      contacts: 'Контакты',
+      
+      // About Us submenu
+      creators: 'Создатели',
+      szClgaz: 'СЗ ЦЛГАЗ',
+      documents: 'Документы',
+      partners: 'Партнёры',
+      cooperation: 'Сотрудничество',
+      patientReviews: 'Отзывы пациентов',
+      photoGallery: 'Фотогалерея',
+      
+      // Consultants submenu
+      gastroenterologists: 'Гастроэнтерологи',
+      nutritionists: 'Диетологи',
+      psychologists: 'Психологи',
+      
+      // About Illness submenu
+      celiac: 'Целиакия',
+      glutenAssociated: 'Глютен-ассоциированные заболевания',
+      nonCeliacGlutenSensitivity: 'Нецелиакийная чувствительность к глютену',
+      glutenAllergy: 'Аллергия на глютен',
+      herpetiformDermatitis: 'Герпетиформный дерматит',
+      glutenAtaxia: 'Глютеновая атаксия',
+      otherManifestations: 'Другие внекишечные проявления непереносимости глютена',
+      patientLibrary: 'Библиотека пациента',
+      
+      // Gluten Free Diet submenu
+      aboutDiet: 'О диете',
+      productRange: 'Ассортимент безглютеновой продукции',
+      restaurants: 'Рестораны с gluten-free меню',
+      shopsWith: 'Магазины с gluten-free меню',
+      shopsWithout: 'Магазины полностью с gluten-free меню',
+      glutenFreeKitchen: 'Безглютеновая кухня',
+      contribute: 'Внеси свой вклад',
+      
+      // Our Projects submenu
+      socialProjects: 'Социальные проекты',
+      onlineProjects: 'Онлайн-проекты',
+      educationalProjects: 'Школы для пациентов',
+      researches: 'Исследования',
+      events: 'Мероприятия',
+      
+      // Specialists Info submenu
+      clinicalRecommendations: 'Клинические рекомендации',
+      consultantAccount: 'Личный кабинет консультанта',
+      doctorLibrary: 'Библиотека врача'
+    },
+
+    // Home Page
+    homePage: {
+      teleService: {
+        topText: 'ДЕЛАЕМ ЖИЗНЬ БЕЗ ГЛЮТЕНА ЛУЧШЕ',
+        title: 'Телемедицинский сервис «ГастроГлютен.инфо»',
+        subtitle: 'Первая в России медицинская информационно-консультативная платформа для пациентов и консультантов',
+        button: 'Записаться на онлайн-консультацию'
+      },
+      
+      aboutUs: {
+        title: 'О нас',
+        text: 'Наша миссия — сделать данный ресурс полезным для пациентов и врачей и стандартизировать подходы к ведению больных с глютен-ассоциированными заболеваниями по всей стране.\n\nПриоритетами являются правильная диагностикаи ведение пациентов с глютен-ассоциированными заболеваниями (целиакией, нецелиакийной чувствительностью к глютену, аллергией на пшеницу), помощь в соблюдении безглютеновой диеты, повышение качества жизни данной категории пациентов.',
+        button: 'Подробнее'
+      },
+      
+      relevanceProblem: {
+        title: 'Актуальность проблемы',
+        glutenWord: 'Глютен',
+        glutenText: 'это не просто белок злаковых культур,\nно и причина разнообразных симптомов и состояний.',
+        leftText: 'К таким заболеваниям относится не только целиакия, но и реакции аллергического характера, а также особые нецелиакийные формы непереносимости глютена.\n\nДо сих пор единственным способом лечения считается безглютеновая диета, при соблюдении которой все симптомы могут исчезать, а лабораторно-инструментальные показатели нормализоваться.',
+        rightText: 'Назначение безглютеновой диеты ведет к недостаточному поступлению в организм клетчатки и витаминно-минеральных веществ, а также имеет определенные социально-экономические трудности.\n\nИменно поэтому ее назначение должно быть обоснованным, а пациенты в дальнейшем должны регулярно проходить диспансеризацию у профильного специалиста! Показания к назначению безглютенового рациона определяет только врач!',
+        cards: {
+          celiac: {
+            number: '1 из 100',
+            text: 'людей имеют целиакию'
+          },
+          percent: {
+            number: '80%',
+            text: 'пациентов живут с неустановленным диагнозом'
+          },
+          patient: {
+            number: '>200',
+            text: 'симптомов наблюдается у пациентов с целиакией'
+          },
+          disease: {
+            number: 'Целиакия',
+            text: '— это не детское заболевание'
+          }
+        }
+      },
+      
+      patientHistory: {
+        title: 'Истории пациентов',
+        button1: 'Записаться на онлайн-консультацию',
+        button2: 'Оставить отзыв'
+      },
+      
+      cooperation: {
+        title: 'Сотрудничество',
+        quote: '«Высокое качество предоставляемых услуг рождается при взаимодействии компетентных специалистов разных сфер»',
+        author: 'Ефремова Анастасия Юрьевна',
+        position: 'выпускник ФГБОУ ВО СЗГМУ им. И.И. Мечникова, врач-стажер',
+        text1: 'ПРОБЛЕМУ не выбросишь за окошко, а можно только вежливо, со ступенькина ступеньку, свести с лестницы. И делать это лучше объединив усилия консультантов, лабораторных служб.',
+        text2: 'Мы предлагаем платформу для реализации своих услуг консультантам, медицинским специалистам разных специальностей. Приглашаем для сотрудничества клиники, организации помощи пациентам.',
+        text3: 'Также мы открыты к взаимодействию с блогерами в социальных сетях. Для получения более подробной информации, просим вас заполнить форму заявки.'
+      },
+      
+      news: {
+        title: 'Новости'
+      },
+      
+      subscribeNews: {
+        title: 'Подписывайтесь\nна новости сервиса «ГастроГлютен.инфо»',
+        subtitle: 'Так ещё проще узнавать новую информацию об обновлениях, материалах, мероприятиях и многом другом.'
+      },
+      
+      calendarEvents: {
+        title: 'Календарь событий',
+        events: {
+          event1: {
+            date: '1 сентября',
+            title: 'Выход подкаста «Вся правда о глютене»',
+            button: 'Подробнее'
+          },
+          event2: {
+            date: '10 сентября',
+            title: 'Онлайн-школа пациента',
+            button: 'Подробнее'
+          },
+          event3: {
+            date: '1 октября',
+            title: 'Посещение 179 лицея с лекцией',
+            button: 'Подробнее'
+          }
+        },
+        showAllButton: 'Показать весь список мероприятий'
+      },
+      
+      contacts: {
+        title: 'Контакты',
+        description: 'Северо-Западный Центр Глютен-ассоциированных заболеваний (СЗЦ ГАЗ) на базе ФГБОУ ВО СЗГМУ им. И.И. Мечникова',
+        address: 'Адрес:',
+        addressValue: 'СПб, пр. Пискаревский 47, кор. 24, 2 этаж',
+        phone: 'Телефон:',
+        phoneValue: '+7-969-730-57-78',
+        email: 'E-mail:',
+        emailValue: 'gluten-center@mail.ru'
+      },
+      
+      reviews: {
+        title: 'Отзывы о работе консультантах центра',
+        showAllButton: 'Показать все отзывы о консультантах',
+        reviews: [
+          {
+            user: 'Мария И.',
+            date: '31.10.2023, консультация у Семеновой Е.А.',
+            text: '«Благодарны консультанту за доброжелательный и квалифицированный приём»'
+          },
+          {
+            user: 'Мария И.',
+            date: '17.05.2023, консультация у Семеновой Е.А.',
+            text: '«Очень внимательный консультант. Подробная консультация. Очень много узнала о своём диагнозе. Спасибо,что организовали такой центр»'
+          },
+          {
+            user: 'Антон Г.',
+            date: '13.12.2023, консультация у Семеновой Е.А.',
+            text: '«Все отлично. Очень профессионально»'
+          }
+        ]
+      },
+      
+      photoGallery: {
+        title: 'Фотогалерея'
+      }
+    },
+    
+    footer: {
+      gastroTitle: 'ГАСТРОГЛЮТЕН.',
+      mainTitle: 'ИНФО',
+      email: 'Почта',
+      phone: 'Номер',
+      address: 'Адрес',
+      addressValue: 'СПб, пр. Пискаревский 47, корп. 24, 2 этаж',
+      privacyPolicy: 'Политика конфиденциальности',
+      copyright: '© 2023. Все права на материалы сайта принадлежат нам (после оформления юр лица напишем название)',
+      support: 'При поддержке Северо-Западного центра',
+      supportCenter: 'лечения глютен-ассоциированных заболеваний',
+      disclaimer: 'ИНФОРМАЦИЯ НА ДАННОМ САЙТЕ НЕ ДОЛЖНА ИСПОЛЬЗОВАТЬСЯ ДЛЯ САМОСТОЯТЕЛЬНОЙ ДИАГНОСТИКИ И ЛЕЧЕНИЯ И НЕ МОЖЕТ БЫТЬ ЗАМЕНОЙ ОЧНОЙ КОНСУЛЬТАЦИИ ВРАЧА'
+    },
+    
+    forms: {
+        cooperation: {
+          title: 'Форма о сотрудничестве',
+          subtitle: 'После заполнения формы с Вами свяжется менеджер для обсуждения деталей',
+          placeholders: {
+            name: 'Ваше имя',
+            phone: '+7 (___) ___-__-__',
+            email: 'Электронная почта',
+            proposal: 'Предложение о сотрудничестве'
+          },
+          submitButton: 'Отправить предложение',
+          consent: 'Даю согласие на обработку персональных данных',
+          validation: {
+            nameRequired: 'Введите ваше имя',
+            emailRequired: 'Введите электронную почту',
+            emailInvalid: 'Введите корректный адрес электронной почты',
+            phoneRequired: 'Номер телефона обязателен',
+            phoneInvalid: 'Неверный формат телефона',
+            proposalRequired: 'Введите ваше предложение'
+          }
+        },
+        subscribeNews: {
+          title: 'Заполните форму',
+          subtitle: 'И будьте в курсе всех событий и обновлений',
+          placeholders: {
+            name: 'Ваше имя',
+            email: 'Электронная почта'
+          },
+          submitButton: 'Подписаться на новости',
+          consent: 'Даю согласие на обработку персональных данных',
+          validation: {
+            nameRequired: 'Введите ваше имя',
+            emailRequired: 'Введите электронную почту',
+            emailInvalid: 'Введите корректный адрес электронной почты'
+          }
+        },
+        onlineSchool: {
+          mainTitle: 'Свои вопросы о глютене, глютен-ассоциированных заболеваниях, безглютеновой диете можете оставлять здесь',
+          title: 'Заполните форму',
+          subtitle: 'И мы ответим на Ваш вопрос',
+          placeholders: {
+            name: 'Иванов Иван Сергеевич',
+            question: 'Введите Ваш вопрос'
+          },
+          submitButton: 'Отправить вопрос',
+          consent: 'Даю согласие на обработку персональных данных',
+          validation: {
+            nameRequired: 'Имя обязательно',
+            questionRequired: 'Вопрос обязателен'
+          }
+        }
+      }
+    }
+  },
+
+  en: {
+    header: {
+      mainTitle: 'GASTROGLUTEN.INFO',
+      gastroTitle: 'GASTROGLUTEN.',
+      subTitle: 'Project created with the support of the Federal State Budgetary Institution "Fund for Assistance to the Development of Small Forms of Enterprises in the Scientific and Technical Sphere" within the framework of the "Student Startup" program of the Federal Project "Platform of University Technological Entrepreneurship"',
+      telegramChannel: 'Our Telegram channel',
+      donate: 'Donate',
+      donateText1: 'The service was created thanks to the initiative of employees of the North-West Center for the Treatment of Gluten-Associated Diseases and the support of the patient community.',
+      donateText2: 'We will be grateful for any amount to promote our cause. Every donation will be directed to the implementation of social programs for patients with celiac disease.',
+      donateButton: 'Donate'
+    },
+    
+    menu: {
+      aboutUs: 'About Us',
+      consultants: 'Consultants',
+      services: 'Services and Prices',
+      aboutIllness: 'About Diseases',
+      glutenFreeDiet: 'Gluten-Free Diet',
+      ourProjects: 'Our Projects',
+      specialistsInfo: 'Information for Specialists',
+      contacts: 'Contacts',
+      
+      creators: 'Creators',
+      szClgaz: 'NW CLGAD',
+      documents: 'Documents',
+      partners: 'Partners',
+      cooperation: 'Cooperation',
+      patientReviews: 'Patient Reviews',
+      photoGallery: 'Photo Gallery',
+      
+      gastroenterologists: 'Gastroenterologists',
+      nutritionists: 'Nutritionists',
+      psychologists: 'Psychologists',
+      
+      celiac: 'Celiac Disease',
+      glutenAssociated: 'Gluten-Associated Diseases',
+      nonCeliacGlutenSensitivity: 'Non-Celiac Gluten Sensitivity',
+      glutenAllergy: 'Gluten Allergy',
+      herpetiformDermatitis: 'Dermatitis Herpetiformis',
+      glutenAtaxia: 'Gluten Ataxia',
+      otherManifestations: 'Other Extraintestinal Manifestations of Gluten Intolerance',
+      patientLibrary: 'Patient Library',
+      
+      aboutDiet: 'About Diet',
+      productRange: 'Gluten-Free Product Range',
+      restaurants: 'Restaurants with Gluten-Free Menu',
+      shopsWith: 'Shops with Gluten-Free Menu',
+      shopsWithout: 'Shops Completely with Gluten-Free Menu',
+      glutenFreeKitchen: 'Gluten-Free Kitchen',
+      contribute: 'Make a Contribution',
+      
+      socialProjects: 'Social Projects',
+      onlineProjects: 'Online Projects',
+      educationalProjects: 'Patient Schools',
+      researches: 'Research',
+      events: 'Events',
+      
+      clinicalRecommendations: 'Clinical Recommendations',
+      consultantAccount: 'Consultant Account',
+      doctorLibrary: 'Doctor Library'
+    },
+
+    homePage: {
+      teleService: {
+        topText: 'MAKING GLUTEN-FREE LIFE BETTER',
+        title: 'Telemedicine service "GastroGluten.info"',
+        subtitle: 'The first medical information and consulting platform for patients and consultants in Russia',
+        button: 'Book an online consultation'
+      },
+      
+      aboutUs: {
+        title: 'About Us',
+        text: 'Our mission is to make this resource useful for patients and doctors and standardize approaches to managing patients with gluten-associated diseases throughout the country.\n\nPriorities include proper diagnosis and management of patients with gluten-associated diseases (celiac disease, non-celiac gluten sensitivity, wheat allergy), assistance in following a gluten-free diet, and improving the quality of life for this category of patients.',
+        button: 'Learn More'
+      },
+      
+      relevanceProblem: {
+        title: 'Relevance of the Problem',
+        glutenWord: 'Gluten',
+        glutenText: 'is not just a protein of cereal crops,\nbut also the cause of various symptoms and conditions.',
+        leftText: 'Such diseases include not only celiac disease, but also allergic reactions, as well as special non-celiac forms of gluten intolerance.\n\nSo far, the only treatment method is considered to be a gluten-free diet, following which all symptoms can disappear and laboratory and instrumental indicators can normalize.',
+        rightText: 'Prescribing a gluten-free diet leads to insufficient intake of fiber and vitamins and minerals into the body, and also has certain socio-economic difficulties.\n\nThat is why its appointment should be justified, and patients should regularly undergo medical examination by a specialized specialist in the future! Indications for prescribing a gluten-free diet are determined only by a doctor!',
+        cards: {
+          celiac: {
+            number: '1 in 100',
+            text: 'people have celiac disease'
+          },
+          percent: {
+            number: '80%',
+            text: 'patients live with undiagnosed disease'
+          },
+          patient: {
+            number: '>200',
+            text: 'symptoms observed in patients with celiac disease'
+          },
+          disease: {
+            number: 'Celiac Disease',
+            text: 'is not a childhood disease'
+          }
+        }
+      },
+      
+      patientHistory: {
+        title: 'Patient Stories',
+        button1: 'Book an online consultation',
+        button2: 'Leave a review'
+      },
+      
+      cooperation: {
+        title: 'Cooperation',
+        quote: '"High quality of services is born from the interaction of competent specialists from different fields"',
+        author: 'Efremova Anastasia Yuryevna',
+        position: 'graduate of FGBOU VO SZGMU named after I.I. Mechnikov, intern doctor',
+        text1: 'You cannot throw a PROBLEM out the window, you can only politely, step by step, lead it down the stairs. And it is better to do this by combining the efforts of consultants and laboratory services.',
+        text2: 'We offer a platform for consultants and medical specialists of various specialties to implement their services. We invite clinics and patient assistance organizations to cooperate.',
+        text3: 'We are also open to interaction with bloggers on social networks. For more detailed information, please fill out the application form.'
+      },
+      
+      news: {
+        title: 'News'
+      },
+      
+      subscribeNews: {
+        title: 'Subscribe\nto the news of the "GastroGluten.info" service',
+        subtitle: 'This makes it even easier to learn about updates, materials, events and much more.'
+      },
+      
+      calendarEvents: {
+        title: 'Event Calendar',
+        events: {
+          event1: {
+            date: 'September 1',
+            title: 'Release of the podcast "The Whole Truth About Gluten"',
+            button: 'Learn More'
+          },
+          event2: {
+            date: 'September 10',
+            title: 'Online patient school',
+            button: 'Learn More'
+          },
+          event3: {
+            date: 'October 1',
+            title: 'Visit to school 179 with a lecture',
+            button: 'Learn More'
+          }
+        },
+        showAllButton: 'Show all events'
+      },
+      
+      contacts: {
+        title: 'Contacts',
+        description: 'North-West Center for Gluten-Associated Diseases (NW CLGAD) based at FGBOU VO SZGMU named after I.I. Mechnikov',
+        address: 'Address:',
+        addressValue: 'St. Petersburg, Piskarevsky Ave. 47, bldg. 24, 2nd floor',
+        phone: 'Phone:',
+        phoneValue: '+7-969-730-57-78',
+        email: 'E-mail:',
+        emailValue: 'gluten-center@mail.ru'
+      },
+      
+      reviews: {
+        title: 'Reviews about the work of the center\'s consultants',
+        showAllButton: 'Show all consultant reviews',
+        reviews: [
+          {
+            user: 'Maria I.',
+            date: '10/31/2023, consultation with Semenova E.A.',
+            text: '"Thank you to the consultant for a friendly and qualified reception"'
+          },
+          {
+            user: 'Maria I.',
+            date: '05/17/2023, consultation with Semenova E.A.',
+            text: '"Very attentive consultant. Detailed consultation. I learned a lot about my diagnosis. Thank you for organizing such a center"'
+          },
+          {
+            user: 'Anton G.',
+            date: '12/13/2023, consultation with Semenova E.A.',
+            text: '"Everything is excellent. Very professional"'
+          }
+        ]
+      },
+      
+      photoGallery: {
+        title: 'Photo Gallery'
+      }
+    },
+    
+    footer: {
+      gastroTitle: 'GASTROGLUTEN.',
+      mainTitle: 'INFO',
+      email: 'Email',
+      phone: 'Phone',
+      address: 'Address',
+      addressValue: 'St. Petersburg, Piskarevsky pr. 47, bldg. 24, 2nd floor',
+      privacyPolicy: 'Privacy Policy',
+      copyright: '© 2023. All rights to the site materials belong to us (after legal entity registration we will write the name)',
+      support: 'With the support of the North-Western Center',
+      supportCenter: 'for the Treatment of Gluten-Associated Diseases',
+      disclaimer: 'INFORMATION ON THIS SITE SHOULD NOT BE USED FOR SELF-DIAGNOSIS AND TREATMENT AND CANNOT BE A SUBSTITUTE FOR FACE-TO-FACE CONSULTATION WITH A DOCTOR'
+    },
+    
+    forms: {
+        cooperation: {
+          title: 'Cooperation Form',
+          subtitle: 'After filling out the form, a manager will contact you to discuss the details',
+          placeholders: {
+            name: 'Your name',
+            phone: '+7 (___) ___-__-__',
+            email: 'Email address',
+            proposal: 'Cooperation proposal'
+          },
+          submitButton: 'Send proposal',
+          consent: 'I consent to the processing of personal data',
+          validation: {
+            nameRequired: 'Enter your name',
+            emailRequired: 'Enter email address',
+            emailInvalid: 'Enter a valid email address',
+            phoneRequired: 'Phone number is required',
+            phoneInvalid: 'Invalid phone format',
+            proposalRequired: 'Enter your proposal'
+          }
+        },
+        subscribeNews: {
+          title: 'Fill out the form',
+          subtitle: 'And stay updated on all events and updates',
+          placeholders: {
+            name: 'Your name',
+            email: 'Email address'
+          },
+          submitButton: 'Subscribe to news',
+          consent: 'I consent to the processing of personal data',
+          validation: {
+            nameRequired: 'Enter your name',
+            emailRequired: 'Enter email address',
+            emailInvalid: 'Enter a valid email address'
+          }
+        },
+        onlineSchool: {
+          mainTitle: 'You can leave your questions about gluten, gluten-associated diseases, gluten-free diet here',
+          title: 'Fill out the form',
+          subtitle: 'And we will answer your question',
+          placeholders: {
+            name: 'John Smith',
+            question: 'Enter your question'
+          },
+          submitButton: 'Send question',
+          consent: 'I consent to the processing of personal data',
+          validation: {
+            nameRequired: 'Name is required',
+            questionRequired: 'Question is required'
+          }
+        }
+      }
+    }
+  }
+};

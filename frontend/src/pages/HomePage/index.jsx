@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import CooperationForm from "../../shared/components/Forms/CooperationForm";
 import Button from "../../shared/components/Buttons";
@@ -8,6 +8,7 @@ import PhotoSlider from "../../shared/components/Sliders/PhotoSlider";
 import SubscribeNewsForm from "../../shared/components/Forms/SubscribeNewsForm";
 import ContactManagerModal from "../../shared/components/Modals/ContactManagerModal";
 import images from "../../shared/resources/images";
+import { useTranslation } from "../../hooks/useTranslation";
 
 import icons from "../../shared/resources/icon";
 import styles from "./index.module.css";
@@ -15,6 +16,7 @@ import styles from "./index.module.css";
 export default function HomePage() {
     const navigate = useNavigate();
 	const [isContactManagerModalOpen, setContactManagerModalOpen] = useState(false);
+    const { t } = useTranslation();
 
     const sliderData = {
         PatientData: [
@@ -126,11 +128,11 @@ export default function HomePage() {
         }, ],
     };
 
-	const toggleContactManagerModal = () => {
+	const toggleContactManagerModal = useCallback(() => {
 		setContactManagerModalOpen((prevState) => !prevState);
-	};
+	}, []);
 
-	const handleNavigate  = (page) => {
+	const handleNavigate = useCallback((page) => {
         switch (page) {
             case "make-appointment":
                 navigate("/profile-patient/make-appointment");
@@ -153,7 +155,7 @@ export default function HomePage() {
             default:
                 break;
         }
-    };
+    }, [navigate]);
 
     return (
         <>
@@ -164,17 +166,17 @@ export default function HomePage() {
 								<div className={styles.teleMiddleWrap}>
 									<div className={styles.teleMiddleTopWrapper}>
 										<div className={styles.teleTop}>
-											<p>ДЕЛАЕМ ЖИЗНЬ БЕЗ ГЛЮТЕНА ЛУЧШЕ</p>
+											<p>{t('homePage.teleService.topText')}</p>
 										</div>
-										<p className={styles.teleTopText}>Телемедицинский сервис <span>«ГастроГлютен</span>.инфо»</p>
+										<p className={styles.teleTopText}>{t('homePage.teleService.title')}</p>
 									</div>
-									<h3>Первая в России медицинская информационно-консультативная платформа для пациентов и консультантов</h3>
+									<h3>{t('homePage.teleService.subtitle')}</h3>
 									<Button
 										variant="gradient"
 										onClick={() => handleNavigate('make-appointment')}
 										padding="22.5px 44.5px"
 									>
-										Записаться на онлайн-консультацию
+										{t('homePage.teleService.button')}
 									</Button>
 								</div>
 								<img src={images.teleServiceImage} alt="teleServiceImage" />
@@ -188,19 +190,15 @@ export default function HomePage() {
 						<div className={styles.aboutUsWrapper}>
 							<div className={styles.aboutUsLeft}>
 								<div className={styles.aboutUsTextWrapper}>
-									<p className={styles.aboutUsLeftText}>О нас</p>
-									<h3>Наша миссия — сделать данный ресурс полезным для пациентов и врачей и стандартизировать подходы к ведению больных с глютен-ассоциированными заболеваниями по всей стране.
-										<br />
-										<br />
-										Приоритетами являются правильная диагностикаи ведение пациентов с глютен-ассоциированными заболеваниями (целиакией, нецелиакийной чувствительностью к глютену, аллергией на пшеницу), помощь в соблюдении безглютеновой диеты, повышение качества жизни данной категории пациентов.
-									</h3>
+									<p className={styles.aboutUsLeftText}>{t('homePage.aboutUs.title')}</p>
+									<h3>{t('homePage.aboutUs.text')}</h3>
 								</div>
 								<Button
 									variant="gradient"
 									padding="22.5px 176.5px"
 									onClick={() => handleNavigate('about-us')}
 								>
-									Подробнее
+									{t('homePage.aboutUs.button')}
 								</Button>
 							</div>
 							<div className={styles.aboutUsRight}>
@@ -215,24 +213,17 @@ export default function HomePage() {
 						<div className={styles.relevanceWrapper}>
 							<div className={styles.relevanceTop}>
 								<div className={styles.relevanceTopWrapper}>
-									<div className={styles.relevanceHeader}>Актуальность проблемы</div>
-									<div className={styles.relevanceProblemHeaderBlock}>
-										<div className={styles.relevanceProblemHeaderBlockEl}> <img src={icons.glutFrameIcon} alt="glutFrameImage" />
-											<p> <span>Глютен </span> — это не просто белок злаковых культур,
-												<br /> но и причина разнообразных симптомов и состояний. </p>
-										</div>
+									<div className={styles.relevanceHeader}>{t('homePage.relevanceProblem.title')}</div>
+									<div className={styles.relevanceGlutenText}>
+										<span>{t('homePage.relevanceProblem.glutenWord')}</span> — {t('homePage.relevanceProblem.glutenText')}
 									</div>
 								</div>
 								<div className={styles.relevanceTopBtmWrapper}>
 									<div className={styles.rTBWLeftText}>
-										<p>К таким заболеваниям относится не только целиакия, но и реакции аллергического характера, а также особые нецелиакийные формы непереносимости глютена.
-											<br />
-											<br /> До сих пор единственным способом лечения считается безглютеновая диета, при соблюдении которой все симптомы могут исчезать, а лабораторно-инструментальные показатели нормализоваться.</p>
+										<p>{t('homePage.relevanceProblem.leftText')}</p>
 									</div>
 									<div className={styles.rTBWRightText}>
-										<p>Назначение безглютеновой диеты ведет к недостаточному поступлению в организм клетчатки и витаминно-минеральных веществ, а также имеет определенные социально-экономические трудности.
-											<br />
-											<br /> Именно поэтому ее назначение должно быть обоснованным, а пациенты в дальнейшем должны регулярно проходить диспансеризацию у профильного специалиста! Показания к назначению безглютенового рациона определяет только врач!</p>
+										<p>{t('homePage.relevanceProblem.rightText')}</p>
 									</div>
 								</div>
 							</div>
@@ -242,20 +233,20 @@ export default function HomePage() {
 							<div className={styles.relevanceBottom}>
 								<div className={styles.relevanceCardsWrapper}>
 									<div className={styles.relevanceCard} id={styles.tselikation} style={{ backgroundImage: `url(${images.glutTselikationImage})` }}>
-										<div className={styles.relevanceCardToptext}>1 из 100</div>
-										<div className={styles.relevanceCardMiddletext}>людей имеют целиакию</div>
+										<div className={styles.relevanceCardToptext}>{t('homePage.relevanceProblem.cards.celiac.number')}</div>
+										<div className={styles.relevanceCardMiddletext}>{t('homePage.relevanceProblem.cards.celiac.text')}</div>
 									</div>
 									<div className={styles.relevanceCard} id={styles.percent} style={{ backgroundImage: `url(${images.glutPercentImage})` }}>
-										<div className={styles.relevanceCardToptext}>80%</div>
-										<div className={styles.relevanceCardMiddletext}>пациентов живут с неустановленным диагнозом</div>
+										<div className={styles.relevanceCardToptext}>{t('homePage.relevanceProblem.cards.percent.number')}</div>
+										<div className={styles.relevanceCardMiddletext}>{t('homePage.relevanceProblem.cards.percent.text')}</div>
 									</div>
 									<div className={styles.relevanceCard} id={styles.patient} style={{ backgroundImage: `url(${images.glutPatientImage})` }}>
-										<div className={styles.relevanceCardToptext}>&gt;200</div>
-										<div className={styles.relevanceCardMiddletext}>симптомов наблюдается у пациентов с целиакией</div>
+										<div className={styles.relevanceCardToptext}>{t('homePage.relevanceProblem.cards.patient.number')}</div>
+										<div className={styles.relevanceCardMiddletext}>{t('homePage.relevanceProblem.cards.patient.text')}</div>
 									</div>
 									<div className={styles.relevanceCard} id={styles.disease} style={{ backgroundImage: `url(${images.glutDiseaseImage})` }}>
-										<div className={styles.relevanceCardToptext}>Целиакия</div>
-										<div className={styles.relevanceCardMiddletext}>— это не детское заболевание</div>
+										<div className={styles.relevanceCardToptext}>{t('homePage.relevanceProblem.cards.disease.number')}</div>
+										<div className={styles.relevanceCardMiddletext}>{t('homePage.relevanceProblem.cards.disease.text')}</div>
 									</div>
 								</div>
 							</div>
@@ -265,7 +256,7 @@ export default function HomePage() {
 
             	<section className={styles.patientHistory} style={{ backgroundImage: `url(${images.bgPatientHistoryImage})` }}>
 					<div className="container">
-						<h2>Истории пациентов</h2>
+						<h2>{t('homePage.patientHistory.title')}</h2>
 						<PatientSlider slides={sliderData.PatientData} />
 						<div className={styles.patientHistoryActions}>
 							<Button
@@ -273,13 +264,7 @@ export default function HomePage() {
 								padding="22.5px 44.5px"
 								onClick={() => handleNavigate('make-appointment')}
 							>
-								Записаться на онлайн-консультацию
-							</Button>
-							<Button
-								variant="white"
-								padding="22.5px 104.5px"
-							>
-								Оставить отзыв
+								{t('homePage.patientHistory.button1')}
 							</Button>
 						</div>
 					</div>
@@ -291,16 +276,17 @@ export default function HomePage() {
 							<div className={styles.cooperationFormsWrapper}>
 								<div className={styles.cooperationFormsLeftCol}>
 									<div className={styles.cooperationFormsLeftColTop}>
-										<div className={styles.cooperationHeader}>Сотрудничество</div> <img src={images.laptopImage} alt="laptopImage" /> </div>
-									<div className={styles.cooperationFormsLeftColMiddle}> <img src={images.quoteImage} alt="quoteImage" />
-										<p>«Высокое качество предоставляемых услуг рождается при взаимодействии компетентных специалистов разных сфер»</p>
+										<div className={styles.cooperationHeader}>{t('homePage.cooperation.title')}</div> <img src={images.laptopImage} alt="laptopImage" /> </div>
+									<div className={styles.cooperationFormsLeftColMiddle}> 
+										<img src={images.quoteImage} alt="quoteImage" />
+										<p>«{t('homePage.cooperation.quote')}»</p>
 									</div>
 									<div className={styles.cooperationFormsLeftColBottom}>
 										<div className={styles.cFLCBWrapper}>
 											<div className={styles.cFLCBLeft}> <img src={images.cooperationAvatarImage} alt="cooperationAvatarImage" /> </div>
 											<div className={styles.cFLCBRight}>
-												<p className={styles.cFLCBRightTop}>Ефремова Анастасия Юрьевна</p>
-												<p className={styles.cFLCBRightBottom}>выпускник ФГБОУ ВО СЗГМУ им. И.И. Мечникова, врач-стажер</p>
+												<p className={styles.cFLCBRightTop}>{t('homePage.cooperation.author')}</p>
+												<p className={styles.cFLCBRightBottom}>{t('homePage.cooperation.position')}</p>
 											</div>
 										</div>
 									</div>
@@ -311,9 +297,9 @@ export default function HomePage() {
 							</div>
 							<div className={styles.coopBackLinesWrapper}> <img src={images.backLinesImage} className={styles.backLinesImage} alt="backLinesImage" />
 								<div className={styles.coopBackLinesTextWrapper}>
-									<p>ПРОБЛЕМУ не выбросишь за окошко, а можно только вежливо, со ступенькина ступеньку, свести с лестницы. И делать это лучше <span>объединив усилия консультантов, лабораторных служб.</span></p>
-									<p><span>Мы предлагаем платформу для реализации</span> своих услуг консультантам, медицинским специалистам разных специальностей. Приглашаем для сотрудничества клиники, организации помощи пациентам.</p>
-									<p id={styles.coopBackLinesTextWrapperP}>Также мы <span>открыты к взаимодействию</span> с блогерами в социальных сетях. Для получения более подробной информации, просим вас заполнить форму заявки.</p>
+									<p>{t('homePage.cooperation.text1')}</p>
+									<p>{t('homePage.cooperation.text2')}</p>
+									<p id={styles.coopBackLinesTextWrapperP}>{t('homePage.cooperation.text3')}</p>
 								</div>
 							</div>
 						</div>
@@ -322,7 +308,7 @@ export default function HomePage() {
 
             	<section className={styles.newsSec}>
 					<div className="container">
-						<h2>Новости</h2>
+						<h2>{t('homePage.news.title')}</h2>
 						<NewsSlider slides={sliderData.NewsData} />
 					</div>
             	</section>
@@ -331,10 +317,9 @@ export default function HomePage() {
 						<div className={styles.subcribeNewsWrapper}>
 							<div className={styles.subcribeNewsLeft}>
 								<div className={styles.subcribeNewsLeftTopWrapper}>
-									<p>Подписывайтесь
-										<br /> на новости сервиса <span>«ГастроГлютен.</span>инфо»</p> <img src={images.subcribeNewsMailImage} className={styles.subcribeNewsMailImage} alt="subcribeNewsMailImage" /> </div>
+									<p>{t('homePage.subscribeNews.title')}</p> <img src={images.subcribeNewsMailImage} className={styles.subcribeNewsMailImage} alt="subcribeNewsMailImage" /> </div>
 								<div className={styles.subcribeNewsLeftBottomWrapper}>
-									<p>Так ещё проще узнавать новую информацию об обновлениях, материалах, мероприятиях и многом другом.</p>
+									<p>{t('homePage.subscribeNews.subtitle')}</p>
 								</div>
 							</div>
 							<div className={styles.subcribeNewsRight}>
@@ -347,12 +332,12 @@ export default function HomePage() {
             	<section className={styles.calendarEvents} style={{ backgroundImage: `url(${images.celendarEventsBackgroundImage})` }}>
 					<div className="container">
 						<div className={styles.calendarEventsWrapper}>
-							<div className={styles.calendarEventsHeader}>Календарь событий</div>
+							<div className={styles.calendarEventsHeader}>{t('homePage.calendarEvents.title')}</div>
 							<div className={styles.calendarEventsCardWrapper}>
 								<div className={styles.calendarEventsCard}>
 									<div className={styles.calendarEventsCardPaddTop}> <img className={styles.calendarEventImage} src={images.celendarEventsFirstImage} alt="celendarEventsFirstImage" />
-										<p className={styles.calendarEventsCardTopText}>1 сентября</p>
-										<p className={styles.calendarEventsCardBottomtext}>Выход подкаста «Вся правда о глютене»</p>
+										<p className={styles.calendarEventsCardTopText}>{t('homePage.calendarEvents.events.event1.date')}</p>
+										<p className={styles.calendarEventsCardBottomtext}>{t('homePage.calendarEvents.events.event1.title')}</p>
 									</div>
 									<div className={styles.calendarEventsCardPaddBot}>
 										<Button
@@ -360,14 +345,14 @@ export default function HomePage() {
 											padding="17.5px 106.5px"
 											onClick={() => handleNavigate('about-gluten-event')}
 										>
-											Подробнее
+											{t('homePage.calendarEvents.events.event1.button')}
 										</Button>
 									</div>
 								</div>
 								<div className={styles.calendarEventsCard}>
 									<div className={styles.calendarEventsCardPaddTop}> <img className={styles.calendarEventImage} src={images.celendarEventsSecondImage} alt="celendarEventsSecondImage" />
-										<p className={styles.calendarEventsCardTopText}>10 сентября</p>
-										<p className={styles.calendarEventsCardBottomtext}>Онлайн-школа пациента</p>
+										<p className={styles.calendarEventsCardTopText}>{t('homePage.calendarEvents.events.event2.date')}</p>
+										<p className={styles.calendarEventsCardBottomtext}>{t('homePage.calendarEvents.events.event2.title')}</p>
 									</div>
 									<div className={styles.calendarEventsCardPaddBot}>
 										<Button
@@ -375,14 +360,14 @@ export default function HomePage() {
 											padding="17.5px 106.5px"
 											onClick={() => handleNavigate('online-school-patient')}
 										>
-											Подробнее
+											{t('homePage.calendarEvents.events.event2.button')}
 										</Button>
 									</div>
 								</div>
 								<div className={styles.calendarEventsCard}>
 									<div className={styles.calendarEventsCardPaddTop}> <img className={styles.calendarEventImage} src={images.celendarEventsThirdImage} alt="celendarEventsThirdImage" />
-										<p className={styles.calendarEventsCardTopText}>1 октября</p>
-										<p className={styles.calendarEventsCardBottomtext}>Посещение 179 лицея с лекцией</p>
+										<p className={styles.calendarEventsCardTopText}>{t('homePage.calendarEvents.events.event3.date')}</p>
+										<p className={styles.calendarEventsCardBottomtext}>{t('homePage.calendarEvents.events.event3.title')}</p>
 									</div>
 									<div className={styles.calendarEventsCardPaddBot}>
 										<Button
@@ -390,16 +375,17 @@ export default function HomePage() {
 											padding="17.5px 106.5px"
 											onClick={() => handleNavigate('gluten-focus')}
 											>
-											Подробнее
+											{t('homePage.calendarEvents.events.event3.button')}
 										</Button>
 									</div>
 								</div>
 							</div>
 							<Button
 								variant="white"
-								padding="22.5px 398.5px"
+								padding="22.5px 50px"
+								className={styles.calendarShowAllButton}
 							>
-								Показать весь список мероприятий
+								{t('homePage.calendarEvents.showAllButton')}
 							</Button>
 						</div>
 					</div>
@@ -410,13 +396,13 @@ export default function HomePage() {
 						<div className={styles.contactsWrapper}>
 							<div className={styles.contactsLeft}>
 								<div className={styles.contactsHeadWrapper}>
-									<div className={styles.contactsHeader}>Контакты</div> <img src={images.contactsIllustrationImage} alt="contactsIllustrationImage" /> </div>
+									<div className={styles.contactsHeader}>{t('homePage.contacts.title')}</div> <img src={images.contactsIllustrationImage} alt="contactsIllustrationImage" /> </div>
 								<div className={styles.contactsCon}>
-									<p>Северо-Западный Центр Глютен-ассоциированных заболеваний (СЗЦ ГАЗ) на базе ФГБОУ ВО СЗГМУ им. И.И. Мечникова</p>
+									<p>{t('homePage.contacts.description')}</p>
 									<div className={styles.contactsConRef}>
-										<div className={styles.contactsConRefText}> <span>Адрес: </span> <a>СПб, пр. Пискаревский 47, кор. 24, 2 этаж</a> </div>
-										<div className={styles.contactsConRefText}> <span>Телефон: </span> <a href="tel:+79697305778">+7-969-730-57-78</a> </div>
-										<div className={styles.contactsConRefText}> <span>E-mail: </span> <a href="mailto:gluten-center@mail.ru">gluten-center@mail.ru</a> </div>
+										<div className={styles.contactsConRefText}> <span>{t('homePage.contacts.address')} </span> <a>{t('homePage.contacts.addressValue')}</a> </div>
+										<div className={styles.contactsConRefText}> <span>{t('homePage.contacts.phone')} </span> <a href="tel:+79697305778">{t('homePage.contacts.phoneValue')}</a> </div>
+										<div className={styles.contactsConRefText}> <span>{t('homePage.contacts.email')} </span> <a href="mailto:gluten-center@mail.ru">{t('homePage.contacts.emailValue')}</a> </div>
 									</div>
 								</div>
 								<div className={styles.contactIcons}>
@@ -434,7 +420,7 @@ export default function HomePage() {
             	<section className={styles.reviewsSection} id="feedback">
 					<div className="container">
 						<div className={styles.reviewsWrapper}>
-							<div className={styles.reviewsHeader}>Отзывы о работе консультантах центра</div>
+							<div className={styles.reviewsHeader}>{t('homePage.reviews.title')}</div>
 							<div className={styles.reviewsCarts}>
 								<div className={styles.reviewsCart}>
 									<div className={styles.reviewsCartTop}> <img src={icons.reviewsMarksIcon} alt="reviewsMarksIcon" /> </div>
@@ -447,11 +433,11 @@ export default function HomePage() {
 											<div className={styles.reviewsStarsWrapper}> <img src={icons.reviewsStarsIcon} alt="reviewsStarsIcon" /> </div>
 										</div>
 										<div className={styles.reviewsCartUsers}>
-											<p className={styles.reviewsCartUser}> Мария И. </p>
-											<p className={styles.reviewsCartUserDate}> 31.10.2023, консультация у Семеновой Е.А. </p>
+											<p className={styles.reviewsCartUser}> {t('homePage.reviews.reviews.0.user')} </p>
+											<p className={styles.reviewsCartUserDate}> {t('homePage.reviews.reviews.0.date')} </p>
 										</div>
 										<div className={styles.reviewsCartComments}>
-											<p className={styles.reviewsCartCommentsText}> «Благодарны консультанту за доброжелательный и квалифицированный приём» </p>
+											<p className={styles.reviewsCartCommentsText}> {t('homePage.reviews.reviews.0.text')} </p>
 										</div>
 									</div>
 								</div>
@@ -466,11 +452,11 @@ export default function HomePage() {
 											<div className={styles.reviewsStarsWrapper}> <img src={icons.reviewsStarsIcon} alt="reviewsStarsIcon" /> </div>
 										</div>
 										<div className={styles.reviewsCartUsers}>
-											<p className={styles.reviewsCartUser}> Мария И. </p>
-											<p className={styles.reviewsCartUserDate}> 17.05.2023, консультация у Семеновой Е.А. </p>
+											<p className={styles.reviewsCartUser}> {t('homePage.reviews.reviews.1.user')} </p>
+											<p className={styles.reviewsCartUserDate}> {t('homePage.reviews.reviews.1.date')} </p>
 										</div>
 										<div className={styles.reviewsCartComments}>
-											<p className={styles.reviewsCartCommentsText}> «Очень внимательный консультант. Подробная консультация. Очень много узнала о своём диагнозе. Спасибо,что организовали такой центр» </p>
+											<p className={styles.reviewsCartCommentsText}> {t('homePage.reviews.reviews.1.text')} </p>
 										</div>
 									</div>
 								</div>
@@ -485,28 +471,22 @@ export default function HomePage() {
 											<div className={styles.reviewsStarsWrapper}> <img src={icons.reviewsStarsIcon} alt="reviewsStarsIcon" /> </div>
 										</div>
 										<div className={styles.reviewsCartUsers}>
-											<p className={styles.reviewsCartUser}> Антон Г. </p>
-											<p className={styles.reviewsCartUserDate}> 13.12.2023, консультация у Семеновой Е.А. </p>
+											<p className={styles.reviewsCartUser}> {t('homePage.reviews.reviews.2.user')} </p>
+											<p className={styles.reviewsCartUserDate}> {t('homePage.reviews.reviews.2.date')} </p>
 										</div>
 										<div className={styles.reviewsCartComments}>
-											<p className={styles.reviewsCartCommentsText}> «Все отлично. Очень профессионально» </p>
+											<p className={styles.reviewsCartCommentsText}> {t('homePage.reviews.reviews.2.text')} </p>
 										</div>
 									</div>
 								</div>
 							</div>
-							<Button
-								variant="white"
-								padding="22.5px 389.5px"
-							>
-								Показать все отзывы о консультантах
-							</Button>
 						</div>
 					</div>
             	</section>
 
             	<section className={styles.photoGallery}>
 					<div className="container">
-						<h2>Фотогалерея</h2>
+						<h2>{t('homePage.photoGallery.title')}</h2>
 						<PhotoSlider slides={sliderData.PhotoData} />
 					</div>
         		</section>

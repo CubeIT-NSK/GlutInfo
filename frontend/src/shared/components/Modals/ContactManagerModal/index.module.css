@@ -70,7 +70,7 @@
 	width: 100%;
 	padding: 10px 107px;
 
-	background-color: #F8A94A;
+	background-color: var(--light-wheat);
 	border: none;
 	border-radius: 4px;
 	cursor: pointer;

@@ -90,7 +90,7 @@
 	cursor: pointer;
 	position: relative;
 	overflow: hidden;
-	background: linear-gradient(249.03deg, #F8A94A 23.57%, #C97713 134.39%);
+	background: var(--gradient-wheat);
 	transition: -webkit-text-fill-color 0.3s ease-out;
 	-webkit-transition: -webkit-text-fill-color 0.3s ease-out;
 	-moz-transition: -webkit-text-fill-color 0.3s ease-out;

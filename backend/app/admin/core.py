@@ -35,6 +35,12 @@ from app.admin.views.projects import (
     DocumentsAdmin,
     # ProjectsDocumentsAdmin
 )
+from app.admin.views.consultant_extended import (
+    ConsultantCategoryAdmin,
+    ConsultantExtendedAdmin,
+    ConsultantServiceAdmin,
+    ConsultantReviewAdmin
+)
 from app.core.user import get_async_session, get_user_db, get_user_manager
 
 
@@ -231,5 +237,11 @@ def create_admin_core(app):
     admin.add_view(NewslettersAdmin)
     admin.add_view(ReviewsAdmin)
     admin.add_view(PlacesAdmin)
+
+    # Extended Consultant Management
+    admin.add_view(ConsultantCategoryAdmin)
+    admin.add_view(ConsultantExtendedAdmin)
+    admin.add_view(ConsultantServiceAdmin)
+    admin.add_view(ConsultantReviewAdmin)
 
     return admin

@@ -1,11 +1,19 @@
-import React from "react";
+import React, { useCallback } from "react";
+import { useNavigate } from "react-router-dom";
 import icons from "../../shared/resources/icon";
 import images from "../../shared/resources/images";
 import styles from "./index.module.css";
 import Button from "../../shared/components/Buttons";
 import SideLink from "../../shared/components/SideLink";
+import { useTranslation } from "../../hooks/useTranslation";
 
 export default function AboutUs() {
+    const navigate = useNavigate();
+    const { t } = useTranslation();
+
+    const handleNavigate = useCallback((path) => {
+        navigate(path);
+    }, [navigate]);
 
     return (
             <>
@@ -15,27 +23,28 @@ export default function AboutUs() {
                         <div className={styles.aboutUsWrapper}>
                             <div className={styles.aboutUsLeft}>
                                 <div className={styles.aboutUsLeftTop}>
-                                    <h1 className={styles.aboutUsTitle}>Нашим приоритетом являются</h1>
+                                    <h1 className={styles.aboutUsTitle}>{t('aboutUs.priorities.title')}</h1>
                                     <div className={styles.aboutUsInfo}>
                                         <div className={styles.aboutUsInfoWrapper}>
                                             <h2 className={styles.aboutUsNumber}>01</h2>
-                                            <p className={styles.aboutUsText}><span>Правильная диагностика</span> и ведение пациентов с глютен-ассоциированными заболеваниями (целиакией, нецелиакийной чувствительностью к глютену, аллергией на пшеницу)</p>
+                                            <p className={styles.aboutUsText}><span>{t('aboutUs.priorities.item1.bold')}</span> {t('aboutUs.priorities.item1.text')}</p>
                                         </div>
                                         <div className={styles.aboutUsInfoWrapper}>
                                             <h2 className={styles.aboutUsNumber}>02</h2>
-                                            <p className={styles.aboutUsText}><span>Помощь</span> в соблюдении безглютеновой диеты</p>
+                                            <p className={styles.aboutUsText}><span>{t('aboutUs.priorities.item2.bold')}</span> {t('aboutUs.priorities.item2.text')}</p>
                                         </div>
                                         <div className={styles.aboutUsInfoWrapper}>
                                             <h2 className={styles.aboutUsNumber}>03</h2>
-                                            <p className={styles.aboutUsText}><span>Повышение качества жизни</span> данной категории пациентов</p>
+                                            <p className={styles.aboutUsText}><span>{t('aboutUs.priorities.item3.bold')}</span> {t('aboutUs.priorities.item3.text')}</p>
                                         </div>
                                     </div>
                                 </div>
                                 <Button
 									variant="gradient"
 									padding="22.5px 44.5px"
+									onClick={() => handleNavigate('/profile-patient/make-appointment')}
 								>
-									Записаться на онлайн-консультацию
+									{t('aboutUs.consultationButton')}
 								</Button>
                             </div>
                             <img src={images.aboutUsDoctor1Image} alt="aboutUsDoctor1Image" />
@@ -50,21 +59,21 @@ export default function AboutUs() {
                             <div className={styles.directionsRight}>
                                 <div className={styles.directionsRightTop}>
                                     <h2 className={styles.directionsTitle}>
-                                        Телемедицинский сервис <span>«ГастроГлютен.инфо»</span>
+                                        {t('aboutUs.telemedicineService.title')}
                                     </h2>
-                                    <p className={styles.directionsSubTitle}>На основе Северо-Западного Центра лечения глютен-ассоциированных заболеваний г. Санкт-Петербург</p>
+                                    <p className={styles.directionsSubTitle}>{t('aboutUs.telemedicineService.subtitle')}</p>
                                 </div>
                                 <div className={styles.directionsInfo}>
-                                    <h2 className={styles.directionsInfoTitle}>Главные направления:</h2>
+                                    <h2 className={styles.directionsInfoTitle}>{t('aboutUs.telemedicineService.mainDirections')}</h2>
                                     <div className={styles.directionsInfoWrapper}>
                                         <div className={styles.directionsInfoContent}>
                                             <img src={icons.doctorIcon} alt="doctorIcon" />
                                             <div className={styles.directionsInfoRight}>
                                                 <p className={styles.directionsInfoTextTop}>
-                                                    Оказание онлайн-консультацийпрофильными специалистами.
+                                                    {t('aboutUs.telemedicineService.direction1.title')}
                                                 </p>
                                                 <p className={styles.directionsInfoTextBottom}>
-                                                    Гастроэнтерология, диетология, психология
+                                                    {t('aboutUs.telemedicineService.direction1.subtitle')}
                                                 </p>
                                             </div>
                                         </div>
@@ -72,10 +81,10 @@ export default function AboutUs() {
                                             <img src={icons.calculatorIcon} alt="calculatorIcon" />
                                             <div className={styles.directionsInfoRight}>
                                                 <p className={styles.directionsInfoTextTop}>
-                                                    Помощь в соблюдении безглютеновой диеты.
+                                                    {t('aboutUs.telemedicineService.direction2.title')}
                                                 </p>
                                                 <p className={styles.directionsInfoTextBottom}>
-                                                    Принципы БГД, рецепты безглютеновых блюд. Cоставление индивидуального меню
+                                                    {t('aboutUs.telemedicineService.direction2.subtitle')}
                                                 </p>
                                             </div>
                                         </div>
@@ -83,10 +92,10 @@ export default function AboutUs() {
                                             <img src={icons.computerIcon} alt="computerIcon" />
                                             <div className={styles.directionsInfoRight}>
                                                 <p className={styles.directionsInfoTextTop}>
-                                                    Информационный блок.
+                                                    {t('aboutUs.telemedicineService.direction3.title')}
                                                 </p>
                                                 <p className={styles.directionsInfoTextBottom}>
-                                                Взгляд консультанта, статьи, исследования
+                                                    {t('aboutUs.telemedicineService.direction3.subtitle')}
                                                 </p>
                                             </div>
                                         </div>
@@ -104,30 +113,22 @@ export default function AboutUs() {
                                 <img className={styles.problemIcon} src={icons.problemQoutesIcon} alt="problemQoutesIcon" />
                                 <div className={styles.problemWrapper}>
                                     <p className={styles.problemText}>
-                                        Данная платформа направлена на пациентов с глютен-ассоциированными заболеваниямии лиц, которые соблюдают безглютеновую диету по иным причинам.
+                                        {t('aboutUs.problemInfo.text1')}
                                     </p>
                                     <p className={styles.problemTextGradient}>
-                                        Здесь вы найдете проверенную информацию о проблеме.
+                                        {t('aboutUs.problemInfo.text2')}
                                     </p>
                                     <p className={styles.problemText}>
-                                        Консультативные услуги оказываются практикующими врачами, компетентными специалистами в данной области.
+                                        {t('aboutUs.problemInfo.text3')}
                                     </p>
                                 </div>
                                 <div className={styles.problemLeftBottom}>
-                                    <h2 className={styles.problemName}>Семенова Елена Анатольевна</h2>
+                                    <h2 className={styles.problemName}>{t('aboutUs.problemInfo.name')}</h2>
                                     <p className={styles.problemJop}>
-                                        Руководитель Северо-Западного Центра лечения глютен-ассоциированных заболеваний
+                                        {t('aboutUs.problemInfo.position')}
                                     </p>
                                 </div>
                             </div>
-                            <button className={styles.problemButton}>
-                                <div className={styles.problemCircle}>
-                                    <div className={styles.problemInnerCircle}>
-                                        <img className={styles.problemPlayIcon} src={icons.playIcon} alt="playIcon" />
-                                    </div>
-                                </div>
-                                <span>Смотреть видео</span>
-                            </button>
                         </div>
                     </div>
                 </section>
@@ -138,27 +139,27 @@ export default function AboutUs() {
                             <img className={styles.creator1Img} src={images.aboutUsDoctor3Image} alt="aboutUsDoctor3Image" />
                             <div className={styles.creatorInfo}>
                                 <div className={styles.creatorInfoTop}>
-                                    <h2 className={styles.creatorTitle}>Создатели</h2>
-                                    <h2 className={styles.creatorName}>Ефремова Анастасия Юрьевна</h2>
+                                    <h2 className={styles.creatorTitle}>{t('aboutUs.creators.title')}</h2>
+                                    <h2 className={styles.creatorName}>{t('aboutUs.creators.efremova.name')}</h2>
                                 </div>
                                 <div className={styles.creator1Wrapper}>
                                     <p className={styles.creatorText}>
-                                        Врач-лечебник, аспирант 1-ого года обучения по специализациям «Эпидемиология», «Гастроэнтерология».
+                                        {t('aboutUs.creators.efremova.text1')}
                                     </p>
                                     <p className={styles.creatorText}>
-                                        В 2024 году с отличием окончила лечебный факультет СЗГМУ им. И.И. Мечникова.
+                                        {t('aboutUs.creators.efremova.text2')}
                                     </p>
                                     <p className={styles.creatorTextGradient}>
-                                        Директор ООО «ГАСТРОГЛЮТЕНИНФО».
+                                        {t('aboutUs.creators.efremova.text3')}
                                     </p>
                                     <p className={styles.creatorText}>
-                                        Участник рабочей группы по направлению<br/>«Глютен-ассоциированные заболевания» Общества гастроэнтерологов и гепатологов «Северо-Запад».
+                                        {t('aboutUs.creators.efremova.text4')}
                                     </p>
                                     <p className={styles.creatorText}>
-                                        Опыт научной деятельности 6 лет.
+                                        {t('aboutUs.creators.efremova.text5')}
                                     </p>
                                     <p className={styles.creatorText}>
-                                        <span>Основные направления научной деятельности: </span> изучение медицинских и социальных проблем больных целиакией, обусловленных необходимостью соблюдения безглютеновой диеты; совершенствование малоинвазивной диагностики и мониторинга целиакии, проблемы аутоиммунного гастрита;клинико-эпидемиологические особенности и выявление факторов риска целиакии.
+                                        <span>{t('aboutUs.creators.efremova.text6')}</span>
                                     </p>
                                 </div>
                             </div>
@@ -171,17 +172,17 @@ export default function AboutUs() {
                         <div className={styles.creator2Middle}>
                             <div className={styles.creatorInfo}>
                                 <div className={styles.creatorInfoTop}>
-                                    <h2 className={styles.creatorName}>Семенова Елена Анатольевна</h2>
+                                    <h2 className={styles.creatorName}>{t('aboutUs.creators.semenova.name')}</h2>
                                 </div>
                                 <div className={styles.creator2Wrapper}>
                                     <p className={styles.creatorText}>
-                                        к.м.н., врач-гастроэнтеролог, диетолог; доцент кафедры пропедевтики внутренних болезней, гастроэнтерологии и диетологии им. М.С. Рысса Северо-Западного государственного медицинского университета им. И.И. Мечникова. Руководитель «Северо-Западного Центра лечения глютен-ассоциированных заболеваний».
+                                        {t('aboutUs.creators.semenova.text1')}
                                     </p>
                                     <p className={styles.creatorTextGradient}>
-                                        Главный консультант. Научный руководитель проекта.
+                                        {t('aboutUs.creators.semenova.text2')}
                                     </p>
                                     <p className={styles.creatorText}>
-                                        Стаж научной деятельности 13 лет.
+                                        {t('aboutUs.creators.semenova.text3')}
                                     </p>
                                 </div>
                             </div>
@@ -196,23 +197,23 @@ export default function AboutUs() {
                             <img className={styles.creator3Img} src={images.aboutUsDoctor5Image} alt="aboutUsDoctor5Image" />
                             <div className={styles.creatorInfo}>
                                 <div className={styles.creatorInfoTop}>
-                                    <h2 className={styles.creatorName}>Шостка Анастасия Георгиевна</h2>
+                                    <h2 className={styles.creatorName}>{t('aboutUs.creators.shostka.name')}</h2>
                                 </div>
                                 <div className={styles.creator2Wrapper}>
                                     <p className={styles.creatorText}>
-                                        Врач-терапевт.
+                                        {t('aboutUs.creators.shostka.text1')}
                                     </p>
                                     <p className={styles.creatorText}>
-                                        В 2022 году с отличием окончила лечебный факультет СЗГМУ им. И.И. Мечникова.
+                                        {t('aboutUs.creators.shostka.text2')}
                                     </p>
                                     <p className={styles.creatorText}>
-                                        В 2024 году окончила ординатуру по специальности «Терапия» кафедры пропедевтики внутренних болезней, гастроэнтерологии и диетологии им. С.М. Рысса СЗГМУ им. И.И. Мечникова.
+                                        {t('aboutUs.creators.shostka.text3')}
                                     </p>
                                     <p className={styles.creatorTextGradient}>
-                                        Сотрудник «Северо-Западного Центра лечения глютен-ассоциированных заболеваний».
+                                        {t('aboutUs.creators.shostka.text4')}
                                     </p>
                                     <p className={styles.creatorText}>
-                                        Участник рабочей группы по направлению «Глютен-ассоциированные заболевания» Общества гастроэнтерологов и гепатологов «Северо-Запад».
+                                        {t('aboutUs.creators.shostka.text5')}
                                     </p>
                                 </div>
                             </div>
@@ -223,16 +224,16 @@ export default function AboutUs() {
                 <section className={styles.volunteers} style={{ backgroundImage: `url(${images.aboutUsBackground7Image})` }}>
                     <div className="container">
                         <div className={styles.volunteersWrapper}>
-                            <h2 className={styles.volunteersTitle}>Волонтеры</h2>
+                            <h2 className={styles.volunteersTitle}>{t('aboutUs.volunteers.title')}</h2>
                             <div className={styles.volunteersItems}>
                                 <div className={styles.volunteersItem}>
                                     <div className={styles.volunteersPerson}>
                                         <img src={images.aboutUsPerson1Image} alt="aboutUsPerson1Image" />
                                     </div>
                                     <div className={styles.volunteersInfo}>
-                                        <h2 className={styles.volunteersName}>Ашуров Григорий Махмараджабович</h2>
-                                        <p className={styles.volunteersText}>Студент лечебного факультета СЗГМУ им. И.И. Мечникова.</p>
-                                        <p className={styles.volunteersText}>Ответственный за проведение социальных мероприятий.</p>
+                                        <h2 className={styles.volunteersName}>{t('aboutUs.volunteers.ashurov.name')}</h2>
+                                        <p className={styles.volunteersText}>{t('aboutUs.volunteers.ashurov.text1')}</p>
+                                        <p className={styles.volunteersText}>{t('aboutUs.volunteers.ashurov.text2')}</p>
                                     </div>
                                 </div>
                                 <div className={styles.volunteersItem}>
@@ -240,9 +241,9 @@ export default function AboutUs() {
                                         <img src={images.aboutUsPerson2Image} alt="aboutUsPerson2Image" />
                                     </div>
                                     <div className={styles.volunteersInfo}>
-                                        <h2 className={styles.volunteersName}>Шушакова Мария Вадимовна</h2>
-                                        <p className={styles.volunteersText}>Студентка лечебного факультета СЗГМУ им. И.И. Мечникова.</p>
-                                        <p className={styles.volunteersText}>Ответственная за ассортимент БГ-продукции. Проведение социальных мероприятий.</p>
+                                        <h2 className={styles.volunteersName}>{t('aboutUs.volunteers.shushakova.name')}</h2>
+                                        <p className={styles.volunteersText}>{t('aboutUs.volunteers.shushakova.text1')}</p>
+                                        <p className={styles.volunteersText}>{t('aboutUs.volunteers.shushakova.text2')}</p>
                                     </div>
                                 </div>
                             </div>
@@ -255,56 +256,56 @@ export default function AboutUs() {
                         <div className={styles.treatmentWrapper}>
                             <div className={styles.treatmentTop}>
                                 <div className={styles.treatmentTopWrapper}>
-                                    <h2 className={styles.treatmentTitle}>Северо-Западный Центр лечения глютен-ассоциированных заболеваний</h2>
+                                    <h2 className={styles.treatmentTitle}>{t('aboutUs.treatment.title')}</h2>
                                     <p className={styles.treatmentText}>
-                                        С 2022 года на базе на базе кафедры пропедевтики внутренних болезней, гастроэнтерологии и диетологии им. С.М. Рысса СЗГМУ им. И.И. Мечникова существует Северо-Западный Центр лечения глютен-ассоциированных заболеваний.
+                                        {t('aboutUs.treatment.text')}
                                     </p>
                                 </div>
                                 <div className={styles.treatmentLogo}>
                                     <img src={icons.logoIcon} className={styles.treatmentLogoImg} alt="logoIcon" />
                                     <a href="/" className={styles.treatmentLogoTitle}>
-                                        <span>ГАСТРОГЛЮТЕН.</span>ИНФО
+                                        <span>{t('aboutUs.treatment.logoTitle')}</span>
                                     </a>
                                 </div>
                             </div>
                             <div className={styles.treatmentItems}>
                                 <div className={styles.treatmentItem}>
-                                    <h2 className={styles.treatmentItemTitle}>Основные направления деятельности:</h2>
+                                    <h2 className={styles.treatmentItemTitle}>{t('aboutUs.treatment.mainDirections')}</h2>
                                     <ul className={styles.treatmentListItems}>
                                         <li className={styles.treatmentListItem}>
-                                            <span>—</span> Прием амбулаторных пациентов с глютен-ассоциированными заболеваниями;
+                                            <span>—</span> {t('aboutUs.treatment.direction1')}
                                         </li>
                                         <li className={styles.treatmentListItem}>
-                                            <span>—</span> Консультация родственников пациентов;
+                                            <span>—</span> {t('aboutUs.treatment.direction2')}
                                         </li>
                                         <li className={styles.treatmentListItem}>
-                                            <span>—</span> Ведение «Северо-Западного регистра больных глютен-ассоциированными заболеваниями»;
+                                            <span>—</span> {t('aboutUs.treatment.direction3')}
                                         </li>
                                         <li className={styles.treatmentListItem}>
-                                            <span>—</span> Проведение научно-практических и информационно-образовательных мероприятий для консультантов и пациентов;
+                                            <span>—</span> {t('aboutUs.treatment.direction4')}
                                         </li>
                                         <li className={styles.treatmentListItem}>
-                                            <span>—</span> Проведение и организация НИР по научным направлениям центра.
+                                            <span>—</span> {t('aboutUs.treatment.direction5')}
                                         </li>
                                     </ul>
                                 </div>
                                 <div className={styles.treatmentItem}>
-                                    <h2 className={styles.treatmentItemTitle}>Центр оказывает консультативную помощь пациентам со следующими заболеваниями:</h2>
+                                    <h2 className={styles.treatmentItemTitle}>{t('aboutUs.treatment.diseases')}</h2>
                                     <ul className={styles.treatmentListItems}>
                                         <li className={styles.treatmentListItem}>
-                                            <span>—</span> Целиакия;
+                                            <span>—</span> {t('aboutUs.treatment.disease1')}
                                         </li>
                                         <li className={styles.treatmentListItem}>
-                                            <span>—</span> Нецелиакийная чувствительность к глютену;
+                                            <span>—</span> {t('aboutUs.treatment.disease2')}
                                         </li>
                                         <li className={styles.treatmentListItem}>
-                                            <span>—</span> Аллергические глютен-опосредованные реакции;
+                                            <span>—</span> {t('aboutUs.treatment.disease3')}
                                         </li>
                                         <li className={styles.treatmentListItem}>
-                                            <span>—</span> Герпетиформный дерматит, глютеновая атаксия, репродуктивные нарушения и другие внекишечные проявления непереносимости глютена;
+                                            <span>—</span> {t('aboutUs.treatment.disease4')}
                                         </li>
                                         <li className={styles.treatmentListItem}>
-                                            <span>—</span> Лицам с генетической предрасположенностьюк целиакии.
+                                            <span>—</span> {t('aboutUs.treatment.disease5')}
                                         </li>
                                     </ul>
                                 </div>
@@ -317,11 +318,11 @@ export default function AboutUs() {
                     <div className="container">
                         <div className={styles.locationMiddle}>
                             <div className={styles.locationLeft}>
-                                <h2 className={styles.locationTitle}>Прием ведут опытные гастроэнтерологи и диетологи кафедры пропедевтики внутренних болезней, гастроэнтерологии и диетологиии им. С.М. Рысса.</h2>
+                                <h2 className={styles.locationTitle}>{t('aboutUs.location.title')}</h2>
                                 <div className={styles.locationWrapper}>
-                                    <a href="https://yandex.ru/maps/2/saint-petersburg/house/piskaryovskiy_prospekt_47/Z0kYcgRhSkcOQFtjfXV5cnhhZw==/?ll=30.431329%2C59.983423&z=17.1" className={styles.locationText}><span>Адрес центра:</span> Санкт-Петербург, пр. Пискаревский д. 47, корп. 24, 2 этаж, кафедра пропедевтики внутренних болезней, гастроэнтерологии и диетологии им. С.М. Рысса.</a>
-                                    <p className={styles.locationText}><span>Часы работы:</span> пн-пт, с 10:00 до 17:00.</p>
-                                    <p className={styles.locationText}><span>Руководитель Центра</span> к.м.н., доцент кафедры пропедевтики внутренних болезней, гастроэнтерологии и диетологии им. С.М. Рысса, Семенова Елена Анатольевна.</p>
+                                    <a href="https://yandex.ru/maps/2/saint-petersburg/house/piskaryovskiy_prospekt_47/Z0kYcgRhSkcOQFtjfXV5cnhhZw==/?ll=30.431329%2C59.983423&z=17.1" className={styles.locationText}><span>{t('aboutUs.location.addressLabel')}:</span> {t('aboutUs.location.address')}</a>
+                                    <p className={styles.locationText}><span>{t('aboutUs.location.hoursLabel')}:</span> {t('aboutUs.location.hours')}</p>
+                                    <p className={styles.locationText}><span>{t('aboutUs.location.directorLabel')}</span> {t('aboutUs.location.director')}</p>
                                 </div>
                             </div>
                             <div className={styles.locationRight}>
@@ -333,22 +334,22 @@ export default function AboutUs() {
                     </div>
                 </section>
 
-                <section className={styles.documents} id="#documents" style={{ backgroundImage: `url(${images.aboutUsBackground5Image})` }}>
+                <section className={styles.documents} id="documents" style={{ backgroundImage: `url(${images.aboutUsBackground5Image})` }}>
                     <div className="container">
                         <div className={styles.documentsWrapper}>
-                            <h2 className={styles.documentsTitle}>Документы</h2>
+                            <h2 className={styles.documentsTitle}>{t('aboutUs.documents.title')}</h2>
                             <div className={styles.documentsItems}>
                                 <div className={styles.documentsItem}>
                                     <img src={icons.pdfIcon} alt="pdfIcon" />
-                                    <span><a href="#">Согласие на обработку персональных данных</a></span>
+                                    <span><a href="#">{t('aboutUs.documents.document1')}</a></span>
                                 </div>
                                 <div className={styles.documentsItem}>
                                     <img src={icons.pdfIcon} alt="pdfIcon" />
-                                    <span><a href="#">Политика конфиденциальностии обработки персональных данных</a></span>
+                                    <span><a href="#">{t('aboutUs.documents.document2')}</a></span>
                                 </div>
                                 <div className={styles.documentsItem}>
                                     <img src={icons.pdfIcon} alt="pdfIcon" />
-                                    <span><a href="#">Информация об организации</a></span>
+                                    <span><a href="#">{t('aboutUs.documents.document3')}</a></span>
                                 </div>
                             </div>
                         </div>
@@ -358,7 +359,7 @@ export default function AboutUs() {
                 <section className={styles.partners} id="partners">
                     <div className="container">
                         <div className={styles.partnersWrapper}>
-                            <h2 className={styles.partnersTitle}>Партнеры</h2>
+                            <h2 className={styles.partnersTitle}>{t('aboutUs.partners.title')}</h2>
                             <table className={styles.partnersItems}>
                                 <tbody>
                                     <tr>
@@ -366,8 +367,8 @@ export default function AboutUs() {
                                             <div className={styles.partnersItem}>
                                                 <img src={icons.universityIcon} alt="universityIcon" />
                                                 <div className={styles.partnersInfo}>
-                                                    <p className={styles.partnersText}>Северо-Западный государственный медицинский университет им. И.И. Мечникова</p>
-                                                    <p className={styles.partnersLink}>Сайт: <a href="https://szgmu.ru/rus/">https://szgmu.ru/rus/</a></p>
+                                                    <p className={styles.partnersText}>{t('aboutUs.partners.university.name')}</p>
+                                                    <p className={styles.partnersLink}>{t('aboutUs.partners.university.website')}: <a href="https://szgmu.ru/rus/">https://szgmu.ru/rus/</a></p>
                                                 </div>
                                             </div>
                                         </td>
@@ -375,8 +376,8 @@ export default function AboutUs() {
                                             <div className={styles.partnersItem}>
                                                 <img src={icons.melonIcon} alt="melonIcon" />
                                                 <div className={styles.partnersInfo}>
-                                                    <p className={styles.partnersText}>ООО «Мелон» - эксклюзивный дистрибьютор Biohit</p>
-                                                    <p className={styles.partnersLink}>Сайт: <a href="https://melonbio.ru/">https://melonbio.ru/</a></p>
+                                                    <p className={styles.partnersText}>{t('aboutUs.partners.melon.name')}</p>
+                                                    <p className={styles.partnersLink}>{t('aboutUs.partners.melon.website')}: <a href="https://melonbio.ru/">https://melonbio.ru/</a></p>
                                                 </div>
                                             </div>
                                         </td>
@@ -386,8 +387,8 @@ export default function AboutUs() {
                                             <div className={styles.partnersItem}>
                                                 <img src={icons.societyIcon} alt="societyIcon" />
                                                 <div className={styles.partnersInfo}>
-                                                    <p className={styles.partnersText}>Общество гастроэнтерологов и гепатологов «Северо-Запад»</p>
-                                                    <p className={styles.partnersLink}>Сайт: <a href="https://gastro-gepa.ru/">https://gastro-gepa.ru/</a></p>
+                                                    <p className={styles.partnersText}>{t('aboutUs.partners.society.name')}</p>
+                                                    <p className={styles.partnersLink}>{t('aboutUs.partners.society.website')}: <a href="https://gastro-gepa.ru/">https://gastro-gepa.ru/</a></p>
                                                 </div>
                                             </div>
                                         </td>

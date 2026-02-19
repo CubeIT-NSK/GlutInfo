@@ -85,6 +85,459 @@
 	cursor: pointer;
 	align-items: center;
 	transition: .3s all;
+	position: relative;
+}
+
+.languageText {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	font-size: 12px;
+	font-weight: bold;
+	color: white;
+	z-index: 2;
+	pointer-events: none;
+}
+
+/* Mobile Menu Button */
+.mobileMenuButton {
+	display: none;
+	flex-direction: column;
+	justify-content: space-around;
+	width: 30px;
+	height: 30px;
+	background: transparent;
+	border: none;
+	cursor: pointer;
+	padding: 0;
+	z-index: 10;
+}
+
+.mobileMenuButton span {
+	width: 25px;
+	height: 3px;
+	background: var(--dark-wheat);
+	border-radius: 3px;
+	transition: all 0.3s linear;
+	position: relative;
+	transform-origin: 1px;
+}
+
+.mobileMenuButtonActive span:first-child {
+	transform: rotate(45deg);
+}
+
+.mobileMenuButtonActive span:nth-child(2) {
+	opacity: 0;
+	transform: translateX(20px);
+}
+
+.mobileMenuButtonActive span:nth-child(3) {
+	transform: rotate(-45deg);
+}
+
+/* Mobile Menu */
+.mobileMenu {
+	display: none;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100vh;
+	background: rgba(0, 0, 0, 0.5);
+	z-index: 1000;
+	opacity: 0;
+	visibility: hidden;
+	transition: all 0.3s ease;
+}
+
+.mobileMenuOpen {
+	opacity: 1;
+	visibility: visible;
+}
+
+.mobileMenuContent {
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: 85%;
+	max-width: 350px;
+	height: 100vh;
+	background: white;
+	display: flex;
+	flex-direction: column;
+	overflow: hidden;
+	transform: translateX(100%);
+	transition: transform 0.3s ease;
+}
+
+.mobileMenuOpen .mobileMenuContent {
+	transform: translateX(0);
+}
+
+.mobileMenuHeader {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 20px;
+	border-bottom: 1px solid #e0e0e0;
+	background: var(--white);
+}
+
+.mobileMenuLogo {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+}
+
+.mobileMenuLogo img {
+	width: 30px;
+	height: 30px;
+}
+
+.mobileMenuTitle {
+	text-decoration: none;
+	color: var(--black);
+	font-family: 'Mulish';
+	font-size: 16px;
+	font-weight: 700;
+}
+
+.mobileMenuClose {
+	width: 30px;
+	height: 30px;
+	background: none;
+	border: none;
+	cursor: pointer;
+	position: relative;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.mobileMenuClose span {
+	position: absolute;
+	width: 20px;
+	height: 2px;
+	background: var(--black);
+	transition: all 0.3s ease;
+}
+
+.mobileMenuClose span:first-child {
+	transform: rotate(45deg);
+}
+
+.mobileMenuClose span:last-child {
+	transform: rotate(-45deg);
+}
+
+.mobileMenuList {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+	flex: 1;
+	overflow-y: auto;
+}
+
+.mobileMenuItem {
+	border-bottom: 1px solid #e0e0e0;
+}
+
+.mobileMenuLink {
+	display: block;
+	padding: 18px 20px;
+	color: var(--black);
+	text-decoration: none;
+	font-family: 'Mulish';
+	font-size: 16px;
+	font-weight: 500;
+	transition: all 0.3s ease;
+}
+
+.mobileMenuLink:hover {
+	color: var(--dark-wheat);
+	background: #f8f8f8;
+}
+
+.mobileSubmenu {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+	background: #f8f8f8;
+}
+
+.mobileSubmenuItem {
+	border-bottom: 1px solid #e0e0e0;
+}
+
+.mobileSubmenuItem:last-child {
+	border-bottom: none;
+}
+
+.mobileSubmenuLink {
+	display: block;
+	padding: 15px 40px;
+	color: var(--black);
+	text-decoration: none;
+	font-family: 'Mulish';
+	font-size: 14px;
+	font-weight: 400;
+	transition: all 0.3s ease;
+}
+
+.mobileSubmenuLink:hover {
+	color: var(--dark-wheat);
+	background: #e8e8e8;
+}
+
+.mobileMenuFooter {
+	padding: 20px;
+	border-top: 1px solid #e0e0e0;
+	background: #f8f8f8;
+}
+
+.mobileMenuIcons {
+	display: flex;
+	gap: 15px;
+	margin-bottom: 15px;
+}
+
+.mobileMenuIcons a {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 40px;
+	height: 40px;
+	background: var(--white);
+	border-radius: 50%;
+	transition: all 0.3s ease;
+}
+
+.mobileMenuIcons a:hover {
+	background: var(--dark-wheat);
+	transform: translateY(-2px);
+}
+
+.mobileMenuIcons img {
+	width: 20px;
+	height: 20px;
+}
+
+.mobileMenuSocialButtons {
+	display: flex;
+	flex-direction: column;
+	gap: 15px;
+	margin-bottom: 20px;
+}
+
+.mobileSocialButton {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	padding: 12px 16px;
+	background: #fff;
+	border: 1px solid #e0e0e0;
+	border-radius: 8px;
+	text-decoration: none;
+	color: var(--black);
+	font-family: 'Mulish';
+	font-size: 14px;
+	font-weight: 500;
+	transition: all 0.3s ease;
+}
+
+.mobileSocialButton:hover {
+	background: var(--dark-wheat);
+	color: #fff;
+	transform: translateY(-2px);
+}
+
+.mobileSocialButton img {
+	width: 20px;
+	height: 20px;
+}
+
+.mobileDonateWrapper {
+	position: relative;
+}
+
+.mobileDonateMenu {
+	position: absolute;
+	left: 0;
+	right: 0;
+	bottom: 100%;
+	background-color: #fff;
+	border-radius: 10px;
+	box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+	padding: 15px;
+	z-index: 10;
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	opacity: 0;
+	visibility: hidden;
+	transform: translateY(10px);
+	transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
+	margin-bottom: 10px;
+}
+
+.mobileDonateMenuText {
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+}
+
+.mobileDonateMenuText p {
+	color: rgb(0, 0, 0);
+	font-family: 'Mulish';
+	font-size: 12px;
+	font-weight: 400;
+	line-height: 16px;
+	text-align: left;
+	margin: 0;
+}
+
+.showMobileDonateMenu {
+	opacity: 1;
+	visibility: visible;
+	transform: translateY(0);
+}
+
+.mobileMenuLanguage {
+	display: flex;
+	justify-content: center;
+}
+
+.mobileLanguageButton {
+	padding: 8px 16px;
+	background: var(--dark-wheat);
+	color: white;
+	border: none;
+	border-radius: 20px;
+	font-family: 'Mulish';
+	font-size: 14px;
+	font-weight: 600;
+	cursor: pointer;
+	transition: all 0.3s ease;
+}
+
+.mobileLanguageButton:hover {
+	background: #c97713;
+	transform: translateY(-1px);
+}
+
+/* Responsive */
+/* Tablet styles - only when mobile menu is not shown */
+@media (max-width: 1399px) and (min-width: 1024px) {
+	.headerTop {
+		padding: 15px 0;
+	}
+	
+	.headerTopInfo {
+		gap: 15px;
+	}
+	
+	.mainTitle {
+		font-size: 18px;
+	}
+	
+	.subTitle {
+		font-size: 10px;
+		line-height: 12px;
+	}
+	
+	.headerRight {
+		gap: 10px;
+	}
+	
+	.icons {
+		gap: 8px;
+	}
+}
+
+@media (max-width: 1399px) {
+	.mobileMenuButton {
+		display: flex;
+	}
+	
+	.mobileMenu {
+		display: block;
+	}
+	
+	.headerBottom {
+		display: none !important;
+	}
+	
+	.headerTop {
+		padding: 10px 0;
+		flex-direction: column;
+		gap: 15px;
+	}
+	
+	.headerTopInfo {
+		flex-direction: column;
+		align-items: center;
+		text-align: center;
+		gap: 10px;
+	}
+	
+	.mainTitle {
+		font-size: 16px;
+	}
+	
+	.subTitle {
+		font-size: 9px;
+		line-height: 11px;
+		max-width: 100%;
+	}
+	
+	.headerRight {
+		width: 100%;
+		justify-content: space-between;
+	}
+	
+	.icons {
+		gap: 5px;
+	}
+	
+	.iconButton {
+		display: none;
+	}
+	
+	.mobileMenuButton {
+		display: flex;
+	}
+	
+	.telegramLink, .donateButton {
+		font-size: 12px;
+		padding: 8px 12px;
+	}
+}
+
+/* Small mobile styles */
+@media (max-width: 480px) {
+	.headerTop {
+		padding: 8px 0;
+	}
+	
+	.mainTitle {
+		font-size: 14px;
+	}
+	
+	.subTitle {
+		font-size: 8px;
+		line-height: 10px;
+	}
+	
+	.telegramLink, .donateButton {
+		font-size: 10px;
+		padding: 6px 10px;
+	}
+	
+	.mobileMenuContent {
+		width: 90%;
+	}
 }
 
 .iconButtonContainer:hover {
@@ -129,9 +582,9 @@
 	/* width: 139px; */
 	color: var(--black);
 	font-family: 'Mulish';
-	font-size: 8px;
+	font-size: 12px;
 	font-weight: 600;
-	line-height: 10.04px;
+	line-height: 15px;
 	letter-spacing: 0.2px;
 	text-align: left;
 }
@@ -150,6 +603,8 @@
 	list-style: none;
 	display: flex;
 	gap: 28px;
+	justify-content: space-between;
+	width: 100%;
 }
 
 .headerBottom a {

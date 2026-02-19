@@ -119,3 +119,59 @@
 	height: 1px;
 	background: var(--gradient-btn);
 }
+
+.activeCategory {
+	background: var(--gradient-btn) !important;
+	color: white !important;
+}
+
+.loading {
+	text-align: center;
+	padding: 40px;
+	font-size: 18px;
+	color: var(--gray-form);
+}
+
+/* Responsive styles */
+@media (max-width: 1024px) {
+	.consultsCardWrapper {
+		gap: 20px;
+	}
+	
+	.consultsCardItem {
+		width: 100%;
+		max-width: 500px;
+		margin: 0 auto;
+	}
+}
+
+@media (max-width: 768px) {
+	.consultsSection {
+		padding: 20px 0 40px 0;
+	}
+	
+	.consultsTitle {
+		font-size: 32px;
+	}
+	
+	.consultsLeftItems {
+		flex-wrap: wrap;
+		gap: 8px;
+	}
+	
+	.consultsCardItem {
+		gap: 20px;
+	}
+	
+	.consultsCardItemTextW {
+		padding-left: 0;
+	}
+	
+	.consultsCardItemTextWPost::before {
+		display: none;
+	}
+	
+	.consultsCardItemBtns {
+		gap: 8px;
+	}
+}

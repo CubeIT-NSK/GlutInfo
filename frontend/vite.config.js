@@ -9,8 +9,11 @@ export default defineConfig({
     assetsDir: 'assets'
   },
   server: {
-    host: '127.0.0.1',
-    port: 5501
+    host: '0.0.0.0',
+    port: 5173,
+    watch: {
+      usePolling: true
+    }
   },
   plugins: [react()],
   assetsInclude: ['**/*.woff', '**/*.woff2', '**/*.ttf', '**/*.eot'],

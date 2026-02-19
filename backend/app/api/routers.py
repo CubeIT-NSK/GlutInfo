@@ -10,49 +10,56 @@ from app.api.endpoints import (
     events_router,
     chat_router
 )
+from app.api.endpoints.consultant_extended import router as consultant_extended_router
 
-main_router = APIRouter(prefix='/api/v1')
+main_router = APIRouter(prefix="/api/v1")
 
 main_router.include_router(user_router)
 
 main_router.include_router(
     consultant_router,
-    prefix='/consultants',
-    tags=['Consultants']
+    prefix="/consultants",
+    tags=["Consultants"]
 )
 
 main_router.include_router(
     patient_router,
-    prefix='/patients',
-    tags=['Patients']
+    prefix="/patients",
+    tags=["Patients"]
 )
 
 main_router.include_router(
     survey_router,
-    prefix='/survey',
-    tags=['Survey']
+    prefix="/survey",
+    tags=["Survey"]
 )
 
 main_router.include_router(
     feedback_router,
-    prefix='/feedback',
-    tags=['Feedback']
+    prefix="/feedback",
+    tags=["Feedback"]
 )
 
 main_router.include_router(
     projects_router,
-    prefix='/projects',
-    tags=['Projects']
+    prefix="/projects",
+    tags=["Projects"]
 )
 
 main_router.include_router(
     events_router,
-    prefix='/events',
-    tags=['Events']
+    prefix="/events",
+    tags=["Events"]
 )
 
 main_router.include_router(
     chat_router,
-    prefix='/chat',
-    tags=['Chat']
+    prefix="/chat",
+    tags=["Chat"]
+)
+
+main_router.include_router(
+    consultant_extended_router,
+    prefix="/consultants-extended",
+    tags=["Consultants Extended"]
 )

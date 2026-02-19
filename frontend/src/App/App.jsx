@@ -1,5 +1,6 @@
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, Outlet } from 'react-router-dom';
 import { Context } from '../context';
+import { LanguageProvider } from '../contexts/LanguageContext';
 
 import HomePage from '../pages/HomePage';
 import RegistrationPage from '../pages/RegistrationPage';
@@ -8,6 +9,7 @@ import RegistrationSuccessMessage from '../shared/components/Messages/Registrati
 import ErrorPage from '../pages/ErrorPage';
 import SuccessPage from '../pages/FillPages/FillConsultantProfilePage/SuccessPage';
 import ConsultsPage from '../pages/Consultants';
+import ConsultantDetailPage from '../pages/ConsultantDetail';
 
 import PatientProfilePage from '../pages/Profiles/PatientProfilePage';
 import FillPatientProfilePage from '../pages/FillPages/FillPatientProfilePage';
@@ -65,8 +67,9 @@ import { Layout } from '../shared/components/Layout';
 
 function App() {
 	return (
-		<Context.Provider value={{}}>
-			<Routes>
+		<LanguageProvider>
+			<Context.Provider value={{}}>
+				<Routes>
 				<Route path="/" element={<Layout />}>
 
 					{/* ROUTES */}
@@ -74,9 +77,10 @@ function App() {
 					<Route path="*" element={<ErrorPage  />}/>
 					<Route path="success" element={<SuccessPage  />}/>
 					<Route path="consultants" element={<ConsultsPage />}/>
+					<Route path="consultants/:id" element={<ConsultantDetailPage />}/>
 
 					{/* PROFILE PATIENT */}
-					<Route path="profile-patient/*">
+					<Route path="profile-patient" element={<Outlet />}>
 						<Route index element={<PatientProfilePage />}/>
 						<Route path="fill" element={<FillPatientProfilePage />}/>
 						<Route path="edit" element={<EditPatientProfilePage />}/>
@@ -84,6 +88,16 @@ function App() {
 						<Route path="make-appointment" element={<AppointmentPage />}/>
 						<Route path="my-documents" element={<DocumentsPage />}/>
 						<Route path="messages" element={<ChatPage  />}/>
+
+						<Route path=":userId" element={<Outlet />}>
+							<Route index element={<PatientProfilePage />}/>
+							<Route path="fill" element={<FillPatientProfilePage />}/>
+							<Route path="edit" element={<EditPatientProfilePage />}/>
+							<Route path="my-consults" element={<MyConsultsPage />} />
+							<Route path="make-appointment" element={<AppointmentPage />}/>
+							<Route path="my-documents" element={<DocumentsPage />}/>
+							<Route path="messages" element={<ChatPage  />}/>
+						</Route>
 					</Route>
 
 					{/* REGISTRATION */}
@@ -172,7 +186,8 @@ function App() {
 
 				</Route>
 			</Routes>
-		</Context.Provider>
+			</Context.Provider>
+		</LanguageProvider>
 	);
 }
 

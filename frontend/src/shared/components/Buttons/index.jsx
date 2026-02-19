@@ -11,6 +11,7 @@ const Button = ({
     disabled = false,
     fontSize = 'big',
     boxShadow = "0px 4px 12px 0px rgba(0, 0, 0, 0.25)",
+    style = {},
     ...props
   }) => {
     const buttonClass =
@@ -25,7 +26,7 @@ const Button = ({
       <button
         onClick={onClick}
         className={`${buttonClass} ${className}`}
-        style={{ boxShadow }}
+        style={{ boxShadow, boxSizing: 'border-box', width: '100%' }}
         disabled={disabled}
         {...props}
       >

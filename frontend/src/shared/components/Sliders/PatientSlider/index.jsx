@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import icons from '../../../resources/icon';
 import styles from './index.module.css';
 
@@ -25,38 +25,38 @@ const PatientSlider = ({ slides }) => {
         }
     }, [isModalOpen]);
 
-    const goToSlide = (index) => {
+    const goToSlide = useCallback((index) => {
         setCurrentIndex(index);
-    };
+    }, []);
 
-    const openModal = (description, bottomContent) => {
+    const openModal = useCallback((description, bottomContent) => {
         setModalContent(description);
         setModalBottomContent(bottomContent);
         setIsModalOpen(true);
         setIsClosing(false);
-    };
+    }, []);
 
-    const closeModal = () => {
+    const closeModal = useCallback(() => {
         setIsClosing(true);
         setTimeout(() => {
             setIsModalOpen(false);
             setModalContent('');
             setModalBottomContent(null);
         }, 300);
-    };
+    }, []);
 
-    const getShortDescription = (text, limit = 270) => {
+    const getShortDescription = useCallback((text, limit = 270) => {
         if (text.length <= limit) return text;
         return text.slice(0, limit) + '...';
-    };
+    }, []);
 
-    const formatDescription = (text) => {
+    const formatDescription = useCallback((text) => {
         return text.split('\n\n').map((paragraph, index) => (
             <p key={index}>{paragraph}</p>
         ));
-    };
+    }, []);
 
-    const renderBottomContent = (slide) => (
+    const renderBottomContent = useCallback((slide) => (
         <div className={styles.sliderCardBottomWrapper}>
             <img
                 src={slide.avatar}
@@ -72,7 +72,7 @@ const PatientSlider = ({ slides }) => {
                 </p>
             </div>
         </div>
-    );
+    ), []);
 
     return (
         <div className={styles.slider}>

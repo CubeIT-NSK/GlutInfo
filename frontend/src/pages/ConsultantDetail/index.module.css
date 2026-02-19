@@ -1,0 +1,643 @@
+.profileSection {
+	display: flex;
+	padding: 70px 0 75px 0;
+}
+
+.consProfileWrapper {
+	display: flex;
+	justify-content: space-between;
+}
+
+.consProfileLeftWrapper {
+	max-width: 670px;
+	display: flex;
+	flex-direction: column;
+	gap: 40px;
+}
+
+.consProfileLeftTop {
+	display: flex;
+	flex-direction: column;
+	gap: 30px;
+}
+
+.consultantName {
+	color: rgb(55, 63, 65);
+	font-family: TT Hoves;
+	font-size: 42px;
+	font-weight: 700;
+	line-height: 115%;
+	letter-spacing: 0px;
+	text-align: left;
+}
+
+.consultantTitle {
+	color: rgb(55, 63, 65);
+	font-family: Mulish;
+	font-size: 14px;
+	font-weight: 400;
+	line-height: 18px;
+	letter-spacing: 0.2px;
+	text-align: left;
+
+	max-width: 590px;
+}
+
+.consultantDescriptionList {
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+
+	list-style-type: none;
+	padding: 0;
+	margin: 0;
+}
+
+.consultantDescriptionItem {
+	display: flex;
+	align-items: flex-start;
+	gap: 20px;
+}
+
+.consultantDescriptionItem .yellowDash {
+	margin-top: 10px;
+}
+
+.yellowDash {
+	width: 50px;
+	height: 1.5px;
+	background: var(--gradient-wheat);
+}
+
+.serviceWrapper {
+	display: flex;
+	flex-direction: column;
+	gap: 30px;
+}
+
+.serviceItem {
+	display: flex;
+	flex-direction: column;
+	gap: 15px;
+}
+
+.serviceHeader {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.serviceTi {
+	color: rgb(55, 63, 65);
+	font-family: Mulish;
+	font-size: 14px;
+	font-weight: 600;
+	line-height: 18px;
+	letter-spacing: 0.2px;
+	text-align: left;
+
+	max-width: 490px;
+}
+
+.expandButton {
+	border: none;
+	background: none;
+	cursor: pointer;
+	height: 20px;
+
+	background: var(--gradient-wheat);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+
+	font-family: Mulish;
+	font-size: 14px;
+	font-weight: 400;
+	line-height: 18px;
+	letter-spacing: 0.2px;
+	text-align: left;
+	text-decoration-line: underline;
+	transition: color 0.3s ease;
+}
+
+.serviceDetails {
+	overflow: hidden;
+	max-height: 0;
+	transition: max-height 0.3s ease, opacity 0.3s ease;
+	opacity: 0;
+}
+
+.serviceDetails.expanded {
+	opacity: 1;
+}
+
+.consProfileRightWrapper {
+	display: flex;
+	flex-direction: column;
+	gap: 30px;
+}
+
+.consultantImage {
+	width: 100%;
+	border-radius: 10px;
+}
+
+.experienceWrapper {
+	display: flex;
+	align-items: center;
+	gap: 25px;
+}
+
+.experienceYearsWrapper {
+	display: flex;
+	align-items: last baseline;
+	gap: 5px;
+}
+
+.experienceYearsNumber,
+.experienceYears {
+	color: #373F41;
+	font-family: TT Hoves;
+	font-size: 90px;
+	font-weight: 500;
+	line-height: 115%;
+	letter-spacing: 0px;
+	text-align: left;
+}
+
+.experienceYearsNumber {
+	background: var(--gradient-wheat);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+}
+
+.experienceYears {
+	font-size: 32px;
+	line-height: 32px;
+}
+
+.experienceText {
+	font-family: Mulish;
+	font-size: 14px;
+	font-weight: 400;
+	line-height: 25.1px;
+	letter-spacing: 0px;
+	text-align: left;
+
+	max-width: 150px;
+}
+
+/* TABS */
+
+.educationTabs {
+	padding-bottom: 118px;
+}
+
+.tabWrapper {
+	display: flex;
+	flex-direction: column;
+	gap: 57px;
+}
+
+.tabHeaders {
+	display: flex;
+	gap: 30px;
+}
+
+.tabButton {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 10px;
+
+	color: rgb(55, 63, 65);
+	font-family: TT Hoves;
+	font-size: 20px;
+	font-weight: 500;
+	line-height: 115%;
+	letter-spacing: 0px;
+	text-align: left;
+
+	width: 330px;
+	height: 70px;
+
+	border-radius: 10px;
+	border: 1px solid #EAE2D9;
+	background: transparent;
+	cursor: pointer;
+	transition: all 0.3s ease;
+}
+
+.tabButton span {
+	background: var(--gradient-wheat);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+}
+
+.tabButton:hover {
+	box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.1);
+}
+
+.activeTab {
+	background: rgb(255, 255, 255);
+	box-shadow: 0px 10px 40px 0px rgba(0, 0, 0, 0.1);
+}
+
+.activeTab span {
+	-webkit-text-fill-color: initial;
+	color: rgb(55, 63, 65);
+}
+
+.tabContentWrapper {
+	display: flex;
+	flex-direction: column;
+	gap: 40px;
+}
+
+.tabContent {
+	display: none;
+}
+
+.tabContent.active {
+	display: block;
+}
+
+.educationContent,
+.documentsContent {
+	display: flex;
+	flex-direction: column;
+	gap: 30px;
+
+	color: rgb(55, 63, 65);
+	font-family: Mulish;
+	font-size: 14px;
+	font-weight: 400;
+	line-height: 18px;
+}
+
+.educationItem {
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+}
+
+.documentsList {
+	display: flex;
+	flex-direction: column;
+	gap: 15px;
+}
+
+.documentLink {
+	color: rgb(55, 63, 65);
+	font-family: Mulish;
+	font-size: 14px;
+	font-weight: 600;
+	line-height: 18px;
+	letter-spacing: 0.2px;
+	text-align: left;
+	text-decoration: none;
+
+	display: flex;
+	align-items: center;
+	gap: 15px;
+}
+
+.documentLink svg {
+	flex-shrink: 0;
+}
+
+/* VIDEO */
+
+.videoСutawaySection {
+	padding-bottom: 110px;
+}
+
+.videoСutawayWrapper {
+	display: flex;
+	flex-direction: column;
+	gap: 30px;
+
+	background: #FFFAF5;
+	border-radius: 20px;
+	padding: 50px 60px;
+}
+
+.videoHeader {
+	color: rgb(55, 63, 65);
+	font-family: TT Hoves;
+	font-size: 42px;
+	font-weight: 700;
+	line-height: 115%;
+	letter-spacing: 0px;
+	text-align: left;
+}
+
+.videoBannerWrapper {
+	position: relative;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border-radius: 20px;
+	overflow: hidden;
+}
+
+.videoOverlay {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(0, 0, 0, 0.4);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.videoBanner {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+.playButton {
+	width: 80px;
+	height: 80px;
+	background: rgba(255, 255, 255, 0.9);
+	border-radius: 50%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.playButton::before {
+	content: '';
+	border-style: solid;
+	border-width: 12px 0 12px 20px;
+	border-color: transparent transparent transparent rgba(255, 167, 78, 0.8);
+	margin-left: 5px;
+}
+
+/* PHOTO GALLERY */
+
+.phGalCertificatesSection {
+	display: flex;
+	flex-direction: column;
+	gap: 60px;
+	padding-bottom: 110px;
+}
+
+.galleryHeader {
+	color: rgb(55, 63, 65);
+	font-family: TT Hoves;
+	font-size: 42px;
+	font-weight: 700;
+	line-height: 115%;
+	letter-spacing: 0px;
+	text-align: left;
+}
+
+.galleryWrapper {
+	display: flex;
+	justify-content: space-between;
+	gap: 30px;
+}
+
+.galleryCardWrapper {
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+}
+
+.galleryCard {
+	border-radius: 20px;
+	overflow: hidden;
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+}
+
+.galleryCardTitle {
+	color: rgb(55, 63, 65);
+	font-family: Mulish;
+	font-size: 16px;
+	font-weight: 600;
+	line-height: 20px;
+	letter-spacing: 0.2px;
+	text-align: left;
+}
+
+.galleryLeftCol,
+.galleryRightCol {
+	display: flex;
+	flex-direction: column;
+	gap: 30px;
+}
+
+.galleryLeftColTop,
+.galleryRightColTop {
+	display: flex;
+	gap: 30px;
+}
+
+.gallerySmallCard {
+	width: 220px;
+	height: 170px;
+}
+
+.galleryMiniMediumCard {
+	width: 270px;
+	height: 250px;
+}
+
+.galleryMedMediumCard {
+	width: 370px;
+	height: 250px;
+}
+
+.galleryMediumCard {
+	width: 470px;
+	height: 400px;
+}
+
+.galleryBigCard {
+	width: 670px;
+	height: 320px;
+}
+
+
+/* REVIEWS */
+
+.reviewsSection {
+	display: flex;
+	flex-direction: column;
+	padding: 100px 0;
+}
+
+.reviewsWrapper {
+	display: flex;
+	flex-direction: column;
+	gap: 60px;
+}
+
+.reviewsHeader {
+	color: rgb(55, 63, 65);
+	font-family: TT Hoves;
+	font-size: 42px;
+	font-weight: 700;
+	line-height: 115%;
+	letter-spacing: 0px;
+	text-align: left;
+}
+
+.reviewsCarts {
+	display: flex;
+	justify-content: space-between;
+}
+
+.reviewsCart {
+	padding: 0 25px 58px 25px;
+
+	display: flex;
+	flex-direction: column;
+}
+
+.reviewsCartTop {
+	align-self: flex-end;
+	margin-bottom: -15px;
+}
+
+.reviewsCartBottom {
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+
+	max-width: 320px;
+}
+
+.reviewsCartUsers {
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
+
+}
+
+.reviewsCartUserDate {
+	color: rgb(0, 0, 0);
+	font-family: Mulish;
+	font-size: 14px;
+	font-weight: 700;
+	line-height: 18px;
+	letter-spacing: 0.2px;
+	text-align: left;
+}
+
+.reviewsCartUser {
+	color: rgb(0, 0, 0);
+	font-family: TT Hoves;
+	font-size: 20px;
+	font-weight: 500;
+	line-height: 115%;
+	letter-spacing: 0px;
+	text-align: left;
+}
+
+.reviewsCartCommentsText {
+	color: rgb(0, 0, 0);
+	font-family: Mulish;
+	font-size: 14px;
+	font-weight: 600;
+	line-height: 18px;
+	letter-spacing: 0.2px;
+	text-align: left;
+}
+
+.reviewsStars {
+	display: flex;
+	gap: 1.7px;
+}
+
+.reviewsStarsWrapper {
+	width: 20px;
+	height: 20px;
+	background: var(--light-wheat);
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.reviewsStarsWrapper img {
+	width: 12px;
+	height: 12px;
+}
+
+.reviewsShowBtn {
+	align-self: center;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 1200px) {
+	.consProfileWrapper {
+		flex-direction: column;
+		gap: 40px;
+	}
+
+	.consProfileRightWrapper {
+		flex-direction: row;
+		align-items: center;
+		gap: 40px;
+	}
+
+	.consultantImage {
+		max-width: 320px;
+	}
+
+	.experienceWrapper {
+		gap: 15px;
+	}
+
+	.galleryWrapper {
+		flex-direction: column;
+	}
+
+	.galleryLeftColTop,
+	.galleryRightColTop {
+		flex-wrap: wrap;
+	}
+}
+
+@media (max-width: 768px) {
+	.profileSection {
+		padding: 40px 0;
+	}
+
+	.consultantName {
+		font-size: 32px;
+	}
+
+	.consultantTitle {
+		font-size: 12px;
+	}
+
+	.consProfileRightWrapper {
+		flex-direction: column;
+		align-items: flex-start;
+	}
+
+	.tabHeaders {
+		flex-direction: column;
+	}
+
+	.tabButton {
+		width: 100%;
+	}
+
+	.reviewsCarts {
+		flex-direction: column;
+		gap: 30px;
+	}
+
+	.reviewsWrapper {
+		gap: 30px;
+	}
+}

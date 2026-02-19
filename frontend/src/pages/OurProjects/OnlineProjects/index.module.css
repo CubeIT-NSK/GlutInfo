@@ -114,7 +114,7 @@
 .onlineVideoPlay {
 	width: 75px;
 	height: 75px;
-	background-color: #F8A94A;
+	background-color: var(--light-wheat);
 	border-radius: 100px;
 	border: none;
 	position: relative;
@@ -129,7 +129,7 @@
 	left: -12px;
 	width: 100px;
 	height: 100px;
-	background: #F8A94A26;
+	background: var(--light-wheat-transparent);
 	border-radius: 100px;
 
 }
@@ -142,4 +142,3 @@
 	top: 19px;
 	left: 24px;
 }
-

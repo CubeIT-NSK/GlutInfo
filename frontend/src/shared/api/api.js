@@ -145,3 +145,103 @@ export const getPatientsMe = async () => {
         data: data
     }
 }
+
+export const getConsultantsList = async (params = {}) => {
+    try {
+        const response = await api.get('/consultants', { params });
+        return {
+            status: response.status,
+            data: response.data?.items || response.data || [],
+            raw: response.data,
+        };
+    } catch (error) {
+        const status = error?.response?.status || error?.request?.status || 500;
+        return {
+            status,
+            data: [],
+            error,
+        };
+    }
+};
+
+export const getConsultantServicesList = async (consultantId) => {
+    if (!consultantId) {
+        return { status: 400, data: [] };
+    }
+    try {
+        const response = await api.get(`/consultants/${consultantId}/services`);
+        return {
+            status: response.status,
+            data: response.data || [],
+        };
+    } catch (error) {
+        const status = error?.response?.status || error?.request?.status || 500;
+        return {
+            status,
+            data: [],
+            error,
+        };
+    }
+};
+
+export const getConsultantAvailableDates = async (consultantId) => {
+    if (!consultantId) {
+        return { status: 400, data: [] };
+    }
+    try {
+        const response = await api.get(`/consultants/${consultantId}/available-dates`);
+        return {
+            status: response.status,
+            data: response.data?.dates || [],
+        };
+    } catch (error) {
+        const status = error?.response?.status || error?.request?.status || 500;
+        return {
+            status,
+            data: [],
+            error,
+        };
+    }
+};
+
+export const getConsultantAvailableTimes = async (consultantId, serviceId, dateToRecord) => {
+    if (!consultantId || !serviceId || !dateToRecord) {
+        return { status: 400, data: [] };
+    }
+    try {
+        const response = await api.get(`/consultants/${consultantId}/available-time`, {
+            params: {
+                service_id: serviceId,
+                date_to_record: dateToRecord,
+            },
+        });
+        return {
+            status: response.status,
+            data: response.data?.time_slots || [],
+        };
+    } catch (error) {
+        const status = error?.response?.status || error?.request?.status || 500;
+        return {
+            status,
+            data: [],
+            error,
+        };
+    }
+};
+
+export const getPatientRecords = async () => {
+    try {
+        const response = await api.get('/patients/me/records');
+        return {
+            status: response.status,
+            data: response.data || [],
+        };
+    } catch (error) {
+        const status = error?.response?.status || error?.request?.status || 500;
+        return {
+            status,
+            data: [],
+            error,
+        };
+    }
+};

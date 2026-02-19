@@ -569,8 +569,9 @@
 
 .treatmentTop {
 	display: flex;
-	justify-content: space-between;
-	align-items: flex-start;
+	flex-direction: column;
+	gap: 40px;
+	align-items: center;
 }
 
 .treatmentTopWrapper {
@@ -846,4 +847,443 @@
 	background-clip: text;
 	-webkit-background-clip: text;
 	-webkit-text-fill-color: transparent;
+}
+
+/* ===== RESPONSIVE STYLES ===== */
+
+/* General overflow prevention */
+.aboutUs,
+.directions,
+.problemInfo,
+.creator1,
+.creator2,
+.volunteers,
+.treatment,
+.location,
+.documents,
+.partners {
+	overflow-x: hidden;
+}
+
+.aboutUs *,
+.directions *,
+.problemInfo *,
+.creator1 *,
+.creator2 *,
+.volunteers *,
+.treatment *,
+.location *,
+.documents *,
+.partners * {
+	max-width: 100%;
+	word-wrap: break-word;
+	overflow-wrap: break-word;
+}
+
+/* Tablet styles */
+@media (max-width: 1024px) {
+	.aboutUs {
+		padding: 50px 0 70px 0;
+	}
+
+	.aboutUsWrapper {
+		flex-direction: column;
+		gap: 40px;
+		align-items: center;
+	}
+
+	.aboutUsLeft {
+		width: 100%;
+		max-width: 600px;
+		gap: 40px;
+	}
+
+	.aboutUsTitle {
+		font-size: 32px;
+		text-align: center;
+	}
+
+	.aboutUsInfoWrapper {
+		gap: 20px;
+	}
+
+	.aboutUsNumber {
+		font-size: 24px;
+	}
+
+	.aboutUsText {
+		font-size: 16px;
+		line-height: 20px;
+	}
+
+	.directionsWrapper {
+		flex-direction: column;
+		gap: 40px;
+		align-items: center;
+		padding: 0 20px;
+	}
+
+	.directionsTitle {
+		font-size: 32px;
+		text-align: center;
+	}
+
+	.directionsSubTitle {
+		font-size: 16px;
+		text-align: center;
+	}
+
+	.directionsInfoTitle {
+		font-size: 24px;
+		text-align: center;
+	}
+
+	.problemInfo {
+		background-position: bottom center;
+		padding-bottom: 0;
+	}
+
+	.directionsInfoContent {
+		flex-direction: column;
+		gap: 15px;
+		text-align: center;
+		max-width: 100%;
+		overflow-wrap: break-word;
+		align-items: center;
+	}
+
+	.directionsInfoTextTop,
+	.directionsInfoTextBottom {
+		font-size: 16px;
+	}
+
+	.problemMiddle {
+		flex-direction: column;
+		gap: 40px;
+		align-items: center;
+	}
+
+	.problemText,
+	.problemTextGradient {
+		font-size: 16px;
+		line-height: 20px;
+		text-align: center;
+	}
+
+	.problemName {
+		font-size: 24px;
+		text-align: center;
+	}
+
+	.problemJop {
+		font-size: 16px;
+		text-align: center;
+	}
+
+	.creator1Middle,
+	.creator2Middle {
+		flex-direction: column;
+		gap: 40px;
+		align-items: center;
+	}
+
+	.creatorTitle,
+	.creatorName {
+		font-size: 32px;
+		text-align: center;
+	}
+
+	.creatorText,
+	.creatorTextGradient {
+		font-size: 16px;
+		line-height: 20px;
+		text-align: center;
+	}
+
+	.volunteersWrapper {
+		gap: 40px;
+	}
+
+	.volunteersTitle {
+		font-size: 32px;
+		text-align: center;
+	}
+
+	.volunteersItems {
+		flex-direction: column;
+		gap: 30px;
+	}
+
+	.volunteersItem {
+		flex-direction: column;
+		flex-wrap: wrap;
+		gap: 20px;
+		text-align: center;
+		align-content: center;
+	}
+
+	.volunteersName {
+		font-size: 20px;
+	}
+
+	.volunteersText {
+		font-size: 16px;
+		line-height: 20px;
+	}
+
+	.treatmentWrapper {
+		gap: 40px;
+	}
+
+	.treatmentTop {
+		flex-direction: column;
+		gap: 30px;
+		align-items: center;
+	}
+
+	.treatmentTopWrapper {
+		width: 100%;
+		max-width: 600px;
+	}
+
+	.treatmentTitle {
+		font-size: 32px;
+		text-align: center;
+	}
+
+	.treatmentText {
+		font-size: 16px;
+		line-height: 20px;
+		text-align: center;
+	}
+
+	.treatmentItems {
+		flex-direction: column;
+		gap: 30px;
+	}
+
+	.treatmentItemTitle {
+		font-size: 24px;
+		text-align: center;
+	}
+
+	.treatmentListItem {
+		font-size: 16px;
+		line-height: 20px;
+	}
+
+	.locationMiddle {
+		flex-direction: column;
+		gap: 40px;
+		align-items: center;
+	}
+
+	.locationTitle {
+		font-size: 24px;
+		text-align: center;
+	}
+
+	.locationText {
+		font-size: 16px;
+		line-height: 20px;
+		text-align: center;
+	}
+
+	.documentsWrapper {
+		gap: 40px;
+	}
+
+	.documentsTitle {
+		font-size: 32px;
+		text-align: center;
+	}
+
+	.documentsItems {
+		flex-direction: column;
+		gap: 20px;
+	}
+
+	.documentsItem {
+		flex-direction: column;
+		gap: 15px;
+		text-align: center;
+	}
+
+	.partnersWrapper {
+		gap: 40px;
+	}
+
+	.partnersTitle {
+		font-size: 32px;
+		text-align: center;
+	}
+
+	.partnersItems {
+		display: flex;
+		flex-direction: column;
+		gap: 20px;
+	}
+
+	.partnersItem {
+		width: 100%;
+		flex-direction: column;
+		gap: 20px;
+		text-align: center;
+		padding: 20px;
+	}
+
+	.partnersInfo {
+		width: 100%;
+	}
+
+	.partnersText,
+	.partnersLink {
+		font-size: 16px;
+		line-height: 20px;
+	}
+}
+
+/* Mobile styles */
+@media (max-width: 768px) {
+	.aboutUs {
+		padding: 30px 0 50px 0;
+	}
+
+	.container {
+		padding: 0 15px;
+	}
+
+	.aboutUsLeft {
+		gap: 30px;
+	}
+
+	.aboutUsTitle {
+		font-size: 24px;
+	}
+
+	.aboutUsInfoWrapper {
+		flex-direction: column;
+		gap: 15px;
+		text-align: left;
+		align-items: start;
+	}
+
+	.aboutUsNumber {
+		font-size: 20px;
+	}
+
+	.aboutUsText {
+		font-size: 14px;
+		line-height: 18px;
+	}
+
+	.directionsWrapper {
+		padding: 0 15px;
+	}
+
+	.directionsTitle {
+		font-size: 24px;
+	}
+
+	.directionsSubTitle {
+		font-size: 14px;
+	}
+
+	.directionsInfoTitle {
+		font-size: 20px;
+	}
+
+	.directionsInfoTextTop,
+	.directionsInfoTextBottom {
+		font-size: 14px;
+		line-height: 18px;
+	}
+
+	.problemText,
+	.problemTextGradient {
+		font-size: 14px;
+		line-height: 18px;
+	}
+
+	.problemName {
+		font-size: 20px;
+	}
+
+	.problemJop {
+		font-size: 14px;
+	}
+
+	.creatorTitle,
+	.creatorName {
+		font-size: 24px;
+	}
+
+	.creatorText,
+	.creatorTextGradient {
+		font-size: 14px;
+		line-height: 18px;
+	}
+
+	.volunteersTitle {
+		font-size: 24px;
+	}
+
+	.volunteersName {
+		font-size: 18px;
+	}
+
+	.volunteersText {
+		font-size: 14px;
+		line-height: 18px;
+	}
+
+	.treatmentTop {
+		gap: 20px;
+	}
+
+	.treatmentTopWrapper {
+		max-width: 100%;
+		padding: 0 15px;
+	}
+
+	.treatmentTitle {
+		font-size: 24px;
+	}
+
+	.treatmentText {
+		font-size: 14px;
+		line-height: 18px;
+	}
+
+	.treatmentItemTitle {
+		font-size: 20px;
+	}
+
+	.treatmentListItem {
+		font-size: 14px;
+		line-height: 18px;
+	}
+
+	.locationTitle {
+		font-size: 20px;
+	}
+
+	.locationText {
+		font-size: 14px;
+		line-height: 18px;
+	}
+
+	.documentsTitle {
+		font-size: 24px;
+	}
+
+	.partnersTitle {
+		font-size: 24px;
+	}
+
+	.partnersText,
+	.partnersLink {
+		font-size: 14px;
+		line-height: 18px;
+	}
 }

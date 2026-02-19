@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -6,7 +6,8 @@ import * as yup from "yup";
 import styles from './index.module.css';
 import icons from '../../../resources/icon';
 import Button from '../../Buttons';
-import { postApiAuth } from '../../../api/api';
+import { postApiAuth, getUsersMe } from '../../../api/api';
+import { buildPatientProfileRoute, buildConsultantProfileRoute } from '../../../utils/routes';
 
 const schema = yup.object().shape({
     email: yup
@@ -32,20 +33,20 @@ const AuthorizationModal = ({ isOpen, onClose }) => {
     const [showPassword, setShowPassword] = useState(false);
     const scrollWidth = window.innerWidth - document.documentElement.clientWidth + 'px';
 
-    const togglePasswordVisibility = () => {
+    const togglePasswordVisibility = useCallback(() => {
         setShowPassword((prev) => !prev);
-    };
+    }, []);
 
-    const handleRegister = () => {
+    const handleRegister = useCallback(() => {
       onClose();
       navigate('/registration');
-    };
+    }, [onClose, navigate]);
 
-    const handleGsgLogin = (e) => {
+    const handleGsgLogin = useCallback((e) => {
       e.preventDefault();
-    };
+    }, []);
 
-    const handleLogin = async (data) => {
+    const handleLogin = useCallback(async (data) => {
         console.log('Authorization data:', data);
         const { email: username, password } = data;
         const status = await postApiAuth({ username, password });
@@ -54,8 +55,23 @@ const AuthorizationModal = ({ isOpen, onClose }) => {
         switch (status) {
             case 200:
                 console.log('Login successful');
-                onClose();
-                navigate('/profile-patient');
+                try {
+                    const { status: meStatus, data: meData } = await getUsersMe();
+                    if (meStatus === 200 && meData) {
+                        const destination = meData.role === 'patient'
+                            ? buildPatientProfileRoute(meData.id)
+                            : buildConsultantProfileRoute(meData.id);
+                        onClose();
+                        navigate(destination, { replace: true });
+                    } else {
+                        onClose();
+                        navigate('/');
+                    }
+                } catch (error) {
+                    console.error('Failed to fetch user profile after login', error);
+                    onClose();
+                    navigate('/');
+                }
                 break;
             case 400:
                 console.log('Invalid credentials');
@@ -73,7 +89,7 @@ const AuthorizationModal = ({ isOpen, onClose }) => {
                 console.error('Unexpected error:', status);
                 break;
         }
-    };
+    }, [onClose, navigate, setError]);
 
     useEffect(() => {
         if (isOpen) {

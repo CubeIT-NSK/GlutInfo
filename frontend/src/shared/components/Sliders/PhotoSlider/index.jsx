@@ -1,14 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import styles from './index.module.css';
 
 const PhotoSlider = ({ slides }) => {
     const [currentIndex, setCurrentIndex] = useState(0);
 
-    const goToSlide = (index) => {
+    const goToSlide = useCallback((index) => {
         setCurrentIndex(index);
-    };
+    }, []);
 
-    const getGridArea = (index) => {
+    const getGridArea = useCallback((index) => {
         const gridAreas = [
             "1 / 1 / 2 / 2",
             "1 / 2 / 2 / 3",
@@ -18,7 +18,7 @@ const PhotoSlider = ({ slides }) => {
             "3 / 4 / 4 / 5",
         ];
         return gridAreas[index] || "auto";
-    };
+    }, []);
 
     return (
         <div className={styles.slider}>

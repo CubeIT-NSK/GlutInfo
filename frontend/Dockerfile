@@ -1,7 +1,21 @@
-FROM node:17-alpine as build
+FROM node:18-alpine
+
 WORKDIR /app
+
+# Копируем package.json и package-lock.json
 COPY package*.json ./
-RUN npm install
-COPY . ./
+
+# Устанавливаем зависимости
+RUN npm ci
+
+# Копируем исходный код
+COPY . .
+
+# Собираем приложение
 RUN npm run build
-CMD cp -r dist result_build
+
+# Создаем папку для статики
+RUN mkdir -p /static
+
+# Копируем собранные файлы в папку static
+CMD ["sh", "-c", "cp -r /app/dist/. /static/ && tail -f /dev/null"]

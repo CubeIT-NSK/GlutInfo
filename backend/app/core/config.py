@@ -26,7 +26,7 @@ class Settings(BaseSettings):
     ENDPOINT_URL: str = 'https://s3.ru-1.storage.selcloud.ru'
     BUCKET_NAME: str = 'test-gluten-info'
 
-    model_config = SettingsConfigDict()
+    model_config = SettingsConfigDict(env_file='.env')
 
 
 settings = Settings()

@@ -1,7 +1,7 @@
 .slider {
 	position: relative;
 	width: 100%;
-	max-width: 1170px;
+	max-width: 1400px;
 	margin: auto;
 	overflow: hidden;
 	display: flex;
@@ -235,7 +235,7 @@
 	box-shadow: 0px 4px 12px 0px rgba(0, 0, 0, 0.25);
 	background: rgb(255, 255, 255);
 	padding: 30px 93px 30px 70px;
-	width: 1170px;
+	width: 1400px;
 	height: 650px;
 	position: relative;
 	animation: modalOpen 0.3s forwards;
@@ -244,6 +244,29 @@
 	flex-direction: column;
 	gap: 20px;
 	justify-content: space-between;
+}
+
+/* Tablet styles */
+@media (max-width: 1024px) {
+	.modalContent {
+		width: 90vw;
+		max-width: 800px;
+		height: 70vh;
+		max-height: 500px;
+		padding: 25px 40px;
+	}
+}
+
+/* Mobile styles */
+@media (max-width: 768px) {
+	.modalContent {
+		width: 95vw;
+		max-width: 500px;
+		height: 80vh;
+		max-height: 600px;
+		padding: 20px 25px;
+		gap: 15px;
+	}
 }
 
 .modalContentTop {
@@ -282,10 +305,42 @@
 	text-align: left;
 }
 
+/* Tablet styles */
+@media (max-width: 1024px) {
+	.modalText p {
+		font-size: 16px;
+		line-height: 20px;
+	}
+}
+
+/* Mobile styles */
+@media (max-width: 768px) {
+	.modalText p {
+		font-size: 14px;
+		line-height: 18px;
+	}
+}
+
 .modalText {
 	max-height: 434px;
 	overflow-y: auto;
 	margin-right: 3px;
+}
+
+/* Tablet styles */
+@media (max-width: 1024px) {
+	.modalText {
+		max-height: 300px;
+		margin-right: 0;
+	}
+}
+
+/* Mobile styles */
+@media (max-width: 768px) {
+	.modalText {
+		max-height: 400px;
+		margin-right: 0;
+	}
 }
 
 .modalContentWrapper {
@@ -293,6 +348,24 @@
 	display: flex;
 	flex-direction: column;
 	gap: 17px;
+}
+
+/* Tablet styles */
+@media (max-width: 1024px) {
+	.modalContentWrapper {
+		width: 100%;
+		max-width: 700px;
+		gap: 15px;
+	}
+}
+
+/* Mobile styles */
+@media (max-width: 768px) {
+	.modalContentWrapper {
+		width: 100%;
+		max-width: 450px;
+		gap: 12px;
+	}
 }
 
 .modalText::-webkit-scrollbar {
@@ -312,4 +385,11 @@
 	-moz-border-radius: 100px;
 	-ms-border-radius: 100px;
 	-o-border-radius: 100px;
+}
+
+/* Mobile styles */
+@media (max-width: 768px) {
+	.modalText::-webkit-scrollbar {
+		width: 8px;
+	}
 }
